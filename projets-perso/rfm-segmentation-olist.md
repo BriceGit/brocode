@@ -20,8 +20,7 @@ WITH recency_data AS (
     c.customer_unique_id,
     DATE_DIFF(
       (SELECT MAX(DATE(order_purchase_timestamp)) FROM `dataset.orders`),
-      MAX(DATE(o.order_purchase_timestamp)),
-      DAY
+      MAX(DATE(o.order_purchase_timestamp)), DAY
     ) AS recency_days
   FROM `dataset.orders` AS o
   INNER JOIN `dataset.customers` AS c
