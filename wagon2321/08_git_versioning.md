@@ -42,6 +42,7 @@ git branch nom-branche        # créer une branche
 git checkout nom-branche      # basculer dessus
 git merge nom-branche         # fusionner dans la branche courante
 git branch -d nom-branche     # supprimer une branche locale
+git switch nom-branche        # selectionne une branche où aller
 ```
 
 ## 4. Staging & commit
