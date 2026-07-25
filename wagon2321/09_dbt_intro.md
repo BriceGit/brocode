@@ -68,19 +68,6 @@ Points clés :
 
 Chaque couche a **un seul job**. C'est une convention quasi universelle : dans n'importe quelle boîte qui utilise DBT, tu retrouveras ces mêmes noms.
 
-```mermaid
-flowchart LR
-    A[Raw Layer<br/>main_raw] --> B[Staging<br/>main_staging]
-    B --> C[Intermediate<br/>main_intermediate]
-    C --> D[Marts<br/>main_marts]
-    D --> E[Dashboards]
-
-    style A fill:#f5f5f5,stroke:#666
-    style B fill:#e3f0ff,stroke:#3b82f6
-    style C fill:#fff8e1,stroke:#f59e0b
-    style D fill:#e8f8ee,stroke:#10b981
-    style E fill:#f3ecff,stroke:#8b5cf6,stroke-dasharray: 5 5
-```
 
 | Couche | Rôle | Contenu | Matérialisation | Préfixe |
 |---|---|---|---|---|
@@ -489,37 +476,6 @@ Tests et documentation seront vus en détail dans une prochaine unité — mais 
 ---
 
 ## 🗺️ Ce qu'on construit aujourd'hui
-
-```mermaid
-flowchart LR
-    subgraph SRC["Sources"]
-        c1[jaffle_shop.customers]
-        o1[jaffle_shop.orders]
-        p1[jaffle_shop.payments]
-    end
-    subgraph STG["Staging"]
-        sc[stg_customers]
-        so[stg_orders]
-        sp[stg_payments]
-    end
-    subgraph INT["Intermediate"]
-        iop[int_orders_with_payments]
-    end
-    subgraph MART["Marts"]
-        fo[fct_orders]
-        dc[dim_customers]
-    end
-
-    c1 --> sc
-    o1 --> so
-    p1 --> sp
-    so --> iop
-    sp --> iop
-    iop --> fo
-    iop --> dc
-    sc -.skip-layer ref.-> dc
-    sc --> fo
-```
 
 Note sur la ligne en pointillés : `dim_customers` référence `stg_customers` **directement**, sans passer par l'intermediate. C'est autorisé — la couche intermediate n'est pas obligatoire pour chaque chemin : si aucune logique métier n'est nécessaire entre le staging et un mart, on peut "sauter" la couche (*skip-layer ref*). La règle des couches organise le projet, elle n'impose pas un détour systématique par toutes les étapes.
 
