@@ -4,9 +4,6 @@
 
 **Thème :** Data Warehousing moderne — de la base transactionnelle à la plateforme data (ELT, CDC, Fivetran)
 
-**Tags :** `#data-warehouse` `#ELT` `#CDC` `#fivetran` `#OLTP-OLAP`
-
-**Compréhension (1→5) :** ⭐⭐⭐⭐
 
 ---
 
