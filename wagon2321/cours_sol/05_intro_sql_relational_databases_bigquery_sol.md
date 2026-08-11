@@ -2,7 +2,7 @@
 
 **Date : 10 juillet 2026**  
 **Thème :** Introduction à SQL, modèle relationnel, ERD, BigQuery, requêtes de sélection, filtres, tri, fonctions de base et types de données  
-**Tags :** `SQL` `BigQuery` `Relational Database` `ERD` `Primary Key` `Foreign Key` `SELECT` `WHERE` `LIKE` `IN` `ORDER BY` `CASE WHEN` `CAST` `SAFE_CAST`  
+**Tags :** #brocode  `SQL` `BigQuery` `Relational Database` `ERD` `Primary Key` `Foreign Key` `SELECT` `WHERE` `LIKE` `IN` `ORDER BY` `CASE WHEN` `CAST` `SAFE_CAST`  
 **Compréhension (1→5) :** ⭐⭐⭐☆☆
 
 ---
