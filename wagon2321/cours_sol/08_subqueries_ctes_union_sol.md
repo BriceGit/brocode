@@ -1,10 +1,48 @@
-# 📝 #8 – SQL : CTEs, Subqueries & UNION
+---
+title: "SQL — CTEs, Subqueries & UNION"
+aliases:
+  - "SQL CTEs"
+  - "SQL Subqueries"
+  - "CTEs Subqueries UNION"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 8
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "CTEs"
+  - "Subqueries"
+  - "UNION"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - ctes
+  - subqueries
+  - union
+---
 
+# 📝 08 — SQL · CTEs, Subqueries & UNION
+
+> [!info] Navigation Brocode
+> **← Précédent :** [[07_joins_and_testing_sol|07 — SQL · JOINs & Testing]] · **Suivant → :** [[09_udf_window_functions_sol|09 — SQL · UDFs & Window Functions]]
+>
+> [!tip] Navigation Obsidian
+> Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
+
+---
+
+> [!abstract] Objectif du chapitre
 > **Objectif du chapitre :** apprendre à découper une requête SQL complexe en étapes lisibles grâce aux **CTEs**, comprendre les différentes formes de **sous-requêtes**, savoir choisir entre `JOIN`, CTE et nested subquery, et maîtriser les opérations verticales `UNION ALL` / `UNION DISTINCT` sans casser la granularité ni introduire de doublons.
 
 ---
 
-# 🧭 0. Où se situe ce chapitre ?
+## 🧭 0. Où se situe ce chapitre ?
 
 Le chapitre précédent introduisait les **JOINs** et surtout une idée fondamentale :
 
@@ -59,7 +97,7 @@ Le fil conducteur du cours est particulièrement important :
 
 ---
 
-# 🔁 1. Rappel : éviter `SELECT *`
+## 🔁 1. Rappel : éviter `SELECT *`
 
 Dans les exercices précédents, `SELECT *` était pratique pour apprendre.
 
@@ -93,7 +131,7 @@ LEFT JOIN orders AS o
   ON s.orders_id = o.orders_id;
 ```
 
-## Pourquoi ?
+### Pourquoi ?
 
 Parce qu'on sait immédiatement :
 
@@ -107,7 +145,7 @@ et parce que la requête exprime mieux son intention métier.
 
 ---
 
-# 🏷 2. Construire une requête avec les alias
+## 🏷 2. Construire une requête avec les alias
 
 Le formateur conseille une méthode très pratique :
 
@@ -153,7 +191,7 @@ plusieurs CTEs
 
 ---
 
-# 🔬 3. Granularité : le prérequis indispensable
+## 🔬 3. Granularité : le prérequis indispensable
 
 La **granularité**, la **maille** ou le **niveau de détail** décrivent ce que représente **une ligne**.
 
@@ -182,7 +220,7 @@ La granularité est donc plus fine que le buyer seul.
 
 ---
 
-## Réduire la granularité
+### Réduire la granularité
 
 Si on souhaite :
 
@@ -218,7 +256,7 @@ buyer_id
 
 ---
 
-# 🧮 4. Agrégation et `GROUP BY`
+## 🧮 4. Agrégation et `GROUP BY`
 
 Une fonction comme :
 
@@ -273,7 +311,7 @@ order
 
 ---
 
-## ⚠️ Correction Brocode : agrégation ≠ toujours `GROUP BY`
+### ⚠️ Correction Brocode : agrégation ≠ toujours `GROUP BY`
 
 Le cours utilise souvent le raccourci :
 
@@ -309,7 +347,7 @@ car `orders_id` n'est pas agrégé.
 
 ---
 
-# 🏷 5. Bien nommer les colonnes agrégées
+## 🏷 5. Bien nommer les colonnes agrégées
 
 Éviter :
 
@@ -353,7 +391,7 @@ Cette distinction devient essentielle quelques CTEs plus tard.
 
 ---
 
-# 🧠 6. Pourquoi les CTEs existent-elles ?
+## 🧠 6. Pourquoi les CTEs existent-elles ?
 
 Avant les CTEs, on pourrait construire un pipeline comme ceci :
 
@@ -399,7 +437,7 @@ query unique
 
 ---
 
-# 🧱 7. CTE — Common Table Expression
+## 🧱 7. CTE — Common Table Expression
 
 CTE signifie :
 
@@ -433,7 +471,7 @@ devient ensuite utilisable comme une table dans la requête qui suit.
 
 ---
 
-# 🧩 8. Lire une CTE mentalement
+## 🧩 8. Lire une CTE mentalement
 
 Prenons :
 
@@ -471,7 +509,7 @@ La CTE devient donc un **nom intermédiaire dans le raisonnement**.
 
 ---
 
-# ⚠️ 9. CTE ≠ vraie table temporaire matérialisée
+## ⚠️ 9. CTE ≠ vraie table temporaire matérialisée
 
 Le cours présente la CTE comme :
 
@@ -531,7 +569,7 @@ peut parfois être plus adaptée.
 
 ---
 
-# 🎯 10. Premier grand cas d'usage : `GROUP BY` puis `JOIN`
+## 🎯 10. Premier grand cas d'usage : `GROUP BY` puis `JOIN`
 
 C'est **le cas central du cours**.
 
@@ -561,7 +599,7 @@ avec :
 
 ---
 
-## Table `sales`
+### Table `sales`
 
 ```text
 orders_id | product_id | turnover
@@ -580,7 +618,7 @@ order × product
 
 ---
 
-## Table `operational`
+### Table `operational`
 
 ```text
 orders_id | logistic_cost | shipping_fee
@@ -597,7 +635,7 @@ order
 
 ---
 
-# 💥 11. Le problème : joindre avant d'agréger
+## 💥 11. Le problème : joindre avant d'agréger
 
 Si on fait directement :
 
@@ -623,7 +661,7 @@ Les coûts sont répétés.
 
 ---
 
-## Calcul faux
+### Calcul faux
 
 Si on écrit ensuite :
 
@@ -653,7 +691,7 @@ granularité incompatible
 
 ---
 
-# ✅ 12. Solution : pré-agréger dans une CTE
+## ✅ 12. Solution : pré-agréger dans une CTE
 
 On ramène d'abord `sales` à la granularité de `operational`.
 
@@ -698,7 +736,7 @@ La relation devient beaucoup plus sûre :
 
 ---
 
-# 🧠 13. Mémo du cours
+## 🧠 13. Mémo du cours
 
 Le raccourci pédagogique à retenir :
 
@@ -718,7 +756,7 @@ C'est une excellente alerte mentale :
 
 ---
 
-# 🧮 14. Calculer la marge après la CTE
+## 🧮 14. Calculer la marge après la CTE
 
 Après l'agrégation, on peut calculer :
 
@@ -756,7 +794,7 @@ USING (orders_id);
 
 ---
 
-# 🔗 15. Deuxième grand cas d'usage : réutiliser un calcul
+## 🔗 15. Deuxième grand cas d'usage : réutiliser un calcul
 
 Supposons :
 
@@ -794,7 +832,7 @@ Il n'est pas disponible comme entrée pour l'expression suivante dans la même l
 
 ---
 
-# ✅ 16. Résoudre le problème avec une CTE
+## ✅ 16. Résoudre le problème avec une CTE
 
 ```sql
 WITH margin_cte AS (
@@ -827,7 +865,7 @@ C'est beaucoup plus lisible.
 
 ---
 
-# 🛡 17. `SAFE_DIVIDE`
+## 🛡 17. `SAFE_DIVIDE`
 
 Dans BigQuery :
 
@@ -853,7 +891,7 @@ on préfère obtenir un résultat sûr (`NULL`) plutôt qu'une erreur bloquant t
 
 ---
 
-# 🪜 18. Enchaîner plusieurs CTEs
+## 🪜 18. Enchaîner plusieurs CTEs
 
 On ne répète pas `WITH`.
 
@@ -878,7 +916,7 @@ FROM cte_3;
 
 ---
 
-## Exemple
+### Exemple
 
 ```sql
 WITH sales_by_order AS (
@@ -922,7 +960,7 @@ FROM orders_kpi;
 
 ---
 
-# 🧠 19. Lire une chaîne de CTEs comme un pipeline
+## 🧠 19. Lire une chaîne de CTEs comme un pipeline
 
 La requête précédente correspond à :
 
@@ -955,7 +993,7 @@ un nom clair
 
 ---
 
-# 🏷 20. Bien nommer les CTEs
+## 🏷 20. Bien nommer les CTEs
 
 Mauvais :
 
@@ -994,7 +1032,7 @@ sales_by_customer_month
 
 ---
 
-# 🧱 21. Une CTE peut dépendre d'une CTE précédente
+## 🧱 21. Une CTE peut dépendre d'une CTE précédente
 
 ```sql
 WITH base AS (
@@ -1029,7 +1067,7 @@ la dépendance va naturellement des CTEs définies plus tôt vers les suivantes.
 
 ---
 
-# 🔁 22. CTE récursive — à connaître
+## 🔁 22. CTE récursive — à connaître
 
 Le cours mentionne l'existence d'autres sous-requêtes, notamment les CTEs récursives.
 
@@ -1063,7 +1101,7 @@ Ce n'est pas le sujet principal de ce chapitre, mais il est utile de reconnaîtr
 
 ---
 
-# 🧩 23. CTE vs sous-requête : relation entre les concepts
+## 🧩 23. CTE vs sous-requête : relation entre les concepts
 
 Une **subquery** est une requête à l'intérieur d'une autre requête.
 
@@ -1087,7 +1125,7 @@ Subqueries
 
 ---
 
-# 📦 24. Sous-requête dans le `WHERE`
+## 📦 24. Sous-requête dans le `WHERE`
 
 Exemple du cours :
 
@@ -1120,7 +1158,7 @@ conserve les ventes dont l'ID apparaît dans cette liste.
 
 ---
 
-# 🧠 25. Lire `WHERE ... IN (subquery)`
+## 🧠 25. Lire `WHERE ... IN (subquery)`
 
 Mentalement :
 
@@ -1146,7 +1184,7 @@ WHERE orders_id IN (451, 492, 623)
 
 ---
 
-# 🔄 26. Même logique avec un `JOIN`
+## 🔄 26. Même logique avec un `JOIN`
 
 On peut souvent réécrire :
 
@@ -1189,7 +1227,7 @@ sans multiplier les sous-requêtes.
 
 ---
 
-# ⚖️ 27. JOIN ou nested subquery ?
+## ⚖️ 27. JOIN ou nested subquery ?
 
 Le cours insiste sur la lisibilité du `JOIN`.
 
@@ -1218,7 +1256,7 @@ La provenance des colonnes est claire.
 
 ---
 
-# ⚠️ 28. Correction Brocode : subquery ≠ automatiquement plus lente
+## ⚠️ 28. Correction Brocode : subquery ≠ automatiquement plus lente
 
 Le cours présente parfois la règle :
 
@@ -1276,7 +1314,7 @@ Le meilleur réflexe :
 
 ---
 
-# 🧮 29. Scalar subquery
+## 🧮 29. Scalar subquery
 
 Une sous-requête scalaire retourne une seule valeur.
 
@@ -1306,7 +1344,7 @@ Cette valeur peut alors être utilisée comme une expression.
 
 ---
 
-# 📋 30. `IN` subquery
+## 📋 30. `IN` subquery
 
 Structure :
 
@@ -1337,7 +1375,7 @@ orders_id
 
 ---
 
-# ✅ 31. `EXISTS` subquery
+## ✅ 31. `EXISTS` subquery
 
 `EXISTS` répond à une question différente :
 
@@ -1368,7 +1406,7 @@ vérifier si une commande correspondante existe
 
 ---
 
-# 📦 32. Table subquery dans `FROM`
+## 📦 32. Table subquery dans `FROM`
 
 Une sous-requête peut aussi produire une table.
 
@@ -1406,7 +1444,7 @@ FROM sales_by_order;
 
 ---
 
-# 🔗 33. Correlated subquery
+## 🔗 33. Correlated subquery
 
 Une correlated subquery référence une colonne de la requête externe.
 
@@ -1436,7 +1474,7 @@ La sous-requête dépend donc de la ligne courante de `sales`.
 
 ---
 
-# 🚨 34. Pourquoi les correlated subqueries demandent de l'attention
+## 🚨 34. Pourquoi les correlated subqueries demandent de l'attention
 
 Une sous-requête corrélée peut être conceptuellement exécutée en fonction des lignes de la requête externe.
 
@@ -1482,9 +1520,9 @@ LEFT JOIN orders AS o
 
 ---
 
-# 🧠 35. Décider entre JOIN, CTE et subquery
+## 🧠 35. Décider entre JOIN, CTE et subquery
 
-## Utiliser un `JOIN` quand...
+### Utiliser un `JOIN` quand...
 
 ```text
 Je dois combiner des colonnes de plusieurs tables.
@@ -1498,7 +1536,7 @@ sales + orders + customers
 
 ---
 
-## Utiliser une CTE quand...
+### Utiliser une CTE quand...
 
 ```text
 Je veux découper une requête complexe en étapes nommées.
@@ -1517,7 +1555,7 @@ lisibilité
 
 ---
 
-## Utiliser une nested subquery quand...
+### Utiliser une nested subquery quand...
 
 ```text
 Le raisonnement est local et compact.
@@ -1534,7 +1572,7 @@ petite table intermédiaire
 
 ---
 
-# 🧭 36. Arbre de décision
+## 🧭 36. Arbre de décision
 
 ```text
 Ai-je besoin de colonnes de plusieurs tables ?
@@ -1559,7 +1597,7 @@ Ai-je besoin de colonnes de plusieurs tables ?
 
 ---
 
-# ⏱ 37. Ordre logique d'exécution SQL
+## ⏱ 37. Ordre logique d'exécution SQL
 
 Pour comprendre pourquoi certaines colonnes ne sont pas encore disponibles :
 
@@ -1579,7 +1617,7 @@ C'est particulièrement important pour les alias calculés.
 
 ---
 
-# ⚠️ 38. Alias créé dans le même `SELECT`
+## ⚠️ 38. Alias créé dans le même `SELECT`
 
 Exemple problématique :
 
@@ -1613,7 +1651,7 @@ FROM margin_cte;
 
 ---
 
-# 🧰 39. CTE vs TEMP TABLE vs VIEW
+## 🧰 39. CTE vs TEMP TABLE vs VIEW
 
 Ces objets sont proches conceptuellement mais différents.
 
@@ -1627,7 +1665,7 @@ Ces objets sont proches conceptuellement mais différents.
 
 ---
 
-# 📌 40. CTE : portée
+## 📌 40. CTE : portée
 
 Une CTE existe seulement dans la requête où elle est définie.
 
@@ -1650,7 +1688,7 @@ n'est pas une table du dataset.
 
 ---
 
-# 👀 41. Comment inspecter une CTE pendant le développement ?
+## 👀 41. Comment inspecter une CTE pendant le développement ?
 
 Le cours conseille de construire progressivement.
 
@@ -1687,7 +1725,7 @@ C'est une excellente méthode de debug.
 
 ---
 
-# 🐛 42. Débugger une requête à plusieurs CTEs
+## 🐛 42. Débugger une requête à plusieurs CTEs
 
 Supposons :
 
@@ -1721,7 +1759,7 @@ permet de trouver l'étape qui introduit l'erreur.
 
 ---
 
-# 🧪 43. Tester la granularité d'une CTE
+## 🧪 43. Tester la granularité d'une CTE
 
 Si :
 
@@ -1762,7 +1800,7 @@ Résultat attendu :
 
 ---
 
-# 🧪 44. Tester le nombre de lignes
+## 🧪 44. Tester le nombre de lignes
 
 Avant :
 
@@ -1788,7 +1826,7 @@ Si la relation devait être `1:1`, le nombre de lignes ne devrait pas exploser.
 
 ---
 
-# 🧪 45. Tester les métriques
+## 🧪 45. Tester les métriques
 
 Avant :
 
@@ -1820,7 +1858,7 @@ Si le montant double :
 
 ---
 
-# ↕️ 46. JOIN vs UNION
+## ↕️ 46. JOIN vs UNION
 
 Une différence fondamentale :
 
@@ -1838,7 +1876,7 @@ empiler verticalement
 
 ---
 
-## JOIN
+### JOIN
 
 ```text
 sales                products
@@ -1854,7 +1892,7 @@ On ajoute des colonnes.
 
 ---
 
-## UNION
+### UNION
 
 ```text
 january
@@ -1879,7 +1917,7 @@ On ajoute des lignes.
 
 ---
 
-# 🧱 47. `UNION ALL`
+## 🧱 47. `UNION ALL`
 
 Syntaxe BigQuery :
 
@@ -1909,7 +1947,7 @@ elle apparaît deux fois
 
 ---
 
-# 🎯 48. Cas d'usage de `UNION ALL`
+## 🎯 48. Cas d'usage de `UNION ALL`
 
 Exemple :
 
@@ -1936,7 +1974,7 @@ SELECT * FROM inventory_march;
 
 ---
 
-# 🧹 49. `UNION DISTINCT`
+## 🧹 49. `UNION DISTINCT`
 
 ```sql
 SELECT
@@ -1958,7 +1996,7 @@ FROM orders_2;
 
 ---
 
-# ⚠️ 50. DISTINCT porte sur la ligne complète
+## ⚠️ 50. DISTINCT porte sur la ligne complète
 
 Supposons :
 
@@ -1983,7 +2021,7 @@ Pour être supprimées par `UNION DISTINCT`, les lignes doivent être identiques
 
 ---
 
-# 🚀 51. `UNION ALL` est souvent préférable
+## 🚀 51. `UNION ALL` est souvent préférable
 
 Si on sait que les datasets sont disjoints :
 
@@ -2007,7 +2045,7 @@ Ne l'utiliser que lorsque la déduplication est réellement voulue.
 
 ---
 
-# ⚠️ 52. Correction Brocode : les noms de colonnes n'ont pas besoin d'être identiques
+## ⚠️ 52. Correction Brocode : les noms de colonnes n'ont pas besoin d'être identiques
 
 Les slides indiquent :
 
@@ -2062,7 +2100,7 @@ Le résultat prendra les noms de colonnes issus de la première requête.
 
 ---
 
-# 🚨 53. Attention à l'ordre des colonnes
+## 🚨 53. Attention à l'ordre des colonnes
 
 Ceci est dangereux :
 
@@ -2091,7 +2129,7 @@ colonne 2 ↔ colonne 2
 
 ---
 
-# 🏷 54. BigQuery : `UNION ... BY NAME`
+## 🏷 54. BigQuery : `UNION ... BY NAME`
 
 BigQuery permet aussi d'aligner les colonnes par nom :
 
@@ -2122,7 +2160,7 @@ C'est une fonctionnalité très utile pour éviter des erreurs de positionnement
 
 ---
 
-# 🧩 55. Colonnes différentes entre les deux tables
+## 🧩 55. Colonnes différentes entre les deux tables
 
 Le cours indique qu'une colonne présente dans une seule table ne peut pas être unionnée directement.
 
@@ -2152,7 +2190,7 @@ FROM orders_2;
 
 ---
 
-# 🩹 56. Solution classique : créer explicitement la colonne manquante
+## 🩹 56. Solution classique : créer explicitement la colonne manquante
 
 ```sql
 SELECT
@@ -2176,7 +2214,7 @@ On contrôle explicitement le schéma final.
 
 ---
 
-# 🧠 57. BigQuery avancé : `FULL OUTER ... UNION ALL BY NAME`
+## 🧠 57. BigQuery avancé : `FULL OUTER ... UNION ALL BY NAME`
 
 BigQuery propose aussi des variantes de set operations par nom permettant de gérer des colonnes différentes.
 
@@ -2198,7 +2236,7 @@ Les colonnes absentes d'un côté peuvent être remplies par `NULL`.
 
 ---
 
-# 🔢 58. Compatibilité des types
+## 🔢 58. Compatibilité des types
 
 Les colonnes correspondantes doivent avoir des types compatibles.
 
@@ -2229,7 +2267,7 @@ FROM table_2;
 
 ---
 
-# 🧼 59. Normaliser avant un UNION
+## 🧼 59. Normaliser avant un UNION
 
 Une bonne architecture consiste à préparer les deux sources.
 
@@ -2261,7 +2299,7 @@ Les CTEs et `UNION ALL` fonctionnent donc très bien ensemble.
 
 ---
 
-# 🚫 60. Erreur fréquente : utiliser `UNION DISTINCT` pour masquer un problème
+## 🚫 60. Erreur fréquente : utiliser `UNION DISTINCT` pour masquer un problème
 
 Supposons qu'une mauvaise jointure ait créé des doublons.
 
@@ -2302,7 +2340,7 @@ Comment les supprimer ?
 
 ---
 
-# 🧠 61. CTE + JOIN + UNION : un pipeline réaliste
+## 🧠 61. CTE + JOIN + UNION : un pipeline réaliste
 
 Exemple :
 
@@ -2362,7 +2400,7 @@ coûts
 
 ---
 
-# 🧪 62. Vérifier un UNION
+## 🧪 62. Vérifier un UNION
 
 Avant :
 
@@ -2390,7 +2428,7 @@ rows_1 + rows_2
 
 ---
 
-# 🧪 63. Tester les doublons après un UNION
+## 🧪 63. Tester les doublons après un UNION
 
 ```sql
 WITH all_orders AS (
@@ -2419,7 +2457,7 @@ Tout dépend de la granularité attendue.
 
 ---
 
-# 🧠 64. `WHERE ... IN`
+## 🧠 64. `WHERE ... IN`
 
 Le cours se termine aussi sur :
 
@@ -2445,7 +2483,7 @@ WHERE country = 'FR'
 
 ---
 
-# 🔗 65. `IN` avec une sous-requête
+## 🔗 65. `IN` avec une sous-requête
 
 ```sql
 WHERE orders_id IN (
@@ -2461,7 +2499,7 @@ Elle est générée dynamiquement par la sous-requête.
 
 ---
 
-# ⚠️ 66. `NOT IN` et `NULL`
+## ⚠️ 66. `NOT IN` et `NULL`
 
 Un piège SQL classique concerne :
 
@@ -2483,7 +2521,7 @@ ou un anti-join bien contrôlé.
 
 ---
 
-# 🧰 67. Pattern CTE robuste : pré-agrégation + JOIN
+## 🧰 67. Pattern CTE robuste : pré-agrégation + JOIN
 
 ```sql
 WITH sales_by_order AS (
@@ -2512,7 +2550,7 @@ USING (orders_id);
 
 ---
 
-# 🪜 68. Pattern CTE robuste : calculs en cascade
+## 🪜 68. Pattern CTE robuste : calculs en cascade
 
 ```sql
 WITH base AS (
@@ -2543,7 +2581,7 @@ FROM margin_rate;
 
 ---
 
-# 🔍 69. Pattern `EXISTS`
+## 🔍 69. Pattern `EXISTS`
 
 ```sql
 SELECT
@@ -2567,7 +2605,7 @@ avec code HAPPYHOUR existe
 
 ---
 
-# ↕️ 70. Pattern `UNION ALL`
+## ↕️ 70. Pattern `UNION ALL`
 
 ```sql
 SELECT
@@ -2587,7 +2625,7 @@ FROM orders_february;
 
 ---
 
-# 🏷 71. Pattern `UNION ALL BY NAME`
+## 🏷 71. Pattern `UNION ALL BY NAME`
 
 ```sql
 SELECT
@@ -2609,7 +2647,7 @@ La correspondance se fait par nom et non par position.
 
 ---
 
-# 🚫 72. Anti-patterns
+## 🚫 72. Anti-patterns
 
 ## 1. CTE `cte1`, `cte2`, `cte3`
 
@@ -2683,7 +2721,7 @@ sont très naturelles.
 
 ---
 
-# 🧭 73. Principes de lisibilité
+## 🧭 73. Principes de lisibilité
 
 Une bonne requête complexe ressemble à un récit :
 
@@ -2709,7 +2747,7 @@ nettoyer les ventes
 
 ---
 
-# 💰 74. Coût et performance BigQuery
+## 💰 74. Coût et performance BigQuery
 
 Le cours insiste à juste titre sur le fait que BigQuery traite potentiellement de gros volumes.
 
@@ -2735,7 +2773,7 @@ Et deux requêtes très courtes peuvent avoir des coûts très différents.
 
 ---
 
-# 📊 75. Ne pas optimiser à l'aveugle
+## 📊 75. Ne pas optimiser à l'aveugle
 
 Méthode :
 
@@ -2757,7 +2795,7 @@ Pas :
 
 ---
 
-# 🧪 76. Checklist avant une CTE
+## 🧪 76. Checklist avant une CTE
 
 - [ ] Quel est le rôle exact de cette étape ?
 - [ ] Quelle est la granularité d'entrée ?
@@ -2768,7 +2806,7 @@ Pas :
 
 ---
 
-# ✅ 77. Checklist après une CTE
+## ✅ 77. Checklist après une CTE
 
 - [ ] Le nombre de lignes est-il cohérent ?
 - [ ] La clé attendue est-elle unique ?
@@ -2779,7 +2817,7 @@ Pas :
 
 ---
 
-# 🔗 78. Checklist avant un JOIN après CTE
+## 🔗 78. Checklist avant un JOIN après CTE
 
 ```text
 CTE gauche
@@ -2804,7 +2842,7 @@ Quel nombre de lignes attendu ?
 
 ---
 
-# ↕️ 79. Checklist avant un UNION
+## ↕️ 79. Checklist avant un UNION
 
 - [ ] Même nombre de colonnes ?
 - [ ] Même signification métier par position ?
@@ -2819,7 +2857,7 @@ Quel nombre de lignes attendu ?
 
 ---
 
-# 🧠 80. Ce qu'il faut vraiment retenir
+## 🧠 80. Ce qu'il faut vraiment retenir
 
 Une CTE n'est pas juste une nouvelle syntaxe.
 
@@ -2861,7 +2899,7 @@ calcul B utilisant A
 
 ---
 
-# 🎯 81. Les réflexes à automatiser
+## 🎯 81. Les réflexes à automatiser
 
 1. **Toujours identifier la granularité avant un JOIN.**
 2. **Pré-agréger quand une table est trop détaillée.**
@@ -2876,9 +2914,9 @@ calcul B utilisant A
 
 ---
 
-# 🧾 82. Cheat sheet finale
+## 🧾 82. Cheat sheet finale
 
-## CTE simple
+### CTE simple
 
 ```sql
 WITH my_cte AS (
@@ -2894,7 +2932,7 @@ FROM my_cte;
 
 ---
 
-## Plusieurs CTEs
+### Plusieurs CTEs
 
 ```sql
 WITH cte_1 AS (
@@ -2917,7 +2955,7 @@ FROM cte_3;
 
 ---
 
-## Pré-agrégation avant JOIN
+### Pré-agrégation avant JOIN
 
 ```sql
 WITH sales_by_order AS (
@@ -2939,7 +2977,7 @@ USING (orders_id);
 
 ---
 
-## Calcul en cascade
+### Calcul en cascade
 
 ```sql
 WITH margin_cte AS (
@@ -2958,7 +2996,7 @@ FROM margin_cte;
 
 ---
 
-## `IN` subquery
+### `IN` subquery
 
 ```sql
 SELECT *
@@ -2972,7 +3010,7 @@ WHERE orders_id IN (
 
 ---
 
-## `EXISTS`
+### `EXISTS`
 
 ```sql
 SELECT *
@@ -2986,7 +3024,7 @@ WHERE EXISTS (
 
 ---
 
-## Table subquery
+### Table subquery
 
 ```sql
 SELECT *
@@ -3001,7 +3039,7 @@ FROM (
 
 ---
 
-## `UNION ALL`
+### `UNION ALL`
 
 ```sql
 SELECT
@@ -3019,7 +3057,7 @@ FROM source_2;
 
 ---
 
-## `UNION DISTINCT`
+### `UNION DISTINCT`
 
 ```sql
 SELECT
@@ -3037,7 +3075,7 @@ FROM source_2;
 
 ---
 
-## BigQuery : aligner par nom
+### BigQuery : aligner par nom
 
 ```sql
 SELECT
@@ -3055,7 +3093,7 @@ FROM source_2;
 
 ---
 
-# 💡 Ce que j'ai retenu
+## 💡 Ce que j'ai retenu
 
 - Une **CTE** est une sous-requête nommée définie avec `WITH ... AS (...)`.
 - Elle est surtout utile pour découper une transformation complexe en étapes lisibles.
@@ -3074,7 +3112,7 @@ FROM source_2;
 
 ---
 
-# ❓ Questions / points à garder en tête
+## ❓ Questions / points à garder en tête
 
 - [ ] Quand préférer une `TEMP TABLE` à une CTE ?
 - [ ] Comment BigQuery choisit-il de réévaluer ou d'optimiser une CTE ?
@@ -3086,7 +3124,7 @@ FROM source_2;
 
 ---
 
-# 🔗 Liens avec les autres notions du Brocode
+## 🔗 Liens avec les autres notions du Brocode
 
 ```text
 JOINs
@@ -3125,7 +3163,7 @@ La logique intellectuelle est exactement la même :
 
 ---
 
-# 📚 Vérifications techniques ajoutées au Brocode
+## 📚 Vérifications techniques ajoutées au Brocode
 
 Les points suivants ont été volontairement précisés par rapport au support de cours à partir de la documentation officielle BigQuery :
 

@@ -1,12 +1,39 @@
-# 12 — Git · Versioning, GitHub & Collaboration
+---
+title: "Git — Versioning, GitHub & Collaboration"
+aliases:
+  - "Git & GitHub"
+  - "Git Versioning"
+  - "Git Collaboration"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 12
+date: 2026-07-21
+topics:
+  - "Git"
+  - "GitHub"
+  - "Version Control"
+  - "Terminal"
+  - "Collaboration"
+tags:
+  - brocode
+  - wagon2321/cours
+  - git
+  - github
+  - version-control
+  - collaboration
+---
 
-#brocode
-#wagon2321/cours/git
-#git
-#github
-#version-control
-#terminal
-#collaboration
+# 📝 12 — Git · Versioning, GitHub & Collaboration
+
+> [!info] Navigation Brocode
+> **← Précédent :** [[10_data_pipelines_views_tables_sol|10 — Data Pipelines, Views & Tables]]
+>
+> [!tip] Navigation Obsidian
+> Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
+
+---
 
 > **Le Wagon — Data Analytics · Session #12 · 21 juillet 2026**
 >
@@ -25,7 +52,7 @@
 
 ---
 
-# 🧭 1. Pourquoi le versioning ?
+## 🧭 1. Pourquoi le versioning ?
 
 Sans Git, le versioning finit facilement ainsi :
 
@@ -63,7 +90,7 @@ un historique de versions
 
 → [[Version Control]]
 
-# 🧠 2. Git ≠ GitHub
+## 🧠 2. Git ≠ GitHub
 
 **Git** est le système de contrôle de version. Il fonctionne localement et permet notamment de créer des commits, branches et historiques.
 
@@ -79,7 +106,7 @@ GitHub
 
 GitLab et Bitbucket jouent des rôles comparables.
 
-# 💻 3. Terminal — commandes essentielles
+## 💻 3. Terminal — commandes essentielles
 
 | Besoin | Commande |
 |---|---|
@@ -104,7 +131,7 @@ Dans le setup Windows du cours, Ubuntu tourne via WSL et les fichiers de travail
 
 > ⚠️ `rm -r` peut supprimer un dossier et son contenu. À utiliser avec prudence.
 
-# 🗃 4. Repository
+## 🗃 4. Repository
 
 Un **repository** (*repo*) est un projet suivi par Git.
 
@@ -138,7 +165,7 @@ projet existant distant
 
 → [[Repository]]
 
-# 🧠 5. Le modèle mental fondamental de Git
+## 🧠 5. Le modèle mental fondamental de Git
 
 ```text
 WORKING DIRECTORY
@@ -165,7 +192,7 @@ je modifie
 → je la publie éventuellement
 ```
 
-# 📝 6. Working Directory
+## 📝 6. Working Directory
 
 C'est l'état des fichiers sur lesquels tu travailles réellement dans VS Code.
 
@@ -179,7 +206,7 @@ sauvegarder
 git status
 ```
 
-# 🎭 7. Staging Area
+## 🎭 7. Staging Area
 
 Le staging sélectionne ce qui doit appartenir au prochain commit.
 
@@ -213,7 +240,7 @@ Le staging sert donc à construire un commit cohérent.
 
 → [[Staging Area]]
 
-# 📸 8. Commit
+## 📸 8. Commit
 
 Le cours utilise l'image d'une **photo à un instant T**.
 
@@ -243,7 +270,7 @@ Un bon commit doit représenter une intention logique compréhensible.
 
 → [[Commit]]
 
-# 🧭 9. `git status` — le GPS
+## 🧭 9. `git status` — le GPS
 
 ```bash
 git status
@@ -259,7 +286,7 @@ permet notamment de voir :
 
 > 🧠 **Réflexe Brocode : perdu dans Git ? Commence par `git status`.**
 
-# 🔬 10. `git diff`
+## 🔬 10. `git diff`
 
 ```bash
 git diff
@@ -290,7 +317,7 @@ rouge → supprimé
 vert  → ajouté
 ```
 
-# 🕰 11. `git log`
+## 🕰 11. `git log`
 
 ```bash
 git log
@@ -316,7 +343,7 @@ add customer tests
 fix retention calculation
 ```
 
-# 🔁 12. Premier workflow à automatiser
+## 🔁 12. Premier workflow à automatiser
 
 ```text
 MODIFIER
@@ -347,7 +374,7 @@ git commit -m "Add churn analysis"
 git log --oneline
 ```
 
-# 🌿 13. Branches
+## 🌿 13. Branches
 
 La branche principale est généralement appelée :
 
@@ -398,7 +425,7 @@ git switch -c feature/customer-cleaning
 
 → [[Branch]]
 
-# 🧠 14. Une branche n'est pas une copie manuelle du dossier
+## 🧠 14. Une branche n'est pas une copie manuelle du dossier
 
 Pour débuter, l'image de la « copie de `main` » aide, mais Git ne duplique pas simplement le dossier.
 
@@ -416,7 +443,7 @@ git switch feature/customer-cleaning
 
 peut donc modifier ce que tu vois dans les mêmes fichiers locaux.
 
-# 📍 15. HEAD
+## 📍 15. HEAD
 
 `HEAD` indique où tu te situes actuellement dans l'historique, généralement via la branche active.
 
@@ -432,7 +459,7 @@ Lorsque tu commits sur cette branche, son pointeur avance.
 
 → [[HEAD]]
 
-# 🧪 16. Pourquoi ne pas travailler directement sur `main` ?
+## 🧪 16. Pourquoi ne pas travailler directement sur `main` ?
 
 Dans le modèle du cours :
 
@@ -473,7 +500,7 @@ main
 >
 > `main → dev → features` est une stratégie possible, pas une règle universelle de Git. Les équipes peuvent adopter d'autres workflows.
 
-# 👥 17. Collaboration et conflits
+## 👥 17. Collaboration et conflits
 
 Git permet le travail parallèle, mais ne remplace pas la communication.
 
@@ -507,7 +534,7 @@ Workflow mental :
 
 → [[Merge Conflict]]
 
-# 🌐 18. Local vs Remote
+## 🌐 18. Local vs Remote
 
 Les commits peuvent exister uniquement sur ton ordinateur.
 
@@ -527,7 +554,7 @@ push
 pull
 ```
 
-# 📥 19. `git clone`
+## 📥 19. `git clone`
 
 ```bash
 git clone <URL>
@@ -545,7 +572,7 @@ LOCAL
 
 C'est le scénario utilisé dans plusieurs kickstarts du Wagon.
 
-# 🔗 20. `origin`
+## 🔗 20. `origin`
 
 Pour relier un repository local à un remote :
 
@@ -569,7 +596,7 @@ git remote -v
 
 → [[Remote Repository]]
 
-# ⬆️ 21. `git push`
+## ⬆️ 21. `git push`
 
 ```bash
 git push origin main
@@ -597,7 +624,7 @@ LOCAL
 REMOTE
 ```
 
-# ⬇️ 22. `git pull`
+## ⬇️ 22. `git pull`
 
 ```bash
 git pull
@@ -620,7 +647,7 @@ git switch main
 git pull
 ```
 
-# ⚠️ 23. Commit ≠ Push
+## ⚠️ 23. Commit ≠ Push
 
 Erreur classique :
 
@@ -652,7 +679,7 @@ COMMIT
 PUSH
 ```
 
-# 🌍 24. Créer un repository GitHub depuis un projet local
+## 🌍 24. Créer un repository GitHub depuis un projet local
 
 Le workflow montré dans le cours :
 
@@ -678,7 +705,7 @@ repo local
 repo GitHub
 ```
 
-# 🛰 25. `main` vs `origin/main`
+## 🛰 25. `main` vs `origin/main`
 
 Dans les outils comme Git Graph :
 
@@ -692,7 +719,7 @@ origin/main
 
 Quand les deux pointent sur le même commit, ils sont alignés à ce point.
 
-# 🔐 26. Pull Request
+## 🔐 26. Pull Request
 
 La **Pull Request (PR)** appartient au workflow collaboratif GitHub.
 
@@ -729,7 +756,7 @@ Elle permet d'ajouter :
 
 → [[Pull Request]]
 
-# 🔎 27. Code review
+## 🔎 27. Code review
 
 Le reviewer peut vérifier :
 
@@ -753,7 +780,7 @@ Les tests sont-ils suffisants ?
 
 La code review relie directement Git aux pratiques de Data Quality.
 
-# 🔀 28. Merge
+## 🔀 28. Merge
 
 Le merge intègre les historiques.
 
@@ -770,7 +797,7 @@ Les commits intégrés ne disparaissent pas pour autant.
 
 → [[Merge]]
 
-# ♻️ 29. Revert
+## ♻️ 29. Revert
 
 Le cours montre le principe de `revert`.
 
@@ -794,7 +821,7 @@ correction
 
 → [[Revert]]
 
-# 🚫 30. Ce qu'il ne faut pas traquer
+## 🚫 30. Ce qu'il ne faut pas traquer
 
 Le cours insiste sur :
 
@@ -819,7 +846,7 @@ Warehouse / storage
 → contient les données
 ```
 
-# 🙈 31. `.gitignore`
+## 🙈 31. `.gitignore`
 
 Exemple :
 
@@ -844,7 +871,7 @@ credentials / gros datasets
 
 → [[gitignore]]
 
-# 🔐 32. Secrets — règle absolue
+## 🔐 32. Secrets — règle absolue
 
 Ne jamais faire :
 
@@ -869,7 +896,7 @@ avec par exemple :
 
 Le secret vit hors du code versionné.
 
-# 🧪 33. Git et tests
+## 🧪 33. Git et tests
 
 Le récapitulatif du cours prépare dbt :
 
@@ -887,7 +914,7 @@ Un test de clé primaire peut par exemple conditionner la suite d'un pipeline.
 
 Cette logique sera approfondie dans [[13 — dbt · Introduction]].
 
-# 🧱 34. Pourquoi Git est fondamental avec dbt
+## 🧱 34. Pourquoi Git est fondamental avec dbt
 
 Avec dbt, une transformation SQL devient un fichier de projet :
 
@@ -919,7 +946,7 @@ C'est le passage de :
 "je maintiens un projet analytique"
 ```
 
-# 🧠 35. BigQuery ↔ VS Code ↔ Git
+## 🧠 35. BigQuery ↔ VS Code ↔ Git
 
 Le cours présente le workflow suivant :
 
@@ -936,7 +963,7 @@ Git
 
 Avec dbt, ces fichiers deviennent ensuite les modèles structurés du projet.
 
-# 🔄 36. Workflow Git complet du cours
+## 🔄 36. Workflow Git complet du cours
 
 ```text
 1. git init OU git clone
@@ -970,7 +997,7 @@ Avec dbt, ces fichiers deviennent ensuite les modèles structurés du projet.
 15. nouvelle branche
 ```
 
-# 🧪 37. Exemple complet — analyse de churn
+## 🧪 37. Exemple complet — analyse de churn
 
 ```bash
 git switch main
@@ -1026,7 +1053,7 @@ git pull
 
 Puis nouvelle tâche → nouvelle branche.
 
-# 🧬 38. Complément Brocode — un commit et son historique
+## 🧬 38. Complément Brocode — un commit et son historique
 
 L'image de la photo est excellente pour débuter.
 
@@ -1046,7 +1073,7 @@ Les commits possèdent également un identifiant basé sur un hash, souvent affi
 
 Cela permet d'identifier précisément un point de l'historique.
 
-# 🌿 39. Complément Brocode — une branche est surtout un pointeur
+## 🌿 39. Complément Brocode — une branche est surtout un pointeur
 
 ```text
 A ← B ← C ← D
@@ -1074,7 +1101,7 @@ A ← B ← C ← D ← E ← F
 
 Cette représentation explique pourquoi une branche est légère : Git ne crée pas simplement une deuxième copie physique complète du projet.
 
-# 📥 40. Complément Brocode — fetch vs pull
+## 📥 40. Complément Brocode — fetch vs pull
 
 Le cours se concentre sur `pull`.
 
@@ -1094,7 +1121,7 @@ pull
 → récupérer + intégrer
 ```
 
-# 🔀 41. Complément Brocode — merge vs Pull Request
+## 🔀 41. Complément Brocode — merge vs Pull Request
 
 ```text
 Merge
@@ -1106,7 +1133,7 @@ Pull Request
 
 On peut merger localement, mais le cours privilégie le workflow collaboratif par PR.
 
-# 🏭 42. Complément Brocode — branche et environnement
+## 🏭 42. Complément Brocode — branche et environnement
 
 Le cours assimile pédagogiquement :
 
@@ -1128,7 +1155,7 @@ environnements
 tests
 ```
 
-# 🧰 43. Git Graph dans VS Code
+## 🧰 43. Git Graph dans VS Code
 
 Le cours recommande **Git Graph** pour visualiser :
 
@@ -1156,7 +1183,7 @@ plusieurs commits
 intégration dans main
 ```
 
-# 🧠 44. Les erreurs mentales fréquentes
+## 🧠 44. Les erreurs mentales fréquentes
 
 | Erreur | Correction |
 |---|---|
@@ -1168,7 +1195,7 @@ intégration dans main
 | conflit = repository cassé | ambiguïté nécessitant une décision |
 | `.gitignore` efface un secret déjà committé | non |
 
-# 🧯 45. Quand on est perdu
+## 🧯 45. Quand on est perdu
 
 Observer avant d'agir :
 
@@ -1192,7 +1219,7 @@ Quel remote est configuré ?
 
 Éviter de lancer au hasard des commandes de reset, nettoyage ou force push.
 
-# ⚠️ 46. Commandes à traiter avec prudence
+## ⚠️ 46. Commandes à traiter avec prudence
 
 À ne pas exécuter mécaniquement sans comprendre leur portée :
 
@@ -1207,7 +1234,7 @@ Principe :
 
 > **Une commande qui supprime, force, reset ou nettoie mérite une vérification avant exécution.**
 
-# 🧾 47. Cheat sheet — Git local
+## 🧾 47. Cheat sheet — Git local
 
 | Besoin | Commande |
 |---|---|
@@ -1224,7 +1251,7 @@ Principe :
 | Changer de branche | `git switch nom` |
 | Créer + changer | `git switch -c nom` |
 
-# 🧾 48. Cheat sheet — Remote / GitHub
+## 🧾 48. Cheat sheet — Remote / GitHub
 
 | Besoin | Commande |
 |---|---|
@@ -1237,7 +1264,7 @@ Principe :
 | Récupérer + intégrer | `git pull` |
 | Récupérer sans intégrer directement | `git fetch` |
 
-# 🧾 49. Cheat sheet — vocabulaire
+## 🧾 49. Cheat sheet — vocabulaire
 
 | Terme | Modèle mental |
 |---|---|
@@ -1259,37 +1286,37 @@ Principe :
 | Revert | nouveau commit inverse |
 | `.gitignore` | exclusions de suivi |
 
-# 🎤 50. Questions d'entretien
+## 🎤 50. Questions d'entretien
 
-## Git vs GitHub ?
+### Git vs GitHub ?
 
 Git est un système de contrôle de version distribué. GitHub héberge des repositories Git et fournit des fonctionnalités collaboratives.
 
-## `git add` vs `git commit` ?
+### `git add` vs `git commit` ?
 
 `git add` sélectionne l'état des changements pour le prochain commit. `git commit` enregistre ce contenu dans l'historique local.
 
-## Commit vs push ?
+### Commit vs push ?
 
 Commit crée une version locale ; push la publie vers un remote.
 
-## Pourquoi une branche ?
+### Pourquoi une branche ?
 
 Pour isoler une évolution, travailler en parallèle et permettre test/review avant intégration.
 
-## Qu'est-ce qu'une Pull Request ?
+### Qu'est-ce qu'une Pull Request ?
 
 Une proposition d'intégration entre branches avec un espace de discussion, review et validation.
 
-## Qu'est-ce qu'un merge conflict ?
+### Qu'est-ce qu'un merge conflict ?
 
 Une situation où Git ne peut pas combiner automatiquement des modifications concurrentes et demande une décision humaine.
 
-## Pourquoi committer régulièrement ?
+### Pourquoi committer régulièrement ?
 
 Pour créer des unités de changement plus petites, compréhensibles, testables et plus faciles à corriger ou annuler.
 
-# 🧪 51. Exercice mental — où vit le changement ?
+## 🧪 51. Exercice mental — où vit le changement ?
 
 Tu modifies et sauvegardes `orders.sql` :
 
@@ -1327,7 +1354,7 @@ git push
 Remote Repository
 ```
 
-# 🧠 52. Les 15 idées à retenir
+## 🧠 52. Les 15 idées à retenir
 
 1. **Git ≠ GitHub.**
 2. Git versionne le code et son historique.
@@ -1345,7 +1372,7 @@ Remote Repository
 14. Secrets et gros datasets n'ont généralement pas leur place dans Git.
 15. Git devient une fondation directe du workflow dbt.
 
-# 🧠 53. Modèle mental final
+## 🧠 53. Modèle mental final
 
 ```text
                      GITHUB
@@ -1377,7 +1404,7 @@ Remote Repository
 
 > **Je travaille localement sur une branche, je sélectionne des changements cohérents, je les enregistre dans des commits, je publie la branche, je fais relire les changements, je les intègre dans la branche de référence, puis je resynchronise mon environnement local.**
 
-# 🔗 54. Connexions Brocode
+## 🔗 54. Connexions Brocode
 
 - [[13 — dbt · Introduction]]
 - [[Version Control]]
@@ -1394,7 +1421,7 @@ Remote Repository
 - [[gitignore]]
 - [[Granularité]]
 
-# ✅ 55. Actions post-session
+## ✅ 55. Actions post-session
 
 - [ ] Installer **Git Graph** dans VS Code.
 - [ ] Répéter les commandes de navigation terminal.
@@ -1405,20 +1432,20 @@ Remote Repository
 - [ ] Ne jamais committer de credentials.
 - [ ] Écrire des messages de commit explicites.
 
-# 🏁 56. Résumé en une phrase
+## 🏁 56. Résumé en une phrase
 
 > **Git transforme un dossier de code en historique structuré : on travaille dans le Working Directory, on sélectionne avec le staging, on enregistre avec des commits, on isole les évolutions dans des branches, puis GitHub permet de publier, relire et intégrer ces changements en équipe.**
 
 ---
 
-# 📎 Annexe — source brute de la session
+## 📎 Annexe — source brute de la session
 
 La transcription complète et les notes de session ont servi de base à ce chapitre. Le bloc ci-dessous est conservé comme archive brute afin que rien du matériau du cours ne soit perdu lors de cette première version Brocode v2.
 
 <details>
 <summary>Afficher la transcription / les notes brutes</summary>
 
-# 📝 #12 - Git and versioning
+## 📝 #12 - Git and versioning
 
 **Date : 21 juillet 2026**
 
@@ -1430,7 +1457,7 @@ La transcription complète et les notes de session ont servi de base à ce chapi
 
 ---
 
-### 📝 **NOTES**
+#### 📝 **NOTES**
 
 ![Capture d’écran 2026-07-21 à 09.12.11.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.12.11.png)
 
@@ -1452,25 +1479,25 @@ La transcription complète et les notes de session ont servi de base à ce chapi
 
 ![Capture d’écran 2026-07-21 à 10.14.56.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.14.56.png)
 
-### 💡 **Ce que j’ai retenu**
+#### 💡 **Ce que j’ai retenu**
 
-### ❓ Questions / Points flous
-
-- [ ]  
-- [ ]  
-
-### 🔗 Liens avec d’autres notions
-
-### ✅ Actions post-session
+#### ❓ Questions / Points flous
 
 - [ ]  
 - [ ]  
 
-### 🔗 Transcription
+#### 🔗 Liens avec d’autres notions
+
+#### ✅ Actions post-session
+
+- [ ]  
+- [ ]  
+
+#### 🔗 Transcription
 
 Résumé
 
-### Actions à réaliser
+#### Actions à réaliser
 
 - [ ]  Installer l'extension **Git Graph** dans VS Code pour visualiser les branches
 - [ ]  Copier-coller le kickstart fourni pour chaque challenge dans le terminal Ubuntu
@@ -1480,7 +1507,7 @@ Résumé
 
 ---
 
-### Contexte de la session
+#### Contexte de la session
 
 - Session de formation (probablement Le Wagon) portant sur le terminal, Git et GitHub
 - Outils utilisés : terminal Ubuntu, VS Code, Git en ligne de commande
@@ -1488,7 +1515,7 @@ Résumé
 
 ---
 
-### Commandes de base du terminal
+#### Commandes de base du terminal
 
 - `pwd` — affiche le répertoire courant (*Print Working Directory*)
 - `ls` — liste les fichiers du dossier courant
@@ -1505,7 +1532,7 @@ Résumé
 
 ---
 
-### Concepts Git
+#### Concepts Git
 
 - **Git** : outil de versioning qui traque les changements dans le code et facilite la collaboration
 - Utilisé par ~84% des développeurs ; indispensable en entreprise
@@ -1516,7 +1543,7 @@ Résumé
 
 ---
 
-### Commandes Git essentielles
+#### Commandes Git essentielles
 
 - `git init` — initialise le tracking Git dans un dossier
 - `git status` — affiche l'état des fichiers (modifiés, non trackés, staged)
@@ -1529,7 +1556,7 @@ Résumé
 
 ---
 
-### Branches Git
+#### Branches Git
 
 - La branche principale s'appelle **main** (anciennement *master*) : c'est le code en production
 - **Principe** : on ne travaille jamais directement sur `main` pour ne pas impacter les utilisateurs
@@ -1545,7 +1572,7 @@ Résumé
 
 ---
 
-### GitHub et travail en équipe
+#### GitHub et travail en équipe
 
 - **GitHub** (aussi GitLab, Bitbucket) : plateforme web pour héberger les repos en ligne et collaborer
 - `git remote add origin [URL]` — lie le repo local au repo distant
@@ -1559,7 +1586,7 @@ Résumé
 
 ---
 
-### Ce qu'il ne faut PAS traquer avec Git
+#### Ce qu'il ne faut PAS traquer avec Git
 
 - Fichiers volumineux : images, vidéos, musiques, données brutes ou transformées
 - **Credentials et mots de passe** : même sur un repo privé, ne jamais les committer
@@ -1568,7 +1595,7 @@ Résumé
 
 ---
 
-### Bonnes pratiques et points de vigilance
+#### Bonnes pratiques et points de vigilance
 
 - **Communiquer** sur qui fait quoi pour éviter les conflits
 - Bien **découper les tâches** : chacun travaille sur des fichiers différents
@@ -1578,7 +1605,7 @@ Résumé
 
 ---
 
-### Visualisation avec Git Graph (VS Code)
+#### Visualisation avec Git Graph (VS Code)
 
 - Extension **Git Graph** dans VS Code permet de visualiser l'arborescence des branches et commits
 - Affiche les branches locales et distantes (préfixe `origin/` = branche uniquement en ligne)
@@ -1586,7 +1613,7 @@ Résumé
 
 ---
 
-### Exercices prévus
+#### Exercices prévus
 
 - **Exercice 1** : prise en main du terminal — `pwd`, `cd`, `ls`, `touch`, `rm`, déplacement dans les dossiers
 - **Exercices suivants** : workflow Git complet (add, commit, branches)
@@ -2188,7 +2215,7 @@ Sous-titres réalisés para la communauté d'Amara.org
 
 Résumé
 
-### Actions à entreprendre
+#### Actions à entreprendre
 
 - [ ]  Rechercher une idée de projet et en parler avant le 21 août
 - [ ]  Préparer un pitch de 2-3 slides si l'on est porteur d'un projet (contexte, problématique, solution envisagée, risques)
@@ -2197,7 +2224,7 @@ Résumé
 
 ---
 
-### Récapitulatif du workflow Git
+#### Récapitulatif du workflow Git
 
 - Deux façons d'initialiser un dossier local : `git init` (créer de zéro) ou `git clone` (cloner un dépôt existant via SSH) — les participants ont utilisé le clone aujourd'hui
 - Première étape dès l'arrivée dans un projet : **créer une branche** avec `checkout` / `switch`, car travailler directement sur `main` est souvent bloqué
@@ -2207,31 +2234,31 @@ Résumé
 - Créer une **pull request** sur [GitHub.com](http://GitHub.com) pour fusionner la branche dans `main`, faire valider par un relecteur, puis rapatrier les changements en local avec `git pull origin`
 - Possibilité de faire un `git merge` en local si l'on travaille seul, mais ce n'est pas le flux standard en équipe
 
-### Points clés sur l'utilisation de VS Code et BigQuery
+#### Points clés sur l'utilisation de VS Code et BigQuery
 
 - VS Code sert à versionner et stocker le code ; BigQuery est utilisé pour tester et valider les requêtes SQL
 - Workflow recommandé : tester les requêtes dans BigQuery, puis les déposer dans VS Code une fois validées
 - L'utilisation de Git avec les projets finaux reste à définir selon le niveau des participants
 
-### Demain : introduction à DBT
+#### Demain : introduction à DBT
 
 - La session de demain sera moins axée sur Git et davantage sur le **terminal et DBT**, un nouvel outil complémentaire
 - Des commits et pushs seront tout de même demandés
 
-### Tests dans le workflow
+#### Tests dans le workflow
 
 - Les tests (ex. : test de clé primaire en SQL) peuvent conditionner l'exécution d'un script — si le test passe, la création de table est autorisée
 
 ---
 
-### Projets de fin de formation — présentation générale
+#### Projets de fin de formation — présentation générale
 
 - Les deux dernières semaines de formation sont dédiées à un **projet de A à Z** : collecte, nettoyage, transformation de données et création d'un dashboard (Looker ou équivalent)
 - Groupes de **4 personnes**
 - Le projet sera présenté lors d'un **Demo Day** avec jury externe et/ou collègues d'autres promotions
 - Les projets peuvent être mis sur GitHub en guise de **premier portfolio**
 
-### Calendrier des projets
+#### Calendrier des projets
 
 - **21 août : date limite pour soumettre une idée de projet ût** : date limite pour soumettre une idée de projet
 - **28 août** : session de vote — chaque participant classe les projets par préférence, un algorithme constitue les groupes
@@ -2239,19 +2266,19 @@ Résumé
 - **3 septembre** : journée de répétition des présentations orales
 - **4 septembre** : Demo Day — présentation finale
 
-### Comment proposer un projet
+#### Comment proposer un projet
 
 - Présenter un pitch de 2-3 slides minimum : contexte, problématique, solution envisagée, points de difficulté potentiels
 - Les projets peuvent être apportés par les participants ou choisis parmi les projets proposés par Le Wagon
 - Des projets "business" avec de vraies données d'entreprise sont également disponibles (exemples cités : OmecChain, JobTeaser, Tiller, une néobanque)
 
-### Exemples de projets présentés
+#### Exemples de projets présentés
 
 - **Projet bar** : analyse des données d'un bar (rentabilité, saisonnalité lundi-mercredi, provenance géographique des clients, popularité des cocktails) — dashboard interactif sur Looker
 - **Projet SNCF** : analyse de la satisfaction des usagers, comparaison entre la note SNCF et la perception réelle des voyageurs, construction d'un nouveau score pondéré
 - **Projet restaurants Paris** : outil permettant, selon un type de cuisine et un quartier, d'identifier ce qui fonctionne ou non — dashboard décisionnel pour ouverture de restaurant
 
-### Ressources pour trouver des données
+#### Ressources pour trouver des données
 
 - Liste de sources de données regroupées par thématique à partager (plus de 73 000 jeux de données disponibles)
 - Sources spécialisées mentionnées : santé (Ameli), immobilier, jeux vidéo, sport

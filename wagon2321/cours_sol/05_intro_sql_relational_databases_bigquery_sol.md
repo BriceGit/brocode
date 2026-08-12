@@ -1,12 +1,41 @@
-# 📝 #5 – SQL : Introduction, Relational Databases & BigQuery
+---
+title: "SQL — Introduction, Relational Databases & BigQuery"
+aliases:
+  - "SQL Introduction"
+  - "Relational Databases & BigQuery"
+  - "BigQuery Fundamentals"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 5
+date: 2026-07-10
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "Relational Databases"
+  - "ERD"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - relational-databases
+---
 
-**Date : 10 juillet 2026**  
-**Thème :** Introduction à SQL, modèle relationnel, ERD, BigQuery, requêtes de sélection, filtres, tri, fonctions de base et types de données  
-**Tags :** #brocode  `SQL` `BigQuery` `Relational Database` `ERD` `Primary Key` `Foreign Key` `SELECT` `WHERE` `LIKE` `IN` `ORDER BY` `CASE WHEN` `CAST` `SAFE_CAST`  
-**Compréhension (1→5) :** ⭐⭐⭐☆☆
+# 📝 05 — SQL · Introduction, Relational Databases & BigQuery
+
+> [!info] Navigation Brocode
+> **Suivant → :** [[06_sql_aggregation_string_date_time_functions_sol|06 — SQL · Aggregations, String, Date & Time]]
+>
+> [!tip] Navigation Obsidian
+> Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
 
 ---
 
+> [!abstract] Objectif du chapitre
 > **Objectif du chapitre :** construire une introduction SQL suffisamment solide pour servir de **chapitre de référence** pendant toute la suite du parcours Data Analytics.
 >
 > À la fin de ce chapitre, il faut être capable de répondre clairement à cinq questions :
@@ -39,7 +68,7 @@
 
 ---
 
-# 🧭 0. Vue d'ensemble : ce qu'est réellement SQL
+## 🧭 0. Vue d'ensemble : ce qu'est réellement SQL
 
 SQL signifie :
 
@@ -92,7 +121,7 @@ C'est l'une des raisons pour lesquelles SQL est relativement accessible au débu
 
 ---
 
-# 🧠 1. Pourquoi apprendre SQL après Google Sheets ?
+## 🧠 1. Pourquoi apprendre SQL après Google Sheets ?
 
 Google Sheets est extrêmement utile pour :
 
@@ -147,7 +176,7 @@ Cette logique peut fonctionner sur :
 
 ---
 
-# 🗃 2. Première notion fondamentale : une base de données
+## 🗃 2. Première notion fondamentale : une base de données
 
 Une base de données est un système permettant de :
 
@@ -177,7 +206,7 @@ Mais il faut immédiatement apprendre le vocabulaire précis.
 
 ---
 
-# 🧱 3. Table, ligne, colonne, champ, enregistrement
+## 🧱 3. Table, ligne, colonne, champ, enregistrement
 
 Considérons :
 
@@ -191,7 +220,7 @@ id | name      | surname      | birth_date | nb_children
 3  | Clara     | Milaux       | 1976-02-12 | 3
 ```
 
-## Une colonne
+### Une colonne
 
 Une colonne représente généralement un **attribut**.
 
@@ -207,7 +236,7 @@ Toutes les valeurs d'une même colonne devraient avoir une signification cohére
 
 ---
 
-## Une ligne
+### Une ligne
 
 Une ligne représente un **enregistrement**.
 
@@ -227,7 +256,7 @@ Cette question prépare directement la notion de **granularité**, qui deviendra
 
 ---
 
-# 🔬 4. La granularité : le réflexe qui évite une grande partie des erreurs SQL
+## 🔬 4. La granularité : le réflexe qui évite une grande partie des erreurs SQL
 
 La **granularité** décrit ce que représente **une ligne** d'une table.
 
@@ -292,7 +321,7 @@ Ici :
 
 ---
 
-# 🧩 5. Qu'est-ce qu'une base de données relationnelle ?
+## 🧩 5. Qu'est-ce qu'une base de données relationnelle ?
 
 Une base de données relationnelle organise les informations dans **plusieurs tables reliées entre elles**.
 
@@ -338,7 +367,7 @@ Les tables sont reliées grâce à des identifiants.
 
 ---
 
-# 🔑 6. Primary Key — clé primaire
+## 🔑 6. Primary Key — clé primaire
 
 Une **Primary Key** identifie de manière unique une ligne dans une table.
 
@@ -381,7 +410,7 @@ doit désigner une seule ligne.
 
 ---
 
-# 🔗 7. Foreign Key — clé étrangère
+## 🔗 7. Foreign Key — clé étrangère
 
 Une **Foreign Key** est une colonne qui référence une clé d'une autre table.
 
@@ -431,7 +460,7 @@ Cette relation permet ensuite d'associer les informations des deux tables.
 
 ---
 
-# ⚠️ 8. Important avec BigQuery : les clés peuvent être conceptuelles
+## ⚠️ 8. Important avec BigQuery : les clés peuvent être conceptuelles
 
 Dans une base transactionnelle classique, les contraintes de clés sont souvent fortement contrôlées par le moteur.
 
@@ -466,7 +495,7 @@ Si cette requête retourne des lignes alors que `customer_id` devrait être uniq
 
 ---
 
-# 🕸 9. ERD — Entity Relationship Diagram
+## 🕸 9. ERD — Entity Relationship Diagram
 
 Un **ERD** est un diagramme représentant :
 
@@ -538,11 +567,11 @@ quelle cardinalité existe entre elles
 
 ---
 
-# 🧭 10. Entité, attribut et relation
+## 🧭 10. Entité, attribut et relation
 
 Dans un ERD :
 
-## Entity
+### Entity
 
 Une **entity** correspond généralement à un objet métier.
 
@@ -557,7 +586,7 @@ Sale
 
 ---
 
-## Attribute
+### Attribute
 
 Un **attribute** décrit une propriété de l'entité.
 
@@ -573,7 +602,7 @@ birth_date
 
 ---
 
-## Relationship
+### Relationship
 
 Une **relationship** décrit le lien entre deux entités.
 
@@ -587,7 +616,7 @@ Customer
 
 ---
 
-# 🔢 11. Cardinalité : combien de lignes peuvent être reliées ?
+## 🔢 11. Cardinalité : combien de lignes peuvent être reliées ?
 
 La cardinalité décrit le nombre d'occurrences possibles de chaque côté d'une relation.
 
@@ -611,7 +640,7 @@ Mais un ERD moderne exprime souvent également l'**optionalité** :
 
 ---
 
-# 🐦 12. Lire la notation « Crow's Foot »
+## 🐦 12. Lire la notation « Crow's Foot »
 
 La notation dite **Crow's Foot** utilise des symboles ressemblant à une patte d'oie.
 
@@ -643,7 +672,7 @@ Autrement dit :
 
 ---
 
-# 1️⃣ 13. Relation One-to-One — 1:1
+## 1️⃣ 13. Relation One-to-One — 1:1
 
 Une relation **one-to-one** signifie qu'une ligne d'une table est associée à une seule ligne d'une autre table.
 
@@ -680,7 +709,7 @@ Elle peut être utilisée pour :
 
 ---
 
-# 1️⃣➡️♾ 14. Relation One-to-Many — 1:N
+## 1️⃣➡️♾ 14. Relation One-to-Many — 1:N
 
 C'est l'une des relations les plus fréquentes.
 
@@ -730,7 +759,7 @@ Mais c'est la même relation observée depuis l'autre côté.
 
 ---
 
-# ♾➡️♾ 15. Relation Many-to-Many — N:N
+## ♾➡️♾ 15. Relation Many-to-Many — N:N
 
 Une relation many-to-many signifie :
 
@@ -797,7 +826,7 @@ selon le contexte.
 
 ---
 
-# 🧠 16. Pourquoi l'ERD devient vital en Data Analytics
+## 🧠 16. Pourquoi l'ERD devient vital en Data Analytics
 
 Sans ERD, on peut facilement écrire :
 
@@ -832,7 +861,7 @@ Quelle granularité aura mon résultat ?
 
 ---
 
-# 📖 17. Le Data Dictionary
+## 📖 17. Le Data Dictionary
 
 Un ERD montre surtout la **structure**.
 
@@ -869,13 +898,13 @@ constitue une base documentaire extrêmement utile.
 
 ---
 
-# 🏗 18. OLTP, analytique et BigQuery : nuance importante
+## 🏗 18. OLTP, analytique et BigQuery : nuance importante
 
 Le cours présente le modèle relationnel car c'est la base conceptuelle des relations entre tables.
 
 Mais il faut distinguer deux familles de systèmes.
 
-## Base transactionnelle
+### Base transactionnelle
 
 Optimisée pour :
 
@@ -896,7 +925,7 @@ enregistrer un paiement
 
 ---
 
-## Data warehouse analytique
+### Data warehouse analytique
 
 Optimisé pour :
 
@@ -914,7 +943,7 @@ Cela explique pourquoi certains concepts relationnels sont toujours essentiels, 
 
 ---
 
-# ☁️ 19. BigQuery : l'environnement SQL utilisé dans le bootcamp
+## ☁️ 19. BigQuery : l'environnement SQL utilisé dans le bootcamp
 
 BigQuery est un service de données de Google Cloud.
 
@@ -942,7 +971,7 @@ dans certains contextes ou anciennes documentations.
 
 ---
 
-# 🗂 20. Hiérarchie BigQuery : Project → Dataset → Table
+## 🗂 20. Hiérarchie BigQuery : Project → Dataset → Table
 
 La structure fondamentale est :
 
@@ -966,7 +995,7 @@ my-project
 
 ---
 
-## Project
+### Project
 
 Le projet est le grand conteneur Google Cloud.
 
@@ -979,7 +1008,7 @@ Il sert notamment à organiser :
 
 ---
 
-## Dataset
+### Dataset
 
 Un dataset regroupe des objets BigQuery liés.
 
@@ -995,7 +1024,7 @@ finance
 
 ---
 
-## Table
+### Table
 
 La table contient les données.
 
@@ -1007,7 +1036,7 @@ analytics.orders
 
 ---
 
-# 🧾 21. Le nom complet d'une table BigQuery
+## 🧾 21. Le nom complet d'une table BigQuery
 
 On peut rencontrer :
 
@@ -1041,7 +1070,7 @@ Ce point devient particulièrement important lorsqu'on travaille avec plusieurs 
 
 ---
 
-# 👀 22. Explorer une table avant de requêter
+## 👀 22. Explorer une table avant de requêter
 
 Avant d'écrire du SQL, on doit regarder la table.
 
@@ -1075,7 +1104,7 @@ Le **Preview** permet d'observer des lignes sans utiliser systématiquement une 
 
 ---
 
-# 🔌 23. Tables BigQuery natives vs sources externes
+## 🔌 23. Tables BigQuery natives vs sources externes
 
 Une table BigQuery peut contenir des données stockées directement dans BigQuery.
 
@@ -1105,7 +1134,7 @@ est-ce une source externe ?
 
 ---
 
-# 🧑‍💻 24. Le Query Editor
+## 🧑‍💻 24. Le Query Editor
 
 BigQuery permet d'ouvrir plusieurs onglets de requête.
 
@@ -1134,7 +1163,7 @@ La mise en forme automatique de la requête est également utile pour rendre le 
 
 ---
 
-# ✍️ 25. Le SQL est insensible à la mise en page… mais les humains ne le sont pas
+## ✍️ 25. Le SQL est insensible à la mise en page… mais les humains ne le sont pas
 
 Cette requête peut être valide :
 
@@ -1165,7 +1194,7 @@ La lisibilité est donc une vraie compétence technique.
 
 ---
 
-# 💬 26. Commentaires SQL
+## 💬 26. Commentaires SQL
 
 Pour documenter une requête, on peut utiliser :
 
@@ -1223,7 +1252,7 @@ WHERE country = 'FR'
 
 ---
 
-# 🟦 27. `SELECT` : choisir les colonnes à retourner
+## 🟦 27. `SELECT` : choisir les colonnes à retourner
 
 Le mot-clé `SELECT` indique les expressions que l'on veut retrouver dans le résultat.
 
@@ -1248,7 +1277,7 @@ Clara     | Milaux
 
 ---
 
-# ⭐ 28. `SELECT *`
+## ⭐ 28. `SELECT *`
 
 L'étoile signifie :
 
@@ -1290,7 +1319,7 @@ si ce sont les seules colonnes nécessaires.
 
 ---
 
-# 💸 29. `SELECT *` et coût BigQuery
+## 💸 29. `SELECT *` et coût BigQuery
 
 Dans un modèle de facturation à la donnée traitée, le volume lu par la requête compte.
 
@@ -1322,7 +1351,7 @@ peuvent donc lire des volumes très différents.
 
 ---
 
-# 🧼 30. `SELECT DISTINCT`
+## 🧼 30. `SELECT DISTINCT`
 
 `DISTINCT` supprime les doublons du **résultat sélectionné**.
 
@@ -1352,7 +1381,7 @@ Paul
 
 ---
 
-## Attention avec plusieurs colonnes
+### Attention avec plusieurs colonnes
 
 ```sql
 SELECT DISTINCT
@@ -1382,7 +1411,7 @@ ne sont pas des doublons.
 
 ---
 
-# 🏷 31. Alias avec `AS`
+## 🏷 31. Alias avec `AS`
 
 Un alias permet de renommer une colonne dans le résultat.
 
@@ -1409,7 +1438,7 @@ Les alias améliorent :
 
 ---
 
-# 🧱 32. `FROM` : indiquer la source
+## 🧱 32. `FROM` : indiquer la source
 
 `FROM` indique la source principale de la requête.
 
@@ -1443,7 +1472,7 @@ FROM = d'où viennent mes lignes ?
 
 ---
 
-# 🔍 33. `WHERE` : filtrer les lignes
+## 🔍 33. `WHERE` : filtrer les lignes
 
 `WHERE` sert à conserver uniquement les lignes qui respectent une condition.
 
@@ -1475,7 +1504,7 @@ Il filtre **le résultat de la requête**.
 
 ---
 
-# ⚖️ 34. Opérateurs de comparaison
+## ⚖️ 34. Opérateurs de comparaison
 
 On rencontre fréquemment :
 
@@ -1505,7 +1534,7 @@ WHERE birth_date >= DATE '1990-01-01'
 
 ---
 
-# 📅 35. Dates et littéraux : mieux vaut être explicite
+## 📅 35. Dates et littéraux : mieux vaut être explicite
 
 Dans le cours, une date est souvent écrite entre guillemets :
 
@@ -1540,7 +1569,7 @@ selon le type source.
 
 ---
 
-# 🔤 36. Filtrer du texte avec `LIKE`
+## 🔤 36. Filtrer du texte avec `LIKE`
 
 `LIKE` permet de comparer une chaîne à un motif simple.
 
@@ -1553,7 +1582,7 @@ _  → exactement un caractère
 
 ---
 
-## Commence par P
+### Commence par P
 
 ```sql
 WHERE name LIKE 'P%'
@@ -1569,7 +1598,7 @@ Pierre
 
 ---
 
-## Se termine par a
+### Se termine par a
 
 ```sql
 WHERE name LIKE '%a'
@@ -1584,7 +1613,7 @@ Emma
 
 ---
 
-## Contient `au`
+### Contient `au`
 
 ```sql
 WHERE name LIKE '%au%'
@@ -1599,7 +1628,7 @@ Pauline
 
 ---
 
-## Deuxième caractère = `a`
+### Deuxième caractère = `a`
 
 ```sql
 WHERE name LIKE '_a%'
@@ -1615,7 +1644,7 @@ a   → deuxième caractère = a
 
 ---
 
-# 🚫 37. `NOT LIKE`
+## 🚫 37. `NOT LIKE`
 
 Pour inverser la condition :
 
@@ -1627,7 +1656,7 @@ On conserve les lignes qui ne correspondent pas au motif.
 
 ---
 
-# 🧠 38. `LIKE` n'est pas une regex complète
+## 🧠 38. `LIKE` n'est pas une regex complète
 
 `LIKE` est volontairement simple.
 
@@ -1654,7 +1683,7 @@ La solution la plus simple est souvent la plus lisible.
 
 ---
 
-# ➕ 39. Combiner les conditions avec `AND`
+## ➕ 39. Combiner les conditions avec `AND`
 
 `AND` signifie :
 
@@ -1678,7 +1707,7 @@ La ligne doit satisfaire les deux conditions.
 
 ---
 
-# 🔀 40. Combiner les conditions avec `OR`
+## 🔀 40. Combiner les conditions avec `OR`
 
 `OR` signifie :
 
@@ -1697,7 +1726,7 @@ Une ligne est conservée si au moins une condition est vraie.
 
 ---
 
-# ⚠️ 41. Priorité entre `AND` et `OR`
+## ⚠️ 41. Priorité entre `AND` et `OR`
 
 Comme en mathématiques, certaines opérations ont une priorité.
 
@@ -1743,7 +1772,7 @@ WHERE country = 'FR'
 
 ---
 
-# 📦 42. `IN` : simplifier plusieurs `OR`
+## 📦 42. `IN` : simplifier plusieurs `OR`
 
 Au lieu de :
 
@@ -1767,7 +1796,7 @@ C'est :
 
 ---
 
-# 🚫 43. `NOT IN`
+## 🚫 43. `NOT IN`
 
 L'inverse :
 
@@ -1781,7 +1810,7 @@ Il ne faut pas raisonner sur `NULL` comme sur une valeur normale.
 
 ---
 
-# 🕳 44. `NULL` : absence de valeur
+## 🕳 44. `NULL` : absence de valeur
 
 `NULL` ne signifie pas :
 
@@ -1827,7 +1856,7 @@ WHERE number_of_children IS NOT NULL
 
 ---
 
-# 🧠 45. Pourquoi `NULL` rend les conditions surprenantes
+## 🧠 45. Pourquoi `NULL` rend les conditions surprenantes
 
 Une comparaison SQL peut produire :
 
@@ -1855,7 +1884,7 @@ Cela explique de nombreux comportements apparemment étranges.
 
 ---
 
-# ↕️ 46. `ORDER BY` : trier le résultat
+## ↕️ 46. `ORDER BY` : trier le résultat
 
 Pour trier :
 
@@ -1883,7 +1912,7 @@ ORDER BY number_of_children ASC
 
 ---
 
-## Descendant
+### Descendant
 
 ```sql
 ORDER BY number_of_children DESC
@@ -1901,7 +1930,7 @@ Exemple :
 
 ---
 
-# 🪜 47. Tri secondaire
+## 🪜 47. Tri secondaire
 
 On peut trier selon plusieurs critères.
 
@@ -1922,7 +1951,7 @@ C'est particulièrement utile pour rendre un résultat déterministe.
 
 ---
 
-# ⚠️ 48. Éviter `ORDER BY 2`
+## ⚠️ 48. Éviter `ORDER BY 2`
 
 On peut parfois voir :
 
@@ -1968,7 +1997,7 @@ ORDER BY number_of_children DESC
 
 ---
 
-# 🔢 49. `LIMIT` : limiter le nombre de lignes retournées
+## 🔢 49. `LIMIT` : limiter le nombre de lignes retournées
 
 ```sql
 SELECT
@@ -2004,7 +2033,7 @@ Top 3 des personnes ayant le plus d'enfants
 
 ---
 
-# 💸 50. Piège important : `LIMIT` ne veut pas dire « lire moins de colonnes »
+## 💸 50. Piège important : `LIMIT` ne veut pas dire « lire moins de colonnes »
 
 Dans BigQuery, écrire :
 
@@ -2051,7 +2080,7 @@ LIMIT 10;
 
 ---
 
-# 🧮 51. Une requête SQL est composée de clauses
+## 🧮 51. Une requête SQL est composée de clauses
 
 Une requête complète peut contenir :
 
@@ -2079,7 +2108,7 @@ Le point essentiel :
 
 ---
 
-# ✍️ 52. Ordre d'écriture simplifié
+## ✍️ 52. Ordre d'écriture simplifié
 
 Pour les notions vues à ce stade :
 
@@ -2110,7 +2139,7 @@ LIMIT 10;
 
 ---
 
-# ⚙️ 53. Ordre logique d'exécution : modèle mental
+## ⚙️ 53. Ordre logique d'exécution : modèle mental
 
 Un modèle mental pédagogique utile est :
 
@@ -2149,7 +2178,7 @@ Cette logique explique beaucoup de règles SQL.
 
 ---
 
-# 🧠 54. Pourquoi l'ordre d'exécution est important
+## 🧠 54. Pourquoi l'ordre d'exécution est important
 
 Supposons :
 
@@ -2183,7 +2212,7 @@ Cette notion prendra de plus en plus d'importance.
 
 ---
 
-# 🪟 55. Ordre BigQuery plus complet — pour la suite du Brocode
+## 🪟 55. Ordre BigQuery plus complet — pour la suite du Brocode
 
 Lorsque l'on ajoutera des notions avancées, il faudra intégrer :
 
@@ -2217,7 +2246,7 @@ Le moteur peut optimiser l'exécution tant que le résultat respecte la sémanti
 
 ---
 
-# 🧪 56. Les expressions peuvent être écrites dans `SELECT`
+## 🧪 56. Les expressions peuvent être écrites dans `SELECT`
 
 `SELECT` ne sert pas uniquement à reprendre des colonnes existantes.
 
@@ -2245,7 +2274,7 @@ Elle est calculée dans le résultat.
 
 ---
 
-# 🧠 57. `IF()` : condition binaire
+## 🧠 57. `IF()` : condition binaire
 
 Dans BigQuery :
 
@@ -2277,7 +2306,7 @@ Clara     | 3           | 1
 
 ---
 
-# 🌳 58. `CASE WHEN` : plusieurs conditions
+## 🌳 58. `CASE WHEN` : plusieurs conditions
 
 Structure :
 
@@ -2306,7 +2335,7 @@ FROM people;
 
 ---
 
-# ⚠️ 59. L'ordre des `WHEN` est important
+## ⚠️ 59. L'ordre des `WHEN` est important
 
 SQL lit les conditions dans l'ordre.
 
@@ -2343,7 +2372,7 @@ END
 
 ---
 
-# 🕳 60. `CASE`, `IF` et `NULL`
+## 🕳 60. `CASE`, `IF` et `NULL`
 
 Si :
 
@@ -2379,7 +2408,7 @@ END
 
 ---
 
-# 🔢 61. `ROUND()`
+## 🔢 61. `ROUND()`
 
 `ROUND` permet d'arrondir une valeur numérique.
 
@@ -2408,7 +2437,7 @@ Si on veut simplement afficher moins de décimales, `ROUND` est généralement p
 
 ---
 
-# 🧩 62. Les types de données
+## 🧩 62. Les types de données
 
 Une base SQL distingue les types.
 
@@ -2457,7 +2486,7 @@ TIMESTAMP
 
 ---
 
-# 🔢 63. `INT64`
+## 🔢 63. `INT64`
 
 `INT64` représente un entier.
 
@@ -2484,7 +2513,7 @@ number_of_children
 
 ---
 
-# 📐 64. `FLOAT64`
+## 📐 64. `FLOAT64`
 
 `FLOAT64` représente un nombre à virgule flottante.
 
@@ -2513,7 +2542,7 @@ BIGNUMERIC
 
 ---
 
-# 💰 65. `NUMERIC`
+## 💰 65. `NUMERIC`
 
 `NUMERIC` représente un décimal exact dans sa plage de précision.
 
@@ -2529,7 +2558,7 @@ ratios nécessitant une précision contrôlée
 
 ---
 
-# ✅ 66. `BOOL`
+## ✅ 66. `BOOL`
 
 Un booléen représente :
 
@@ -2557,7 +2586,7 @@ si un booléen suffit.
 
 ---
 
-# 🔤 67. `STRING`
+## 🔤 67. `STRING`
 
 `STRING` représente du texte.
 
@@ -2593,7 +2622,7 @@ Cela a des conséquences sur :
 
 ---
 
-# 📅 68. `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`
+## 📅 68. `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`
 
 Présentation rapide :
 
@@ -2624,7 +2653,7 @@ Ces notions seront approfondies dans le chapitre Date & Time.
 
 ---
 
-# 🧠 69. Pourquoi le type de donnée est si important
+## 🧠 69. Pourquoi le type de donnée est si important
 
 Le bon type influence au moins quatre choses.
 
@@ -2670,7 +2699,7 @@ Les systèmes analytiques utilisent le type pour organiser, lire et traiter les 
 
 ---
 
-# 🔄 70. `CAST()` : convertir explicitement un type
+## 🔄 70. `CAST()` : convertir explicitement un type
 
 Syntaxe :
 
@@ -2706,7 +2735,7 @@ on ne peut pas la convertir correctement en entier.
 
 ---
 
-# 🛡 71. `SAFE_CAST()`
+## 🛡 71. `SAFE_CAST()`
 
 `SAFE_CAST` fonctionne comme `CAST`, mais lorsqu'une conversion échoue à l'exécution, il peut retourner :
 
@@ -2748,7 +2777,7 @@ NULL
 
 ---
 
-# ⚠️ 72. Pourquoi `SAFE_CAST` peut masquer des problèmes
+## ⚠️ 72. Pourquoi `SAFE_CAST` peut masquer des problèmes
 
 `SAFE_CAST` est pratique.
 
@@ -2788,7 +2817,7 @@ Cette requête cherche les valeurs non nulles qui ne sont pas convertibles.
 
 ---
 
-# 🧹 73. Pattern de nettoyage : brut → propre → analytique
+## 🧹 73. Pattern de nettoyage : brut → propre → analytique
 
 Une architecture saine ressemble souvent à :
 
@@ -2817,7 +2846,7 @@ On construit des couches.
 
 ---
 
-# 🛑 74. `SELECT` ne modifie pas la table source
+## 🛑 74. `SELECT` ne modifie pas la table source
 
 C'est un point essentiel du cours.
 
@@ -2851,11 +2880,11 @@ La donnée brute reste inchangée.
 
 ---
 
-# 💾 75. Comment persister le résultat d'une requête ?
+## 💾 75. Comment persister le résultat d'une requête ?
 
 Si l'on veut conserver le résultat, plusieurs approches existent.
 
-## Nouvelle table
+### Nouvelle table
 
 On matérialise les résultats.
 
@@ -2869,7 +2898,7 @@ clean_people
 
 ---
 
-## View
+### View
 
 Une vue stocke essentiellement une définition de requête.
 
@@ -2877,7 +2906,7 @@ Quand elle est interrogée, la logique est réévaluée sur ses sources.
 
 ---
 
-## Scheduled Query
+### Scheduled Query
 
 Une requête peut être exécutée automatiquement selon une planification et écrire dans une table destination.
 
@@ -2895,7 +2924,7 @@ Ces mécanismes seront approfondis plus tard.
 
 ---
 
-# ♻️ 76. Query cache
+## ♻️ 76. Query cache
 
 BigQuery peut réutiliser le résultat de certaines requêtes identiques grâce à un cache.
 
@@ -2925,7 +2954,7 @@ Ne jamais cependant construire un pipeline métier critique en supposant que le 
 
 ---
 
-# 📏 77. Estimation des bytes avant exécution
+## 📏 77. Estimation des bytes avant exécution
 
 BigQuery peut afficher une estimation du volume que la requête devrait traiter.
 
@@ -2960,7 +2989,7 @@ retester
 
 ---
 
-# 🧪 78. Preview plutôt que `SELECT *` pour simplement regarder une table
+## 🧪 78. Preview plutôt que `SELECT *` pour simplement regarder une table
 
 Pour découvrir une table, on peut utiliser la fonction Preview de l'interface.
 
@@ -2982,7 +3011,7 @@ Le bon outil dépend de l'objectif.
 
 ---
 
-# 💡 79. SQL : déclaratif, pas impératif
+## 💡 79. SQL : déclaratif, pas impératif
 
 Dans un langage impératif, on décrit souvent **comment** faire étape par étape.
 
@@ -3019,7 +3048,7 @@ Le moteur choisit ensuite une stratégie d'exécution.
 
 ---
 
-# 🧠 80. Lire une requête en français
+## 🧠 80. Lire une requête en français
 
 Prenons :
 
@@ -3057,7 +3086,7 @@ Savoir verbaliser une requête est un excellent moyen de vérifier sa logique.
 
 ---
 
-# 🧩 81. Une requête plus complète avec colonnes calculées
+## 🧩 81. Une requête plus complète avec colonnes calculées
 
 ```sql
 SELECT
@@ -3109,7 +3138,7 @@ LIMIT
 
 ---
 
-# 🧹 82. Formatage recommandé
+## 🧹 82. Formatage recommandé
 
 Préférer :
 
@@ -3142,13 +3171,13 @@ Pas la même maintenabilité.
 
 ---
 
-# 🔧 83. Déboguer une requête SQL : méthode simple
+## 🔧 83. Déboguer une requête SQL : méthode simple
 
 Lorsqu'une requête ne fonctionne pas, éviter de modifier dix choses au hasard.
 
 Procéder par couches.
 
-## Étape 1 — la table existe-t-elle ?
+### Étape 1 — la table existe-t-elle ?
 
 ```sql
 SELECT
@@ -3159,7 +3188,7 @@ LIMIT 10;
 
 ---
 
-## Étape 2 — les colonnes existent-elles ?
+### Étape 2 — les colonnes existent-elles ?
 
 ```sql
 SELECT
@@ -3171,7 +3200,7 @@ LIMIT 10;
 
 ---
 
-## Étape 3 — le filtre fonctionne-t-il ?
+### Étape 3 — le filtre fonctionne-t-il ?
 
 ```sql
 SELECT
@@ -3184,7 +3213,7 @@ LIMIT 10;
 
 ---
 
-## Étape 4 — ajouter les expressions
+### Étape 4 — ajouter les expressions
 
 ```sql
 SELECT
@@ -3196,7 +3225,7 @@ FROM `project.dataset.table`;
 
 ---
 
-## Étape 5 — contrôler les valeurs qui posent problème
+### Étape 5 — contrôler les valeurs qui posent problème
 
 ```sql
 SELECT
@@ -3210,9 +3239,9 @@ WHERE raw_value IS NOT NULL
 
 ---
 
-# 🚨 84. Erreurs classiques du débutant
+## 🚨 84. Erreurs classiques du débutant
 
-## Erreur 1 — oublier une virgule
+### Erreur 1 — oublier une virgule
 
 ```sql
 SELECT
@@ -3232,7 +3261,7 @@ FROM people;
 
 ---
 
-## Erreur 2 — oublier les quotes autour d'un texte
+### Erreur 2 — oublier les quotes autour d'un texte
 
 ```sql
 WHERE name = Paul
@@ -3246,7 +3275,7 @@ WHERE name = 'Paul'
 
 ---
 
-## Erreur 3 — confondre valeur texte et nom de colonne
+### Erreur 3 — confondre valeur texte et nom de colonne
 
 ```sql
 WHERE country = FR
@@ -3262,7 +3291,7 @@ WHERE country = 'FR'
 
 ---
 
-## Erreur 4 — tester `NULL` avec `=`
+### Erreur 4 — tester `NULL` avec `=`
 
 Incorrect :
 
@@ -3278,25 +3307,25 @@ WHERE price IS NULL
 
 ---
 
-## Erreur 5 — oublier les parenthèses avec `AND` / `OR`
+### Erreur 5 — oublier les parenthèses avec `AND` / `OR`
 
 Toujours rendre la logique explicite.
 
 ---
 
-## Erreur 6 — utiliser `SELECT *` partout
+### Erreur 6 — utiliser `SELECT *` partout
 
 Cela devient vite coûteux, peu lisible et fragile.
 
 ---
 
-## Erreur 7 — utiliser `SAFE_CAST` sans inspecter les erreurs
+### Erreur 7 — utiliser `SAFE_CAST` sans inspecter les erreurs
 
 Les valeurs invalides deviennent silencieusement `NULL`.
 
 ---
 
-## Erreur 8 — supposer que l'ordre des lignes est garanti
+### Erreur 8 — supposer que l'ordre des lignes est garanti
 
 Sans :
 
@@ -3308,7 +3337,7 @@ l'ordre du résultat n'est pas à considérer comme garanti.
 
 ---
 
-## Erreur 9 — confondre filtrer et transformer
+### Erreur 9 — confondre filtrer et transformer
 
 ```sql
 WHERE
@@ -3326,7 +3355,7 @@ Ce n'est pas la même opération.
 
 ---
 
-# 🧭 85. `WHERE` vs `CASE WHEN`
+## 🧭 85. `WHERE` vs `CASE WHEN`
 
 Question :
 
@@ -3365,7 +3394,7 @@ CASE
 
 ---
 
-# 🧠 86. `SELECT`, `WHERE`, `ORDER BY`, `LIMIT` : quatre rôles à ne jamais confondre
+## 🧠 86. `SELECT`, `WHERE`, `ORDER BY`, `LIMIT` : quatre rôles à ne jamais confondre
 
 ```text
 SELECT
@@ -3398,7 +3427,7 @@ LIMIT   = quantité affichée
 
 ---
 
-# 🧮 87. Colonnes existantes vs colonnes calculées
+## 🧮 87. Colonnes existantes vs colonnes calculées
 
 Dans :
 
@@ -3437,7 +3466,7 @@ Cette distinction deviendra essentielle pour :
 
 ---
 
-# 🧱 88. Le pipeline analytique comme succession de tables logiques
+## 🧱 88. Le pipeline analytique comme succession de tables logiques
 
 Un Data Analyst ne doit pas penser :
 
@@ -3477,9 +3506,9 @@ SQL devient beaucoup plus simple lorsqu'on raisonne par étapes.
 
 ---
 
-# 🔄 89. Query enregistrée, vue et table : différence conceptuelle
+## 🔄 89. Query enregistrée, vue et table : différence conceptuelle
 
-## Saved Query
+### Saved Query
 
 ```text
 du code SQL enregistré
@@ -3489,7 +3518,7 @@ Le code existe indépendamment du résultat.
 
 ---
 
-## View
+### View
 
 ```text
 une requête enregistrée exposée comme un objet requêtable
@@ -3499,7 +3528,7 @@ Elle représente une logique.
 
 ---
 
-## Table
+### Table
 
 ```text
 des données matérialisées / stockées
@@ -3509,7 +3538,7 @@ Le résultat existe physiquement comme table BigQuery.
 
 ---
 
-## Scheduled Query
+### Scheduled Query
 
 ```text
 du SQL exécuté automatiquement selon une fréquence
@@ -3519,7 +3548,7 @@ Elle peut alimenter une table de destination.
 
 ---
 
-# 🧠 90. Un des grands changements de mentalité par rapport à Sheets
+## 🧠 90. Un des grands changements de mentalité par rapport à Sheets
 
 Dans Sheets, on pense souvent :
 
@@ -3558,7 +3587,7 @@ La même logique s'applique à toutes les lignes.
 
 ---
 
-# 📚 91. Convention de nommage
+## 📚 91. Convention de nommage
 
 Quelques bonnes pratiques :
 
@@ -3592,7 +3621,7 @@ Un bon nom doit être :
 
 ---
 
-# 🏷 92. Alias de table — aperçu
+## 🏷 92. Alias de table — aperçu
 
 Les alias de table seront surtout utiles avec les jointures.
 
@@ -3625,7 +3654,7 @@ partout dans les grosses requêtes.
 
 ---
 
-# ⚠️ 93. Alias : privilégier la lisibilité
+## ⚠️ 93. Alias : privilégier la lisibilité
 
 Alias utiles :
 
@@ -3651,7 +3680,7 @@ Le but est d'améliorer la lecture.
 
 ---
 
-# 🧮 94. Les fonctions sont des expressions
+## 🧮 94. Les fonctions sont des expressions
 
 Une fonction SQL prend des entrées et retourne une valeur.
 
@@ -3705,7 +3734,7 @@ Résultat :
 
 ---
 
-# 🧠 95. Une colonne du `SELECT` peut être presque n'importe quelle expression
+## 🧠 95. Une colonne du `SELECT` peut être presque n'importe quelle expression
 
 Exemples :
 
@@ -3740,7 +3769,7 @@ Le `SELECT` décrit donc réellement les **valeurs que l'on veut produire**.
 
 ---
 
-# 🧪 96. Pattern : explorer proprement une nouvelle table
+## 🧪 96. Pattern : explorer proprement une nouvelle table
 
 Lorsque tu découvres une table :
 
@@ -3802,7 +3831,7 @@ FROM `project.dataset.table`;
 
 ---
 
-# 🧪 97. Pattern : vérifier l'unicité d'une clé
+## 🧪 97. Pattern : vérifier l'unicité d'une clé
 
 ```sql
 SELECT
@@ -3831,7 +3860,7 @@ Cette vérification deviendra essentielle avant les `JOIN`.
 
 ---
 
-# 🧪 98. Pattern : contrôler les valeurs d'une catégorie
+## 🧪 98. Pattern : contrôler les valeurs d'une catégorie
 
 ```sql
 SELECT DISTINCT
@@ -3854,7 +3883,7 @@ et donc de détecter un problème de normalisation.
 
 ---
 
-# 🧪 99. Pattern : trouver les valeurs qui ne se castent pas
+## 🧪 99. Pattern : trouver les valeurs qui ne se castent pas
 
 ```sql
 SELECT DISTINCT
@@ -3868,7 +3897,7 @@ Très utile dans une étape de nettoyage.
 
 ---
 
-# 🧪 100. Pattern : Top N
+## 🧪 100. Pattern : Top N
 
 ```sql
 SELECT
@@ -3891,7 +3920,7 @@ LIMIT
 
 ---
 
-# 🧪 101. Pattern : segmentation simple
+## 🧪 101. Pattern : segmentation simple
 
 ```sql
 SELECT
@@ -3906,7 +3935,7 @@ FROM customers;
 
 ---
 
-# ⚠️ 102. Une bonne requête peut produire un mauvais résultat métier
+## ⚠️ 102. Une bonne requête peut produire un mauvais résultat métier
 
 SQL peut être :
 
@@ -3940,9 +3969,9 @@ comme chiffre d'affaires réalisé, la logique est incorrecte.
 
 ---
 
-# 🧠 103. Les trois niveaux de validation d'une requête
+## 🧠 103. Les trois niveaux de validation d'une requête
 
-## Niveau 1 — syntaxe
+### Niveau 1 — syntaxe
 
 ```text
 Est-ce que SQL s'exécute ?
@@ -3950,7 +3979,7 @@ Est-ce que SQL s'exécute ?
 
 ---
 
-## Niveau 2 — données
+### Niveau 2 — données
 
 ```text
 Est-ce que les types, les clés et les valeurs sont cohérents ?
@@ -3958,7 +3987,7 @@ Est-ce que les types, les clés et les valeurs sont cohérents ?
 
 ---
 
-## Niveau 3 — métier
+### Niveau 3 — métier
 
 ```text
 Est-ce que ce calcul répond vraiment à la question ?
@@ -3968,7 +3997,7 @@ Une requête professionnelle doit passer les trois.
 
 ---
 
-# 🔐 104. Lecture vs modification : ne pas tout mettre dans la même catégorie
+## 🔐 104. Lecture vs modification : ne pas tout mettre dans la même catégorie
 
 Dans ce chapitre, on travaille surtout avec des requêtes de lecture :
 
@@ -3999,7 +4028,7 @@ DELETE FROM table;
 
 ---
 
-# 🧠 105. Pourquoi on conserve généralement la donnée brute
+## 🧠 105. Pourquoi on conserve généralement la donnée brute
 
 La donnée brute sert de référence.
 
@@ -4032,7 +4061,7 @@ Cela améliore :
 
 ---
 
-# ⚡ 106. BigQuery est columnar : intuition essentielle
+## ⚡ 106. BigQuery est columnar : intuition essentielle
 
 BigQuery stocke et lit efficacement les données par colonnes pour les usages analytiques.
 
@@ -4064,7 +4093,7 @@ est souvent inutilement large.
 
 ---
 
-# 💰 107. Coût BigQuery : ne mémorise pas un prix, mémorise le modèle
+## 💰 107. Coût BigQuery : ne mémorise pas un prix, mémorise le modèle
 
 Les tarifs exacts peuvent évoluer.
 
@@ -4091,7 +4120,7 @@ combien de lignes vais-je afficher ?
 
 ---
 
-# 🧠 108. `LIMIT 10` n'est pas une optimisation universelle
+## 🧠 108. `LIMIT 10` n'est pas une optimisation universelle
 
 Cette confusion mérite d'être répétée.
 
@@ -4126,9 +4155,9 @@ bonne modélisation
 
 ---
 
-# 🧰 109. Mini cheat sheet — SQL de base
+## 🧰 109. Mini cheat sheet — SQL de base
 
-## Sélectionner toutes les colonnes
+### Sélectionner toutes les colonnes
 
 ```sql
 SELECT
@@ -4138,7 +4167,7 @@ FROM table_name;
 
 ---
 
-## Sélectionner certaines colonnes
+### Sélectionner certaines colonnes
 
 ```sql
 SELECT
@@ -4149,7 +4178,7 @@ FROM table_name;
 
 ---
 
-## Valeurs distinctes
+### Valeurs distinctes
 
 ```sql
 SELECT DISTINCT
@@ -4159,7 +4188,7 @@ FROM table_name;
 
 ---
 
-## Alias
+### Alias
 
 ```sql
 SELECT
@@ -4169,7 +4198,7 @@ FROM table_name;
 
 ---
 
-## Filtre
+### Filtre
 
 ```sql
 SELECT
@@ -4180,7 +4209,7 @@ WHERE condition;
 
 ---
 
-## Plusieurs conditions
+### Plusieurs conditions
 
 ```sql
 WHERE condition_1
@@ -4194,7 +4223,7 @@ WHERE condition_1
 
 ---
 
-## Liste
+### Liste
 
 ```sql
 WHERE column_name IN ('A', 'B', 'C')
@@ -4202,7 +4231,7 @@ WHERE column_name IN ('A', 'B', 'C')
 
 ---
 
-## Recherche texte
+### Recherche texte
 
 ```sql
 WHERE column_name LIKE 'A%'
@@ -4210,7 +4239,7 @@ WHERE column_name LIKE 'A%'
 
 ---
 
-## NULL
+### NULL
 
 ```sql
 WHERE column_name IS NULL
@@ -4218,7 +4247,7 @@ WHERE column_name IS NULL
 
 ---
 
-## Tri
+### Tri
 
 ```sql
 ORDER BY column_name DESC
@@ -4226,7 +4255,7 @@ ORDER BY column_name DESC
 
 ---
 
-## Limite
+### Limite
 
 ```sql
 LIMIT 10
@@ -4234,7 +4263,7 @@ LIMIT 10
 
 ---
 
-## IF
+### IF
 
 ```sql
 IF(condition, value_true, value_false)
@@ -4242,7 +4271,7 @@ IF(condition, value_true, value_false)
 
 ---
 
-## CASE
+### CASE
 
 ```sql
 CASE
@@ -4253,7 +4282,7 @@ END
 
 ---
 
-## CAST
+### CAST
 
 ```sql
 CAST(value AS INT64)
@@ -4261,7 +4290,7 @@ CAST(value AS INT64)
 
 ---
 
-## SAFE_CAST
+### SAFE_CAST
 
 ```sql
 SAFE_CAST(value AS NUMERIC)
@@ -4269,7 +4298,7 @@ SAFE_CAST(value AS NUMERIC)
 
 ---
 
-# 🧭 110. Arbre de décision — quel outil utiliser ?
+## 🧭 110. Arbre de décision — quel outil utiliser ?
 
 ```text
 Je veux choisir des colonnes
@@ -4328,7 +4357,7 @@ Je veux seulement les N premiers résultats après le tri
 
 ---
 
-# 🧭 111. Arbre de décision — avant d'écrire une requête
+## 🧭 111. Arbre de décision — avant d'écrire une requête
 
 ```text
 Quelle question métier ?
@@ -4354,7 +4383,7 @@ Comment vais-je vérifier le résultat ?
 
 ---
 
-# ✅ 112. Checklist avant d'exécuter une requête
+## ✅ 112. Checklist avant d'exécuter une requête
 
 - [ ] Je sais dans quel **project** je travaille.
 - [ ] Je sais dans quel **dataset** se trouve ma table.
@@ -4371,7 +4400,7 @@ Comment vais-je vérifier le résultat ?
 
 ---
 
-# ✅ 113. Checklist après exécution
+## ✅ 113. Checklist après exécution
 
 - [ ] Le nombre de lignes paraît-il plausible ?
 - [ ] Les colonnes ont-elles le type attendu ?
@@ -4386,7 +4415,7 @@ Comment vais-je vérifier le résultat ?
 
 ---
 
-# 🎯 114. Les 15 réflexes à ancrer dès ce premier cours
+## 🎯 114. Les 15 réflexes à ancrer dès ce premier cours
 
 1. **Toujours savoir ce qu'une ligne représente.**
 2. **Lire le schema avant d'écrire la requête.**
@@ -4406,7 +4435,7 @@ Comment vais-je vérifier le résultat ?
 
 ---
 
-# 🧠 115. Le modèle mental final de ce chapitre
+## 🧠 115. Le modèle mental final de ce chapitre
 
 ```text
                     ┌─────────────────────────────┐
@@ -4458,9 +4487,9 @@ Comment vais-je vérifier le résultat ?
 
 ---
 
-# 🏁 116. Résumé ultra-condensé
+## 🏁 116. Résumé ultra-condensé
 
-## Base relationnelle
+### Base relationnelle
 
 ```text
 plusieurs tables
@@ -4472,7 +4501,7 @@ clés
 
 ---
 
-## Primary Key
+### Primary Key
 
 ```text
 identifie une ligne de manière unique
@@ -4480,7 +4509,7 @@ identifie une ligne de manière unique
 
 ---
 
-## Foreign Key
+### Foreign Key
 
 ```text
 référence une autre entité / table
@@ -4488,7 +4517,7 @@ référence une autre entité / table
 
 ---
 
-## ERD
+### ERD
 
 ```text
 carte du modèle de données
@@ -4496,7 +4525,7 @@ carte du modèle de données
 
 ---
 
-## Cardinalité
+### Cardinalité
 
 ```text
 1:1
@@ -4508,7 +4537,7 @@ optionalité 0 / 1 / plusieurs
 
 ---
 
-## BigQuery
+### BigQuery
 
 ```text
 Project
@@ -4518,7 +4547,7 @@ Project
 
 ---
 
-## `SELECT`
+### `SELECT`
 
 ```text
 quelles valeurs produire ?
@@ -4526,7 +4555,7 @@ quelles valeurs produire ?
 
 ---
 
-## `FROM`
+### `FROM`
 
 ```text
 d'où viennent les lignes ?
@@ -4534,7 +4563,7 @@ d'où viennent les lignes ?
 
 ---
 
-## `WHERE`
+### `WHERE`
 
 ```text
 quelles lignes conserver ?
@@ -4542,7 +4571,7 @@ quelles lignes conserver ?
 
 ---
 
-## `ORDER BY`
+### `ORDER BY`
 
 ```text
 dans quel ordre ?
@@ -4550,7 +4579,7 @@ dans quel ordre ?
 
 ---
 
-## `LIMIT`
+### `LIMIT`
 
 ```text
 combien de lignes retourner ?
@@ -4558,7 +4587,7 @@ combien de lignes retourner ?
 
 ---
 
-## `CASE WHEN`
+### `CASE WHEN`
 
 ```text
 créer une logique conditionnelle
@@ -4566,7 +4595,7 @@ créer une logique conditionnelle
 
 ---
 
-## `CAST`
+### `CAST`
 
 ```text
 changer explicitement de type
@@ -4574,7 +4603,7 @@ changer explicitement de type
 
 ---
 
-## `SAFE_CAST`
+### `SAFE_CAST`
 
 ```text
 conversion tolérante aux erreurs d'exécution
@@ -4583,7 +4612,7 @@ conversion tolérante aux erreurs d'exécution
 
 ---
 
-## Réflexe principal
+### Réflexe principal
 
 ```text
 Avant le SQL :
@@ -4595,7 +4624,7 @@ tester le résultat.
 
 ---
 
-# 📌 117. Passerelle vers les prochains chapitres
+## 📌 117. Passerelle vers les prochains chapitres
 
 Ce chapitre pose les fondations.
 
@@ -4632,7 +4661,7 @@ Ils constituent le **socle de presque tout le SQL analytique**.
 
 ---
 
-# 📚 118. Notes de validation technique — BigQuery / GoogleSQL
+## 📚 118. Notes de validation technique — BigQuery / GoogleSQL
 
 Pour faire de ce chapitre une référence durable, plusieurs points du cours ont été volontairement reformulés ou précisés :
 

@@ -6,11 +6,11 @@
 
 ## 🔑 Les 3 concepts en une phrase
 
-| Concept | Question | Réponse type |
-|---|---|---|
-| **Trigger** | Quand ? | La condition qui déclenche le tag (clic, page vue, custom event...) |
-| **Variable** | Quoi/comment ? | La donnée dynamique récupérée (prix, nom de page, form ID...) |
-| **Tag** | Quoi faire ? | Le snippet qui envoie l'info à un outil précis (1 tag = 1 event = 1 outil) |
+| Concept      | Question       | Réponse type                                                               |
+| ------------ | -------------- | -------------------------------------------------------------------------- |
+| **Trigger**  | Quand ?        | La condition qui déclenche le tag (clic, page vue, custom event...)        |
+| **Variable** | Quoi/comment ? | La donnée dynamique récupérée (prix, nom de page, form ID...)              |
+| **Tag**      | Quoi faire ?   | Le snippet qui envoie l'info à un outil précis (1 tag = 1 event = 1 outil) |
 
 **Ordre de setup logique : Trigger → Variable → Tag**
 

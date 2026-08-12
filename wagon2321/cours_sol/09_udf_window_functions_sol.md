@@ -1,12 +1,49 @@
-# 📝 05 – SQL : User-Defined Functions & Window Functions
+---
+title: "SQL — User-Defined Functions & Window Functions"
+aliases:
+  - "SQL Window Functions"
+  - "Window Functions"
+  - "SQL UDFs"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 9
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "UDFs"
+  - "Window Functions"
+  - "Ranking"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - window-functions
+  - udf
+---
 
+# 📝 09 — SQL · User-Defined Functions & Window Functions
+
+> [!info] Navigation Brocode
+> **← Précédent :** [[08_subqueries_ctes_union_sol|08 — SQL · CTEs, Subqueries & UNION]] · **Suivant → :** [[10_data_pipelines_views_tables_sol|10 — Data Pipelines, Views & Tables]]
+>
+> [!tip] Navigation Obsidian
+> Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
+
+---
+
+> [!abstract] Objectif du chapitre
 > **Objectif du chapitre :** comprendre et maîtriser les **Window Functions**, l'un des outils SQL les plus importants pour l'analyse de données : agréger, comparer, classer, distribuer des métriques et naviguer entre les lignes **sans perdre la granularité du dataset**.
 >
 > Le cours commence également par les **User-Defined Functions (UDFs)** BigQuery, qui permettent d'encapsuler une logique métier réutilisable.
 
 ---
 
-# 🧭 0. Pourquoi ce chapitre est important ?
+## 🧭 0. Pourquoi ce chapitre est important ?
 
 Jusqu'ici, plusieurs outils permettent déjà de transformer des données :
 
@@ -81,7 +118,7 @@ C'est exactement le terrain des **Window Functions**.
 
 ---
 
-# 🧠 1. La phrase à retenir
+## 🧠 1. La phrase à retenir
 
 ```text
 GROUP BY
@@ -98,7 +135,7 @@ Cette distinction est le cœur du chapitre.
 
 ---
 
-# 🗺 2. Position du chapitre dans le Brocode
+## 🗺 2. Position du chapitre dans le Brocode
 
 ```text
 JOINs
@@ -129,11 +166,11 @@ SAFE_DIVIDE
 
 ---
 
-# ============================================================
-# PARTIE I — USER-DEFINED FUNCTIONS (UDFs)
-# ============================================================
+## ============================================================
+## PARTIE I — USER-DEFINED FUNCTIONS (UDFs)
+## ============================================================
 
-# 🧰 3. Fonction native vs fonction personnalisée
+## 🧰 3. Fonction native vs fonction personnalisée
 
 Depuis le début du module SQL, on utilise des fonctions natives BigQuery :
 
@@ -168,7 +205,7 @@ définie par nous
 
 ---
 
-# 🧱 4. Structure générale d'une UDF SQL
+## 🧱 4. Structure générale d'une UDF SQL
 
 Syntaxe simple :
 
@@ -196,7 +233,7 @@ AS (
 
 ---
 
-# 🔬 5. Anatomie de la fonction
+## 🔬 5. Anatomie de la fonction
 
 ```sql
 CREATE OR REPLACE FUNCTION course17.margin(
@@ -233,7 +270,7 @@ CREATE OR REPLACE FUNCTION
 
 ---
 
-# 🏗 6. `CREATE` vs `CREATE OR REPLACE`
+## 🏗 6. `CREATE` vs `CREATE OR REPLACE`
 
 Si on écrit :
 
@@ -261,7 +298,7 @@ si elle existe
 
 ---
 
-# 📍 7. Où est stockée une UDF persistante ?
+## 📍 7. Où est stockée une UDF persistante ?
 
 Une fonction persistante est un **objet du dataset**.
 
@@ -290,7 +327,7 @@ les paramètres attendus
 
 ---
 
-# 📞 8. Appeler une UDF
+## 📞 8. Appeler une UDF
 
 Après avoir créé :
 
@@ -331,7 +368,7 @@ retourner turnover - purchase_cost
 
 ---
 
-# 🧠 9. Les noms des colonnes n'ont pas besoin de correspondre aux paramètres
+## 🧠 9. Les noms des colonnes n'ont pas besoin de correspondre aux paramètres
 
 Supposons :
 
@@ -377,7 +414,7 @@ argument 2
 
 ---
 
-# ⚠️ 10. L'ordre des arguments compte
+## ⚠️ 10. L'ordre des arguments compte
 
 Avec :
 
@@ -409,7 +446,7 @@ Elle applique strictement la logique définie.
 
 ---
 
-# 🔢 11. Types de paramètres
+## 🔢 11. Types de paramètres
 
 Exemple :
 
@@ -441,7 +478,7 @@ STRUCT<...>
 
 ---
 
-# 🧠 12. Complément Brocode — `ANY TYPE`
+## 🧠 12. Complément Brocode — `ANY TYPE`
 
 BigQuery permet également des paramètres génériques :
 
@@ -480,7 +517,7 @@ car le contrat de la fonction est immédiatement lisible.
 
 ---
 
-# 🧪 13. Exemple : catégoriser une date de naissance
+## 🧪 13. Exemple : catégoriser une date de naissance
 
 Le cours utilise une UDF qui encapsule un `CASE WHEN`.
 
@@ -512,7 +549,7 @@ FROM people;
 
 ---
 
-# 💡 14. Pourquoi créer cette fonction ?
+## 💡 14. Pourquoi créer cette fonction ?
 
 Sans UDF :
 
@@ -549,7 +586,7 @@ plus facile à maintenir
 
 ---
 
-# 🧩 15. Exemple : fonction de segmentation
+## 🧩 15. Exemple : fonction de segmentation
 
 ```sql
 CREATE OR REPLACE FUNCTION course17.segment(
@@ -578,7 +615,7 @@ FROM customers;
 
 ---
 
-# ♻️ 16. Standardiser une opération répétitive
+## ♻️ 16. Standardiser une opération répétitive
 
 Exemple du cours :
 
@@ -632,7 +669,7 @@ numérateur / dénominateur
 
 ---
 
-# ⚠️ 17. Correction importante — ne pas arrondir trop tôt
+## ⚠️ 17. Correction importante — ne pas arrondir trop tôt
 
 L'exemple pédagogique du cours encapsule :
 
@@ -672,7 +709,7 @@ Mais avec de nombreux éléments :
 
 Le total n'est plus exactement égal à `1`.
 
-### Principe Brocode
+#### Principe Brocode
 
 ```text
 calculer avec la précision complète
@@ -684,7 +721,7 @@ ROUND uniquement pour l'affichage final
 
 ---
 
-# ✅ 18. UDF : cas d'usage adaptés
+## ✅ 18. UDF : cas d'usage adaptés
 
 Créer une UDF quand une logique est :
 
@@ -709,7 +746,7 @@ score métier
 
 ---
 
-# 🚫 19. Quand ne PAS créer une UDF
+## 🚫 19. Quand ne PAS créer une UDF
 
 Éviter une UDF pour :
 
@@ -730,11 +767,11 @@ un objet à maintenir
 
 ---
 
-# 🧾 20. UDF temporaire vs persistante
+## 🧾 20. UDF temporaire vs persistante
 
 BigQuery permet deux grandes formes.
 
-## Temporaire
+### Temporaire
 
 ```sql
 CREATE TEMP FUNCTION ...
@@ -742,7 +779,7 @@ CREATE TEMP FUNCTION ...
 
 Elle existe seulement pendant la requête / session concernée.
 
-## Persistante
+### Persistante
 
 ```sql
 CREATE FUNCTION dataset.function_name(...)
@@ -760,11 +797,11 @@ persistent UDF
 
 ---
 
-# ============================================================
-# PARTIE II — WINDOW FUNCTIONS
-# ============================================================
+## ============================================================
+## PARTIE II — WINDOW FUNCTIONS
+## ============================================================
 
-# 🪟 21. Qu'est-ce qu'une Window Function ?
+## 🪟 21. Qu'est-ce qu'une Window Function ?
 
 Une Window Function calcule une valeur sur un **ensemble de lignes reliées à la ligne courante**, appelé une **window**.
 
@@ -792,9 +829,9 @@ Il indique :
 
 ---
 
-# 🎯 22. Aggregate Function vs Window Function
+## 🎯 22. Aggregate Function vs Window Function
 
-## Agrégation classique
+### Agrégation classique
 
 ```sql
 SELECT
@@ -812,7 +849,7 @@ stock_global
 
 ---
 
-## Window Function
+### Window Function
 
 ```sql
 SELECT
@@ -840,7 +877,7 @@ La somme existe **sur chaque ligne**.
 
 ---
 
-# 🧠 23. Modèle mental
+## 🧠 23. Modèle mental
 
 Pense à une Window Function comme à une caméra placée sur chaque ligne.
 
@@ -873,7 +910,7 @@ Pour chaque ligne, BigQuery :
 
 ---
 
-# 🧱 24. Anatomie générale
+## 🧱 24. Anatomie générale
 
 ```sql
 FUNCTION(expression)
@@ -902,7 +939,7 @@ ROWS / RANGE
 
 ---
 
-# ⭐ 25. Les quatre pièces à connaître
+## ⭐ 25. Les quatre pièces à connaître
 
 ```text
 FUNCTION
@@ -920,7 +957,7 @@ WINDOW FRAME
 
 ---
 
-# 🪟 26. `OVER ()` sans instruction
+## 🪟 26. `OVER ()` sans instruction
 
 ```sql
 SUM(stock_value) OVER ()
@@ -949,7 +986,7 @@ Puis le total est répété sur chaque ligne.
 
 ---
 
-# 📊 27. Agrégation globale sans perdre le détail
+## 📊 27. Agrégation globale sans perdre le détail
 
 ```sql
 SELECT
@@ -978,7 +1015,7 @@ JOIN
 
 ---
 
-# 🧩 28. `PARTITION BY`
+## 🧩 28. `PARTITION BY`
 
 Supposons :
 
@@ -1002,7 +1039,7 @@ OVER (
 
 ---
 
-# 🧠 29. Mental model de `PARTITION BY`
+## 🧠 29. Mental model de `PARTITION BY`
 
 ```text
 table
@@ -1032,7 +1069,7 @@ SUM(Leggings)
 
 ---
 
-# 📊 30. Exemple complet
+## 📊 30. Exemple complet
 
 ```sql
 SELECT
@@ -1061,9 +1098,9 @@ Leggin Sport       Legging     5200              9200
 
 ---
 
-# 🔑 31. `GROUP BY` vs `PARTITION BY`
+## 🔑 31. `GROUP BY` vs `PARTITION BY`
 
-## `GROUP BY`
+### `GROUP BY`
 
 ```sql
 SELECT
@@ -1090,7 +1127,7 @@ Granularité :
 
 ---
 
-## `PARTITION BY`
+### `PARTITION BY`
 
 ```sql
 SELECT
@@ -1110,7 +1147,7 @@ Granularité :
 
 ---
 
-# 🧠 32. Mémo essentiel
+## 🧠 32. Mémo essentiel
 
 ```text
 GROUP BY
@@ -1125,7 +1162,7 @@ sans supprimer les lignes
 
 ---
 
-# ⚠️ 33. Correction de vocabulaire importante : partition ≠ frame
+## ⚠️ 33. Correction de vocabulaire importante : partition ≠ frame
 
 Certaines slides présentent :
 
@@ -1144,7 +1181,7 @@ PARTITION
 WINDOW FRAME
 ```
 
-### Partition
+#### Partition
 
 ```sql
 PARTITION BY model_type
@@ -1152,7 +1189,7 @@ PARTITION BY model_type
 
 découpe les lignes en groupes indépendants.
 
-### Window frame
+#### Window frame
 
 ```sql
 ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
@@ -1179,7 +1216,7 @@ FIRST_VALUE / LAST_VALUE
 
 ---
 
-# 🧩 34. Plusieurs colonnes dans `PARTITION BY`
+## 🧩 34. Plusieurs colonnes dans `PARTITION BY`
 
 On peut écrire :
 
@@ -1209,7 +1246,7 @@ Chaque combinaison est une partition indépendante.
 
 ---
 
-# 🚫 35. Partitionner sur une clé unique
+## 🚫 35. Partitionner sur une clé unique
 
 Supposons :
 
@@ -1244,7 +1281,7 @@ La Window Function reproduit simplement la valeur d'origine.
 
 ---
 
-# 📈 36. Calculer une proportion du total global
+## 📈 36. Calculer une proportion du total global
 
 Objectif :
 
@@ -1274,7 +1311,7 @@ FROM circle_stock;
 
 ---
 
-# 📊 37. Calculer une proportion dans la catégorie
+## 📊 37. Calculer une proportion dans la catégorie
 
 Objectif :
 
@@ -1295,7 +1332,7 @@ FROM circle_stock;
 
 ---
 
-# 🧮 38. Les deux ratios en une requête
+## 🧮 38. Les deux ratios en une requête
 
 ```sql
 SELECT
@@ -1319,7 +1356,7 @@ FROM circle_stock;
 
 ---
 
-# 🧠 39. Pourquoi la Window Function est particulièrement adaptée
+## 🧠 39. Pourquoi la Window Function est particulièrement adaptée
 
 Sans Window Function, pour calculer :
 
@@ -1350,9 +1387,9 @@ Une seule expression suffit.
 
 ---
 
-# 🔄 40. Équivalence conceptuelle CTE + JOIN
+## 🔄 40. Équivalence conceptuelle CTE + JOIN
 
-## Version CTE
+### Version CTE
 
 ```sql
 WITH stock_by_type AS (
@@ -1375,7 +1412,7 @@ USING (model_type);
 
 ---
 
-## Version Window Function
+### Version Window Function
 
 ```sql
 SELECT
@@ -1399,11 +1436,11 @@ mais sans réduire puis reconstruire la granularité.
 
 ---
 
-# ⚖️ 41. CTE + JOIN ou Window Function ?
+## ⚖️ 41. CTE + JOIN ou Window Function ?
 
 Il n'existe pas une règle absolue.
 
-### Window Function souvent préférable quand :
+#### Window Function souvent préférable quand :
 
 ```text
 je veux conserver les lignes originales
@@ -1411,13 +1448,13 @@ je veux conserver les lignes originales
 ajouter une mesure calculée sur leur groupe
 ```
 
-### GROUP BY souvent préférable quand :
+#### GROUP BY souvent préférable quand :
 
 ```text
 je veux réellement produire une table agrégée
 ```
 
-### CTE + JOIN reste pertinent quand :
+#### CTE + JOIN reste pertinent quand :
 
 ```text
 la logique d'agrégation est complexe
@@ -1431,11 +1468,11 @@ La bonne question est donc :
 
 ---
 
-# ============================================================
-# PARTIE III — SORTING & RANKING
-# ============================================================
+## ============================================================
+## PARTIE III — SORTING & RANKING
+## ============================================================
 
-# 🏁 42. `ORDER BY` à l'intérieur de `OVER`
+## 🏁 42. `ORDER BY` à l'intérieur de `OVER`
 
 Les Window Functions de classement utilisent souvent :
 
@@ -1463,7 +1500,7 @@ pour déterminer les numéros de lignes
 
 ---
 
-# ⚠️ 43. `ORDER BY` dans `OVER` ≠ tri de l'output
+## ⚠️ 43. `ORDER BY` dans `OVER` ≠ tri de l'output
 
 C'est un piège essentiel.
 
@@ -1523,7 +1560,7 @@ ORDER BY final
 
 ---
 
-# 🔢 44. `ROW_NUMBER()`
+## 🔢 44. `ROW_NUMBER()`
 
 ```sql
 ROW_NUMBER()
@@ -1560,7 +1597,7 @@ FROM circle_stock;
 
 ---
 
-# 🧠 45. Mental model de `ROW_NUMBER`
+## 🧠 45. Mental model de `ROW_NUMBER`
 
 Supposons :
 
@@ -1590,7 +1627,7 @@ stock   row_number
 
 ---
 
-# ⚠️ 46. `ROW_NUMBER` ne gère pas les ex æquo
+## ⚠️ 46. `ROW_NUMBER` ne gère pas les ex æquo
 
 Supposons :
 
@@ -1612,7 +1649,7 @@ Les deux lignes à `5200` sont égales sur le critère métier, mais `ROW_NUMBER
 
 ---
 
-# 🎲 47. Tie-breaker : rendre `ROW_NUMBER` déterministe
+## 🎲 47. Tie-breaker : rendre `ROW_NUMBER` déterministe
 
 Si deux lignes ont la même `stock_value`, leur ordre relatif peut être non déterministe si aucun autre critère n'est fourni.
 
@@ -1647,7 +1684,7 @@ critère 2 = model
 
 ---
 
-# 🧩 48. Ranking par catégorie
+## 🧩 48. Ranking par catégorie
 
 On peut recommencer le classement dans chaque `model_type`.
 
@@ -1682,7 +1719,7 @@ Le compteur redémarre à `1` à chaque partition.
 
 ---
 
-# 🧠 49. Lire une Window Function de droite à gauche
+## 🧠 49. Lire une Window Function de droite à gauche
 
 Pour :
 
@@ -1707,7 +1744,7 @@ C'est souvent la meilleure manière de déchiffrer une Window Function.
 
 ---
 
-# 🥇 50. `RANK()`
+## 🥇 50. `RANK()`
 
 `RANK()` gère les égalités.
 
@@ -1735,7 +1772,7 @@ Parce que deux positions ont été occupées au rang `1`.
 
 ---
 
-# 🥇 51. `DENSE_RANK()`
+## 🥇 51. `DENSE_RANK()`
 
 ```sql
 DENSE_RANK()
@@ -1759,7 +1796,7 @@ Il n'y a **aucun trou dans les rangs**.
 
 ---
 
-# 📊 52. `ROW_NUMBER` vs `RANK` vs `DENSE_RANK`
+## 📊 52. `ROW_NUMBER` vs `RANK` vs `DENSE_RANK`
 
 Pour :
 
@@ -1785,7 +1822,7 @@ on obtient :
 
 ---
 
-# 🧠 53. Raccourci mental
+## 🧠 53. Raccourci mental
 
 ```text
 ROW_NUMBER
@@ -1802,9 +1839,9 @@ DENSE_RANK
 
 ---
 
-# 🎯 54. Quel ranking choisir ?
+## 🎯 54. Quel ranking choisir ?
 
-## `ROW_NUMBER`
+### `ROW_NUMBER`
 
 Question :
 
@@ -1824,7 +1861,7 @@ choisir une ligne canonique
 
 ---
 
-## `RANK`
+### `RANK`
 
 Question :
 
@@ -1842,7 +1879,7 @@ classement commercial
 
 ---
 
-## `DENSE_RANK`
+### `DENSE_RANK`
 
 Question :
 
@@ -1860,7 +1897,7 @@ catégories ordinales
 
 ---
 
-# 🧪 55. Top 3 avec CTE
+## 🧪 55. Top 3 avec CTE
 
 Pattern présenté dans le cours :
 
@@ -1889,7 +1926,7 @@ Parce que `rn_global` est calculé dans le `SELECT` interne puis devient une vra
 
 ---
 
-# ⭐ 56. Complément BigQuery essentiel : `QUALIFY`
+## ⭐ 56. Complément BigQuery essentiel : `QUALIFY`
 
 BigQuery possède une clause spécialement conçue pour filtrer les résultats des Window Functions :
 
@@ -1916,7 +1953,7 @@ Beaucoup plus direct.
 
 ---
 
-# 🎯 57. Top N par groupe avec `QUALIFY`
+## 🎯 57. Top N par groupe avec `QUALIFY`
 
 Exemple extrêmement courant :
 
@@ -1938,7 +1975,7 @@ QUALIFY rn_model_type <= 3;
 
 ---
 
-# 🧠 58. `WHERE` vs `QUALIFY`
+## 🧠 58. `WHERE` vs `QUALIFY`
 
 ```text
 WHERE
@@ -1972,7 +2009,7 @@ LIMIT
 
 ---
 
-# 🔧 59. Déduplication avec `ROW_NUMBER`
+## 🔧 59. Déduplication avec `ROW_NUMBER`
 
 Cas extrêmement courant en Data Analytics / Data Engineering :
 
@@ -2010,11 +2047,11 @@ C'est l'un des patterns SQL les plus utiles à connaître.
 
 ---
 
-# ============================================================
-# PARTIE IV — GRANULARITÉ & DISTRIBUTION DE MÉTRIQUES
-# ============================================================
+## ============================================================
+## PARTIE IV — GRANULARITÉ & DISTRIBUTION DE MÉTRIQUES
+## ============================================================
 
-# ⚠️ 60. Rappel : joindre deux granularités différentes
+## ⚠️ 60. Rappel : joindre deux granularités différentes
 
 Table `sales` :
 
@@ -2047,7 +2084,7 @@ orders_id   log_cost   ship_cost
 
 ---
 
-# 💥 61. Direct JOIN : duplication
+## 💥 61. Direct JOIN : duplication
 
 ```sql
 SELECT
@@ -2093,7 +2130,7 @@ alors que le vrai coût de la commande est :
 
 ---
 
-# 🧱 62. Première solution : agréger puis joindre
+## 🧱 62. Première solution : agréger puis joindre
 
 Si le résultat final doit avoir :
 
@@ -2126,7 +2163,7 @@ C'est le pattern du chapitre précédent.
 
 ---
 
-# 🎯 63. Mais que faire si on veut garder la granularité produit ?
+## 🎯 63. Mais que faire si on veut garder la granularité produit ?
 
 Supposons que le besoin métier soit :
 
@@ -2146,7 +2183,7 @@ On doit **distribuer les coûts**.
 
 ---
 
-# 📐 64. Étape 1 — calculer la part du turnover
+## 📐 64. Étape 1 — calculer la part du turnover
 
 Pour chaque ligne :
 
@@ -2168,7 +2205,7 @@ SAFE_DIVIDE(
 
 ---
 
-# 🧮 65. Exemple pour la commande 451
+## 🧮 65. Exemple pour la commande 451
 
 Données :
 
@@ -2204,7 +2241,7 @@ Conservation :
 
 ---
 
-# 🧩 66. Requête de pondération
+## 🧩 66. Requête de pondération
 
 ```sql
 SELECT
@@ -2221,7 +2258,7 @@ FROM sales;
 
 ---
 
-# 💰 67. Étape 2 — joindre les coûts opérationnels
+## 💰 67. Étape 2 — joindre les coûts opérationnels
 
 ```sql
 WITH sales_percent AS (
@@ -2251,7 +2288,7 @@ USING (orders_id);
 
 ---
 
-# 🧮 68. Étape 3 — distribuer les coûts
+## 🧮 68. Étape 3 — distribuer les coûts
 
 ```text
 allocated_log_cost
@@ -2298,7 +2335,7 @@ USING (orders_id);
 
 ---
 
-# 📊 69. Résultat conceptuel
+## 📊 69. Résultat conceptuel
 
 Commande `451` :
 
@@ -2323,7 +2360,7 @@ La granularité produit est conservée **et** les coûts restent cohérents.
 
 ---
 
-# 🔐 70. Metric conservation
+## 🔐 70. Metric conservation
 
 C'est un principe fondamental.
 
@@ -2353,7 +2390,7 @@ sans en créer ni en détruire
 
 ---
 
-# 🧪 71. Test de conservation
+## 🧪 71. Test de conservation
 
 Après calcul :
 
@@ -2384,7 +2421,7 @@ Les valeurs doivent correspondre, à la précision numérique près.
 
 ---
 
-# ⚠️ 72. Ne jamais arrondir la part avant la distribution
+## ⚠️ 72. Ne jamais arrondir la part avant la distribution
 
 Mauvais :
 
@@ -2423,7 +2460,7 @@ ROUND(allocated_log_cost, 2)
 
 ---
 
-# 🧠 73. Principe général de distribution
+## 🧠 73. Principe général de distribution
 
 Le pattern fonctionne bien au-delà des coûts logistiques.
 
@@ -2459,7 +2496,7 @@ attribution
 
 ---
 
-# 🏦 74. Exemple bancaire
+## 🏦 74. Exemple bancaire
 
 Supposons :
 
@@ -2501,11 +2538,11 @@ au niveau compte.
 
 ---
 
-# ============================================================
-# PARTIE V — WINDOW FRAMES
-# ============================================================
+## ============================================================
+## PARTIE V — WINDOW FRAMES
+## ============================================================
 
-# 🪟 75. Partition et frame : deux niveaux différents
+## 🪟 75. Partition et frame : deux niveaux différents
 
 Considérons :
 
@@ -2537,7 +2574,7 @@ jusqu'à la ligne actuelle
 
 ---
 
-# 📈 76. Running total
+## 📈 76. Running total
 
 Exemple :
 
@@ -2570,7 +2607,7 @@ date       amount   cumulative
 
 ---
 
-# 🧠 77. Lecture du running total
+## 🧠 77. Lecture du running total
 
 Pour la troisième ligne :
 
@@ -2602,7 +2639,7 @@ La fenêtre évolue avec la ligne courante.
 
 ---
 
-# 📉 78. Moving average
+## 📉 78. Moving average
 
 Moyenne sur la ligne actuelle et les deux précédentes :
 
@@ -2633,7 +2670,7 @@ row 4
 
 ---
 
-# 📦 79. Syntaxe courante des frames
+## 📦 79. Syntaxe courante des frames
 
 ```sql
 ROWS BETWEEN UNBOUNDED PRECEDING
@@ -2686,7 +2723,7 @@ toute la partition
 
 ---
 
-# ⚠️ 80. `ORDER BY` peut changer le comportement d'un agrégat analytique
+## ⚠️ 80. `ORDER BY` peut changer le comportement d'un agrégat analytique
 
 Comparer :
 
@@ -2726,9 +2763,9 @@ ROWS BETWEEN UNBOUNDED PRECEDING
 
 ---
 
-# 🧱 81. `ROWS` vs `RANGE`
+## 🧱 81. `ROWS` vs `RANGE`
 
-## `ROWS`
+### `ROWS`
 
 Travaille avec les positions physiques des lignes.
 
@@ -2746,7 +2783,7 @@ la ligne actuelle
 
 ---
 
-## `RANGE`
+### `RANGE`
 
 Travaille avec une plage logique autour de la valeur utilisée dans `ORDER BY`.
 
@@ -2762,11 +2799,11 @@ souvent le plus intuitif
 
 ---
 
-# ============================================================
-# PARTIE VI — NAVIGATION FUNCTIONS
-# ============================================================
+## ============================================================
+## PARTIE VI — NAVIGATION FUNCTIONS
+## ============================================================
 
-# 🧭 82. Complément Brocode — naviguer entre les lignes
+## 🧭 82. Complément Brocode — naviguer entre les lignes
 
 Les Window Functions ne servent pas uniquement à :
 
@@ -2797,7 +2834,7 @@ LAST_VALUE
 
 ---
 
-# ⬅️ 83. `LAG`
+## ⬅️ 83. `LAG`
 
 `LAG` récupère une valeur d'une ligne précédente.
 
@@ -2827,7 +2864,7 @@ Mar          90       120
 
 ---
 
-# 📈 84. Variation avec `LAG`
+## 📈 84. Variation avec `LAG`
 
 ```sql
 SELECT
@@ -2856,7 +2893,7 @@ variation de churn
 
 ---
 
-# ➡️ 85. `LEAD`
+## ➡️ 85. `LEAD`
 
 `LEAD` récupère la ligne suivante.
 
@@ -2879,7 +2916,7 @@ durée jusqu'au prochain événement
 
 ---
 
-# 1️⃣ 86. `FIRST_VALUE`
+## 1️⃣ 86. `FIRST_VALUE`
 
 ```sql
 FIRST_VALUE(price)
@@ -2899,7 +2936,7 @@ sur chaque ligne.
 
 ---
 
-# ⚠️ 87. Piège classique de `LAST_VALUE`
+## ⚠️ 87. Piège classique de `LAST_VALUE`
 
 Cette écriture :
 
@@ -2929,11 +2966,11 @@ OVER (
 
 ---
 
-# ============================================================
-# PARTIE VII — PATTERNS ANALYTIQUES
-# ============================================================
+## ============================================================
+## PARTIE VII — PATTERNS ANALYTIQUES
+## ============================================================
 
-# 🧰 88. Pattern : pourcentage du total
+## 🧰 88. Pattern : pourcentage du total
 
 ```sql
 SELECT
@@ -2951,7 +2988,7 @@ FROM data;
 
 ---
 
-# 🧰 89. Pattern : pourcentage dans un groupe
+## 🧰 89. Pattern : pourcentage dans un groupe
 
 ```sql
 SELECT
@@ -2970,7 +3007,7 @@ FROM data;
 
 ---
 
-# 🧰 90. Pattern : ranking par groupe
+## 🧰 90. Pattern : ranking par groupe
 
 ```sql
 SELECT
@@ -2988,7 +3025,7 @@ FROM data;
 
 ---
 
-# 🧰 91. Pattern : Top 1 par groupe
+## 🧰 91. Pattern : Top 1 par groupe
 
 ```sql
 SELECT
@@ -3006,7 +3043,7 @@ QUALIFY ROW_NUMBER() OVER (
 
 ---
 
-# 🧰 92. Pattern : Top 3 avec ex æquo
+## 🧰 92. Pattern : Top 3 avec ex æquo
 
 Si les ex æquo doivent être conservés :
 
@@ -3028,7 +3065,7 @@ QUALIFY RANK() OVER (
 
 ---
 
-# 🧰 93. Pattern : running total
+## 🧰 93. Pattern : running total
 
 ```sql
 SELECT
@@ -3046,7 +3083,7 @@ FROM transactions;
 
 ---
 
-# 🧰 94. Pattern : moving average
+## 🧰 94. Pattern : moving average
 
 ```sql
 SELECT
@@ -3064,7 +3101,7 @@ FROM transactions;
 
 ---
 
-# 🧰 95. Pattern : valeur précédente
+## 🧰 95. Pattern : valeur précédente
 
 ```sql
 SELECT
@@ -3080,7 +3117,7 @@ FROM metrics;
 
 ---
 
-# 🧰 96. Pattern : déduplication
+## 🧰 96. Pattern : déduplication
 
 ```sql
 SELECT
@@ -3096,7 +3133,7 @@ QUALIFY ROW_NUMBER() OVER (
 
 ---
 
-# 🧰 97. Pattern : distribution avec conservation
+## 🧰 97. Pattern : distribution avec conservation
 
 ```sql
 WITH weighted AS (
@@ -3126,11 +3163,11 @@ USING (group_id);
 
 ---
 
-# ============================================================
-# PARTIE VIII — PIÈGES & DEBUG
-# ============================================================
+## ============================================================
+## PARTIE VIII — PIÈGES & DEBUG
+## ============================================================
 
-# 🚨 98. Piège : confondre `GROUP BY` et `PARTITION BY`
+## 🚨 98. Piège : confondre `GROUP BY` et `PARTITION BY`
 
 Mauvaise intuition :
 
@@ -3153,7 +3190,7 @@ PARTITION BY
 
 ---
 
-# 🚨 99. Piège : oublier `OVER`
+## 🚨 99. Piège : oublier `OVER`
 
 ```sql
 SUM(stock_value)
@@ -3171,7 +3208,7 @@ Le `OVER` change complètement la sémantique.
 
 ---
 
-# 🚨 100. Piège : croire que `ORDER BY` dans `OVER` trie le résultat
+## 🚨 100. Piège : croire que `ORDER BY` dans `OVER` trie le résultat
 
 ```sql
 ROW_NUMBER() OVER (
@@ -3191,7 +3228,7 @@ doit être ajouté à la requête finale.
 
 ---
 
-# 🚨 101. Piège : `ROW_NUMBER` et les ex æquo
+## 🚨 101. Piège : `ROW_NUMBER` et les ex æquo
 
 ```sql
 ROW_NUMBER() OVER (
@@ -3217,7 +3254,7 @@ peuvent être plus adaptés.
 
 ---
 
-# 🚨 102. Piège : résultat non déterministe
+## 🚨 102. Piège : résultat non déterministe
 
 ```sql
 ROW_NUMBER()
@@ -3239,7 +3276,7 @@ ORDER BY
 
 ---
 
-# 🚨 103. Piège : partition trop fine
+## 🚨 103. Piège : partition trop fine
 
 ```sql
 PARTITION BY primary_key
@@ -3255,7 +3292,7 @@ La Window Function ne compare plus réellement plusieurs lignes.
 
 ---
 
-# 🚨 104. Piège : partition trop large
+## 🚨 104. Piège : partition trop large
 
 Si on oublie :
 
@@ -3279,7 +3316,7 @@ quelles lignes cette ligne doit-elle "voir" ?
 
 ---
 
-# 🚨 105. Piège : arrondir avant la fin
+## 🚨 105. Piège : arrondir avant la fin
 
 Mauvais :
 
@@ -3301,7 +3338,7 @@ calculer ratio exact
 
 ---
 
-# 🚨 106. Piège : diviser par zéro
+## 🚨 106. Piège : diviser par zéro
 
 Préférer :
 
@@ -3322,7 +3359,7 @@ quand le dénominateur peut être `0` ou `NULL`.
 
 ---
 
-# 🚨 107. Piège : filtrer avec `WHERE` une valeur analytique
+## 🚨 107. Piège : filtrer avec `WHERE` une valeur analytique
 
 Ceci n'est pas la bonne logique :
 
@@ -3350,11 +3387,11 @@ QUALIFY
 
 ---
 
-# 🐛 108. Méthode de debug
+## 🐛 108. Méthode de debug
 
 Face à une Window Function complexe :
 
-### Étape 1 — afficher les colonnes brutes
+#### Étape 1 — afficher les colonnes brutes
 
 ```sql
 SELECT
@@ -3363,7 +3400,7 @@ SELECT
 FROM table;
 ```
 
-### Étape 2 — ajouter uniquement la Window Function
+#### Étape 2 — ajouter uniquement la Window Function
 
 ```sql
 SELECT
@@ -3375,7 +3412,7 @@ SELECT
 FROM table;
 ```
 
-### Étape 3 — vérifier manuellement un groupe
+#### Étape 3 — vérifier manuellement un groupe
 
 ```text
 prendre un group_id
@@ -3383,13 +3420,13 @@ additionner les lignes
 comparer
 ```
 
-### Étape 4 — seulement ensuite calculer le ratio
+#### Étape 4 — seulement ensuite calculer le ratio
 
 ```sql
 SAFE_DIVIDE(value, group_total)
 ```
 
-### Étape 5 — tester la conservation
+#### Étape 5 — tester la conservation
 
 ```sql
 SUM(...)
@@ -3397,9 +3434,9 @@ SUM(...)
 
 ---
 
-# 🧪 109. Tests essentiels
+## 🧪 109. Tests essentiels
 
-## Test 1 — total global
+### Test 1 — total global
 
 ```sql
 SELECT
@@ -3421,7 +3458,7 @@ SUM(stock_value) OVER () AS stock_global
 
 ---
 
-## Test 2 — somme des proportions globales
+### Test 2 — somme des proportions globales
 
 ```text
 SUM(p_global)
@@ -3431,7 +3468,7 @@ SUM(p_global)
 
 ---
 
-## Test 3 — somme des proportions par groupe
+### Test 3 — somme des proportions par groupe
 
 Pour chaque `model_type` :
 
@@ -3443,7 +3480,7 @@ SUM(p_model_type)
 
 ---
 
-## Test 4 — conservation après distribution
+### Test 4 — conservation après distribution
 
 ```text
 SUM(allocated_cost)
@@ -3455,11 +3492,11 @@ au niveau du groupe.
 
 ---
 
-# ============================================================
-# PARTIE IX — WINDOW FUNCTIONS AVANCÉES
-# ============================================================
+## ============================================================
+## PARTIE IX — WINDOW FUNCTIONS AVANCÉES
+## ============================================================
 
-# 🪟 110. Named Windows
+## 🪟 110. Named Windows
 
 Quand plusieurs fonctions partagent la même fenêtre :
 
@@ -3492,9 +3529,9 @@ frame
 
 ---
 
-# 📦 111. Familles de Window Functions
+## 📦 111. Familles de Window Functions
 
-## Aggregate analytic functions
+### Aggregate analytic functions
 
 ```text
 SUM
@@ -3506,7 +3543,7 @@ MAX
 
 ---
 
-## Numbering / ranking
+### Numbering / ranking
 
 ```text
 ROW_NUMBER
@@ -3519,7 +3556,7 @@ CUME_DIST
 
 ---
 
-## Navigation
+### Navigation
 
 ```text
 LAG
@@ -3531,7 +3568,7 @@ NTH_VALUE
 
 ---
 
-# 🧠 112. `NTILE` — aperçu
+## 🧠 112. `NTILE` — aperçu
 
 `NTILE` divise les lignes ordonnées en plusieurs groupes.
 
@@ -3563,15 +3600,15 @@ NTILE
 
 ---
 
-# ============================================================
-# PARTIE X — QUESTIONS MÉTIER
-# ============================================================
+## ============================================================
+## PARTIE X — QUESTIONS MÉTIER
+## ============================================================
 
-# 💼 113. Cas d'usage Data Analyst
+## 💼 113. Cas d'usage Data Analyst
 
 Les Window Functions répondent à énormément de questions métier.
 
-### Contribution
+#### Contribution
 
 ```text
 Quelle part du CA total vient de ce client ?
@@ -3583,7 +3620,7 @@ revenue / SUM(revenue) OVER ()
 
 ---
 
-### Contribution dans un segment
+#### Contribution dans un segment
 
 ```text
 Quelle part du CA Premium vient de ce client ?
@@ -3598,7 +3635,7 @@ OVER (PARTITION BY segment)
 
 ---
 
-### Ranking
+#### Ranking
 
 ```text
 Quels sont mes 5 meilleurs clients par pays ?
@@ -3614,7 +3651,7 @@ OVER (
 
 ---
 
-### Évolution
+#### Évolution
 
 ```text
 Comment le solde a-t-il évolué depuis le mois précédent ?
@@ -3632,7 +3669,7 @@ OVER (
 
 ---
 
-### Cumul
+#### Cumul
 
 ```text
 Quel est le CA cumulé depuis le début de l'année ?
@@ -3650,7 +3687,7 @@ OVER (
 
 ---
 
-### Déduplication
+#### Déduplication
 
 ```text
 Quelle est la dernière version connue de chaque dossier ?
@@ -3666,7 +3703,7 @@ OVER (
 
 ---
 
-# 🏦 114. Exemples banking
+## 🏦 114. Exemples banking
 
 Window Functions particulièrement utiles pour :
 
@@ -3708,11 +3745,11 @@ FROM accounts;
 
 ---
 
-# ============================================================
-# PARTIE XI — QUESTIONS D'ENTRETIEN
-# ============================================================
+## ============================================================
+## PARTIE XI — QUESTIONS D'ENTRETIEN
+## ============================================================
 
-# 🎤 115. « Quelle différence entre `GROUP BY` et Window Function ? »
+## 🎤 115. « Quelle différence entre `GROUP BY` et Window Function ? »
 
 Réponse courte :
 
@@ -3720,13 +3757,13 @@ Réponse courte :
 
 ---
 
-# 🎤 116. « À quoi sert `PARTITION BY` ? »
+## 🎤 116. « À quoi sert `PARTITION BY` ? »
 
 > `PARTITION BY` divise les lignes en groupes indépendants pour le calcul analytique. La fonction est recalculée séparément dans chaque partition sans supprimer les lignes.
 
 ---
 
-# 🎤 117. « Différence entre `ROW_NUMBER`, `RANK` et `DENSE_RANK` ? »
+## 🎤 117. « Différence entre `ROW_NUMBER`, `RANK` et `DENSE_RANK` ? »
 
 ```text
 ROW_NUMBER
@@ -3743,7 +3780,7 @@ DENSE_RANK
 
 ---
 
-# 🎤 118. « Comment récupérer le Top 3 de chaque catégorie ? »
+## 🎤 118. « Comment récupérer le Top 3 de chaque catégorie ? »
 
 BigQuery :
 
@@ -3759,41 +3796,41 @@ QUALIFY ROW_NUMBER() OVER (
 
 ---
 
-# 🎤 119. « Pourquoi utiliser `QUALIFY` ? »
+## 🎤 119. « Pourquoi utiliser `QUALIFY` ? »
 
 > `QUALIFY` filtre le résultat d'une Window Function, alors que `WHERE` filtre les lignes avant son évaluation.
 
 ---
 
-# 🎤 120. « Pourquoi `ROW_NUMBER` peut-il être non déterministe ? »
+## 🎤 120. « Pourquoi `ROW_NUMBER` peut-il être non déterministe ? »
 
 > Si plusieurs lignes sont à égalité sur les colonnes du `ORDER BY`, leur ordre relatif n'est pas garanti. On ajoute un tie-breaker supplémentaire pour obtenir un résultat reproductible.
 
 ---
 
-# 🎤 121. « Qu'est-ce qu'un window frame ? »
+## 🎤 121. « Qu'est-ce qu'un window frame ? »
 
 > C'est le sous-ensemble de lignes de la partition utilisé pour calculer la valeur analytique de la ligne courante. Il peut être défini avec `ROWS` ou `RANGE`, par exemple `ROWS BETWEEN 2 PRECEDING AND CURRENT ROW`.
 
 ---
 
-# 🎤 122. « À quoi sert `LAG` ? »
+## 🎤 122. « À quoi sert `LAG` ? »
 
 > `LAG` récupère la valeur d'une ligne précédente dans une fenêtre ordonnée. Il est très utile pour calculer des variations temporelles comme MoM ou comparer une transaction avec la précédente.
 
 ---
 
-# 🎤 123. « Window Function ou CTE ? »
+## 🎤 123. « Window Function ou CTE ? »
 
 > Ce ne sont pas deux outils concurrents. Une CTE structure une requête en étapes nommées, tandis qu'une Window Function effectue un calcul analytique en conservant les lignes. Les deux sont fréquemment utilisés ensemble.
 
 ---
 
-# ============================================================
-# PARTIE XII — CHEAT SHEET
-# ============================================================
+## ============================================================
+## PARTIE XII — CHEAT SHEET
+## ============================================================
 
-# 🧾 124. Total global sur chaque ligne
+## 🧾 124. Total global sur chaque ligne
 
 ```sql
 SUM(value) OVER ()
@@ -3801,7 +3838,7 @@ SUM(value) OVER ()
 
 ---
 
-# 🧾 125. Total par groupe sur chaque ligne
+## 🧾 125. Total par groupe sur chaque ligne
 
 ```sql
 SUM(value)
@@ -3812,7 +3849,7 @@ OVER (
 
 ---
 
-# 🧾 126. Part du total
+## 🧾 126. Part du total
 
 ```sql
 SAFE_DIVIDE(
@@ -3823,7 +3860,7 @@ SAFE_DIVIDE(
 
 ---
 
-# 🧾 127. Part du groupe
+## 🧾 127. Part du groupe
 
 ```sql
 SAFE_DIVIDE(
@@ -3835,7 +3872,7 @@ SAFE_DIVIDE(
 
 ---
 
-# 🧾 128. Ranking global
+## 🧾 128. Ranking global
 
 ```sql
 ROW_NUMBER()
@@ -3846,7 +3883,7 @@ OVER (
 
 ---
 
-# 🧾 129. Ranking par groupe
+## 🧾 129. Ranking par groupe
 
 ```sql
 ROW_NUMBER()
@@ -3858,7 +3895,7 @@ OVER (
 
 ---
 
-# 🧾 130. Rang avec ex æquo + trous
+## 🧾 130. Rang avec ex æquo + trous
 
 ```sql
 RANK()
@@ -3869,7 +3906,7 @@ OVER (
 
 ---
 
-# 🧾 131. Rang avec ex æquo sans trous
+## 🧾 131. Rang avec ex æquo sans trous
 
 ```sql
 DENSE_RANK()
@@ -3880,7 +3917,7 @@ OVER (
 
 ---
 
-# 🧾 132. Top N BigQuery
+## 🧾 132. Top N BigQuery
 
 ```sql
 SELECT
@@ -3894,7 +3931,7 @@ QUALIFY ROW_NUMBER() OVER (
 
 ---
 
-# 🧾 133. Running total
+## 🧾 133. Running total
 
 ```sql
 SUM(value)
@@ -3908,7 +3945,7 @@ OVER (
 
 ---
 
-# 🧾 134. Moving average
+## 🧾 134. Moving average
 
 ```sql
 AVG(value)
@@ -3921,7 +3958,7 @@ OVER (
 
 ---
 
-# 🧾 135. Valeur précédente
+## 🧾 135. Valeur précédente
 
 ```sql
 LAG(value)
@@ -3933,7 +3970,7 @@ OVER (
 
 ---
 
-# 🧾 136. Valeur suivante
+## 🧾 136. Valeur suivante
 
 ```sql
 LEAD(value)
@@ -3945,7 +3982,7 @@ OVER (
 
 ---
 
-# 🧾 137. Déduplication
+## 🧾 137. Déduplication
 
 ```sql
 SELECT *
@@ -3958,11 +3995,11 @@ QUALIFY ROW_NUMBER() OVER (
 
 ---
 
-# ============================================================
-# PARTIE XIII — SYNTHÈSE
-# ============================================================
+## ============================================================
+## PARTIE XIII — SYNTHÈSE
+## ============================================================
 
-# 💡 138. Ce que j'ai retenu
+## 💡 138. Ce que j'ai retenu
 
 - Une Window Function calcule sur plusieurs lignes **sans réduire la granularité**.
 - Le mot-clé fondamental est `OVER`.
@@ -3983,7 +4020,7 @@ QUALIFY ROW_NUMBER() OVER (
 
 ---
 
-# 🧠 139. La question réflexe
+## 🧠 139. La question réflexe
 
 Avant chaque Window Function, se demander :
 
@@ -4002,7 +4039,7 @@ Si ces six réponses sont claires, la Window Function devient beaucoup plus faci
 
 ---
 
-# 🗺 140. Carte mentale finale
+## 🗺 140. Carte mentale finale
 
 ```text
 WINDOW FUNCTION
@@ -4053,7 +4090,7 @@ WINDOW FUNCTION
 
 ---
 
-# ❓ 141. Questions / points à garder en tête
+## ❓ 141. Questions / points à garder en tête
 
 - [ ] Quand utiliser un `window frame` explicite plutôt que le comportement par défaut ?
 - [ ] Dans quels cas `ROWS` et `RANGE` produisent-ils des résultats différents ?
@@ -4066,7 +4103,7 @@ WINDOW FUNCTION
 
 ---
 
-# ✅ 142. Actions post-session
+## ✅ 142. Actions post-session
 
 - [ ] Refaire à la main `GROUP BY` vs `SUM() OVER(PARTITION BY ...)`.
 - [ ] Reproduire `ROW_NUMBER`, `RANK`, `DENSE_RANK` sur un dataset avec ex æquo.
@@ -4079,7 +4116,7 @@ WINDOW FUNCTION
 
 ---
 
-# 🔗 143. Liens avec les autres notions du Brocode
+## 🔗 143. Liens avec les autres notions du Brocode
 
 ```text
 03 — JOINs & Testing
@@ -4123,7 +4160,7 @@ financial analytics
 
 ---
 
-# 🔬 144. Précisions techniques ajoutées au Brocode
+## 🔬 144. Précisions techniques ajoutées au Brocode
 
 Les points suivants complètent volontairement les slides du cours avec le comportement BigQuery actuel :
 
@@ -4143,6 +4180,6 @@ Ces précisions ne changent pas le principe pédagogique du cours. Elles permett
 
 ---
 
-# 🏁 145. Résumé en une phrase
+## 🏁 145. Résumé en une phrase
 
 > **Une Window Function permet de faire un calcul qui regarde plusieurs lignes tout en gardant une sortie au niveau de chaque ligne — et `PARTITION BY`, `ORDER BY` et le window frame définissent exactement ce que chaque ligne a le droit de regarder.**

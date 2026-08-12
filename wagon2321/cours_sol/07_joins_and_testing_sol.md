@@ -1,5 +1,43 @@
-# 📝 #7 – SQL : JOINs & Testing
+---
+title: "SQL — JOINs & Testing"
+aliases:
+  - "SQL JOINs"
+  - "JOINs & Testing"
+  - "SQL Joins and Data Quality"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 7
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "JOINs"
+  - "Granularity"
+  - "Data Quality"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - joins
+  - data-quality
+  - granularity
+---
 
+# 📝 07 — SQL · JOINs & Testing
+
+> [!info] Navigation Brocode
+> **← Précédent :** [[06_sql_aggregation_string_date_time_functions_sol|06 — SQL · Aggregations, String, Date & Time]] · **Suivant → :** [[08_subqueries_ctes_union_sol|08 — SQL · CTEs, Subqueries & UNION]]
+>
+> [!tip] Navigation Obsidian
+> Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
+
+---
+
+> [!abstract] Objectif du chapitre
 > **Objectif du chapitre :** comprendre comment relier plusieurs tables SQL proprement, choisir le bon type de jointure, maîtriser la granularité du résultat et **tester** qu'une jointure n'a ni perdu ni dupliqué de l'information.
 **rédigé par : ChatGPT SOL**
 ---
@@ -45,9 +83,9 @@ INNER JOIN products AS pr
 
 ---
 
-# 🔑 2. Primary Key & Foreign Key
+## 🔑 2. Primary Key & Foreign Key
 
-## Primary Key — clé primaire
+### Primary Key — clé primaire
 
 Une **Primary Key (PK)** identifie de manière unique chaque ligne d'une table.
 
@@ -72,7 +110,7 @@ Chaque `product_id` apparaît une seule fois.
 
 ---
 
-## Foreign Key — clé étrangère
+### Foreign Key — clé étrangère
 
 Une **Foreign Key (FK)** est une colonne qui référence généralement la clé primaire d'une autre table.
 
@@ -98,7 +136,7 @@ products.product_id   PK
         └──────────────► purchases.product_id   FK
 ```
 
-### À retenir
+#### À retenir
 
 | Notion | Rôle | Unicité |
 |---|---|---|
@@ -110,7 +148,7 @@ products.product_id   PK
 
 ---
 
-# 🧱 3. Anatomie d'un JOIN
+## 🧱 3. Anatomie d'un JOIN
 
 Structure générale :
 
@@ -155,7 +193,7 @@ type de JOIN     = INNER JOIN
 
 ---
 
-# 🏷 4. Alias de tables
+## 🏷 4. Alias de tables
 
 Les alias rendent les requêtes plus lisibles et évitent les ambiguïtés.
 
@@ -178,7 +216,7 @@ purchases.product_id
 products.product_id
 ```
 
-### Pourquoi qualifier les colonnes ?
+#### Pourquoi qualifier les colonnes ?
 
 Supposons que les deux tables contiennent une colonne `product_id`.
 
@@ -202,7 +240,7 @@ ou :
 SELECT pr.product_id
 ```
 
-### Bonne pratique
+#### Bonne pratique
 
 Utiliser des alias :
 
@@ -233,9 +271,9 @@ lorsque la requête devient longue.
 
 ---
 
-# 🔗 5. `ON` vs `USING`
+## 🔗 5. `ON` vs `USING`
 
-## `ON`
+### `ON`
 
 `ON` permet d'écrire explicitement la condition de jointure.
 
@@ -262,7 +300,7 @@ AND pu.sale_date = pr.purchase_date
 
 ---
 
-## `USING`
+### `USING`
 
 `USING` peut être utilisé lorsque la colonne de jointure porte **le même nom dans les deux tables**.
 
@@ -284,7 +322,7 @@ INNER JOIN products AS pr
 
 Un avantage pratique est que la clé utilisée dans `USING` n'apparaît qu'une seule fois dans le résultat d'un `SELECT *`.
 
-### Résumé
+#### Résumé
 
 | | `ON` | `USING` |
 |---|---|---|
@@ -298,7 +336,7 @@ Un avantage pratique est que la clé utilisée dans `USING` n'apparaît qu'une s
 
 ---
 
-# 👈 6. Table de gauche vs table de droite
+## 👈 6. Table de gauche vs table de droite
 
 Dans :
 
@@ -337,7 +375,7 @@ garder toutes les lignes de A
 
 ---
 
-# 🟣 7. Les principaux types de JOIN
+## 🟣 7. Les principaux types de JOIN
 
 Prenons deux ensembles de clés :
 
@@ -348,7 +386,7 @@ Table B :    2, 3, 4, 5
 
 ---
 
-## 7.1 `INNER JOIN`
+### 7.1 `INNER JOIN`
 
 Un `INNER JOIN` conserve uniquement les lignes qui trouvent une correspondance dans **les deux tables**.
 
@@ -368,7 +406,7 @@ INNER JOIN products AS pr
   ON pu.product_id = pr.product_id;
 ```
 
-### Conséquence
+#### Conséquence
 
 Si :
 
@@ -378,13 +416,13 @@ purchases.product_id = 32
 
 mais que `32` n'existe pas dans `products.product_id`, cette ligne disparaît du résultat.
 
-### Cas d'usage
+#### Cas d'usage
 
 - ne garder que les correspondances valides ;
 - enrichir une table lorsqu'une correspondance est obligatoire ;
 - exclure automatiquement les lignes orphelines.
 
-### Risque
+#### Risque
 
 ⚠️ **Perte silencieuse de lignes.**
 
@@ -406,7 +444,7 @@ INNER JOIN products AS pr
 
 ---
 
-## 7.2 `LEFT JOIN`
+### 7.2 `LEFT JOIN`
 
 Un `LEFT JOIN` conserve **toutes les lignes de la table de gauche**.
 
@@ -439,7 +477,7 @@ purchase_id | product_id | product_name
 145         | 32         | NULL
 ```
 
-### Cas d'usage
+#### Cas d'usage
 
 Le `LEFT JOIN` est extrêmement fréquent en analytics :
 
@@ -447,7 +485,7 @@ Le `LEFT JOIN` est extrêmement fréquent en analytics :
 
 ---
 
-## 7.3 `RIGHT JOIN`
+### 7.3 `RIGHT JOIN`
 
 Un `RIGHT JOIN` conserve toutes les lignes de la table de droite.
 
@@ -467,7 +505,7 @@ LEFT JOIN purchases AS pu
   ON pu.product_id = pr.product_id;
 ```
 
-### Bonne pratique
+#### Bonne pratique
 
 Pour améliorer la lisibilité, beaucoup d'équipes préfèrent rester sur :
 
@@ -479,7 +517,7 @@ et changer l'ordre des tables.
 
 ---
 
-## 7.4 `FULL OUTER JOIN`
+### 7.4 `FULL OUTER JOIN`
 
 Un `FULL OUTER JOIN` conserve :
 
@@ -504,7 +542,7 @@ FULL OUTER JOIN products AS pr
   ON pu.product_id = pr.product_id;
 ```
 
-### Cas d'usage
+#### Cas d'usage
 
 Très utile pour :
 
@@ -527,7 +565,7 @@ Cette requête isole les **différences entre les deux sources**.
 
 ---
 
-## 7.5 `CROSS JOIN`
+### 7.5 `CROSS JOIN`
 
 Le `CROSS JOIN` produit le **produit cartésien**.
 
@@ -568,7 +606,7 @@ Blue M
 Blue L
 ```
 
-### Cas d'usage
+#### Cas d'usage
 
 - construire toutes les combinaisons possibles ;
 - créer un calendrier × une liste d'entités ;
@@ -578,7 +616,7 @@ Blue L
 
 ---
 
-# 🧾 8. Cheat sheet des JOINs
+## 🧾 8. Cheat sheet des JOINs
 
 | JOIN | Lignes de gauche | Lignes de droite | Non-match |
 |---|---:|---:|---|
@@ -588,7 +626,7 @@ Blue L
 | `FULL OUTER JOIN` | toutes | toutes | `NULL` du côté manquant |
 | `CROSS JOIN` | toutes | toutes | toutes les combinaisons |
 
-### Raccourci mental
+#### Raccourci mental
 
 ```text
 INNER = intersection
@@ -600,7 +638,7 @@ CROSS = toutes les combinaisons
 
 ---
 
-# 🧩 9. Jointure sur plusieurs conditions
+## 🧩 9. Jointure sur plusieurs conditions
 
 Une jointure peut dépendre de plusieurs colonnes.
 
@@ -620,7 +658,7 @@ ET
 sale_date correspond
 ```
 
-### Cas d'usage
+#### Cas d'usage
 
 - clé composite ;
 - historiques de prix ;
@@ -638,7 +676,7 @@ AND a.event_date = b.event_date
 
 ---
 
-# 🕸 10. Joindre plus de deux tables
+## 🕸 10. Joindre plus de deux tables
 
 On peut chaîner les jointures.
 
@@ -670,7 +708,7 @@ buyers
 products
 ```
 
-### Résultat
+#### Résultat
 
 ```text
 buyer_name      product_name   total_quantity
@@ -684,19 +722,19 @@ Brice           Apple          3
 
 ---
 
-# 🔬 11. La notion de granularité
+## 🔬 11. La notion de granularité
 
 La **granularité** correspond au niveau de détail d'une table.
 
 Exemple :
 
-### Table `orders`
+#### Table `orders`
 
 ```text
 1 ligne = 1 commande
 ```
 
-### Table `sales`
+#### Table `sales`
 
 ```text
 1 ligne = 1 produit dans une commande
@@ -725,7 +763,7 @@ order_id
 
 ---
 
-# 💥 12. Le piège majeur : la duplication après JOIN
+## 💥 12. Le piège majeur : la duplication après JOIN
 
 Supposons :
 
@@ -784,7 +822,7 @@ alors que le vrai coût de la commande était :
 7
 ```
 
-## Pourquoi ?
+### Pourquoi ?
 
 Parce qu'on a joint :
 
@@ -802,11 +840,11 @@ La ligne de `orders` est donc répétée une fois pour chaque correspondance.
 
 ---
 
-# 🔢 13. Cardinalité d'une relation
+## 🔢 13. Cardinalité d'une relation
 
 Avant un JOIN, identifier la cardinalité.
 
-## One-to-one — 1:1
+### One-to-one — 1:1
 
 ```text
 A 1 ───── 1 B
@@ -818,7 +856,7 @@ Risque de duplication : faible.
 
 ---
 
-## One-to-many — 1:N
+### One-to-many — 1:N
 
 ```text
 A 1 ───── N B
@@ -834,7 +872,7 @@ Normal dans une base relationnelle.
 
 ---
 
-## Many-to-many — N:N
+### Many-to-many — N:N
 
 ```text
 A N ───── N B
@@ -861,7 +899,7 @@ pour cette seule clé.
 
 ---
 
-# 🧪 14. Tester une clé primaire
+## 🧪 14. Tester une clé primaire
 
 Une colonne candidate à une PK doit être unique.
 
@@ -876,7 +914,7 @@ GROUP BY id
 HAVING COUNT(*) > 1;
 ```
 
-### Interprétation
+#### Interprétation
 
 Si la requête retourne :
 
@@ -897,7 +935,7 @@ id  | nb_id
 
 alors `id` n'est pas unique.
 
-### Variante synthétique
+#### Variante synthétique
 
 ```sql
 SELECT
@@ -922,7 +960,7 @@ WHERE id IS NULL;
 
 ---
 
-# 🧪 15. Tests à faire avant et après une jointure
+## 🧪 15. Tests à faire avant et après une jointure
 
 Une jointure doit être **testée**, pas seulement exécutée.
 
@@ -1012,7 +1050,7 @@ Si la métrique change alors que le JOIN ne devait qu'ajouter des colonnes, il y
 
 ---
 
-# 🕳 16. Les `NULL` dans les jointures
+## 🕳 16. Les `NULL` dans les jointures
 
 Un `NULL` après un `LEFT JOIN` peut signifier :
 
@@ -1035,7 +1073,7 @@ NULL → "unknown"
 
 sans comprendre le sens métier.
 
-### Important
+#### Important
 
 En SQL classique :
 
@@ -1057,7 +1095,7 @@ ON a.id = b.id
 
 ---
 
-# 🧹 17. Filtrer après une jointure
+## 🧹 17. Filtrer après une jointure
 
 Exemple :
 
@@ -1093,9 +1131,9 @@ Cette technique est appelée un **anti-join logique**.
 
 ---
 
-# 📚 18. `WHERE` vs `HAVING`
+## 📚 18. `WHERE` vs `HAVING`
 
-## `WHERE`
+### `WHERE`
 
 Filtre les lignes **avant l'agrégation**.
 
@@ -1110,7 +1148,7 @@ GROUP BY product_id;
 
 ---
 
-## `HAVING`
+### `HAVING`
 
 Filtre les groupes **après l'agrégation**.
 
@@ -1127,7 +1165,7 @@ C'est pourquoi `HAVING` est très pratique pour détecter les doublons.
 
 ---
 
-## Ordre logique d'exécution SQL
+### Ordre logique d'exécution SQL
 
 > ⚠️ **Correction / précision Brocode :** l'ordre logique utile à retenir est :
 
@@ -1160,7 +1198,7 @@ Cette différence explique pourquoi un alias défini dans le `SELECT` n'est gén
 
 ---
 
-# 🏗 19. JOINs dans une architecture Bronze / Silver / Gold
+## 🏗 19. JOINs dans une architecture Bronze / Silver / Gold
 
 Le cours replace les jointures dans une pipeline analytique.
 
@@ -1182,7 +1220,7 @@ GOLD
 données prêtes pour l'analyse / BI
 ```
 
-### Bronze
+#### Bronze
 
 Données proches de la source :
 
@@ -1190,7 +1228,7 @@ Données proches de la source :
 - potentiellement sales ;
 - formats hétérogènes.
 
-### Silver
+#### Silver
 
 Données nettoyées :
 
@@ -1198,7 +1236,7 @@ Données nettoyées :
 - colonnes normalisées ;
 - anomalies principales corrigées ou identifiées.
 
-### Gold
+#### Gold
 
 Données orientées métier :
 
@@ -1211,7 +1249,7 @@ Données orientées métier :
 
 ---
 
-# ⚠️ 20. Erreurs en cascade
+## ⚠️ 20. Erreurs en cascade
 
 Une erreur peut apparaître :
 
@@ -1238,7 +1276,7 @@ Exemples :
 - somme dupliquée ;
 - `NULL` mal interprété.
 
-### Principe
+#### Principe
 
 ```text
 Une query qui s'exécute ≠ une query correcte.
@@ -1248,11 +1286,11 @@ Le testing sert à vérifier le **sens métier** du résultat.
 
 ---
 
-# ↔️ 21. JOIN vs UNION
+## ↔️ 21. JOIN vs UNION
 
 Les deux opérations assemblent des données, mais pas dans la même direction.
 
-## JOIN
+### JOIN
 
 Ajoute surtout des **colonnes**.
 
@@ -1266,7 +1304,7 @@ id | qty | price
 
 ---
 
-## UNION
+### UNION
 
 Ajoute des **lignes**.
 
@@ -1299,7 +1337,7 @@ SELECT id, qty
 FROM february;
 ```
 
-### `UNION` vs `UNION ALL`
+#### `UNION` vs `UNION ALL`
 
 > 🧠 **Complément Brocode :**
 
@@ -1312,7 +1350,7 @@ En analytics, `UNION ALL` est souvent préférable lorsqu'on sait que les tables
 
 ---
 
-# 🗺 22. ERD — Entity Relationship Diagram
+## 🗺 22. ERD — Entity Relationship Diagram
 
 Un ERD permet de visualiser les relations entre les tables.
 
@@ -1347,7 +1385,7 @@ Avant une grosse requête SQL, un ERD aide à répondre à trois questions :
 
 ---
 
-# 🛡 23. Checklist avant un JOIN
+## 🛡 23. Checklist avant un JOIN
 
 Avant d'écrire la requête :
 
@@ -1364,7 +1402,7 @@ Avant d'écrire la requête :
 
 ---
 
-# ✅ 24. Checklist après un JOIN
+## ✅ 24. Checklist après un JOIN
 
 Après exécution :
 
@@ -1379,7 +1417,7 @@ Après exécution :
 
 ---
 
-# 🧰 25. Pattern de requête robuste
+## 🧰 25. Pattern de requête robuste
 
 ```sql
 WITH purchases_clean AS (
@@ -1431,9 +1469,9 @@ sur plusieurs grosses tables.
 
 ---
 
-# 🚫 26. Erreurs fréquentes
+## 🚫 26. Erreurs fréquentes
 
-### 1. Choisir le JOIN sans réfléchir à l'objectif
+#### 1. Choisir le JOIN sans réfléchir à l'objectif
 
 ```sql
 INNER JOIN
@@ -1443,13 +1481,13 @@ peut supprimer des lignes importantes.
 
 ---
 
-### 2. Joindre sur une colonne non unique sans le savoir
+#### 2. Joindre sur une colonne non unique sans le savoir
 
 Peut créer une multiplication de lignes.
 
 ---
 
-### 3. Utiliser `SELECT *`
+#### 3. Utiliser `SELECT *`
 
 Problèmes possibles :
 
@@ -1460,7 +1498,7 @@ Problèmes possibles :
 
 ---
 
-### 4. Ne pas qualifier les colonnes
+#### 4. Ne pas qualifier les colonnes
 
 Mauvais :
 
@@ -1478,7 +1516,7 @@ SELECT
 
 ---
 
-### 5. Croire qu'une FK doit avoir le même nom que la PK
+#### 5. Croire qu'une FK doit avoir le même nom que la PK
 
 Faux.
 
@@ -1494,7 +1532,7 @@ products.id
 
 ---
 
-### 6. Somme après un JOIN sans contrôler la granularité
+#### 6. Somme après un JOIN sans contrôler la granularité
 
 ```sql
 SUM(shipping_cost)
@@ -1504,13 +1542,13 @@ peut devenir faux si `shipping_cost` a été répété sur plusieurs lignes.
 
 ---
 
-### 7. Traiter tous les `NULL` comme des erreurs
+#### 7. Traiter tous les `NULL` comme des erreurs
 
 Un `NULL` peut être une information métier importante.
 
 ---
 
-# 🎯 27. Exemple complet
+## 🎯 27. Exemple complet
 
 Objectif :
 
@@ -1537,7 +1575,7 @@ ORDER BY
   total_quantity DESC;
 ```
 
-### Lecture humaine
+#### Lecture humaine
 
 ```text
 1. Partir des achats.
@@ -1550,7 +1588,7 @@ ORDER BY
 
 ---
 
-# 🧠 28. Ce qu'il faut vraiment retenir
+## 🧠 28. Ce qu'il faut vraiment retenir
 
 ```text
 JOIN = relation entre lignes
@@ -1570,7 +1608,7 @@ Le résultat dépend de trois choses :
 3. la granularité
 ```
 
-### Les 5 réflexes
+#### Les 5 réflexes
 
 1. **Identifier la clé de jointure.**
 2. **Connaître la granularité des deux tables.**
@@ -1580,7 +1618,7 @@ Le résultat dépend de trois choses :
 
 ---
 
-# 🧾 29. Mini cheat sheet finale
+## 🧾 29. Mini cheat sheet finale
 
 ```sql
 -- INNER : seulement les correspondances
@@ -1659,7 +1697,7 @@ SELECT * FROM february;
 
 ---
 
-## 💡 Ce que j'ai retenu
+### 💡 Ce que j'ai retenu
 
 - Une jointure relie des lignes selon une ou plusieurs **clés de jointure**.
 - `INNER JOIN` garde uniquement les correspondances.
@@ -1673,7 +1711,7 @@ SELECT * FROM february;
 
 ---
 
-## ❓ Questions / points à garder en tête
+### ❓ Questions / points à garder en tête
 
 - [ ] Quelle est la bonne stratégie lorsqu'une table contient plusieurs lignes pour une clé censée être unique ?
 - [ ] Comment dédupliquer proprement avant une jointure ?
@@ -1682,7 +1720,7 @@ SELECT * FROM february;
 
 ---
 
-## 🔗 Liens avec les autres notions du Brocode
+### 🔗 Liens avec les autres notions du Brocode
 
 ```text
 Primary / Foreign Keys
