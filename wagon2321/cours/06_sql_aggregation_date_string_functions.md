@@ -1,8 +1,36 @@
-# 📝 #6 — SQL : agrégations (GROUP BY/HAVING) et fonctions de dates & chaînes de caractères
+---
+title: "SQL — Aggregations, String, Date & Time Functions"
+aliases:
+  - "SQL Aggregations"
+  - "SQL String Functions"
+  - "SQL Date & Time Functions"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 6
+date: 2026-07-13
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "Aggregations"
+  - "String"
+  - "Date & Time"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - aggregations
+  - date-time
+---
+
+# 📝 6 — SQL : agrégations (GROUP BY/HAVING) et fonctions de dates & chaînes de caractères
 
 **Date** : 13 juillet 2026
 **Thème** : Fonctions d'agrégation (COUNT/SUM/MIN/MAX/AVG), GROUP BY, HAVING vs. WHERE, fonctions STRING (CONCAT/REPLACE/LOWER/REGEXP), fonctions DATE (EXTRACT/DATE_TRUNC/DATE_DIFF/PARSE_DATE), contrôle qualité de la donnée
-**Compréhension (1→5)** : ⭐
 
 ---
 

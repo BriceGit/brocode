@@ -1,4 +1,33 @@
-# 📝 #7 — Jointures SQL : INNER/LEFT/RIGHT/FULL OUTER, granularité & test de clé primaire
+---
+title: "SQL — JOINs & Testing"
+aliases:
+  - "SQL JOINs"
+  - "JOINs & Testing"
+  - "SQL Joins and Data Quality"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 7
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "JOINs"
+  - "Granularity"
+  - "Data Quality"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - joins
+  - data-quality
+  - granularity
+---
+
+# 📝 7 — Jointures SQL : INNER/LEFT/RIGHT/FULL OUTER, granularité & test de clé primaire
 
 **Date** : 14 juillet 2026
 **Thème** : Clés primaires/étrangères, syntaxe `JOIN` (`ON` vs `USING`), les 5 types de jointures, jointures sur plusieurs colonnes/plusieurs tables, granularité et duplicatas, test de clé primaire et autres contrôles qualité, aperçu `UNION`

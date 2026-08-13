@@ -17,13 +17,13 @@
 
 ## 🧭 Types de dashboards / cas d'usage
 
-| Type | Objectif | Fréquence / niveau de détail typique |
-|---|---|---|
-| **Reporting** | Bilan d'une campagne ou d'une période terminée | Périodique (semaine/mois/trimestre) |
-| **Monitoring** | Suivi en temps réel ou périodique des KPIs, surveiller des seuils | Souvent quotidien pour les opérationnels |
-| **Optimisation** | Comparer des campagnes A/B testing, analyser des comportements différenciés | Ponctuel, orienté itération |
-| **Analyse ad hoc** | Investigation ponctuelle sur un événement précis (ex : gros drop de CA un jour donné) | One-shot, très détaillé |
-| **Decision support** | Études de marché, expansion business, lancement produit | Plus global, moins fréquent |
+| Type                 | Objectif                                                                              | Fréquence / niveau de détail typique     |
+| -------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------- |
+| **Reporting**        | Bilan d'une campagne ou d'une période terminée                                        | Périodique (semaine/mois/trimestre)      |
+| **Monitoring**       | Suivi en temps réel ou périodique des KPIs, surveiller des seuils                     | Souvent quotidien pour les opérationnels |
+| **Optimisation**     | Comparer des campagnes A/B testing, analyser des comportements différenciés           | Ponctuel, orienté itération              |
+| **Analyse ad hoc**   | Investigation ponctuelle sur un événement précis (ex : gros drop de CA un jour donné) | One-shot, très détaillé                  |
+| **Decision support** | Études de marché, expansion business, lancement produit                               | Plus global, moins fréquent              |
 
 💡 Le type de dashboard détermine directement le **niveau de détail** et la **fréquence** : un dashboard de monitoring sera précis et rafraîchi au jour le jour, un dashboard de decision support sera plus large et global.
 

@@ -1,55 +1,81 @@
-## 🐍 Cheat Sheet — Python · NumPy · pandas
+---
+title: Cheat Sheet — Python · NumPy · pandas
+aliases:
+  - Cheat Sheet Python
+  - Python NumPy pandas
+  - Python Data Cheat Sheet
+type: reference
+status: active
+course: "Le Wagon — Data Analytics #2321"
+topics:
+  - Python
+  - NumPy
+  - pandas
+tags:
+  - brocode
+  - wagon2321/cours
+  - python
+  - numpy
+  - pandas
+  - cheatsheet
+---
 
-#brocode #wagon2321/cours #python #numpy #pandas #data-analysis #cheatsheet
+# 🐍 Cheat Sheet — Python · NumPy · pandas
 
-> **Objectif** — Une fiche de référence rapide pour écrire, lire, déboguer et manipuler des données en Python, NumPy et pandas.
->
-> **Réflexe central** — Python gère la logique générale ; NumPy gère efficacement les tableaux numériques ; pandas gère les données tabulaires avec `Series` et `DataFrame`.
+
+> [!abstract] Objectif
+> Une fiche de référence rapide pour **écrire, lire, déboguer et manipuler des données** en Python, NumPy et pandas.
+
+> [!important] Réflexe central
+> **Python** gère la logique générale · **NumPy** gère efficacement les tableaux numériques · **pandas** gère les données tabulaires avec `Series` et `DataFrame`.
+
+> [!tip] Navigation Obsidian
+> Utilise le **Sommaire**, l’**Outline** d’Obsidian et `Cmd/Ctrl + O` pour naviguer rapidement. Les liens internes de cette fiche ciblent directement les headings de la note.
 
 ---
 
 ## 🧭 Sommaire
 
-1. [Python — fondamentaux](#1--python--fondamentaux)
-2. [Python — structures de données](#2--python--structures-de-données)
-3. [Python — conditions, boucles et compréhensions](#3--python--conditions-boucles-et-compréhensions)
-4. [Python — fonctions](#4--python--fonctions)
-5. [Python — outils très utiles en Data](#5--python--outils-très-utiles-en-data)
-6. [NumPy — fondamentaux](#6--numpy--fondamentaux)
-7. [NumPy — indexing, filtering et broadcasting](#7--numpy--indexing-filtering-et-broadcasting)
-8. [NumPy — calculs et statistiques](#8--numpy--calculs-et-statistiques)
-9. [pandas — objets essentiels](#9--pandas--objets-essentiels)
-10. [pandas — inspection rapide](#10--pandas--inspection-rapide)
-11. [pandas — sélection et filtrage](#11--pandas--sélection-et-filtrage)
-12. [pandas — création et transformation de colonnes](#12--pandas--création-et-transformation-de-colonnes)
-13. [pandas — valeurs manquantes](#13--pandas--valeurs-manquantes)
-14. [pandas — nettoyage texte](#14--pandas--nettoyage-texte)
-15. [pandas — tri, doublons et valeurs uniques](#15--pandas--tri-doublons-et-valeurs-uniques)
-16. [pandas — groupby et agrégations](#16--pandas--groupby-et-agrégations)
-17. [pandas — merge, join et concat](#17--pandas--merge-join-et-concat)
-18. [pandas — reshape, pivot et melt](#18--pandas--reshape-pivot-et-melt)
-19. [pandas — dates et time series](#19--pandas--dates-et-time-series)
-20. [pandas — fenêtres et calculs analytiques](#20--pandas--fenêtres-et-calculs-analytiques)
-21. [pandas — import/export](#21--pandas--importexport)
-22. [SQL ↔ pandas](#22--sql--pandas)
-23. [Pipeline Data Analyst type](#23--pipeline-data-analyst-type)
-24. [Pièges fréquents](#24--pièges-fréquents)
-25. [Debug express](#25--debug-express)
-26. [Recettes indispensables](#26--recettes-indispensables)
-27. [Ultra cheat sheet](#27--ultra-cheat-sheet)
+1. [[#1 — Python : fondamentaux|Python — fondamentaux]]
+2. [[#2 — Python : structures de données|Python — structures de données]]
+3. [[#3 — Python : conditions, boucles et compréhensions|Python — conditions, boucles et compréhensions]]
+4. [[#4 — Python : fonctions|Python — fonctions]]
+5. [[#5 — Python : outils très utiles en Data|Python — outils très utiles en Data]]
+6. [[#6 — NumPy : fondamentaux|NumPy — fondamentaux]]
+7. [[#7 — NumPy : indexing, filtering et broadcasting|NumPy — indexing, filtering et broadcasting]]
+8. [[#8 — NumPy : calculs et statistiques|NumPy — calculs et statistiques]]
+9. [[#9 — pandas : objets essentiels|pandas — objets essentiels]]
+10. [[#10 — pandas : inspection rapide|pandas — inspection rapide]]
+11. [[#11 — pandas : sélection et filtrage|pandas — sélection et filtrage]]
+12. [[#12 — pandas : création et transformation de colonnes|pandas — création et transformation de colonnes]]
+13. [[#13 — pandas : valeurs manquantes|pandas — valeurs manquantes]]
+14. [[#14 — pandas : nettoyage texte|pandas — nettoyage texte]]
+15. [[#15 — pandas : tri, doublons et valeurs uniques|pandas — tri, doublons et valeurs uniques]]
+16. [[#16 — pandas : groupby et agrégations|pandas — groupby et agrégations]]
+17. [[#17 — pandas : merge, join et concat|pandas — merge, join et concat]]
+18. [[#18 — pandas : reshape, pivot et melt|pandas — reshape, pivot et melt]]
+19. [[#19 — pandas : dates et time series|pandas — dates et time series]]
+20. [[#20 — pandas : fenêtres et calculs analytiques|pandas — fenêtres et calculs analytiques]]
+21. [[#21 — pandas : import/export|pandas — import/export]]
+22. [[#22 — SQL ↔ pandas|SQL ↔ pandas]]
+23. [[#23 — Pipeline Data Analyst type|Pipeline Data Analyst type]]
+24. [[#24 — Pièges fréquents|Pièges fréquents]]
+25. [[#25 — Debug express|Debug express]]
+26. [[#26 — Recettes indispensables|Recettes indispensables]]
+27. [[#27 — Ultra cheat sheet|Ultra cheat sheet]]
 
 ---
 
-# 1 — Python : fondamentaux
+## 1 — Python : fondamentaux
 
-## Imports usuels
+### Imports usuels
 
 ```python
 import numpy as np
 import pandas as pd
 ```
 
-## Variables
+### Variables
 
 ```python
 name = "Brice"
@@ -66,7 +92,7 @@ x = 10
 x = "hello"
 ```
 
-## Types fondamentaux
+### Types fondamentaux
 
 | Type | Exemple | Usage |
 |---|---|---|
@@ -82,7 +108,7 @@ type(3.14)
 type("hello")
 ```
 
-## Conversion de types
+### Conversion de types
 
 ```python
 int("42")
@@ -97,7 +123,7 @@ bool(1)
 int("hello")  # ValueError
 ```
 
-## Opérateurs arithmétiques
+### Opérateurs arithmétiques
 
 ```python
 10 + 3    # 13
@@ -109,7 +135,7 @@ int("hello")  # ValueError
 10 ** 3   # puissance
 ```
 
-## Comparaisons
+### Comparaisons
 
 ```python
 x == 10
@@ -120,7 +146,7 @@ x < 10
 x <= 10
 ```
 
-## Logique
+### Logique
 
 ```python
 x > 0 and x < 10
@@ -128,7 +154,7 @@ x < 0 or x > 100
 not x == 10
 ```
 
-### Réflexe Pythonique
+#### Réflexe Pythonique
 
 ```python
 0 < x < 10
@@ -140,7 +166,7 @@ plutôt que :
 x > 0 and x < 10
 ```
 
-## Identité vs égalité
+### Identité vs égalité
 
 ```python
 a == b   # même valeur ?
@@ -156,9 +182,9 @@ x is not None
 
 ---
 
-# 2 — Python : structures de données
+## 2 — Python : structures de données
 
-## List
+### List
 
 Ordonnée, mutable, doublons autorisés.
 
@@ -166,7 +192,7 @@ Ordonnée, mutable, doublons autorisés.
 numbers = [10, 20, 30]
 ```
 
-### Accès
+#### Accès
 
 ```python
 numbers[0]
@@ -178,7 +204,7 @@ numbers[::2]
 numbers[::-1]
 ```
 
-### Modification
+#### Modification
 
 ```python
 numbers.append(40)
@@ -188,7 +214,7 @@ numbers.remove(20)
 last = numbers.pop()
 ```
 
-### Utilitaires
+#### Utilitaires
 
 ```python
 len(numbers)
@@ -203,7 +229,7 @@ numbers.sort()      # modifie la liste
 sorted(numbers)     # retourne une nouvelle liste
 ```
 
-## Tuple
+### Tuple
 
 Ordonné mais immutable.
 
@@ -221,7 +247,7 @@ def min_max(values):
 minimum, maximum = min_max([3, 7, 2])
 ```
 
-## Dict
+### Dict
 
 Structure clé → valeur.
 
@@ -233,7 +259,7 @@ user = {
 }
 ```
 
-### Accès
+#### Accès
 
 ```python
 user["name"]
@@ -241,14 +267,14 @@ user.get("name")
 user.get("city", "unknown")
 ```
 
-### Modification
+#### Modification
 
 ```python
 user["age"] = 30
 user["city"] = "Paris"
 ```
 
-### Parcours
+#### Parcours
 
 ```python
 for key in user:
@@ -261,7 +287,7 @@ for key, value in user.items():
     print(key, value)
 ```
 
-## Set
+### Set
 
 Collection de valeurs uniques.
 
@@ -280,7 +306,7 @@ Très pratique pour dédupliquer :
 unique_values = set([1, 1, 2, 2, 3])
 ```
 
-### Opérations ensemblistes
+#### Opérations ensemblistes
 
 ```python
 a | b   # union
@@ -289,7 +315,7 @@ a - b   # différence
 a ^ b   # différence symétrique
 ```
 
-## Membership
+### Membership
 
 ```python
 "FR" in countries
@@ -299,9 +325,9 @@ a ^ b   # différence symétrique
 
 ---
 
-# 3 — Python : conditions, boucles et compréhensions
+## 3 — Python : conditions, boucles et compréhensions
 
-## if / elif / else
+### if / elif / else
 
 ```python
 if score >= 80:
@@ -312,13 +338,13 @@ else:
     level = "low"
 ```
 
-## Expression conditionnelle
+### Expression conditionnelle
 
 ```python
 status = "adult" if age >= 18 else "minor"
 ```
 
-## for
+### for
 
 ```python
 for value in values:
@@ -332,7 +358,7 @@ for index, value in enumerate(values):
     print(index, value)
 ```
 
-## range
+### range
 
 ```python
 range(5)          # 0,1,2,3,4
@@ -340,7 +366,7 @@ range(1, 5)       # 1,2,3,4
 range(0, 10, 2)   # 0,2,4,6,8
 ```
 
-## zip
+### zip
 
 ```python
 names = ["Alice", "Bob"]
@@ -350,14 +376,14 @@ for name, score in zip(names, scores):
     print(name, score)
 ```
 
-## while
+### while
 
 ```python
 while x < 10:
     x += 1
 ```
 
-## break / continue
+### break / continue
 
 ```python
 for value in values:
@@ -367,7 +393,7 @@ for value in values:
         break
 ```
 
-## List comprehension
+### List comprehension
 
 ```python
 squares = [x**2 for x in range(10)]
@@ -385,13 +411,13 @@ Avec `if/else` dans l'expression :
 labels = ["positive" if x >= 0 else "negative" for x in values]
 ```
 
-## Dict comprehension
+### Dict comprehension
 
 ```python
 squares = {x: x**2 for x in range(5)}
 ```
 
-## Set comprehension
+### Set comprehension
 
 ```python
 first_letters = {name[0] for name in names}
@@ -399,36 +425,36 @@ first_letters = {name[0] for name in names}
 
 ---
 
-# 4 — Python : fonctions
+## 4 — Python : fonctions
 
-## Fonction simple
+### Fonction simple
 
 ```python
 def add(a, b):
     return a + b
 ```
 
-## Valeur par défaut
+### Valeur par défaut
 
 ```python
 def greet(name, greeting="Hello"):
     return f"{greeting} {name}"
 ```
 
-## Arguments nommés
+### Arguments nommés
 
 ```python
 greet(name="Alice", greeting="Bonjour")
 ```
 
-## Type hints
+### Type hints
 
 ```python
 def add(a: float, b: float) -> float:
     return a + b
 ```
 
-## `*args`
+### `*args`
 
 Nombre variable d'arguments positionnels :
 
@@ -437,7 +463,7 @@ def total(*values):
     return sum(values)
 ```
 
-## `**kwargs`
+### `**kwargs`
 
 Nombre variable d'arguments nommés :
 
@@ -446,7 +472,7 @@ def show_user(**kwargs):
     print(kwargs)
 ```
 
-## Lambda
+### Lambda
 
 ```python
 square = lambda x: x**2
@@ -460,7 +486,7 @@ df["label"] = df["score"].apply(lambda x: "high" if x > 80 else "low")
 
 > **Attention** — Une fonction vectorisée pandas/NumPy est généralement préférable à `apply(lambda ...)` lorsqu'elle existe.
 
-## Scope
+### Scope
 
 ```python
 x = 10
@@ -469,7 +495,7 @@ def f():
     x = 20  # variable locale
 ```
 
-## Docstring
+### Docstring
 
 ```python
 def churn_rate(churned: int, customers: int) -> float:
@@ -479,9 +505,9 @@ def churn_rate(churned: int, customers: int) -> float:
 
 ---
 
-# 5 — Python : outils très utiles en Data
+## 5 — Python : outils très utiles en Data
 
-## f-string
+### f-string
 
 ```python
 name = "Alice"
@@ -490,7 +516,7 @@ score = 92.456
 print(f"{name}: {score:.2f}")
 ```
 
-## Unpacking
+### Unpacking
 
 ```python
 a, b = [10, 20]
@@ -518,33 +544,33 @@ ou :
 new_dict = dict_a | dict_b
 ```
 
-## enumerate
+### enumerate
 
 ```python
 for i, value in enumerate(values, start=1):
     print(i, value)
 ```
 
-## zip
+### zip
 
 ```python
 pairs = list(zip(names, scores))
 ```
 
-## sorted avec key
+### sorted avec key
 
 ```python
 sorted(users, key=lambda user: user["score"], reverse=True)
 ```
 
-## any / all
+### any / all
 
 ```python
 any(x < 0 for x in values)
 all(x >= 0 for x in values)
 ```
 
-## map / filter
+### map / filter
 
 ```python
 list(map(str.upper, names))
@@ -553,7 +579,7 @@ list(filter(lambda x: x > 0, values))
 
 En pratique Data : les compréhensions, NumPy ou pandas sont souvent plus lisibles.
 
-## Exceptions
+### Exceptions
 
 ```python
 try:
@@ -575,14 +601,14 @@ finally:
     ...
 ```
 
-## Lecture de fichier texte
+### Lecture de fichier texte
 
 ```python
 with open("file.txt", "r", encoding="utf-8") as file:
     content = file.read()
 ```
 
-## Modules
+### Modules
 
 ```python
 import math
@@ -590,7 +616,7 @@ from pathlib import Path
 from collections import Counter
 ```
 
-## pathlib
+### pathlib
 
 ```python
 from pathlib import Path
@@ -603,7 +629,7 @@ path.suffix
 
 ---
 
-# 6 — NumPy : fondamentaux
+## 6 — NumPy : fondamentaux
 
 NumPy est centré sur l'objet `ndarray`.
 
@@ -611,14 +637,14 @@ NumPy est centré sur l'objet `ndarray`.
 import numpy as np
 ```
 
-## Création
+### Création
 
 ```python
 a = np.array([1, 2, 3])
 b = np.array([[1, 2], [3, 4]])
 ```
 
-## Générateurs utiles
+### Générateurs utiles
 
 ```python
 np.zeros(5)
@@ -636,7 +662,7 @@ np.ones((2, 2))
 np.eye(3)
 ```
 
-## Propriétés fondamentales
+### Propriétés fondamentales
 
 ```python
 a.shape
@@ -656,7 +682,7 @@ arr.size    # 6
 arr.dtype
 ```
 
-## dtype
+### dtype
 
 ```python
 np.array([1, 2, 3], dtype=float)
@@ -669,7 +695,7 @@ arr.astype(float)
 arr.astype(int)
 ```
 
-## reshape
+### reshape
 
 ```python
 arr = np.arange(12)
@@ -682,21 +708,21 @@ Une dimension peut être inférée :
 arr.reshape(-1, 3)
 ```
 
-## flatten / ravel
+### flatten / ravel
 
 ```python
 arr.flatten()  # copie
 arr.ravel()    # vue si possible
 ```
 
-## transpose
+### transpose
 
 ```python
 arr.T
 np.transpose(arr)
 ```
 
-## concaténation
+### concaténation
 
 ```python
 np.concatenate([a, b])
@@ -706,9 +732,9 @@ np.hstack([a, b])
 
 ---
 
-# 7 — NumPy : indexing, filtering et broadcasting
+## 7 — NumPy : indexing, filtering et broadcasting
 
-## Indexing 1D
+### Indexing 1D
 
 ```python
 a = np.array([10, 20, 30, 40])
@@ -719,7 +745,7 @@ a[1:3]
 a[::2]
 ```
 
-## Indexing 2D
+### Indexing 2D
 
 ```python
 matrix[row, column]
@@ -732,7 +758,7 @@ matrix[0, :]
 matrix[:2, 1:3]
 ```
 
-## Boolean masking
+### Boolean masking
 
 ```python
 a[a > 20]
@@ -763,7 +789,7 @@ et non :
 (a > 10) and (a < 40)  # incorrect pour un array
 ```
 
-## np.where
+### np.where
 
 ```python
 np.where(a >= 20, "high", "low")
@@ -771,7 +797,7 @@ np.where(a >= 20, "high", "low")
 
 Analogue d'un `CASE WHEN` simple.
 
-## np.select
+### np.select
 
 Plusieurs conditions :
 
@@ -786,13 +812,13 @@ choices = ["high", "medium"]
 labels = np.select(conditions, choices, default="low")
 ```
 
-## Fancy indexing
+### Fancy indexing
 
 ```python
 a[[0, 2, 3]]
 ```
 
-## Broadcasting
+### Broadcasting
 
 NumPy peut appliquer des opérations entre arrays de formes compatibles sans recopier explicitement les données.
 
@@ -810,7 +836,7 @@ matrix = np.array([
 matrix + np.array([10, 20, 30])
 ```
 
-### Règle mentale
+#### Règle mentale
 
 NumPy compare les dimensions **depuis la droite**. Deux dimensions sont compatibles si :
 
@@ -826,7 +852,7 @@ Exemple :
 (2, 3)
 ```
 
-## Vectorization
+### Vectorization
 
 Préférer :
 
@@ -844,9 +870,9 @@ NumPy implémente de nombreuses opérations sous forme de fonctions vectorisées
 
 ---
 
-# 8 — NumPy : calculs et statistiques
+## 8 — NumPy : calculs et statistiques
 
-## Calcul élément par élément
+### Calcul élément par élément
 
 ```python
 a + b
@@ -856,7 +882,7 @@ a / b
 a ** 2
 ```
 
-## Fonctions mathématiques
+### Fonctions mathématiques
 
 ```python
 np.sqrt(a)
@@ -866,7 +892,7 @@ np.abs(a)
 np.round(a, 2)
 ```
 
-## Agrégations
+### Agrégations
 
 ```python
 np.sum(a)
@@ -878,7 +904,7 @@ np.std(a)
 np.var(a)
 ```
 
-## Axis
+### Axis
 
 Pour une matrice :
 
@@ -887,21 +913,21 @@ matrix.sum(axis=0)  # agrège les lignes → résultat par colonne
 matrix.sum(axis=1)  # agrège les colonnes → résultat par ligne
 ```
 
-### Mémo
+#### Mémo
 
 ```text
 axis=0 → on descend verticalement → résultat par colonne
 axis=1 → on traverse horizontalement → résultat par ligne
 ```
 
-## argmin / argmax
+### argmin / argmax
 
 ```python
 np.argmin(a)
 np.argmax(a)
 ```
 
-## NaN
+### NaN
 
 ```python
 np.nan
@@ -916,7 +942,7 @@ np.nanmean(a)
 np.nanmedian(a)
 ```
 
-## Valeurs uniques
+### Valeurs uniques
 
 ```python
 np.unique(a)
@@ -928,7 +954,7 @@ Avec compte :
 values, counts = np.unique(a, return_counts=True)
 ```
 
-## Random moderne
+### Random moderne
 
 ```python
 rng = np.random.default_rng(42)
@@ -947,13 +973,13 @@ rng = np.random.default_rng(42)
 
 ---
 
-# 9 — pandas : objets essentiels
+## 9 — pandas : objets essentiels
 
 ```python
 import pandas as pd
 ```
 
-## Series
+### Series
 
 Une colonne avec un index.
 
@@ -961,7 +987,7 @@ Une colonne avec un index.
 s = pd.Series([10, 20, 30], name="sales")
 ```
 
-## DataFrame
+### DataFrame
 
 Table à deux dimensions.
 
@@ -973,7 +999,7 @@ df = pd.DataFrame({
 })
 ```
 
-## Index
+### Index
 
 ```python
 df.index
@@ -994,9 +1020,9 @@ df = df.reset_index()
 
 ---
 
-# 10 — pandas : inspection rapide
+## 10 — pandas : inspection rapide
 
-## Les commandes à lancer presque systématiquement
+### Les commandes à lancer presque systématiquement
 
 ```python
 df.head()
@@ -1008,7 +1034,7 @@ df.info()
 df.describe()
 ```
 
-## Nombre de lignes / colonnes
+### Nombre de lignes / colonnes
 
 ```python
 len(df)
@@ -1016,7 +1042,7 @@ df.shape[0]
 df.shape[1]
 ```
 
-## Statistiques descriptives
+### Statistiques descriptives
 
 ```python
 df.describe()
@@ -1028,7 +1054,7 @@ Inclure les colonnes non numériques :
 df.describe(include="all")
 ```
 
-## Valeurs uniques
+### Valeurs uniques
 
 ```python
 df["country"].unique()
@@ -1042,7 +1068,7 @@ Inclure les valeurs manquantes :
 df["country"].value_counts(dropna=False)
 ```
 
-## Missing values
+### Missing values
 
 ```python
 df.isna().sum()
@@ -1054,7 +1080,7 @@ Part de valeurs manquantes :
 df.isna().mean().sort_values(ascending=False)
 ```
 
-## Doublons
+### Doublons
 
 ```python
 df.duplicated().sum()
@@ -1066,7 +1092,7 @@ Sur une clé métier :
 df.duplicated(subset=["customer_id"]).sum()
 ```
 
-## Mémoire
+### Mémoire
 
 ```python
 df.memory_usage(deep=True)
@@ -1074,9 +1100,9 @@ df.memory_usage(deep=True)
 
 ---
 
-# 11 — pandas : sélection et filtrage
+## 11 — pandas : sélection et filtrage
 
-## Sélection d'une colonne
+### Sélection d'une colonne
 
 ```python
 df["sales"]
@@ -1084,7 +1110,7 @@ df["sales"]
 
 Résultat : `Series`.
 
-## Plusieurs colonnes
+### Plusieurs colonnes
 
 ```python
 df[["customer_id", "sales"]]
@@ -1092,7 +1118,7 @@ df[["customer_id", "sales"]]
 
 Résultat : `DataFrame`.
 
-## `.loc[]`
+### `.loc[]`
 
 Sélection par **labels**.
 
@@ -1108,7 +1134,7 @@ df.loc[:, ["country", "sales"]]
 df.loc[df["sales"] > 100, ["customer_id", "sales"]]
 ```
 
-## `.iloc[]`
+### `.iloc[]`
 
 Sélection par **positions**.
 
@@ -1119,13 +1145,13 @@ df.iloc[:, :3]
 df.iloc[0:5, 0:3]
 ```
 
-## Filtre simple
+### Filtre simple
 
 ```python
 df[df["sales"] > 100]
 ```
 
-## Plusieurs conditions
+### Plusieurs conditions
 
 ```python
 df[(df["sales"] > 100) & (df["country"] == "FR")]
@@ -1135,7 +1161,7 @@ df[(df["sales"] > 100) & (df["country"] == "FR")]
 df[(df["country"] == "FR") | (df["country"] == "CH")]
 ```
 
-## isin
+### isin
 
 Analogue de `IN` en SQL :
 
@@ -1149,13 +1175,13 @@ Inverse :
 df[~df["country"].isin(["FR", "CH"])]
 ```
 
-## between
+### between
 
 ```python
 df[df["sales"].between(100, 500)]
 ```
 
-## query
+### query
 
 ```python
 df.query("sales > 100 and country == 'FR'")
@@ -1165,21 +1191,21 @@ Pratique pour les filtres lisibles, mais les expressions booléennes standards r
 
 ---
 
-# 12 — pandas : création et transformation de colonnes
+## 12 — pandas : création et transformation de colonnes
 
-## Création simple
+### Création simple
 
 ```python
 df["revenue_eur"] = df["revenue"] * 0.92
 ```
 
-## Calcul entre colonnes
+### Calcul entre colonnes
 
 ```python
 df["margin"] = df["revenue"] - df["cost"]
 ```
 
-## Ratio
+### Ratio
 
 ```python
 df["margin_rate"] = df["margin"] / df["revenue"]
@@ -1195,7 +1221,7 @@ df["margin_rate"] = np.where(
 )
 ```
 
-## assign
+### assign
 
 ```python
 df = df.assign(
@@ -1204,7 +1230,7 @@ df = df.assign(
 )
 ```
 
-## rename
+### rename
 
 ```python
 df = df.rename(columns={
@@ -1213,19 +1239,19 @@ df = df.rename(columns={
 })
 ```
 
-## drop
+### drop
 
 ```python
 df = df.drop(columns=["unused_column"])
 ```
 
-## astype
+### astype
 
 ```python
 df["customer_id"] = df["customer_id"].astype("int64")
 ```
 
-## map
+### map
 
 Remplacement / mapping sur une `Series` :
 
@@ -1238,7 +1264,7 @@ country_map = {
 df["country_name"] = df["country"].map(country_map)
 ```
 
-## replace
+### replace
 
 ```python
 df["status"] = df["status"].replace({
@@ -1247,13 +1273,13 @@ df["status"] = df["status"].replace({
 })
 ```
 
-## apply
+### apply
 
 ```python
 df["segment"] = df["score"].apply(custom_function)
 ```
 
-### À retenir
+#### À retenir
 
 Avant `apply`, chercher une opération vectorisée :
 
@@ -1267,9 +1293,9 @@ Avant `apply`, chercher une opération vectorisée :
 
 ---
 
-# 13 — pandas : valeurs manquantes
+## 13 — pandas : valeurs manquantes
 
-## Détection
+### Détection
 
 ```python
 df.isna()
@@ -1281,13 +1307,13 @@ df["age"].isna()
 df["age"].notna()
 ```
 
-## Compter
+### Compter
 
 ```python
 df.isna().sum()
 ```
 
-## Supprimer
+### Supprimer
 
 ```python
 df.dropna()
@@ -1299,7 +1325,7 @@ Sur certaines colonnes :
 df.dropna(subset=["customer_id"])
 ```
 
-## Remplir
+### Remplir
 
 ```python
 df["age"] = df["age"].fillna(df["age"].median())
@@ -1325,43 +1351,43 @@ df["value"] = df["value"].bfill()
 
 ---
 
-# 14 — pandas : nettoyage texte
+## 14 — pandas : nettoyage texte
 
 Les opérations texte passent généralement par `.str`.
 
-## Lower / upper
+### Lower / upper
 
 ```python
 df["name"].str.lower()
 df["name"].str.upper()
 ```
 
-## Strip
+### Strip
 
 ```python
 df["name"] = df["name"].str.strip()
 ```
 
-## Replace
+### Replace
 
 ```python
 df["phone"] = df["phone"].str.replace(" ", "", regex=False)
 ```
 
-## Contains
+### Contains
 
 ```python
 df[df["email"].str.contains("gmail", case=False, na=False)]
 ```
 
-## Startswith / endswith
+### Startswith / endswith
 
 ```python
 df["email"].str.startswith("admin")
 df["email"].str.endswith(".com")
 ```
 
-## Split
+### Split
 
 ```python
 df["email"].str.split("@")
@@ -1373,13 +1399,13 @@ Extraire une partie :
 df["domain"] = df["email"].str.split("@").str[-1]
 ```
 
-## Regex extract
+### Regex extract
 
 ```python
 df["postal_code"] = df["address"].str.extract(r"(\d{5})")
 ```
 
-## Nettoyage de noms de colonnes
+### Nettoyage de noms de colonnes
 
 Pattern fréquent :
 
@@ -1394,9 +1420,9 @@ df.columns = (
 
 ---
 
-# 15 — pandas : tri, doublons et valeurs uniques
+## 15 — pandas : tri, doublons et valeurs uniques
 
-## Tri
+### Tri
 
 ```python
 df.sort_values("sales")
@@ -1417,14 +1443,14 @@ df.sort_values(
 )
 ```
 
-## nlargest / nsmallest
+### nlargest / nsmallest
 
 ```python
 df.nlargest(10, "sales")
 df.nsmallest(10, "sales")
 ```
 
-## Doublons
+### Doublons
 
 ```python
 df.duplicated()
@@ -1450,7 +1476,7 @@ df = df.drop_duplicates(
 )
 ```
 
-## Valeurs uniques
+### Valeurs uniques
 
 ```python
 df["country"].unique()
@@ -1466,9 +1492,9 @@ df["country"].value_counts(normalize=True)
 
 ---
 
-# 16 — pandas : groupby et agrégations
+## 16 — pandas : groupby et agrégations
 
-## Modèle mental
+### Modèle mental
 
 ```text
 SPLIT → APPLY → COMBINE
@@ -1478,25 +1504,25 @@ SPLIT → APPLY → COMBINE
 2. appliquer une opération à chaque groupe ;
 3. recombiner le résultat.
 
-## Agrégation simple
+### Agrégation simple
 
 ```python
 df.groupby("country")["sales"].sum()
 ```
 
-## Retourner un DataFrame
+### Retourner un DataFrame
 
 ```python
 df.groupby("country", as_index=False)["sales"].sum()
 ```
 
-## Plusieurs clés
+### Plusieurs clés
 
 ```python
 df.groupby(["country", "segment"], as_index=False)["sales"].sum()
 ```
 
-## Plusieurs métriques
+### Plusieurs métriques
 
 ```python
 df.groupby("country", as_index=False).agg(
@@ -1507,7 +1533,7 @@ df.groupby("country", as_index=False).agg(
 )
 ```
 
-### Named aggregation
+#### Named aggregation
 
 Pattern à privilégier :
 
@@ -1522,7 +1548,7 @@ summary = (
 )
 ```
 
-## count vs size
+### count vs size
 
 ```python
 grouped["column"].count()
@@ -1536,7 +1562,7 @@ grouped.size()
 
 `size()` compte les lignes.
 
-## transform
+### transform
 
 Conserve la granularité initiale.
 
@@ -1558,7 +1584,7 @@ df["share_country"] = (
 )
 ```
 
-## filter sur les groupes
+### filter sur les groupes
 
 ```python
 df.groupby("country").filter(
@@ -1566,7 +1592,7 @@ df.groupby("country").filter(
 )
 ```
 
-## cumcount
+### cumcount
 
 ```python
 df["row_number"] = df.groupby("customer_id").cumcount() + 1
@@ -1574,9 +1600,9 @@ df["row_number"] = df.groupby("customer_id").cumcount() + 1
 
 ---
 
-# 17 — pandas : merge, join et concat
+## 17 — pandas : merge, join et concat
 
-## merge
+### merge
 
 Analogue principal du `JOIN` SQL.
 
@@ -1588,7 +1614,7 @@ result = left.merge(
 )
 ```
 
-## Types de merge
+### Types de merge
 
 ```python
 how="inner"
@@ -1598,7 +1624,7 @@ how="outer"
 how="cross"
 ```
 
-## Clés portant des noms différents
+### Clés portant des noms différents
 
 ```python
 left.merge(
@@ -1609,7 +1635,7 @@ left.merge(
 )
 ```
 
-## Plusieurs clés
+### Plusieurs clés
 
 ```python
 left.merge(
@@ -1619,7 +1645,7 @@ left.merge(
 )
 ```
 
-## suffixes
+### suffixes
 
 ```python
 left.merge(
@@ -1629,7 +1655,7 @@ left.merge(
 )
 ```
 
-## indicator
+### indicator
 
 Excellent outil de contrôle de jointure :
 
@@ -1652,7 +1678,7 @@ right_only
 both
 ```
 
-## validate
+### validate
 
 Permet de faire échouer une jointure dont la cardinalité n'est pas celle attendue :
 
@@ -1673,7 +1699,7 @@ many_to_one
 many_to_many
 ```
 
-### Réflexe Brocode
+#### Réflexe Brocode
 
 Avant/après un merge, contrôler :
 
@@ -1690,7 +1716,7 @@ left["customer_id"].nunique()
 right["customer_id"].nunique()
 ```
 
-## join
+### join
 
 Pratique surtout pour les index :
 
@@ -1698,7 +1724,7 @@ Pratique surtout pour les index :
 left.join(right, how="left")
 ```
 
-## concat vertical
+### concat vertical
 
 Analogue de `UNION ALL` :
 
@@ -1706,7 +1732,7 @@ Analogue de `UNION ALL` :
 pd.concat([df_2025, df_2026], ignore_index=True)
 ```
 
-## concat horizontal
+### concat horizontal
 
 ```python
 pd.concat([df_a, df_b], axis=1)
@@ -1714,9 +1740,9 @@ pd.concat([df_a, df_b], axis=1)
 
 ---
 
-# 18 — pandas : reshape, pivot et melt
+## 18 — pandas : reshape, pivot et melt
 
-## pivot
+### pivot
 
 ```python
 df.pivot(
@@ -1728,7 +1754,7 @@ df.pivot(
 
 Nécessite que chaque combinaison index/columns soit unique.
 
-## pivot_table
+### pivot_table
 
 Permet une agrégation :
 
@@ -1743,7 +1769,7 @@ pd.pivot_table(
 )
 ```
 
-## melt
+### melt
 
 Wide → long.
 
@@ -1756,7 +1782,7 @@ long_df = df.melt(
 )
 ```
 
-## stack / unstack
+### stack / unstack
 
 ```python
 df.stack()
@@ -1767,9 +1793,9 @@ Particulièrement utile avec les MultiIndex.
 
 ---
 
-# 19 — pandas : dates et time series
+## 19 — pandas : dates et time series
 
-## Conversion en datetime
+### Conversion en datetime
 
 ```python
 df["date"] = pd.to_datetime(df["date"])
@@ -1786,7 +1812,7 @@ df["date"] = pd.to_datetime(
 
 Les valeurs non convertibles deviennent manquantes.
 
-## Extraction avec `.dt`
+### Extraction avec `.dt`
 
 ```python
 df["year"] = df["date"].dt.year
@@ -1796,13 +1822,13 @@ df["weekday"] = df["date"].dt.day_name()
 df["quarter"] = df["date"].dt.quarter
 ```
 
-## Périodes
+### Périodes
 
 ```python
 df["month"] = df["date"].dt.to_period("M")
 ```
 
-## Timedelta
+### Timedelta
 
 ```python
 df["duration"] = df["end_date"] - df["start_date"]
@@ -1814,7 +1840,7 @@ En jours :
 df["duration_days"] = df["duration"].dt.days
 ```
 
-## Filtre temporel
+### Filtre temporel
 
 ```python
 df[df["date"] >= "2026-01-01"]
@@ -1824,13 +1850,13 @@ df[df["date"] >= "2026-01-01"]
 df[df["date"].between("2026-01-01", "2026-12-31")]
 ```
 
-## Date range
+### Date range
 
 ```python
 pd.date_range("2026-01-01", "2026-12-31", freq="D")
 ```
 
-## Resample
+### Resample
 
 Pour des séries temporelles indexées par date :
 
@@ -1840,7 +1866,7 @@ df = df.set_index("date")
 monthly = df["sales"].resample("MS").sum()
 ```
 
-## Rolling
+### Rolling
 
 ```python
 df["rolling_7d"] = df["sales"].rolling(7).mean()
@@ -1848,9 +1874,9 @@ df["rolling_7d"] = df["sales"].rolling(7).mean()
 
 ---
 
-# 20 — pandas : fenêtres et calculs analytiques
+## 20 — pandas : fenêtres et calculs analytiques
 
-## transform
+### transform
 
 Conserver une ligne par observation :
 
@@ -1861,7 +1887,7 @@ df["country_total"] = (
 )
 ```
 
-## Cumul
+### Cumul
 
 ```python
 df["cumulative_sales"] = df["sales"].cumsum()
@@ -1876,7 +1902,7 @@ df["customer_cumulative_sales"] = (
 )
 ```
 
-## Ranking
+### Ranking
 
 ```python
 df["rank"] = df["sales"].rank(
@@ -1894,7 +1920,7 @@ df["rank_country"] = (
 )
 ```
 
-## shift
+### shift
 
 Valeur précédente :
 
@@ -1905,7 +1931,7 @@ df["previous_sales"] = (
 )
 ```
 
-## pct_change
+### pct_change
 
 ```python
 df["growth_rate"] = df["sales"].pct_change()
@@ -1920,7 +1946,7 @@ df["customer_growth"] = (
 )
 ```
 
-## rolling par groupe
+### rolling par groupe
 
 ```python
 df["rolling_avg"] = (
@@ -1931,9 +1957,9 @@ df["rolling_avg"] = (
 
 ---
 
-# 21 — pandas : import/export
+## 21 — pandas : import/export
 
-## CSV
+### CSV
 
 ```python
 df = pd.read_csv("customers.csv")
@@ -1957,7 +1983,7 @@ Exporter :
 df.to_csv("output.csv", index=False)
 ```
 
-## Excel
+### Excel
 
 ```python
 df = pd.read_excel("customers.xlsx", sheet_name="customers")
@@ -1967,13 +1993,13 @@ df = pd.read_excel("customers.xlsx", sheet_name="customers")
 df.to_excel("output.xlsx", index=False)
 ```
 
-## JSON
+### JSON
 
 ```python
 df = pd.read_json("data.json")
 ```
 
-## Parquet
+### Parquet
 
 ```python
 df = pd.read_parquet("data.parquet")
@@ -1983,7 +2009,7 @@ df = pd.read_parquet("data.parquet")
 df.to_parquet("output.parquet", index=False)
 ```
 
-## SQL
+### SQL
 
 Avec une connexion SQLAlchemy :
 
@@ -1993,7 +2019,7 @@ df = pd.read_sql(query, connection)
 
 ---
 
-# 22 — SQL ↔ pandas
+## 22 — SQL ↔ pandas
 
 | SQL | pandas |
 |---|---|
@@ -2019,7 +2045,7 @@ df = pd.read_sql(query, connection)
 | `LAG()` | `groupby().shift()` |
 | `RANK()` | `.rank()` |
 
-## SELECT / WHERE / GROUP BY
+### SELECT / WHERE / GROUP BY
 
 SQL :
 
@@ -2042,7 +2068,7 @@ summary = (
 )
 ```
 
-## LEFT JOIN
+### LEFT JOIN
 
 SQL :
 
@@ -2063,7 +2089,7 @@ result = customers.merge(
 )
 ```
 
-## CASE WHEN
+### CASE WHEN
 
 SQL :
 
@@ -2090,9 +2116,9 @@ df["segment"] = np.select(
 
 ---
 
-# 23 — Pipeline Data Analyst type
+## 23 — Pipeline Data Analyst type
 
-## 1. Charger
+### 1. Charger
 
 ```python
 import pandas as pd
@@ -2101,7 +2127,7 @@ import numpy as np
 raw = pd.read_csv("customers.csv")
 ```
 
-## 2. Inspecter
+### 2. Inspecter
 
 ```python
 raw.head()
@@ -2112,13 +2138,13 @@ raw.isna().sum()
 raw.duplicated().sum()
 ```
 
-## 3. Travailler sur une copie
+### 3. Travailler sur une copie
 
 ```python
 df = raw.copy()
 ```
 
-## 4. Standardiser les colonnes
+### 4. Standardiser les colonnes
 
 ```python
 df.columns = (
@@ -2129,14 +2155,14 @@ df.columns = (
 )
 ```
 
-## 5. Corriger les types
+### 5. Corriger les types
 
 ```python
 df["date"] = pd.to_datetime(df["date"], errors="coerce")
 df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
 ```
 
-## 6. Contrôler la clé / granularité
+### 6. Contrôler la clé / granularité
 
 ```python
 len(df)
@@ -2144,21 +2170,21 @@ df["customer_id"].nunique()
 df.duplicated(subset=["customer_id"]).sum()
 ```
 
-## 7. Nettoyer
+### 7. Nettoyer
 
 ```python
 df["country"] = df["country"].str.strip().str.upper()
 df = df.dropna(subset=["customer_id"])
 ```
 
-## 8. Feature engineering
+### 8. Feature engineering
 
 ```python
 df["is_high_value"] = df["revenue"] >= 1000
 df["margin"] = df["revenue"] - df["cost"]
 ```
 
-## 9. Agréger
+### 9. Agréger
 
 ```python
 customer_summary = (
@@ -2171,14 +2197,14 @@ customer_summary = (
 )
 ```
 
-## 10. Tester
+### 10. Tester
 
 ```python
 assert customer_summary["customer_id"].is_unique
 assert customer_summary["revenue"].notna().all()
 ```
 
-## 11. Exporter
+### 11. Exporter
 
 ```python
 customer_summary.to_csv(
@@ -2189,9 +2215,9 @@ customer_summary.to_csv(
 
 ---
 
-# 24 — Pièges fréquents
+## 24 — Pièges fréquents
 
-## 1. `and` / `or` avec pandas
+### 1. `and` / `or` avec pandas
 
 ❌
 
@@ -2205,7 +2231,7 @@ df[(df["age"] > 18) and (df["country"] == "FR")]
 df[(df["age"] > 18) & (df["country"] == "FR")]
 ```
 
-## 2. Oublier les parenthèses
+### 2. Oublier les parenthèses
 
 ❌
 
@@ -2219,14 +2245,14 @@ df[df["age"] > 18 & df["country"] == "FR"]
 df[(df["age"] > 18) & (df["country"] == "FR")]
 ```
 
-## 3. `=` vs `==`
+### 3. `=` vs `==`
 
 ```python
 x = 10      # affectation
 x == 10     # comparaison
 ```
 
-## 4. Mauvais type de colonne
+### 4. Mauvais type de colonne
 
 ```python
 df.dtypes
@@ -2234,7 +2260,7 @@ df.dtypes
 
 Une date stockée en `str` ne se comporte pas comme une date.
 
-## 5. Modifier une vue de DataFrame ambiguë
+### 5. Modifier une vue de DataFrame ambiguë
 
 Pattern robuste :
 
@@ -2243,7 +2269,7 @@ filtered = df.loc[df["sales"] > 0].copy()
 filtered["margin"] = filtered["sales"] - filtered["cost"]
 ```
 
-## 6. `merge` qui multiplie les lignes
+### 6. `merge` qui multiplie les lignes
 
 Toujours vérifier la granularité et la cardinalité avant la jointure.
 
@@ -2260,14 +2286,14 @@ validate="one_to_one"
 
 ou la cardinalité attendue.
 
-## 7. `count()` vs `size()`
+### 7. `count()` vs `size()`
 
 ```python
 groupby.size()            # lignes
 groupby["col"].count()    # valeurs non nulles
 ```
 
-## 8. `apply()` partout
+### 8. `apply()` partout
 
 Souvent plus lent et moins lisible qu'une opération vectorisée.
 
@@ -2284,7 +2310,7 @@ np.select
 groupby.transform
 ```
 
-## 9. Arrondir trop tôt
+### 9. Arrondir trop tôt
 
 Éviter :
 
@@ -2299,7 +2325,7 @@ Préférer garder la précision et arrondir au rendu final :
 final["ratio"] = final["ratio"].round(2)
 ```
 
-## 10. Oublier l'index après groupby
+### 10. Oublier l'index après groupby
 
 ```python
 df.groupby("country")["sales"].sum()
@@ -2313,7 +2339,7 @@ Pour un DataFrame :
 df.groupby("country", as_index=False)["sales"].sum()
 ```
 
-## 11. Confondre copie et modification inplace
+### 11. Confondre copie et modification inplace
 
 Pattern clair :
 
@@ -2323,11 +2349,11 @@ df = df.drop(columns=["x"])
 
 plutôt que multiplier les mutations implicites.
 
-## 12. Mélanger granularités
+### 12. Mélanger granularités
 
 Si `orders` est à la maille commande et `order_items` à la maille produit, un merge peut dupliquer les métriques commande.
 
-### Réflexe
+#### Réflexe
 
 ```text
 Quelle est la granularité de chaque DataFrame ?
@@ -2337,15 +2363,15 @@ Quelle cardinalité dois-je obtenir ?
 
 ---
 
-# 25 — Debug express
+## 25 — Debug express
 
-## Comprendre l'objet
+### Comprendre l'objet
 
 ```python
 type(obj)
 ```
 
-## DataFrame
+### DataFrame
 
 ```python
 df.shape
@@ -2354,7 +2380,7 @@ df.info()
 df.dtypes
 ```
 
-## Vérifier une colonne
+### Vérifier une colonne
 
 ```python
 df["col"].head()
@@ -2363,13 +2389,13 @@ df["col"].unique()[:20]
 df["col"].value_counts(dropna=False).head(20)
 ```
 
-## Vérifier les nulls
+### Vérifier les nulls
 
 ```python
 df["col"].isna().sum()
 ```
 
-## Vérifier la clé
+### Vérifier la clé
 
 ```python
 df["id"].nunique()
@@ -2377,13 +2403,13 @@ df["id"].is_unique
 df.duplicated("id").sum()
 ```
 
-## Voir les doublons
+### Voir les doublons
 
 ```python
 df[df.duplicated("id", keep=False)].sort_values("id")
 ```
 
-## Vérifier un merge
+### Vérifier un merge
 
 ```python
 merged = left.merge(
@@ -2396,7 +2422,7 @@ merged = left.merge(
 merged["_merge"].value_counts()
 ```
 
-## Vérifier une agrégation
+### Vérifier une agrégation
 
 Avant :
 
@@ -2417,7 +2443,7 @@ Test de conservation :
 np.isclose(before, after)
 ```
 
-## Assertions
+### Assertions
 
 ```python
 assert df["customer_id"].notna().all()
@@ -2427,9 +2453,9 @@ assert (df["revenue"] >= 0).all()
 
 ---
 
-# 26 — Recettes indispensables
+## 26 — Recettes indispensables
 
-## Top N par groupe
+### Top N par groupe
 
 ```python
 top_3 = (
@@ -2439,7 +2465,7 @@ top_3 = (
 )
 ```
 
-## Dernière ligne par client
+### Dernière ligne par client
 
 ```python
 latest = (
@@ -2448,7 +2474,7 @@ latest = (
 )
 ```
 
-## Première transaction par client
+### Première transaction par client
 
 ```python
 first_orders = (
@@ -2457,7 +2483,7 @@ first_orders = (
 )
 ```
 
-## Nombre de jours depuis la dernière transaction
+### Nombre de jours depuis la dernière transaction
 
 ```python
 reference_date = df["date"].max()
@@ -2472,7 +2498,7 @@ last_order["recency_days"] = (
 ).dt.days
 ```
 
-## RFM simplifié
+### RFM simplifié
 
 ```python
 reference_date = df["date"].max() + pd.Timedelta(days=1)
@@ -2491,7 +2517,7 @@ rfm["recency"] = (
 ).dt.days
 ```
 
-## Churn rate
+### Churn rate
 
 Si une ligne = un client :
 
@@ -2510,13 +2536,13 @@ churn_rate = (
 )
 ```
 
-## Retention rate simple
+### Retention rate simple
 
 ```python
 retention_rate = 1 - churn_rate
 ```
 
-## Cohort month
+### Cohort month
 
 ```python
 df["order_month"] = df["date"].dt.to_period("M")
@@ -2527,7 +2553,7 @@ df["cohort_month"] = (
 )
 ```
 
-## Nombre de clients par pays
+### Nombre de clients par pays
 
 ```python
 customers_by_country = (
@@ -2536,7 +2562,7 @@ customers_by_country = (
 )
 ```
 
-## Part du CA par pays
+### Part du CA par pays
 
 ```python
 summary = (
@@ -2549,7 +2575,7 @@ summary["revenue_share"] = (
 )
 ```
 
-## Growth MoM
+### Growth MoM
 
 ```python
 monthly = (
@@ -2561,7 +2587,7 @@ monthly = (
 monthly["mom_growth"] = monthly["revenue"].pct_change()
 ```
 
-## Flag multi-condition
+### Flag multi-condition
 
 ```python
 df["risk_level"] = np.select(
@@ -2574,13 +2600,13 @@ df["risk_level"] = np.select(
 )
 ```
 
-## Z-score NumPy
+### Z-score NumPy
 
 ```python
 z = (x - np.mean(x)) / np.std(x)
 ```
 
-## IQR et outliers
+### IQR et outliers
 
 ```python
 q1 = df["value"].quantile(0.25)
@@ -2596,13 +2622,13 @@ outliers = df[
 ]
 ```
 
-## Normalisation min-max
+### Normalisation min-max
 
 ```python
 scaled = (x - x.min()) / (x.max() - x.min())
 ```
 
-## Standardisation
+### Standardisation
 
 ```python
 standardized = (x - x.mean()) / x.std()
@@ -2610,9 +2636,9 @@ standardized = (x - x.mean()) / x.std()
 
 ---
 
-# 27 — Ultra cheat sheet
+## 27 — Ultra cheat sheet
 
-## Python
+### Python
 
 ```python
 # Types
@@ -2645,7 +2671,7 @@ except ValueError:
     ...
 ```
 
-## NumPy
+### NumPy
 
 ```python
 np.array(...)
@@ -2674,7 +2700,7 @@ arr.sum(axis=0)
 arr.sum(axis=1)
 ```
 
-## pandas — inspecter
+### pandas — inspecter
 
 ```python
 df.head()
@@ -2686,7 +2712,7 @@ df.isna().sum()
 df.duplicated().sum()
 ```
 
-## pandas — sélectionner
+### pandas — sélectionner
 
 ```python
 df["col"]
@@ -2695,7 +2721,7 @@ df.loc[condition, columns]
 df.iloc[rows, columns]
 ```
 
-## pandas — filtrer
+### pandas — filtrer
 
 ```python
 df[df["x"] > 10]
@@ -2703,7 +2729,7 @@ df[(df["x"] > 10) & (df["country"] == "FR")]
 df[df["country"].isin(["FR", "CH"])]
 ```
 
-## pandas — transformer
+### pandas — transformer
 
 ```python
 df["new"] = df["a"] + df["b"]
@@ -2711,7 +2737,7 @@ df["label"] = np.where(condition, "yes", "no")
 df["date"] = pd.to_datetime(df["date"], errors="coerce")
 ```
 
-## pandas — agréger
+### pandas — agréger
 
 ```python
 summary = (
@@ -2723,7 +2749,7 @@ summary = (
 )
 ```
 
-## pandas — join
+### pandas — join
 
 ```python
 merged = left.merge(
@@ -2734,7 +2760,7 @@ merged = left.merge(
 )
 ```
 
-## pandas — fenêtres
+### pandas — fenêtres
 
 ```python
 df.groupby("group")["x"].transform("sum")
@@ -2743,7 +2769,7 @@ df.groupby("group")["x"].rank()
 df.groupby("group").cumcount() + 1
 ```
 
-## pandas — dates
+### pandas — dates
 
 ```python
 df["date"].dt.year
@@ -2751,7 +2777,7 @@ df["date"].dt.month
 df["date"].dt.to_period("M")
 ```
 
-## pandas — exporter
+### pandas — exporter
 
 ```python
 df.to_csv("output.csv", index=False)
@@ -2761,7 +2787,7 @@ df.to_parquet("output.parquet", index=False)
 
 ---
 
-# 🧠 Les 10 réflexes à retenir
+## 🧠 Les 10 réflexes à retenir
 
 1. **Toujours connaître la granularité du DataFrame.**
 2. **Toujours identifier la clé supposée unique avant un `merge`.**
@@ -2776,7 +2802,7 @@ df.to_parquet("output.parquet", index=False)
 
 ---
 
-# 🎯 Modèle mental final
+## 🎯 Modèle mental final
 
 ```text
 PYTHON
@@ -2829,7 +2855,7 @@ export / dashboard / modèle
 
 ---
 
-## 📚 Références techniques
+### 📚 Références techniques
 
 Fiche alignée sur la documentation officielle moderne de :
 
@@ -2838,4 +2864,3 @@ Fiche alignée sur la documentation officielle moderne de :
 - pandas.
 
 Les API évoluent : pour un comportement version-spécifique ou une méthode rare, vérifier la documentation de la version installée.
-

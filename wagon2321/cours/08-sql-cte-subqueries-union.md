@@ -1,4 +1,33 @@
-# 📝 #8 — CTE (WITH...AS), sous-requêtes imbriquées & UNION
+---
+title: "SQL — CTEs, Subqueries & UNION"
+aliases:
+  - "SQL CTEs"
+  - "SQL Subqueries"
+  - "CTEs Subqueries UNION"
+type: course
+status: reference
+course: "Le Wagon — Data Analytics"
+batch: 2321
+session: 8
+language: "SQL"
+database: "BigQuery / GoogleSQL"
+topics:
+  - "SQL"
+  - "BigQuery"
+  - "CTEs"
+  - "Subqueries"
+  - "UNION"
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - ctes
+  - subqueries
+  - union
+---
+
+# 📝 8 — CTE (WITH...AS), sous-requêtes imbriquées & UNION
 
 **Date** : 15 juillet 2026
 **Thème** : Rappel jointures/granularité, GROUP BY et agrégation, Common Table Expressions (CTE), sous-requêtes imbriquées (subqueries), `UNION`/`UNION ALL`/`UNION DISTINCT`

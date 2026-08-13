@@ -1,8 +1,35 @@
-# 📝 #5 — Introduction à SQL & BigQuery : ERD, syntaxe de base et fonctions
+---
+title: SQL — Introduction, Relational Databases & BigQuery
+aliases:
+  - SQL Introduction
+  - Relational Databases & BigQuery
+  - BigQuery Fundamentals
+type: course
+status: reference
+course: Le Wagon — Data Analytics
+batch: 2321
+session: 5
+date: 2026-07-10
+language: SQL
+database: BigQuery / GoogleSQL
+topics:
+  - SQL
+  - BigQuery
+  - Relational Databases
+  - ERD
+tags:
+  - brocode
+  - wagon2321/cours
+  - sql
+  - bigquery
+  - relational-databases
+---
+
+
+# 📝 5 — Introduction à SQL & BigQuery : ERD, syntaxe de base et fonctions
 
 **Date** : 10 juillet 2026
 **Thème** : Bases de données relationnelles, ERD, prise en main de BigQuery, syntaxe SQL (SELECT/WHERE/ORDER BY/LIMIT), fonctions (IF, CASE WHEN, ROUND, CAST/SAFE_CAST), types de données
-**Compréhension (1→5)** : ⭐⭐⭐
 
 ---
 
@@ -280,3 +307,4 @@ Deux concepts distincts évoqués en session, à ne pas confondre :
 ---
 
 *Premier chapitre du brocode — les sessions suivantes (jointures, GROUP BY/HAVING, dbt...) feront l'objet de chapitres dédiés.*
+

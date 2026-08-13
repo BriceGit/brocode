@@ -1,3 +1,23 @@
+---
+title: Cheat Sheet — Python · NumPy · pandas
+aliases:
+  - Cheat Sheet gtm
+type: reference
+status: active
+course: "Le Wagon — Data Analytics #2321"
+topics:
+  - Gtm
+  - Google
+  - tracker
+tags:
+  - brocode
+  - wagon2321/cours
+  - gtm
+  - google
+  - tracker
+  - cheatsheet
+---
+
 # ⚡ Cheat-sheet interview — Tracking Web & GTM
 
 *Révision rapide avant entretien. Version condensée du chapitre #17.*
