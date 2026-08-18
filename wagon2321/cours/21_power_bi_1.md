@@ -8,7 +8,7 @@
 
 ## 🎯 Contexte de la session
 
-- Premier jour du module Power BI (module annoncé sur trois jours) — les trois cours précédents portaient sur Looker Studio ([#19](19-looker-studio-1.md), [#20](20-looker-studio-2.md), [#21](21-looker-studio-3-data-storytelling.md))
+- Premier jour du module Power BI (module annoncé sur trois jours) — les trois cours précédents portaient sur Looker Studio ([#19](obsidian://open?vault=brocode&file=wagon2321%2Fcours%2F18_looker_studio_1), [#20](obsidian://open?vault=brocode&file=wagon2321%2Fcours%2F19_looker_studio_2), [#21](obsidian://open?vault=brocode&file=wagon2321%2Fcours%2F20_looker_studio_3_data_storytelling))
 - Session très dense, presque deux cours en un : théorie (positionnement, licences, pipeline, objets) **et** pratique complète (Power Query, Data Model, création de graphiques, formatage, interactivité, navigation) — la suite du module doit approfondir le DAX et le Star Schema
 - Power BI utilisé via Parallels sur Mac (pas de version native Mac)
 - Se termine par une session de critique de dashboards réels, sur le même format pédagogique que celle déjà vue en Looker Studio ([#21](21-looker-studio-3-data-storytelling.md)) — bon comparatif : les erreurs relevées sont indépendantes de l'outil

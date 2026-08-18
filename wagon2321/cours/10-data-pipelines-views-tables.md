@@ -130,7 +130,7 @@ Le cœur technique de la session.
 - Outils cités : **dbt**, **Airflow**, **Fivetran**, tâches planifiées via Stored Procedures
 - Concept lié : l'**observabilité** — surveiller le volume de données et détecter les erreurs dans le pipeline
 
-🔗 Voir [[09_dbt_intro]] et [[10_dbt_advanced_warehousing]] pour la suite logique côté outillage.
+🔗 Voir [[12_dbt_intro]] et [[13_dbt_advanced_warehousing]] pour la suite logique côté outillage.
 
 ---
 
@@ -217,4 +217,4 @@ Section très actionnable, à appliquer direct sur les challenges :
 - [[05_intro_sql_bigquerry]] — lien identifié en session (bases SQL/BigQuery)
 - [[08-sql-cte-subqueries-union]] — mécanique des CTE, en contraste avec Views/Tables ici
 - [[09-window-functions]] — même logique coût/performance BigQuery (`SELECT` ciblé, granularité)
-- [[09_dbt_intro]] / [[10_dbt_advanced_warehousing]] — l'outillage d'orchestration mentionné (dbt) prend le relai à partir d'ici
+- [[12_dbt_intro]] / [[13_dbt_advanced_warehousing]] — l'outillage d'orchestration mentionné (dbt) prend le relai à partir d'ici

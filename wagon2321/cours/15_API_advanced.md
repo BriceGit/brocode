@@ -1,4 +1,4 @@
-# 📝 #16 - API advanced
+# 📝 16 - API advanced
 
 **Date : 27 juillet 2026**
 
