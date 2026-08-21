@@ -27,12 +27,12 @@ Deux fonctions en parallèle :
 
 ## 🗂️ Structure des dossiers
 
-| Dossier | Contenu | Auteur |
-|---|---|---|
-| `wagon2321/` | Chapitres de cours, un par session du batch 2321 | Synthèse Claude à partir du transcript |
-| `codex/` | Code perso, requêtes, raisonnement synthétisé, fiches-concept atomisées | Brice (+ Claude en soutien) |
-| `projets-perso/` | Deep-dives analytiques (Projet 1 — churn banking, etc.) | Brice |
-| `references/` | Matériel externe consulté mais non écrit par Brice (cheat sheets, lexiques) | Externe |
+| Dossier          | Contenu                                                                     | Auteur                                     |
+| ---------------- | --------------------------------------------------------------------------- | ------------------------------------------ |
+| `wagon2321/`     | Chapitres de cours. Un par session du batch 2321                            | Synthèse IA (Claude Sonnet et ChatGPT Sol) |
+| `codex/`         | Code perso, requêtes, raisonnement synthétisé, fiches-concept atomisées     | Brice                                      |
+| `projets-perso/` | Deep-dives analytiques (Projet 1 — churn banking, etc.)                     | Brice                                      |
+| `references/`    | Matériel externe consulté mais non écrit par Brice (cheat sheets, lexiques) | Externe                                    |
 
 Le filing dans tel ou tel dossier reste une question de lisibilité côté GitHub — dans Obsidian, les wikilinks résolvent par **nom de note**, indépendamment du dossier où elle se trouve.
 
@@ -112,16 +112,3 @@ SORT session ASC
 - **Data stack** : BigQuery/GoogleSQL · dbt (DuckDB en local) · Python (pandas, sklearn, sktime, scipy, matplotlib, seaborn, Plotly) · Power BI (via Parallels) · Looker Studio · Google Sheets
 - **Intégrations** : Zapier · Make · Fivetran · HubSpot CRM API · Insomnia · BeautifulSoup · `requests`
 
----
-
-## 🔗 Vault compagnon
-
-`prep-entretien` (13 fiches) — vault Obsidian **séparé**, dédié à la préparation d'entretien technique (erreurs vécues, questions types, méthodologie de présentation de résultats). Volontairement distinct du brocode plutôt que fusionné : la duplication de contenu n'apportait pas assez pour justifier de casser la séparation cours / prép-entretien.
-
----
-
-## ⚙️ Utilisation
-
-- Ajouter une note dès qu'une notion nouvelle pose souci en cours, plutôt qu'en fin de semaine — à chaud c'est plus fidèle.
-- Renommer un fichier **depuis Obsidian**, jamais depuis un gestionnaire de fichiers externe, pour que les liens entrants se mettent à jour automatiquement.
-- Repo laissé public pendant toute la recherche d'emploi — bascule en privé possible à tout moment sans rien casser, si besoin.
