@@ -39,4 +39,4 @@ Que ce soit `NULL` (SQL) ou `0` (Python), la valeur choisie pour le cas d'erreur
 
 ---
 🔗 Fait partie de la famille [[Aggregate before divide]]
-🔗 Vu dans [[26-intro-python|Intro Python]]
+🔗 Vu dans [[26_python_intro|Intro Python]]

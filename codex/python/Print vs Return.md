@@ -29,4 +29,4 @@ resultat_2 = calcul_v2(9, 3)   # n'affiche rien, mais resultat_2 = 3.0
 Ce n'est pas propre à Python : la distinction "afficher" vs "renvoyer une valeur réutilisable" existe partout où on écrit des fonctions — `console.log` vs `return` en JavaScript, `SELECT` vs une fonction SQL qui `RETURN`-e une valeur, etc. Le nom change, le principe reste le même.
 
 ---
-🔗 Vu dans [[26-intro-python|Intro Python]]
+🔗 Vu dans [[26_python_intro|Intro Python]]
