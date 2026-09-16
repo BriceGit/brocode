@@ -1,3 +1,15 @@
+---
+title: Requêtes API avec requests (Python)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Requêtes API avec requests (Python)
 
 `requests` est la librairie de référence en Python pour interroger une API : robuste, largement adoptée par la communauté, une seule fonction à retenir pour la quasi-totalité des cas d'usage.
@@ -61,5 +73,5 @@ data["id"]                 # accès à une clé précise
 Pour une API nécessitant une authentification, la clé/le token se place dans `headers` (`{"Authorization": "Bearer YOUR_API_TOKEN"}`), jamais dans l'URL en clair.
 
 ---
-🔗 Vu dans [[28-acces-donnees-api-scraping|Accès aux données]]
-🔗 Prolongé par [[Web scraping avec BeautifulSoup (Python)]] — même point de départ (`requests.get`), destination différente (parser du HTML plutôt que du JSON)
+🔗 Vu dans [[wagon2321/cours/28-acces-donnees-api-scraping|Accès aux données]]
+🔗 Prolongé par [[codex/python/Web scraping avec BeautifulSoup (Python)|Web scraping avec BeautifulSoup (Python)]] — même point de départ (`requests.get`), destination différente (parser du HTML plutôt que du JSON)

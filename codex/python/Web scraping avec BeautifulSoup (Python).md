@@ -1,3 +1,15 @@
+---
+title: Web scraping avec BeautifulSoup (Python)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Web scraping avec BeautifulSoup (Python)
 
 Le web scraping combine `requests` (récupérer le HTML brut d'une page) et `BeautifulSoup` (le parser pour en extraire des éléments précis).
@@ -68,5 +80,5 @@ Simuler un vrai navigateur via les `headers` (ex. `User-Agent: Mozilla ...`) peu
 Sauf si le scraping est un actif métier central, s'appuyer sur un outil existant plutôt que de développer une solution sur mesure pour des cibles difficiles (réseaux sociaux) reste souvent le choix le plus rationnel.
 
 ---
-🔗 Vu dans [[28-acces-donnees-api-scraping|Accès aux données]]
-🔗 Point de départ commun avec [[Requêtes API avec requests (Python)]] (`requests.get`), destination différente (HTML à parser plutôt que JSON)
+🔗 Vu dans [[wagon2321/cours/28-acces-donnees-api-scraping|Accès aux données]]
+🔗 Point de départ commun avec [[codex/python/Requêtes API avec requests (Python)|Requêtes API avec requests (Python)]] (`requests.get`), destination différente (HTML à parser plutôt que JSON)

@@ -1,35 +1,40 @@
 ---
-title: "Reboot SQL - Fivetran - Git - DBT"
+title: Reboot SQL - Fivetran - Git - DBT
 aliases:
-  - "SQL Introduction"
-  - "Relational Databases & BigQuery"
-  - "BigQuery Fundamentals"
+- Reboot SQL Fivetran Git dbt
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
-session: 24
 date: 2026-08-07
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "Relational Databases"
-  - "ERD"
-  - "joins"
-  - "subqueries"
+- SQL
+- BigQuery
+- Relational Databases
+- ERD
+- joins
+- subqueries
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - relational-databases
-  - dbt
-  - git
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+course_id: rebootsql-fivetran-git-dbt
+role_version: reference
+session_legacy: 24
+session_a_confirmer: true
 ---
 
-# NN - Reboot : SQL, Fivetran/API, Git & dbt
+# Reboot : SQL, Fivetran/API, Git & dbt
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **📅 Date :** 07 août 2026
 **🎯 Thème :** Session de révision ("reboot") transversale — consolidation SQL (fondamentaux → CRUD → agrégation → jointures → subqueries/CTE → window functions), rappel Fivetran/API, Git/GitHub et dbt avant le module Python
@@ -854,4 +859,4 @@ Cette session s'est terminée par un quiz interactif volontairement piégeux. Le
 
 - [ ] Clause "obligatoire" avec un `SELECT` + `WHERE` donnés — passage du quiz resté ambigu dans le transcript, à re-clarifier (voir note dans la section Pièges classiques)
 - [ ]  
-- [ ]  
+- [ ]

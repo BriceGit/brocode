@@ -1,0 +1,20 @@
+filters:
+  and:
+    - file.ext == "md"
+    - list(note.modeles_ia).contains(this)
+formulas:
+  titre: if(note.title, file.asLink(note.title), file.asLink())
+properties:
+  formula.titre:
+    displayName: Titre
+views:
+  - type: table
+    name: Travaux du modèle
+    order:
+      - formula.titre
+      - type
+      - role_version
+      - date
+    sort:
+      - property: date
+        direction: ASC

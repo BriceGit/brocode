@@ -1,3 +1,15 @@
+---
+title: Window Function vs GROUP BY et JOIN
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Window Function vs GROUP BY et JOIN
 
 Deux façons d'obtenir une agrégation "par groupe" — avec une différence fondamentale de granularité.
@@ -39,7 +51,7 @@ FROM circle_stock AS c
 INNER JOIN stock_model_type AS s USING (model_type)
 ```
 
-Les deux requêtes renvoient exactement la même information — la window function le fait juste **en une seule requête**, sans [[Nested Query vs CTE|CTE]] ni jointure supplémentaire.
+Les deux requêtes renvoient exactement la même information — la window function le fait juste **en une seule requête**, sans [[codex/sql/Nested Query vs CTE|CTE]] ni jointure supplémentaire.
 
 ## Le mot-clé qui trahit une window function
 
@@ -54,7 +66,7 @@ Les deux requêtes renvoient exactement la même information — la window funct
 
 Il assigne juste un numéro de ligne séquentiel selon l'ordre choisi (**ascendant par défaut**). Rien de plus.
 
-Pour filtrer sur ce numéro (ex. isoler la 1ère commande de chaque client avec `WHERE row_num = 1`), impossible de le faire directement dans la même requête : `WHERE` s'exécute **avant** que la window function soit évaluée. Il faut passer par une [[Nested Query vs CTE|CTE]].
+Pour filtrer sur ce numéro (ex. isoler la 1ère commande de chaque client avec `WHERE row_num = 1`), impossible de le faire directement dans la même requête : `WHERE` s'exécute **avant** que la window function soit évaluée. Il faut passer par une [[codex/sql/Nested Query vs CTE|CTE]].
 
 ## Window function + GROUP BY, dans la même requête ?
 
@@ -62,6 +74,10 @@ Pour filtrer sur ce numéro (ex. isoler la 1ère commande de chaque client avec 
 
 ## Voir aussi
 
-- [[Reboot SQL Fivetran Git dbt]] — chapitre source, section Window Functions
-- [[WHERE vs HAVING]] — même logique d'ordre d'exécution des clauses
-- [[Nested Query vs CTE]]
+- [[wagon2321/cours/24_rebootsql_fivetran_git_dbt|Reboot SQL Fivetran Git dbt]] — chapitre source, section Window Functions
+- [[codex/sql/WHERE vs HAVING|WHERE vs HAVING]] — même logique d'ordre d'exécution des clauses
+- [[codex/sql/Nested Query vs CTE|Nested Query vs CTE]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/09_udf_window_functions_sol|SQL — User-Defined Functions & Window Functions]]

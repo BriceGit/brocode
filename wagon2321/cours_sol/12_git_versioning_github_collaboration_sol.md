@@ -1,34 +1,44 @@
 ---
-title: "Git — Versioning, GitHub & Collaboration"
+title: Git — Versioning, GitHub & Collaboration
 aliases:
-  - "Git & GitHub"
-  - "Git Versioning"
-  - "Git Collaboration"
+- Git & GitHub
+- Git Versioning
+- Git Collaboration
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 12
 date: 2026-07-21
 topics:
-  - "Git"
-  - "GitHub"
-  - "Version Control"
-  - "Terminal"
-  - "Collaboration"
+- Git
+- GitHub
+- Version Control
+- Terminal
+- Collaboration
 tags:
-  - brocode
-  - wagon2321/cours
-  - git
-  - github
-  - version-control
-  - collaboration
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/ChatGPT Sol]]'
+attribution: confirmee
+language: fr
+course_id: git-versioning
+role_version: reference
+variantes:
+- '[[wagon2321/cours/11_git_versioning]]'
 ---
 
 # 📝 12 — Git · Versioning, GitHub & Collaboration
 
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/ChatGPT Sol|ChatGPT Sol]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+> **Variante conservée :** [[wagon2321/cours/11_git_versioning|Claude Sonnet]]
+
+
 > [!info] Navigation Brocode
-> **← Précédent :** [[10_data_pipelines_views_tables_sol|10 — Data Pipelines, Views & Tables]]
+> **← Précédent :** [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|10 — Data Pipelines, Views & Tables]]
 >
 > [!tip] Navigation Obsidian
 > Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
@@ -39,6 +49,20 @@ tags:
 >
 > Git permet de versionner le code, de conserver un historique exploitable et de collaborer sans multiplier les copies de fichiers. Ce chapitre pose les fondations du workflow utilisé ensuite avec dbt.
 
+> [!abstract]- Plan de lecture
+> - [[#🎯 Objectifs|🎯 Objectifs]]
+> - [[#Comprendre Git et le travail local|Comprendre Git et le travail local]]
+> - [[#Branches et collaboration|Branches et collaboration]]
+> - [[#Hygiène du dépôt et workflow|Hygiène du dépôt et workflow]]
+> - [[#Approfondissements et dépannage|Approfondissements et dépannage]]
+> - [[#Révision et prochaines étapes|Révision et prochaines étapes]]
+> - [[#📎 Annexe — source brute de la session|📎 Annexe — source brute de la session]]
+
+
+> [!tip] Fiches pour approfondir
+> [[codex/sheet/Granularité d'une table|Granularité d'une table]] · [[references/git_lexique|Lexique Git]] · [[references/terminal_bash|Terminal — Navigation et fichiers]]
+
+
 ## 🎯 Objectifs
 
 - Naviguer dans le terminal.
@@ -48,11 +72,13 @@ tags:
 - Comprendre `clone`, `push`, `pull`, Pull Request, code review et merge.
 - Comprendre les conflits et les bonnes pratiques collaboratives.
 - Savoir ce qui ne doit pas être versionné.
-- Relier Git au workflow [[13 — dbt · Introduction]].
+- Relier Git au workflow [[wagon2321/cours_sol/13_intro_dbt_sol|13 — dbt · Introduction]].
 
 ---
 
-## 🧭 1. Pourquoi le versioning ?
+## Comprendre Git et le travail local
+
+### 🧭 1. Pourquoi le versioning ?
 
 Sans Git, le versioning finit facilement ainsi :
 
@@ -88,9 +114,9 @@ un projet
 un historique de versions
 ```
 
-→ [[Version Control]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🧭 1. Pourquoi le versioning ?|Version Control]]
 
-## 🧠 2. Git ≠ GitHub
+### 🧠 2. Git ≠ GitHub
 
 **Git** est le système de contrôle de version. Il fonctionne localement et permet notamment de créer des commits, branches et historiques.
 
@@ -106,7 +132,7 @@ GitHub
 
 GitLab et Bitbucket jouent des rôles comparables.
 
-## 💻 3. Terminal — commandes essentielles
+### 💻 3. Terminal — commandes essentielles
 
 | Besoin | Commande |
 |---|---|
@@ -131,7 +157,7 @@ Dans le setup Windows du cours, Ubuntu tourne via WSL et les fichiers de travail
 
 > ⚠️ `rm -r` peut supprimer un dossier et son contenu. À utiliser avec prudence.
 
-## 🗃 4. Repository
+### 🗃 4. Repository
 
 Un **repository** (*repo*) est un projet suivi par Git.
 
@@ -163,9 +189,9 @@ projet existant distant
 → git clone <URL>
 ```
 
-→ [[Repository]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🗃 4. Repository|Repository]]
 
-## 🧠 5. Le modèle mental fondamental de Git
+### 🧠 5. Le modèle mental fondamental de Git
 
 ```text
 WORKING DIRECTORY
@@ -192,7 +218,7 @@ je modifie
 → je la publie éventuellement
 ```
 
-## 📝 6. Working Directory
+### 📝 6. Working Directory
 
 C'est l'état des fichiers sur lesquels tu travailles réellement dans VS Code.
 
@@ -206,7 +232,7 @@ sauvegarder
 git status
 ```
 
-## 🎭 7. Staging Area
+### 🎭 7. Staging Area
 
 Le staging sélectionne ce qui doit appartenir au prochain commit.
 
@@ -238,9 +264,9 @@ git add churn.sql
 
 Le staging sert donc à construire un commit cohérent.
 
-→ [[Staging Area]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🎭 7. Staging Area|Staging Area]]
 
-## 📸 8. Commit
+### 📸 8. Commit
 
 Le cours utilise l'image d'une **photo à un instant T**.
 
@@ -268,9 +294,9 @@ changes
 
 Un bon commit doit représenter une intention logique compréhensible.
 
-→ [[Commit]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#📸 8. Commit|Commit]]
 
-## 🧭 9. `git status` — le GPS
+### 🧭 9. `git status` — le GPS
 
 ```bash
 git status
@@ -286,7 +312,7 @@ permet notamment de voir :
 
 > 🧠 **Réflexe Brocode : perdu dans Git ? Commence par `git status`.**
 
-## 🔬 10. `git diff`
+### 🔬 10. `git diff`
 
 ```bash
 git diff
@@ -317,7 +343,7 @@ rouge → supprimé
 vert  → ajouté
 ```
 
-## 🕰 11. `git log`
+### 🕰 11. `git log`
 
 ```bash
 git log
@@ -343,7 +369,7 @@ add customer tests
 fix retention calculation
 ```
 
-## 🔁 12. Premier workflow à automatiser
+### 🔁 12. Premier workflow à automatiser
 
 ```text
 MODIFIER
@@ -374,7 +400,9 @@ git commit -m "Add churn analysis"
 git log --oneline
 ```
 
-## 🌿 13. Branches
+## Branches et collaboration
+
+### 🌿 13. Branches
 
 La branche principale est généralement appelée :
 
@@ -423,9 +451,9 @@ Forme pratique pour créer + basculer :
 git switch -c feature/customer-cleaning
 ```
 
-→ [[Branch]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🌿 13. Branches|Branch]]
 
-## 🧠 14. Une branche n'est pas une copie manuelle du dossier
+### 🧠 14. Une branche n'est pas une copie manuelle du dossier
 
 Pour débuter, l'image de la « copie de `main` » aide, mais Git ne duplique pas simplement le dossier.
 
@@ -443,7 +471,7 @@ git switch feature/customer-cleaning
 
 peut donc modifier ce que tu vois dans les mêmes fichiers locaux.
 
-## 📍 15. HEAD
+### 📍 15. HEAD
 
 `HEAD` indique où tu te situes actuellement dans l'historique, généralement via la branche active.
 
@@ -457,9 +485,9 @@ feature/churn
 
 Lorsque tu commits sur cette branche, son pointeur avance.
 
-→ [[HEAD]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#📍 15. HEAD|HEAD]]
 
-## 🧪 16. Pourquoi ne pas travailler directement sur `main` ?
+### 🧪 16. Pourquoi ne pas travailler directement sur `main` ?
 
 Dans le modèle du cours :
 
@@ -500,7 +528,7 @@ main
 >
 > `main → dev → features` est une stratégie possible, pas une règle universelle de Git. Les équipes peuvent adopter d'autres workflows.
 
-## 👥 17. Collaboration et conflits
+### 👥 17. Collaboration et conflits
 
 Git permet le travail parallèle, mais ne remplace pas la communication.
 
@@ -532,9 +560,9 @@ Workflow mental :
 7. terminer l'opération Git
 ```
 
-→ [[Merge Conflict]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#👥 17. Collaboration et conflits|Merge Conflict]]
 
-## 🌐 18. Local vs Remote
+### 🌐 18. Local vs Remote
 
 Les commits peuvent exister uniquement sur ton ordinateur.
 
@@ -554,7 +582,7 @@ push
 pull
 ```
 
-## 📥 19. `git clone`
+### 📥 19. `git clone`
 
 ```bash
 git clone <URL>
@@ -572,7 +600,7 @@ LOCAL
 
 C'est le scénario utilisé dans plusieurs kickstarts du Wagon.
 
-## 🔗 20. `origin`
+### 🔗 20. `origin`
 
 Pour relier un repository local à un remote :
 
@@ -594,9 +622,9 @@ Voir les remotes :
 git remote -v
 ```
 
-→ [[Remote Repository]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🌐 18. Local vs Remote|Remote Repository]]
 
-## ⬆️ 21. `git push`
+### ⬆️ 21. `git push`
 
 ```bash
 git push origin main
@@ -624,7 +652,7 @@ LOCAL
 REMOTE
 ```
 
-## ⬇️ 22. `git pull`
+### ⬇️ 22. `git pull`
 
 ```bash
 git pull
@@ -647,7 +675,7 @@ git switch main
 git pull
 ```
 
-## ⚠️ 23. Commit ≠ Push
+### ⚠️ 23. Commit ≠ Push
 
 Erreur classique :
 
@@ -679,7 +707,7 @@ COMMIT
 PUSH
 ```
 
-## 🌍 24. Créer un repository GitHub depuis un projet local
+### 🌍 24. Créer un repository GitHub depuis un projet local
 
 Le workflow montré dans le cours :
 
@@ -705,7 +733,7 @@ repo local
 repo GitHub
 ```
 
-## 🛰 25. `main` vs `origin/main`
+### 🛰 25. `main` vs `origin/main`
 
 Dans les outils comme Git Graph :
 
@@ -719,7 +747,7 @@ origin/main
 
 Quand les deux pointent sur le même commit, ils sont alignés à ce point.
 
-## 🔐 26. Pull Request
+### 🔐 26. Pull Request
 
 La **Pull Request (PR)** appartient au workflow collaboratif GitHub.
 
@@ -754,9 +782,9 @@ Elle permet d'ajouter :
 - demandes de modification ;
 - validation.
 
-→ [[Pull Request]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🔐 26. Pull Request|Pull Request]]
 
-## 🔎 27. Code review
+### 🔎 27. Code review
 
 Le reviewer peut vérifier :
 
@@ -780,7 +808,7 @@ Les tests sont-ils suffisants ?
 
 La code review relie directement Git aux pratiques de Data Quality.
 
-## 🔀 28. Merge
+### 🔀 28. Merge
 
 Le merge intègre les historiques.
 
@@ -795,9 +823,9 @@ Après intégration, la branche de feature peut généralement être supprimée.
 
 Les commits intégrés ne disparaissent pas pour autant.
 
-→ [[Merge]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🔀 28. Merge|Merge]]
 
-## ♻️ 29. Revert
+### ♻️ 29. Revert
 
 Le cours montre le principe de `revert`.
 
@@ -819,9 +847,11 @@ problème
 correction
 ```
 
-→ [[Revert]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#♻️ 29. Revert|Revert]]
 
-## 🚫 30. Ce qu'il ne faut pas traquer
+## Hygiène du dépôt et workflow
+
+### 🚫 30. Ce qu'il ne faut pas traquer
 
 Le cours insiste sur :
 
@@ -846,7 +876,7 @@ Warehouse / storage
 → contient les données
 ```
 
-## 🙈 31. `.gitignore`
+### 🙈 31. `.gitignore`
 
 Exemple :
 
@@ -869,9 +899,9 @@ credentials / gros datasets
 
 > ⚠️ Ajouter un secret déjà committé à `.gitignore` ne l'efface pas de l'historique. Un secret exposé doit être révoqué / rotaté.
 
-→ [[gitignore]]
+→ [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🙈 31. .gitignore|gitignore]]
 
-## 🔐 32. Secrets — règle absolue
+### 🔐 32. Secrets — règle absolue
 
 Ne jamais faire :
 
@@ -896,7 +926,7 @@ avec par exemple :
 
 Le secret vit hors du code versionné.
 
-## 🧪 33. Git et tests
+### 🧪 33. Git et tests
 
 Le récapitulatif du cours prépare dbt :
 
@@ -912,9 +942,9 @@ construction / déploiement
 
 Un test de clé primaire peut par exemple conditionner la suite d'un pipeline.
 
-Cette logique sera approfondie dans [[13 — dbt · Introduction]].
+Cette logique sera approfondie dans [[wagon2321/cours_sol/13_intro_dbt_sol|13 — dbt · Introduction]].
 
-## 🧱 34. Pourquoi Git est fondamental avec dbt
+### 🧱 34. Pourquoi Git est fondamental avec dbt
 
 Avec dbt, une transformation SQL devient un fichier de projet :
 
@@ -946,7 +976,7 @@ C'est le passage de :
 "je maintiens un projet analytique"
 ```
 
-## 🧠 35. BigQuery ↔ VS Code ↔ Git
+### 🧠 35. BigQuery ↔ VS Code ↔ Git
 
 Le cours présente le workflow suivant :
 
@@ -963,7 +993,7 @@ Git
 
 Avec dbt, ces fichiers deviennent ensuite les modèles structurés du projet.
 
-## 🔄 36. Workflow Git complet du cours
+### 🔄 36. Workflow Git complet du cours
 
 ```text
 1. git init OU git clone
@@ -997,7 +1027,7 @@ Avec dbt, ces fichiers deviennent ensuite les modèles structurés du projet.
 15. nouvelle branche
 ```
 
-## 🧪 37. Exemple complet — analyse de churn
+### 🧪 37. Exemple complet — analyse de churn
 
 ```bash
 git switch main
@@ -1053,7 +1083,9 @@ git pull
 
 Puis nouvelle tâche → nouvelle branche.
 
-## 🧬 38. Complément Brocode — un commit et son historique
+## Approfondissements et dépannage
+
+### 🧬 38. Complément Brocode — un commit et son historique
 
 L'image de la photo est excellente pour débuter.
 
@@ -1073,7 +1105,7 @@ Les commits possèdent également un identifiant basé sur un hash, souvent affi
 
 Cela permet d'identifier précisément un point de l'historique.
 
-## 🌿 39. Complément Brocode — une branche est surtout un pointeur
+### 🌿 39. Complément Brocode — une branche est surtout un pointeur
 
 ```text
 A ← B ← C ← D
@@ -1101,7 +1133,7 @@ A ← B ← C ← D ← E ← F
 
 Cette représentation explique pourquoi une branche est légère : Git ne crée pas simplement une deuxième copie physique complète du projet.
 
-## 📥 40. Complément Brocode — fetch vs pull
+### 📥 40. Complément Brocode — fetch vs pull
 
 Le cours se concentre sur `pull`.
 
@@ -1121,7 +1153,7 @@ pull
 → récupérer + intégrer
 ```
 
-## 🔀 41. Complément Brocode — merge vs Pull Request
+### 🔀 41. Complément Brocode — merge vs Pull Request
 
 ```text
 Merge
@@ -1133,7 +1165,7 @@ Pull Request
 
 On peut merger localement, mais le cours privilégie le workflow collaboratif par PR.
 
-## 🏭 42. Complément Brocode — branche et environnement
+### 🏭 42. Complément Brocode — branche et environnement
 
 Le cours assimile pédagogiquement :
 
@@ -1155,7 +1187,7 @@ environnements
 tests
 ```
 
-## 🧰 43. Git Graph dans VS Code
+### 🧰 43. Git Graph dans VS Code
 
 Le cours recommande **Git Graph** pour visualiser :
 
@@ -1183,7 +1215,7 @@ plusieurs commits
 intégration dans main
 ```
 
-## 🧠 44. Les erreurs mentales fréquentes
+### 🧠 44. Les erreurs mentales fréquentes
 
 | Erreur | Correction |
 |---|---|
@@ -1195,7 +1227,7 @@ intégration dans main
 | conflit = repository cassé | ambiguïté nécessitant une décision |
 | `.gitignore` efface un secret déjà committé | non |
 
-## 🧯 45. Quand on est perdu
+### 🧯 45. Quand on est perdu
 
 Observer avant d'agir :
 
@@ -1219,7 +1251,7 @@ Quel remote est configuré ?
 
 Éviter de lancer au hasard des commandes de reset, nettoyage ou force push.
 
-## ⚠️ 46. Commandes à traiter avec prudence
+### ⚠️ 46. Commandes à traiter avec prudence
 
 À ne pas exécuter mécaniquement sans comprendre leur portée :
 
@@ -1234,7 +1266,9 @@ Principe :
 
 > **Une commande qui supprime, force, reset ou nettoie mérite une vérification avant exécution.**
 
-## 🧾 47. Cheat sheet — Git local
+## Révision et prochaines étapes
+
+### 🧾 47. Cheat sheet — Git local
 
 | Besoin | Commande |
 |---|---|
@@ -1251,7 +1285,7 @@ Principe :
 | Changer de branche | `git switch nom` |
 | Créer + changer | `git switch -c nom` |
 
-## 🧾 48. Cheat sheet — Remote / GitHub
+### 🧾 48. Cheat sheet — Remote / GitHub
 
 | Besoin | Commande |
 |---|---|
@@ -1264,7 +1298,7 @@ Principe :
 | Récupérer + intégrer | `git pull` |
 | Récupérer sans intégrer directement | `git fetch` |
 
-## 🧾 49. Cheat sheet — vocabulaire
+### 🧾 49. Cheat sheet — vocabulaire
 
 | Terme | Modèle mental |
 |---|---|
@@ -1286,37 +1320,37 @@ Principe :
 | Revert | nouveau commit inverse |
 | `.gitignore` | exclusions de suivi |
 
-## 🎤 50. Questions d'entretien
+### 🎤 50. Questions d'entretien
 
-### Git vs GitHub ?
+#### Git vs GitHub ?
 
 Git est un système de contrôle de version distribué. GitHub héberge des repositories Git et fournit des fonctionnalités collaboratives.
 
-### `git add` vs `git commit` ?
+#### `git add` vs `git commit` ?
 
 `git add` sélectionne l'état des changements pour le prochain commit. `git commit` enregistre ce contenu dans l'historique local.
 
-### Commit vs push ?
+#### Commit vs push ?
 
 Commit crée une version locale ; push la publie vers un remote.
 
-### Pourquoi une branche ?
+#### Pourquoi une branche ?
 
 Pour isoler une évolution, travailler en parallèle et permettre test/review avant intégration.
 
-### Qu'est-ce qu'une Pull Request ?
+#### Qu'est-ce qu'une Pull Request ?
 
 Une proposition d'intégration entre branches avec un espace de discussion, review et validation.
 
-### Qu'est-ce qu'un merge conflict ?
+#### Qu'est-ce qu'un merge conflict ?
 
 Une situation où Git ne peut pas combiner automatiquement des modifications concurrentes et demande une décision humaine.
 
-### Pourquoi committer régulièrement ?
+#### Pourquoi committer régulièrement ?
 
 Pour créer des unités de changement plus petites, compréhensibles, testables et plus faciles à corriger ou annuler.
 
-## 🧪 51. Exercice mental — où vit le changement ?
+### 🧪 51. Exercice mental — où vit le changement ?
 
 Tu modifies et sauvegardes `orders.sql` :
 
@@ -1354,7 +1388,7 @@ git push
 Remote Repository
 ```
 
-## 🧠 52. Les 15 idées à retenir
+### 🧠 52. Les 15 idées à retenir
 
 1. **Git ≠ GitHub.**
 2. Git versionne le code et son historique.
@@ -1372,7 +1406,7 @@ Remote Repository
 14. Secrets et gros datasets n'ont généralement pas leur place dans Git.
 15. Git devient une fondation directe du workflow dbt.
 
-## 🧠 53. Modèle mental final
+### 🧠 53. Modèle mental final
 
 ```text
                      GITHUB
@@ -1404,24 +1438,24 @@ Remote Repository
 
 > **Je travaille localement sur une branche, je sélectionne des changements cohérents, je les enregistre dans des commits, je publie la branche, je fais relire les changements, je les intègre dans la branche de référence, puis je resynchronise mon environnement local.**
 
-## 🔗 54. Connexions Brocode
+### 🔗 54. Connexions Brocode
 
-- [[13 — dbt · Introduction]]
-- [[Version Control]]
-- [[Repository]]
-- [[Commit]]
-- [[Staging Area]]
-- [[Branch]]
-- [[HEAD]]
-- [[Remote Repository]]
-- [[Pull Request]]
-- [[Merge]]
-- [[Merge Conflict]]
-- [[Revert]]
-- [[gitignore]]
-- [[Granularité]]
+- [[wagon2321/cours_sol/13_intro_dbt_sol|13 — dbt · Introduction]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🧭 1. Pourquoi le versioning ?|Version Control]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🗃 4. Repository|Repository]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#📸 8. Commit|Commit]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🎭 7. Staging Area|Staging Area]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🌿 13. Branches|Branch]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#📍 15. HEAD|HEAD]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🌐 18. Local vs Remote|Remote Repository]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🔐 26. Pull Request|Pull Request]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🔀 28. Merge|Merge]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#👥 17. Collaboration et conflits|Merge Conflict]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#♻️ 29. Revert|Revert]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol#🙈 31. .gitignore|gitignore]]
+- [[codex/sheet/Granularité d'une table|Granularité]]
 
-## ✅ 55. Actions post-session
+### ✅ 55. Actions post-session
 
 - [ ] Installer **Git Graph** dans VS Code.
 - [ ] Répéter les commandes de navigation terminal.
@@ -1432,7 +1466,7 @@ Remote Repository
 - [ ] Ne jamais committer de credentials.
 - [ ] Écrire des messages de commit explicites.
 
-## 🏁 56. Résumé en une phrase
+### 🏁 56. Résumé en une phrase
 
 > **Git transforme un dossier de code en historique structuré : on travaille dans le Working Directory, on sélectionne avec le staging, on enregistre avec des commits, on isole les évolutions dans des branches, puis GitHub permet de publier, relire et intégrer ces changements en équipe.**
 
@@ -1459,25 +1493,25 @@ La transcription complète et les notes de session ont servi de base à ce chapi
 
 #### 📝 **NOTES**
 
-![Capture d’écran 2026-07-21 à 09.12.11.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.12.11.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 09.12.11.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.12.11.png`
 
-![Capture d’écran 2026-07-21 à 09.18.53.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.18.53.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 09.18.53.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.18.53.png`
 
-![Capture d’écran 2026-07-21 à 09.19.04.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.19.04.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 09.19.04.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.19.04.png`
 
-![Capture d’écran 2026-07-21 à 09.19.39.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.19.39.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 09.19.39.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.19.39.png`
 
-![Capture d’écran 2026-07-21 à 09.23.06.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.23.06.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 09.23.06.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.23.06.png`
 
-![Capture d’écran 2026-07-21 à 09.24.50.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.24.50.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 09.24.50.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_09.24.50.png`
 
-![Capture d’écran 2026-07-21 à 10.01.58.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.01.58.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 10.01.58.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.01.58.png`
 
-![Capture d’écran 2026-07-21 à 10.04.38.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.04.38.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 10.04.38.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.04.38.png`
 
-![Capture d’écran 2026-07-21 à 10.14.32.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.14.32.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 10.14.32.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.14.32.png`
 
-![Capture d’écran 2026-07-21 à 10.14.56.png](%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.14.56.png)
+*Capture absente de cet export : Capture d’écran 2026-07-21 à 10.14.56.png.* Chemin source : `%F0%9F%93%9D%20#12%20-%20Git%20and%20versioning/Capture_decran_2026-07-21_a_10.14.56.png`
 
 #### 💡 **Ce que j’ai retenu**
 

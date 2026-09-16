@@ -1,47 +1,54 @@
 ---
-title: "KPI Advanced — Funnels, cohortes, segmentation & KPI marketing"
+title: KPI Advanced — Funnels, cohortes, segmentation & KPI marketing
 aliases:
-  - "KPI Advanced"
-  - "B2C vs B2B"
-  - "Funnel d'acquisition"
-  - "Funnel d'expansion"
-  - "Analyse de cohorte"
-  - "Segmentation RFM"
-  - "CAC, CPC, ROAS"
-  - "KPI CRM email"
-  - "Vanity metric"
+- KPI Advanced
+- B2C vs B2B
+- Funnel d'acquisition
+- Funnel d'expansion
+- Analyse de cohorte
+- Segmentation RFM
+- CAC, CPC, ROAS
+- KPI CRM email
+- Vanity metric
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 4
 date: 2026-07-09
-language: "Formules Google Sheets"
-database: "n/a — tableur (Google Sheets)"
+language: fr
+database: n/a — tableur (Google Sheets)
 topics:
-  - "KPI"
-  - "B2C / B2B"
-  - "Funnel"
-  - "Cohortes & rétention"
-  - "Segmentation"
-  - "RFM"
-  - "CRM & emailing"
-  - "Media & acquisition payante"
-  - "NPS & CSAT"
-  - "Dashboards dynamiques"
-  - "Greenweez"
+- KPI
+- B2C / B2B
+- Funnel
+- Cohortes & rétention
+- Segmentation
+- RFM
+- CRM & emailing
+- Media & acquisition payante
+- NPS & CSAT
+- Dashboards dynamiques
+- Greenweez
 tags:
-  - brocode
-  - wagon2321/cours
-  - kpi
-  - marketing-analytics
-  - business-analysis
-  - google-sheets
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: Formules Google Sheets
+course_id: KPI-Advanced
+role_version: reference
 ---
 
 # KPI Advanced
 
-> Suite directe de [[KPI Basics]]. La session précédente disait *ce qu'est* un KPI ; celle-ci dit **d'où il vient**. Réponse : du modèle économique, de la maturité de la boîte, et de l'équipe qui le porte. On descend ensuite dans les KPI concrets de trois métiers (média, CRM, satisfaction), plus les deux outils d'analyse structurants de tout le métier : **le funnel** et **la cohorte**.
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
+
+> Suite directe de [[wagon2321/cours/03_KPI_Basics|KPI Basics]]. La session précédente disait *ce qu'est* un KPI ; celle-ci dit **d'où il vient**. Réponse : du modèle économique, de la maturité de la boîte, et de l'équipe qui le porte. On descend ensuite dans les KPI concrets de trois métiers (média, CRM, satisfaction), plus les deux outils d'analyse structurants de tout le métier : **le funnel** et **la cohorte**.
 
 **Date :** 9 juillet 2026
 **Format :** cours du matin (2 parties enchaînées) puis challenges toute la journée
@@ -176,7 +183,7 @@ Comme Data Analyst, trois configurations possibles :
 3. **Dans une très petite boîte** : au service de quasiment tous les services
 
 > [!important] Qui définit les KPI — et ce qu'on attend de toi
-> *« C'est toujours la personne qui est leader de l'équipe, ou au moins une personne senior. Vous pouvez faire des propositions, mais ce n'est pas vous qui décidez. »* — cohérent avec [[KPI Basics|le cours précédent]].
+> *« C'est toujours la personne qui est leader de l'équipe, ou au moins une personne senior. Vous pouvez faire des propositions, mais ce n'est pas vous qui décidez. »* — cohérent avec [[wagon2321/cours/03_KPI_Basics|le cours précédent]].
 >
 > **Ce qu'on attend de toi, c'est de savoir les calculer, et de les calculer juste.** Et l'intervenant ajoute une pratique concrète et sous-estimée : *« il faut avoir une connaissance des valeurs théoriques qu'on est censé obtenir pour chaque KPI, ça évite pas mal de problèmes »*.
 >
@@ -336,7 +343,7 @@ L'exemple qui rend le M indispensable : *« si vous venez tous les jours mais ac
 - **Produits d'appel** : une promo agressive sur un produit pour faire venir en magasin et faire acheter le reste (les glaces en été, typiquement)
 
 > [!warning] Deux limites à garder en tête
-> **Volume.** L'intervenant est explicite : croiser rétention × segmentation fine exige une base suffisante. *« Si tu as 1 000 nouveaux clients, tu ne feras pas une segmentation aussi précise. »* Netflix, avec potentiellement 100 à 200 k nouveaux clients par mois, peut segmenter par genre ; une PME analysera ses nouveaux clients en bloc. Chaque croisement divise l'effectif — et un taux sur un petit effectif ne veut rien dire (cf. [[Taux sur variable binaire]]).
+> **Volume.** L'intervenant est explicite : croiser rétention × segmentation fine exige une base suffisante. *« Si tu as 1 000 nouveaux clients, tu ne feras pas une segmentation aussi précise. »* Netflix, avec potentiellement 100 à 200 k nouveaux clients par mois, peut segmenter par genre ; une PME analysera ses nouveaux clients en bloc. Chaque croisement divise l'effectif — et un taux sur un petit effectif ne veut rien dire (cf. [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]]).
 >
 > **Légalité.** Question posée en séance sur la segmentation par genre, réponse honnête : *« Déjà, est-ce que c'est légal ? Je ne sais pas. »* En Europe, le RGPD encadre strictement les données personnelles, et le genre, l'âge ou la localisation ne se traitent pas comme un montant d'achat. **En banque, ce sujet est un point de contrôle en soi** — ne jamais segmenter sur un critère sensible sans validation juridique/conformité.
 
@@ -504,7 +511,7 @@ C'est le point le plus important de la section, et l'énoncé du cours est tromp
 
 **Ce qui a été dit :** *« un ROAS de 3, ça veut dire que pour 1 € investi on a récupéré 3 €, dont l'euro investi, donc on a fait au moins 2 € de marge. »*
 
-**C'est faux.** Le ROAS est calculé sur le **chiffre d'affaires**. Les 2 € restants ne sont pas de la marge : il faut encore payer le produit, la logistique, l'expédition. Voir [[Marge brute, marge opérationnelle, marge nette]].
+**C'est faux.** Le ROAS est calculé sur le **chiffre d'affaires**. Les 2 € restants ne sont pas de la marge : il faut encore payer le produit, la logistique, l'expédition. Voir [[codex/kpi/Marge brute, marge opérationnelle, marge nette|Marge brute, marge opérationnelle, marge nette]].
 
 **Le calcul juste :**
 
@@ -579,7 +586,7 @@ Emails envoyés  ──ouverture──▶  Ouvertures  ──CTR──▶  Clics
 > [!important] Le CTR est l'indicateur le plus important — avec une condition
 > *« Pour moi c'est l'indicateur le plus important sur l'email. Mais si on a un taux d'ouverture à 2 % et un super CTR, ce n'est pas ouf. »*
 >
-> Autrement dit : **le CTR est un taux conditionnel**. Il mesure la pertinence du contenu *pour ceux qui ont ouvert* — un public auto-sélectionné. Sur une base de 2 % d'ouvreurs, un CTR de 50 % ne représente que 1 % des destinataires. C'est exactement le piège du dénominateur de [[Taux sur variable binaire]] : toujours afficher le CTR **à côté** du taux d'ouverture, jamais seul.
+> Autrement dit : **le CTR est un taux conditionnel**. Il mesure la pertinence du contenu *pour ceux qui ont ouvert* — un public auto-sélectionné. Sur une base de 2 % d'ouvreurs, un CTR de 50 % ne représente que 1 % des destinataires. C'est exactement le piège du dénominateur de [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]] : toujours afficher le CTR **à côté** du taux d'ouverture, jamais seul.
 
 > [!note] Contextualiser par type de campagne
 > Une campagne **promotionnelle** et une campagne **informationnelle** n'ont pas les mêmes attentes — pas la même conversion, pas le même revenu/mille. Les comparer directement n'a aucun sens. Le bon réflexe : **regrouper les campagnes par type et ne comparer qu'à l'intérieur d'un groupe.**
@@ -618,13 +625,13 @@ Point important glissé en fin de section : à partir des signaux comportementau
 | SaaS B2B | Nombre d'utilisateurs actifs dans l'entreprise cliente, fréquence de connexion, fonctionnalités utilisées |
 
 > [!note] C'est exactement ton projet portfolio
-> Ce paragraphe décrit un modèle de **scoring de churn** : features comportementales → probabilité de départ → action ciblée. C'est le passage du descriptif au prédictif dont parle [[Reporting vs analyse ad hoc]], et c'est la brique qui différencie un portfolio banking d'un dashboard de plus.
+> Ce paragraphe décrit un modèle de **scoring de churn** : features comportementales → probabilité de départ → action ciblée. C'est le passage du descriptif au prédictif dont parle [[codex/kpi/Reporting vs analyse ad hoc|Reporting vs analyse ad hoc]], et c'est la brique qui différencie un portfolio banking d'un dashboard de plus.
 
 ---
 
 ## 😀 8. KPI Satisfaction — NPS & CSAT
 
-Le **NPS** est traité en détail dans sa fiche dédiée : [[NPS (Net Promoter Score)]]. Ce que cette session ajoute :
+Le **NPS** est traité en détail dans sa fiche dédiée : [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]]. Ce que cette session ajoute :
 
 ### Segmenter le NPS
 
@@ -686,7 +693,7 @@ Un des concepts les plus réutilisables de la session, et il s'applique bien au-
 > [!tip] Deux raffinements au test, non dits en cours
 > **1. Corrélation ≠ causalité.** Le nombre d'impressions corrèle avec le CA — parce que les deux montent avec le budget. Ça n'en fait pas un bon KPI de pilotage. Le vrai critère est : *cet indicateur est-il **actionnable** indépendamment ?*
 >
-> **2. Les cumuls sont presque toujours des vanity metrics.** Tout indicateur qui ne peut mathématiquement pas baisser (total d'inscrits depuis le lancement, CA cumulé, nombre de clients « jamais ») ne peut pas signaler un problème. Un KPI doit pouvoir devenir rouge — sinon il ne sert à rien. Cf. [[KPI vs métrique]].
+> **2. Les cumuls sont presque toujours des vanity metrics.** Tout indicateur qui ne peut mathématiquement pas baisser (total d'inscrits depuis le lancement, CA cumulé, nombre de clients « jamais ») ne peut pas signaler un problème. Un KPI doit pouvoir devenir rouge — sinon il ne sert à rien. Cf. [[codex/kpi/KPI vs métrique|KPI vs métrique]].
 
 ---
 
@@ -710,7 +717,7 @@ Démo de fin de séance, en réponse aux questions. La technique : un **menu dé
 =FILTER(A5:F; A5:A = $C$4)
 ```
 
-Où `$C$4` est la cellule du menu déroulant. La plage est **ouverte** (`A5:F`, pas `A5:F200`) pour absorber les nouvelles lignes — même principe qu'`IMPORTRANGE` dans [[Google Sheets]].
+Où `$C$4` est la cellule du menu déroulant. La plage est **ouverte** (`A5:F`, pas `A5:F200`) pour absorber les nouvelles lignes — même principe qu'`IMPORTRANGE` dans [[wagon2321/cours/02-google-sheets|Google Sheets]].
 
 ### Étape 3 — Le TCD piloté par le menu
 
@@ -730,7 +737,7 @@ Le TCD se recalcule à chaque changement du menu déroulant.
 | `COUNTA` | **Toute valeur non vide** | Une colonne de texte (nom de bloc, libellé…) |
 
 > [!tip] Le réflexe du choix de colonne
-> Pour compter des lignes, choisir **une colonne sans valeur vide** — sinon le comptage est silencieusement faux. Même famille de piège que celui d'`AVERAGE` sur du binaire ([[Taux sur variable binaire]]) : la fonction ignore les vides sans rien signaler.
+> Pour compter des lignes, choisir **une colonne sans valeur vide** — sinon le comptage est silencieusement faux. Même famille de piège que celui d'`AVERAGE` sur du binaire ([[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]]) : la fonction ignore les vides sans rien signaler.
 
 ### Étape 5 — Le pourcentage, sans formule
 
@@ -744,7 +751,7 @@ Dans le TCD, sur la valeur : `Afficher en tant que` → **% du total**.
 
 Remarque faite en direct : sur un tableau à **une seule valeur par ligne**, le « % de la ligne » donne 100 % partout — logique, et un bon rappel qu'il faut savoir dans quel sens son tableau est construit.
 
-> [!important] Encore [[Aggregate before divide]]
+> [!important] Encore [[codex/sheet/Aggregate before divide|Aggregate before divide]]
 > Cette option calcule `valeur du groupe / total`, donc **après agrégation**. C'est le calcul correct, et il est fait par l'outil sans qu'on écrive de formule — donc sans risque de se tromper. À chaque fois qu'un ratio par rapport à un total est demandé, chercher d'abord si l'outil sait le faire nativement.
 
 ### Étape 6 — Le graphique
@@ -777,7 +784,7 @@ Toute cette session est marketing B2C. Ce qui se transpose, ce sont les **struct
 | **Segmentation RFM** | Segmentation par **tranche d'AuM**, fréquence d'interaction, produits détenus |
 | **Cross-sell / upsell** | **Taux de détention produits par client** — le KPI de développement du portefeuille |
 | **Vanity metric** | Nombre de comptes ouverts (vs AuM effectivement transférés), nombre de RDV (vs mandats signés) |
-| **NPS / CSAT** | Très utilisés en wealth management, sur de petits échantillons → cf. les précautions de [[NPS (Net Promoter Score)]] |
+| **NPS / CSAT** | Très utilisés en wealth management, sur de petits échantillons → cf. les précautions de [[codex/kpi/NPS (Net Promoter Score)\|NPS (Net Promoter Score)]] |
 
 > [!tip] Ce qui se raconte le mieux en entretien
 > **L'analyse de cohorte.** C'est un outil que peu de candidats juniors maîtrisent vraiment, il est directement transposable à l'attrition d'AuM, et il démontre une compétence technique (pivot par période relative) doublée d'une lecture business (plateau, qualité d'acquisition). Bien plus différenciant qu'une liste de KPI marketing.
@@ -791,7 +798,7 @@ La ligne **CPC** indique `8,304 / 29,844 = 0.27€`. Les deux lignes suivantes (
 → Illustration parfaite du conseil de l'intervenant sur les ordres de grandeur : c'est exactement le type d'erreur qu'un contrôle de cohérence attrape.
 
 **2. ⚠️ Le ROAS n'est pas exprimé en euros**
-La slide affiche `2.79€`. Le ROAS est un **ratio sans unité** (des euros divisés par des euros). On l'écrit `2,79` ou `2,79 ×`, jamais `2,79 €`. Même famille d'erreur que « NPS de 25 % » — cf. [[NPS (Net Promoter Score)]]. Ça paraît anecdotique, mais afficher une unité fausse sur un dashboard est le meilleur moyen de faire douter de tout le reste.
+La slide affiche `2.79€`. Le ROAS est un **ratio sans unité** (des euros divisés par des euros). On l'écrit `2,79` ou `2,79 ×`, jamais `2,79 €`. Même famille d'erreur que « NPS de 25 % » — cf. [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]]. Ça paraît anecdotique, mais afficher une unité fausse sur un dashboard est le meilleur moyen de faire douter de tout le reste.
 
 **3. ⚠️ « CTR » désigne deux choses différentes dans le même cours** — le point le plus piégeux
 - Slide **Média** : `CTR = Clics / Impressions` → **0,85 %**
@@ -856,18 +863,18 @@ Pour transparence : l'attribution (last-click / multi-touch), la relation `CPC =
 
 ## 🔗 Liens
 
-- Chapitre précédent : [[03_KPI_Basics]] — définition du KPI, méthodologie en 7 étapes, marges, shortage rate
-- [[02-google-sheets]] — TCD, `FILTER`, validation des données
-- [[KPI vs métrique]] — le test « et alors ? », dont les vanity metrics sont le cas limite
-- [[Taux sur variable binaire]] — le piège du dénominateur, décliné ici sur le CTR conditionnel
-- [[NPS (Net Promoter Score)]] — la fiche complète, complétée ici par la segmentation et le CSAT
-- [[Marge brute, marge opérationnelle, marge nette]] — pourquoi le ROAS se lit à travers le taux de marge
-- [[Reporting vs analyse ad hoc]] — la cohorte est de l'ad hoc, le dashboard média est du reporting
-- [[Aggregate before divide]] — le « % du total » d'un TCD est la version outillée du principe
+- Chapitre précédent : [[wagon2321/cours/03_KPI_Basics|03_KPI_Basics]] — définition du KPI, méthodologie en 7 étapes, marges, shortage rate
+- [[wagon2321/cours/02-google-sheets|02-google-sheets]] — TCD, `FILTER`, validation des données
+- [[codex/kpi/KPI vs métrique|KPI vs métrique]] — le test « et alors ? », dont les vanity metrics sont le cas limite
+- [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]] — le piège du dénominateur, décliné ici sur le CTR conditionnel
+- [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]] — la fiche complète, complétée ici par la segmentation et le CSAT
+- [[codex/kpi/Marge brute, marge opérationnelle, marge nette|Marge brute, marge opérationnelle, marge nette]] — pourquoi le ROAS se lit à travers le taux de marge
+- [[codex/kpi/Reporting vs analyse ad hoc|Reporting vs analyse ad hoc]] — la cohorte est de l'ad hoc, le dashboard média est du reporting
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — le « % du total » d'un TCD est la version outillée du principe
 
 **Fiches-concept à créer** (wikilinks pas encore résolus) :
-- [[Analyse de cohorte et courbe de rétention]]
-- [[Funnel de conversion]]
-- [[CAC, LTV et unit economics]]
-- [[Vanity metric]]
-- [[Segmentation RFM]] *(existe peut-être déjà côté projet Olist — à vérifier avant création)*
+- [[codex/a-creer/Analyse de cohorte et courbe de rétention|Analyse de cohorte et courbe de rétention]]
+- [[codex/a-creer/Funnel de conversion|Funnel de conversion]]
+- [[codex/a-creer/CAC, LTV et unit economics|CAC, LTV et unit economics]]
+- [[wagon2321/cours/04_KPI_Advanced|Vanity metric]]
+- [[projets-perso/rfm-segmentation-olist|Segmentation RFM]] *(existe peut-être déjà côté projet Olist — à vérifier avant création)*

@@ -1,4 +1,28 @@
+---
+title: NTILE — Découpage en quartiles, tertiles et autres N-tiles
+type: concept
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: ntile-quartiles-tertiles
+role_version: reference
+tags:
+  - brocode
+  - wagon2321/complements
+aliases: []
+date: 2026-07-16
+---
+
 # NTILE — Découpage en quartiles, tertiles et autres N-tiles
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 ## À quoi ça sert
 

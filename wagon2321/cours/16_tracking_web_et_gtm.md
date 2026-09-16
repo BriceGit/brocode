@@ -1,4 +1,33 @@
+---
+title: '📝 #17 — Tracking Web & Google Tag Manager (GTM)'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-28
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: tracking-web-et-gtm
+role_version: reference
+session: 17
+numero_fichier_legacy: 16
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Tracking
+- Google Tag Manager
+---
+
 # 📝 #17 — Tracking Web & Google Tag Manager (GTM)
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 28 juillet 2026
 **Thème** : Tracking web (théorie) + prise en main de GTM (pratique)

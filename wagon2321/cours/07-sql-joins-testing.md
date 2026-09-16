@@ -1,33 +1,42 @@
 ---
-title: "SQL — JOINs & Testing"
+title: SQL — JOINs & Testing
 aliases:
-  - "SQL JOINs"
-  - "JOINs & Testing"
-  - "SQL Joins and Data Quality"
+- SQL JOINs — Claude Sonnet
+- JOINs & Testing — Claude Sonnet
+- SQL Joins and Data Quality — Claude Sonnet
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 7
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "JOINs"
-  - "Granularity"
-  - "Data Quality"
+- SQL
+- BigQuery
+- JOINs
+- Granularity
+- Data Quality
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - joins
-  - data-quality
-  - granularity
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+date: 2026-07-14
+course_id: sql-joins-testing
+role_version: variante
+reference: '[[wagon2321/cours_sol/07_joins_and_testing_sol]]'
 ---
 
 # 📝 7 — Jointures SQL : INNER/LEFT/RIGHT/FULL OUTER, granularité & test de clé primaire
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/07_joins_and_testing_sol|SQL — JOINs & Testing]]
+
 
 **Date** : 14 juillet 2026
 **Thème** : Clés primaires/étrangères, syntaxe `JOIN` (`ON` vs `USING`), les 5 types de jointures, jointures sur plusieurs colonnes/plusieurs tables, granularité et duplicatas, test de clé primaire et autres contrôles qualité, aperçu `UNION`
@@ -37,7 +46,7 @@ tags:
 
 ## 🎯 Contexte de la session
 
-- Suite directe du [#6 — SQL : agrégations, dates & chaînes](06-sql-aggregation-date-string-functions.md), qui annonçait ce chapitre dédié aux jointures.
+- Suite directe du [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|#6 — SQL : agrégations, dates & chaînes]], qui annonçait ce chapitre dédié aux jointures.
 - Journée dense en allers-retours oraux et en exercices collectifs sur le vif (beaucoup de "à votre avis, qu'est-ce qui se passe ?") — ce qui explique la note de compréhension basse sur le moment. Le contenu, une fois remis à plat, est en réalité assez linéaire.
 - Structure de la journée : (1) clés primaires/étrangères → syntaxe de base → types de jointures, (2) pause, (3) test de clé primaire et contrôles qualité, (4) le piège classique de la duplication par jointure, illustré par un cas concret de coûts logistiques.
 - Éléments explicitement renvoyés au lendemain : dédoublonnage/partitionnement pour corriger les duplicatas de jointure, et `UNION` en détail.
@@ -154,7 +163,7 @@ Rapatrie l'ensemble des lignes des deux tables, matchées ou non — grosse tabl
 
 ### CROSS JOIN — produit cartésien
 
-Rarement utilisé en tant que tel, mais un cas d'usage réel et fréquent : construire une **grille complète** sans trous, par exemple toutes les combinaisons `date × magasin` ou `date × produit` sur une période, pour être sûr d'avoir une ligne (même à 0) partout où on en attend une — utile en amont d'un dashboard de suivi (et c'est justement ce type de grille "sans trou" qui sert de base à une table de calendrier complète, voir [#23](23-power-bi-2.md)).
+Rarement utilisé en tant que tel, mais un cas d'usage réel et fréquent : construire une **grille complète** sans trous, par exemple toutes les combinaisons `date × magasin` ou `date × produit` sur une période, pour être sûr d'avoir une ligne (même à 0) partout où on en attend une — utile en amont d'un dashboard de suivi (et c'est justement ce type de grille "sans trou" qui sert de base à une table de calendrier complète, voir [[wagon2321/cours/22_power_bi_2|#23]]).
 
 ---
 
@@ -251,7 +260,7 @@ HAVING nb_id > 1
 - Une/des ligne(s) retournée(s) → `id` **n'est pas** une clé primaire.
 - Exemple concret : test sur `sales.order_id` → `order_id` **n'est pas** une clé primaire (`451` apparaît 2 fois, `650` apparaît 3 fois — cohérent avec le grain "une ligne par produit" vu plus haut).
 - Bonne pratique : `COUNT(*)` plutôt que `COUNT(colonne)`, pour compter toutes les lignes sans exception liée à d'éventuels NULL dans une colonne spécifique.
-- Recommandation explicite du cours : **sauvegarder cette requête telle quelle** et se contenter de changer le nom de table/colonne à chaque nouveau test — c'est littéralement le brouillon manuel des tests génériques `unique` et `not_null` qu'on retrouvera automatisés dans dbt (#9, dbt intro, et #14, dbt advanced).
+- Recommandation explicite du cours : **sauvegarder cette requête telle quelle** et se contenter de changer le nom de table/colonne à chaque nouveau test — c'est littéralement le brouillon manuel des tests génériques `unique` et `not_null` qu'on retrouvera automatisés dans dbt (#13, dbt intro, et #14, dbt advanced).
 
 ### Autres contrôles de qualité
 
@@ -264,7 +273,7 @@ HAVING nb_id > 1
 
 ### ⚠️ Correction : l'ordre d'exécution des clauses SQL
 
-Les notes de session indiquent l'ordre `FROM → JOIN → GROUP BY → WHERE → HAVING → SELECT`, ce qui est **incorrect** (et d'ailleurs contredit par le reste de la même session : "le `WHERE` filtre avant l'agrégation, le `HAVING` filtre après"). L'ordre réel, déjà posé au [#6](06-sql-aggregation-date-string-functions.md), est :
+Les notes de session indiquent l'ordre `FROM → JOIN → GROUP BY → WHERE → HAVING → SELECT`, ce qui est **incorrect** (et d'ailleurs contredit par le reste de la même session : "le `WHERE` filtre avant l'agrégation, le `HAVING` filtre après"). L'ordre réel, déjà posé au [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|#6]], est :
 
 ```
 FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT
@@ -281,14 +290,14 @@ C'est cet ordre qui explique, entre autres, pourquoi un alias défini dans `SELE
 - Les erreurs peuvent apparaître à **chaque** étape (extraction, cleaning, enrichissement, jointure) et se propagent **en cascade** : une erreur non détectée en bronze se retrouve amplifiée en gold — d'où l'intérêt des tests de qualité vus ci-dessus, à chaque étape plutôt qu'une fois à la fin.
 - Le travail à plusieurs est lui-même une source d'erreur (mauvaise jointure, mauvais rapatriement d'un collègue) — une pipeline se maintient dans la durée, elle ne se construit pas une fois pour toutes.
 
-> Cette architecture Bronze/Silver/Gold est l'équivalent conceptuel exact des couches staging/intermediate/marts de dbt (#9) — même logique, vocabulaire différent selon le contexte (Medallion Architecture vs dbt).
+> Cette architecture Bronze/Silver/Gold est l'équivalent conceptuel exact des couches staging/intermediate/marts de dbt (#13) — même logique, vocabulaire différent selon le contexte (Medallion Architecture vs dbt).
 
 ---
 
 ## 📎 Aperçus rapides (détaillés dans une session ultérieure)
 
 - **`UNION`** : contrairement à une jointure qui ajoute des colonnes à l'horizontale, `UNION` empile des lignes à la verticale — utile pour fusionner deux tables de même structure (ex. deux mois d'inventaire) en une seule.
-- **ERD** : rappel de la notion vue au [#5](05-intro-sql-bigquery.md) — un schéma relationnel permet de visualiser quelles colonnes relier avant d'écrire une jointure, plutôt que de le découvrir en lisant les données ligne par ligne.
+- **ERD** : rappel de la notion vue au [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|#5]] — un schéma relationnel permet de visualiser quelles colonnes relier avant d'écrire une jointure, plutôt que de le découvrir en lisant les données ligne par ligne.
 
 ---
 
@@ -304,11 +313,11 @@ C'est cet ordre qui explique, entre autres, pourquoi un alias défini dans `SELE
 
 ## 🔗 Liens avec d'autres notions
 
-- Le test manuel de clé primaire (`GROUP BY id HAVING COUNT(*) > 1`) est littéralement le brouillon des tests génériques `unique` et `not_null` automatisés par dbt — voir [#9 — Introduction à dbt](09-dbt-intro.md) et [#14 — dbt Advanced](14-dbt-advanced.md).
+- Le test manuel de clé primaire (`GROUP BY id HAVING COUNT(*) > 1`) est littéralement le brouillon des tests génériques `unique` et `not_null` automatisés par dbt — voir [[wagon2321/cours_sol/13_intro_dbt_sol|#13 — Introduction à dbt]] et [[wagon2321/cours_sol/14_dbt_advanced_sol|#14 — dbt Advanced]].
 - Le piège de duplication par jointure (grain fin à gauche, grain grossier à droite) est un cas particulier du principe **agréger avant de diviser/sommer**, déjà noté côté dbt, Looker Studio et Power BI dans le brocode — même prudence, un contexte de plus.
-- L'architecture Bronze/Silver/Gold vue ici est l'équivalent du staging/intermediate/marts de dbt ([#9](09-dbt-intro.md)) — vocabulaire différent, même logique de couches.
-- La duplication par jointure à grain fin est la cause exacte du phénomène de **fan-out** en modélisation Power BI (une relation mal maîtrisée entre deux tables qui gonfle artificiellement une mesure) — la bonne pratique du star schema vue au [#23](23-power-bi-2.md) existe en grande partie pour éviter ce problème en amont.
-- L'ordre d'exécution des clauses (`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT`), corrigé plus haut, est celui déjà posé au [#6](06-sql-aggregation-date-string-functions.md) — bon repère pour vérifier la cohérence des futures fiches.
+- L'architecture Bronze/Silver/Gold vue ici est l'équivalent du staging/intermediate/marts de dbt ([[wagon2321/cours_sol/13_intro_dbt_sol|#13]]) — vocabulaire différent, même logique de couches.
+- La duplication par jointure à grain fin est la cause exacte du phénomène de **fan-out** en modélisation Power BI (une relation mal maîtrisée entre deux tables qui gonfle artificiellement une mesure) — la bonne pratique du star schema vue au [[wagon2321/cours/22_power_bi_2|#23]] existe en grande partie pour éviter ce problème en amont.
+- L'ordre d'exécution des clauses (`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT`), corrigé plus haut, est celui déjà posé au [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|#6]] — bon repère pour vérifier la cohérence des futures fiches.
 
 ---
 
@@ -327,4 +336,4 @@ C'est cet ordre qui explique, entre autres, pourquoi un alias défini dans `SELE
 
 ---
 
-*Suite directe du [#6 — SQL : agrégations, dates & chaînes](06-sql-aggregation-date-string-functions.md). La correction des duplicatas de jointure (dédoublonnage, partitionnement) et `UNION` feront l'objet d'un chapitre dédié à la session suivante.*
+*Suite directe du [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|#6 — SQL : agrégations, dates & chaînes]]. La correction des duplicatas de jointure (dédoublonnage, partitionnement) et `UNION` feront l'objet d'un chapitre dédié à la session suivante.*

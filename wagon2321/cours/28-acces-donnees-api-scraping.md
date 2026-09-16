@@ -1,48 +1,58 @@
 ---
-title: "Accès aux données : fichiers, bases de données, API & web scraping"
+title: 'Accès aux données : fichiers, bases de données, API & web scraping'
 aliases:
-  - "Python 3"
-  - "Access Data"
-  - "SQLAlchemy"
-  - "BigQuery pandas_gbq"
-  - "Requests library Python"
-  - "Web scraping BeautifulSoup"
-  - "Status codes HTTP"
+- Python 3
+- Access Data
+- SQLAlchemy
+- BigQuery pandas_gbq
+- Requests library Python
+- Web scraping BeautifulSoup
+- Status codes HTTP
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 28
 date: 2026-08-12
-language: "Python"
-database: "Multiple — connexion générique à tout SGBD via SQLAlchemy + BigQuery via pandas_gbq ; pas de DB unique, le fil conducteur de la session est l'accès aux données (fichiers, bases, API, web)"
+language: fr
+database: Multiple — connexion générique à tout SGBD via SQLAlchemy + BigQuery via pandas_gbq ; pas de DB unique,
+  le fil conducteur de la session est l'accès aux données (fichiers, bases, API, web)
 topics:
-  - "Python"
-  - "Fichiers texte"
-  - "JSON"
-  - "CSV"
-  - "Excel"
-  - "SQLAlchemy"
-  - "BigQuery"
-  - "pandas_gbq"
-  - "API REST"
-  - "Requests"
-  - "Web scraping"
-  - "BeautifulSoup"
-  - "HTML/CSS"
+- Python
+- Fichiers texte
+- JSON
+- CSV
+- Excel
+- SQLAlchemy
+- BigQuery
+- pandas_gbq
+- API REST
+- Requests
+- Web scraping
+- BeautifulSoup
+- HTML/CSS
 tags:
-  - brocode
-  - wagon2321/cours
-  - python
-  - data-access
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: Python
+course_id: acces-donnees-api-scraping
+role_version: reference
 ---
 
 # 28 - Accès aux données : fichiers, bases de données, API & web scraping
 
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
+
 > [!info] TL;DR
 > Troisième jour de Python, cours court, gros volume d'exercices derrière. Fil conducteur : **comment faire entrer n'importe quelle donnée externe dans un notebook** — fichiers texte/JSON en Python natif, CSV/Excel via Pandas (rappel), bases de données via **SQLAlchemy** (connexion générique) et **BigQuery** via `pandas_gbq`, puis **API REST** avec `requests`, et enfin **web scraping** avec `BeautifulSoup`. Un motif transversal traverse tout le chapitre : quelle que soit la source, le format brut est pénible à manipuler (tuples, dictionnaires imbriqués, texte HTML) — et Pandas sert systématiquement de point d'atterrissage pour retomber sur un DataFrame exploitable.
 
-🔗 Fait suite à [[27-pandas-manipulation-donnees|Pandas — Manipulation de données]]
+🔗 Fait suite à [[wagon2321/cours/27-pandas-manipulation-donnees|Pandas — Manipulation de données]]
 
 ---
 
@@ -182,7 +192,7 @@ data = pd.read_sql(query, con)   # → DataFrame, une ligne = une ligne de la ba
 ```
 
 > [!tip] Motif récurrent de la session — Pandas comme point d'atterrissage universel
-> Ce même schéma va se répéter avec BigQuery juste après : la librairie "brute" (`SQLAlchemy`, puis `pandas_gbq` en mode bas niveau) renvoie un format peu maniable (tuples, JSON imbriqué), et l'intégration Pandas (`pd.read_sql`, `read_gbq`) transforme systématiquement ça en DataFrame. Peu importe la source — fichier, base SQL, API, page web scrapée — Pandas est le format d'atterrissage commun avant l'analyse. Voir la fiche [[Requêtes API avec requests (Python)]] pour la suite du même motif côté API.
+> Ce même schéma va se répéter avec BigQuery juste après : la librairie "brute" (`SQLAlchemy`, puis `pandas_gbq` en mode bas niveau) renvoie un format peu maniable (tuples, JSON imbriqué), et l'intégration Pandas (`pd.read_sql`, `read_gbq`) transforme systématiquement ça en DataFrame. Peu importe la source — fichier, base SQL, API, page web scrapée — Pandas est le format d'atterrissage commun avant l'analyse. Voir la fiche [[codex/python/Requêtes API avec requests (Python)|Requêtes API avec requests (Python)]] pour la suite du même motif côté API.
 
 ---
 
@@ -292,7 +302,7 @@ data["id"]                # accès à une clé précise, comme n'importe quel di
 
 Un endpoint public (pas de clé API nécessaire ici) qui renvoie les informations publiques d'un utilisateur GitHub — bon exemple pour s'entraîner à naviguer dans un JSON de réponse avant de passer à des API nécessitant une authentification (`headers`).
 
-🔗 Détail complet de l'anatomie d'une requête API dans la fiche [[Requêtes API avec requests (Python)]].
+🔗 Détail complet de l'anatomie d'une requête API dans la fiche [[codex/python/Requêtes API avec requests (Python)|Requêtes API avec requests (Python)]].
 
 ---
 
@@ -382,7 +392,7 @@ Deux approches courantes pour scraper plusieurs pages :
 - **Modifier l'URL** en incrémentant le numéro de page si le site l'expose directement (ex. `?page=2`)
 - **Suivre le lien "next"** via son attribut `href` — utile quand la structure d'URL n'est pas triviale à reconstruire soi-même
 
-🔗 Détail complet du workflow de scraping dans la fiche [[Web scraping avec BeautifulSoup (Python)]].
+🔗 Détail complet du workflow de scraping dans la fiche [[codex/python/Web scraping avec BeautifulSoup (Python)|Web scraping avec BeautifulSoup (Python)]].
 
 ---
 
@@ -417,4 +427,4 @@ Deux approches courantes pour scraper plusieurs pages :
 
 ---
 
-🔗 Voir aussi : [[27-pandas-manipulation-donnees|Pandas — Manipulation de données]] · [[Requêtes API avec requests (Python)]] · [[Web scraping avec BeautifulSoup (Python)]]
+🔗 Voir aussi : [[wagon2321/cours/27-pandas-manipulation-donnees|Pandas — Manipulation de données]] · [[codex/python/Requêtes API avec requests (Python)|Requêtes API avec requests (Python)]] · [[codex/python/Web scraping avec BeautifulSoup (Python)|Web scraping avec BeautifulSoup (Python)]]

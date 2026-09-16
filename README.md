@@ -1,114 +1,65 @@
-# 🧠 brocode
+# Brocode
 
-> **Base de connaissances personnelle** — **Le Wagon Data Analytics (#batch 2321)**
+Base de connaissances personnelle construite au fil du parcours **Le Wagon — Data Analytics, batch 2321**. Elle rassemble des cours, des fiches de concepts, des exemples de code et des projets pour apprendre, réviser et réutiliser les méthodes étudiées.
 
-**Dernière refonte** : 21 août 2026 — remplace l'ancien README « SQL Cookbook », devenu obsolète depuis le passage en vault Obsidian multi-format (dossiers, deux formats de notes, wikilinks).
+**Obsidian est l’interface de lecture et de travail du Brocode.** Git conserve l’historique des notes ; ce dépôt permet aussi de partager le parcours et les travaux réalisés.
 
----
+## Commencer ici
 
-## 📌 Nature du projet
+Dans Obsidian, ouvrir **[Accueil Brocode](Accueil%20Brocode.md)**, le point d’entrée de la navigation quotidienne.
 
-Le brocode a une double nature :
+| Besoin | Point d’entrée |
+|---|---|
+| Suivre les cours et retrouver leurs variantes | [Catalogue des cours](navigation/Cours.md) |
+| Retrouver les travaux d’un modèle IA | [Modèles IA](modeles-ia/README.md) |
+| Revoir une notion ou une méthode | [Codex — concepts et guides](codex/README.md) |
+| Consulter une syntaxe ou un aide-mémoire | [Références — cheat sheets et lexiques](references/README.md) |
+| Explorer une application concrète | [Projet RFM — segmentation Olist](projets-perso/rfm-segmentation-olist.md) |
 
-- **Vault Obsidian** — notes cross-linkées via wikilinks `[[...]]`, frontmatter YAML sur les chapitres de cours, fiches-concept atomisées sur les notions transversales.
-- **Repo Git versionné et public sur GitHub** (`BriceGit`) — gardé public volontairement : l'avantage compétitif en entretien tient à la compréhension et à la capacité d'expliquer, pas au contenu copiable d'un README ou d'une commande Git. Le repo sert aussi de pièce de portfolio pour la recherche Genève.
+Les notes couvrent Google Sheets, les KPI, SQL et BigQuery, Git, dbt, les API, le tracking, l’automatisation, la visualisation de données et Python.
 
-Anciennement `sql-cookbook`, renommé et restructuré une fois que le scope a dépassé le seul SQL (Git, dbt, API, BI, Python...).
+## Références de cours et modèles IA
 
----
+Chaque sujet possède **une version de référence pour la lecture**. Lorsqu’une autre rédaction existe, elle est conservée comme variante et reliée à la référence dans les deux sens.
 
-## 🎯 Objectif
+Pour les neuf cours disposant d’une version Sol, celle-ci est la référence retenue ; la rédaction Sonnet reste accessible comme variante. Les autres cours conservent leur référence Sonnet. Ce choix de lecture ne constitue pas une nouvelle validation technique du contenu.
 
-Deux fonctions en parallèle :
-1. **Apprentissage structuré** — synthétiser chaque session du bootcamp (transcript Notion + audio + screenshots) en note complète, pédagogique et durable.
-2. **Portfolio** — donner à voir, à un recruteur genevois, une trace organisée et compréhensible de la montée en compétence.
+Le bandeau placé au début de chaque cours permet d’identifier immédiatement son modèle de rédaction, son rôle et son éventuelle autre version.
 
----
+- **Claude Sonnet** a rédigé les notes de `wagon2321/cours/`.
+- **ChatGPT Sol** a rédigé les notes de `wagon2321/cours_sol/` et la cheat sheet Python / NumPy / pandas.
+- Les quatre autres documents de `references/` sont de **Claude Sonnet**.
+- L’attribution des fiches du **Codex** reste à confirmer.
 
-## 🗂️ Structure des dossiers
+La propriété `modeles_ia` relie les notes à la page de leur modèle, y compris hors des dossiers de cours. Les révisions ultérieures ne remplacent pas l’attribution de la rédaction initiale.
 
-| Dossier          | Contenu                                                                     | Auteur                                     |
-| ---------------- | --------------------------------------------------------------------------- | ------------------------------------------ |
-| `wagon2321/`     | Chapitres de cours. Un par session du batch 2321                            | Synthèse IA (Claude Sonnet et ChatGPT Sol) |
-| `codex/`         | Code perso, requêtes, raisonnement synthétisé, fiches-concept atomisées     | Brice                                      |
-| `projets-perso/` | Deep-dives analytiques (Projet 1 — churn banking, etc.)                     | Brice                                      |
-| `references/`    | Matériel externe consulté mais non écrit par Brice (cheat sheets, lexiques) | Externe                                    |
+## Organisation du coffre
 
-Le filing dans tel ou tel dossier reste une question de lisibilité côté GitHub — dans Obsidian, les wikilinks résolvent par **nom de note**, indépendamment du dossier où elle se trouve.
+| Dossier | Contenu |
+|---|---|
+| `wagon2321/cours/` | Cours Sonnet et compléments de session |
+| `wagon2321/cours_sol/` | Cours Sol |
+| `wagon2321/fiche_challenge/` | Fiches de révision issues des challenges |
+| `codex/` | Concepts transversaux, guides et code réutilisable |
+| `codex/a-creer/` | Fiches identifiées, encore à rédiger |
+| `references/` | Cheat sheets et lexiques |
+| `projets-perso/` | Projets et analyses personnelles |
+| `modeles-ia/` | Pages des modèles et catalogue de leurs travaux |
+| `navigation/` | Catalogue des cours, conventions et journal de nettoyage |
+| `workspace/` | Espace personnel de travail, exclu du dépôt Git |
 
----
+## Fonctionnement dans Obsidian
 
-## 📄 Deux formats de notes
+Les catalogues utilisent le module natif **Bases** pour classer les notes à partir de leurs propriétés. La vue **Références** présente les cours par date ; **Toutes les versions** les regroupe par sujet. Les pages des modèles rassemblent automatiquement leurs travaux.
 
-### 1. Chapitres de cours — `type: course`
+Les cours renvoient aux fiches transversales du Codex, qui proposent des liens de retour vers les cours concernés. Les longs chapitres réorganisés disposent de grandes parties et d’un plan de lecture repliable.
 
-Une note complète par session, avec frontmatter YAML obligatoire :
+Les noms de fichiers historiques sont conservés pour stabiliser les liens. Le titre, la date et le numéro de session renseignés dans les propriétés servent de repères. Une note portant le statut `a_creer` reste à compléter.
 
-```yaml
----
-title: "Window Functions"
-aliases: ["Fonctions de fenêtrage"]
-type: course
-status: reference
-course: "Le Wagon — Data Analytics"
-batch: 2321
-session: 9
-date: 2026-07-15
-language: fr
-database: "BigQuery / GoogleSQL"
-topics:
-  - SQL
-  - Window Functions
-tags:
-  - brocode
-  - wagon2321/cours
-  - sql
----
-```
+Pour utiliser le coffre depuis une copie du dépôt, ouvrir le dossier `brocode` dans Obsidian et activer le module natif **Bases**. Les réglages personnels `.obsidian/` sont exclus de Git. Sur GitHub, les fichiers Markdown restent consultables, mais les catalogues Bases et la navigation par wikilinks s’utilisent dans Obsidian.
 
-- `topics` = taxonomie de contenu (de quoi parle la note) ≠ `tags` = marqueurs structurels/navigation uniquement (`brocode`, `wagon2321/cours`, + tag sujet). Cette séparation évite le drift entre les deux.
-- `session` reste un entier nu (pas `"#9"`) pour permettre un tri numérique correct via Dataview.
+## Faire évoluer les notes
 
-### 2. Fiches-concept atomisées
+Les [conventions Obsidian](navigation/Conventions%20Obsidian.md) décrivent les propriétés, les liens entre versions et la méthode de rédaction. Elles servent de référence pour ajouter un cours ou une fiche en conservant une structure cohérente.
 
-Notes courtes, standalone, cross-linkées entre elles et vers leur chapitre source — sur des notions transversales qui dépassent une seule session (ex. `WHERE vs HAVING`, `SAFE_DIVIDE`, `Data Leakage`).
-
-- Pas de frontmatter, sauf indication contraire.
-- Titre naturel descriptif, sans kebab-case ni numéro — contrairement à l'ancienne convention `NN-nom-fichier.md` héritée du repo GitHub classique, abandonnée depuis le passage en vault.
-- ⚠️ Éviter `:` et `/` dans les titres de wikilinks — ces caractères cassent la résolution des ancres Obsidian.
-- Sommaires internes en `[[#Titre de section exact]]`.
-
----
-
-## 🔄 Sommaire dynamique (Dataview)
-
-Plutôt qu'un tableau de statut à maintenir à la main — l'ancien README « SQL Cookbook » en était un, et c'est en partie pour ça qu'il a périmé — le suivi peut vivre directement dans Obsidian via une requête sur le frontmatter :
-
-```dataview
-TABLE session AS "Session", date AS "Date", topics AS "Sujets"
-FROM "wagon2321"
-WHERE type = "course"
-SORT session ASC
-```
-
-*(nécessite le plugin communautaire Dataview ; sur GitHub ce bloc s'affiche en texte brut — la requête ne s'exécute que dans Obsidian)*
-
----
-
-## ⚙️ Workflow de production
-
-1. Brice fournit le transcript Notion (capture live + résumé audio par IA) + captures d'écran, parfois en plusieurs envois — Claude attend que tout soit réuni avant de rédiger si signalé.
-2. Claude synthétise en note Obsidian-ready : profondeur pédagogique ajoutée au-delà du transcript, erreurs de la source corrigées **explicitement dans une section dédiée**, actions à échéance signalées.
-3. Cross-links vers les notions existantes via wikilinks.
-4. Fiches-concept compagnons produites pour les notions transversales identifiées dans la session.
-
----
-
-## 🧰 Écosystème & outils
-
-- **Vault / capture** : Obsidian · Notion (audio + résumé IA)
-- **Versioning** : Git / GitHub — public (`BriceGit`)
-- **Dev** : VS Code · Jupyter Notebook · DBeaver
-- **Data stack** : BigQuery/GoogleSQL · dbt (DuckDB en local) · Python (pandas, sklearn, sktime, scipy, matplotlib, seaborn, Plotly) · Power BI (via Parallels) · Looker Studio · Google Sheets
-- **Intégrations** : Zapier · Make · Fivetran · HubSpot CRM API · Insomnia · BeautifulSoup · `requests`
-
+Le [journal de nettoyage](navigation/Nettoyage%20Obsidian.md) conserve les décisions de migration et les points à compléter.

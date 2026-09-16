@@ -1,36 +1,49 @@
 ---
-title: "SQL — Data Pipelines, Views & Tables"
+title: SQL — Data Pipelines, Views & Tables
 aliases:
-  - "Data Pipelines"
-  - "Views vs Tables vs CTEs"
-  - "OLTP vs OLAP"
-  - "Medallion Architecture"
-  - "Partitioning & Clustering"
+- Data Pipelines — Claude Sonnet
+- Views vs Tables vs CTEs — Claude Sonnet
+- OLTP vs OLAP — Claude Sonnet
+- Medallion Architecture — Claude Sonnet
+- Partitioning & Clustering — Claude Sonnet
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 10
 date: 2026-07-17
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "Data Warehousing"
-  - "Data Pipelines"
-  - "Views"
-  - "Tables"
-  - "OLAP"
-  - "OLTP"
-  - "Partitioning"
-  - "Data Modeling"
+- SQL
+- BigQuery
+- Data Warehousing
+- Data Pipelines
+- Views
+- Tables
+- OLAP
+- OLTP
+- Partitioning
+- Data Modeling
 tags:
-  - brocode
-  - wagon2321/cours
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+course_id: sql-data-pipelines
+role_version: variante
+reference: '[[wagon2321/cours_sol/10_data_pipelines_views_tables_sol]]'
 ---
 
 # 10 - Data Pipelines, Views & Tables
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|Data Pipelines, Views, Tables & BigQuery Performance]]
+
 
 **Date :** 17 juillet 2026
 **Thème :** Data Pipelines, Views, Tables & architecture d'entrepôt de données — dernier cours SQL du module
@@ -92,7 +105,7 @@ Le cœur technique de la session.
 - Objets possibles dans une base de données : **Table, View, Function/Stored Procedure** — le CTE n'en fait pas partie
 - Pattern courant en pipeline : **mixer les deux** — une View intermédiaire pour prototyper, puis matérialiser le résultat dans une Table une fois stabilisé, pour gagner en performance
 
-🔗 Voir [[08-sql-cte-subqueries-union]] pour la mécanique des CTE en détail.
+🔗 Voir [[wagon2321/cours_sol/08_subqueries_ctes_union_sol|08-sql-cte-subqueries-union]] pour la mécanique des CTE en détail.
 
 ---
 
@@ -130,7 +143,7 @@ Le cœur technique de la session.
 - Outils cités : **dbt**, **Airflow**, **Fivetran**, tâches planifiées via Stored Procedures
 - Concept lié : l'**observabilité** — surveiller le volume de données et détecter les erreurs dans le pipeline
 
-🔗 Voir [[12_dbt_intro]] et [[13_dbt_advanced_warehousing]] pour la suite logique côté outillage.
+🔗 Voir [[wagon2321/cours_sol/13_intro_dbt_sol|12_dbt_intro]] et [[wagon2321/cours_sol/14_dbt_advanced_sol|13_dbt_advanced_warehousing]] pour la suite logique côté outillage.
 
 ---
 
@@ -214,7 +227,7 @@ Section très actionnable, à appliquer direct sur les challenges :
 
 ## 🔗 Liens avec d'autres chapitres
 
-- [[05_intro_sql_bigquerry]] — lien identifié en session (bases SQL/BigQuery)
-- [[08-sql-cte-subqueries-union]] — mécanique des CTE, en contraste avec Views/Tables ici
-- [[09-window-functions]] — même logique coût/performance BigQuery (`SELECT` ciblé, granularité)
-- [[12_dbt_intro]] / [[13_dbt_advanced_warehousing]] — l'outillage d'orchestration mentionné (dbt) prend le relai à partir d'ici
+- [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|05_intro_sql_bigquerry]] — lien identifié en session (bases SQL/BigQuery)
+- [[wagon2321/cours_sol/08_subqueries_ctes_union_sol|08-sql-cte-subqueries-union]] — mécanique des CTE, en contraste avec Views/Tables ici
+- [[wagon2321/cours_sol/09_udf_window_functions_sol|09-window-functions]] — même logique coût/performance BigQuery (`SELECT` ciblé, granularité)
+- [[wagon2321/cours_sol/13_intro_dbt_sol|12_dbt_intro]] / [[wagon2321/cours_sol/14_dbt_advanced_sol|13_dbt_advanced_warehousing]] — l'outillage d'orchestration mentionné (dbt) prend le relai à partir d'ici

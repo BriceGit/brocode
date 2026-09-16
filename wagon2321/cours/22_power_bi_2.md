@@ -1,4 +1,34 @@
+---
+title: '📝 #23 — Power BI (2/3) : DAX, Star Schema & Time Intelligence'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-08-05
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: power-bi-2
+role_version: reference
+session: 23
+numero_fichier_legacy: 22
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Power BI
+- DAX
+- Data Modeling
+---
+
 # 📝 #23 — Power BI (2/3) : DAX, Star Schema & Time Intelligence
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 05 août 2026
 **Thème** : DAX (types, opérateurs, fonctions), Star Schema (tables de faits/dimensions), colonne calculée vs mesure, fonctions table (FILTER/ALL/DISTINCT/RELATED), Filter Context & CALCULATE, Time Intelligence, bonnes pratiques d'écriture DAX
@@ -8,7 +38,7 @@
 
 ## 🎯 Contexte de la session
 
-- Deuxième jour du module Power BI (sur trois) — suite directe du [#22](22-power-bi-1.md), centrée cette fois sur le **DAX** et le **Star Schema**
+- Deuxième jour du module Power BI (sur trois) — suite directe du [[wagon2321/cours/21_power_bi_1|#22]], centrée cette fois sur le **DAX** et le **Star Schema**
 - Session technique et dense, présentée par le formateur comme la vraie porte d'entrée vers un usage avancé de Power BI — le Star Schema fait explicitement partie du programme du certificat **PL-300**
 - Beaucoup de contenu transférable depuis SQL et Looker Studio : le DAX est décrit comme "à mi-chemin entre les formules Excel et le SQL"
 
@@ -332,4 +362,4 @@ RETURN
 ---
 
 
-*Chapitre 2/3 sur Power BI — suite du [#22](22-power-bi-1.md). Le troisième volet du module abordera probablement le Drillthrough et des cas pratiques Star Schema plus avancés (many-to-many).*
+*Chapitre 2/3 sur Power BI — suite du [[wagon2321/cours/21_power_bi_1|#22]]. Le troisième volet du module abordera probablement le Drillthrough et des cas pratiques Star Schema plus avancés (many-to-many).*

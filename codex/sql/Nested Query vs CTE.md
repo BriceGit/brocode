@@ -1,3 +1,15 @@
+---
+title: Nested Query vs CTE
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Nested Query vs CTE
 
 Deux façons d'imbriquer une requête dans une autre — souvent confondues, pas tout à fait la même chose.
@@ -19,7 +31,7 @@ FROM name_subquery
 
 Les deux appartiennent à la famille des *subqueries*. Une CTE est en général plus lisible dès que la logique se complexifie ou s'enchaîne sur plusieurs étapes — d'où sa préférence en pratique.
 
-⚠️ À ne pas confondre avec une [[Window Function vs GROUP BY et JOIN|window function]] : une CTE n'a **pas** de mot-clé `OVER`, ce sont deux mécanismes distincts, même s'ils peuvent se combiner dans une même requête complexe (filtrer sur le résultat d'une window function nécessite justement de passer par une CTE).
+⚠️ À ne pas confondre avec une [[codex/sql/Window Function vs GROUP BY et JOIN|window function]] : une CTE n'a **pas** de mot-clé `OVER`, ce sont deux mécanismes distincts, même s'ils peuvent se combiner dans une même requête complexe (filtrer sur le résultat d'une window function nécessite justement de passer par une CTE).
 
 ## Deux cas d'usage concrets
 
@@ -50,5 +62,10 @@ FROM margin_subquery
 
 ## Voir aussi
 
-- [[Reboot SQL Fivetran Git dbt]] — chapitre source, section Subqueries & CTE
-- [[Window Function vs GROUP BY et JOIN]]
+- [[wagon2321/cours/24_rebootsql_fivetran_git_dbt|Reboot SQL Fivetran Git dbt]] — chapitre source, section Subqueries & CTE
+- [[codex/sql/Window Function vs GROUP BY et JOIN|Window Function vs GROUP BY et JOIN]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/08_subqueries_ctes_union_sol|SQL — CTEs, Subqueries & UNION]]
+- [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|Data Pipelines, Views, Tables & BigQuery Performance]]

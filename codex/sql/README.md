@@ -1,5 +1,10 @@
-# SQL — requêtes personnelles
+# SQL — fiches et requêtes
 
-Requêtes écrites et utilisées pendant les challenges et projets du bootcamp — pas les cours, ça c'est `wagon2321/`.
+[[codex/README|Index Codex]]
 
-Alimenté au fil de l'eau, sans structure imposée pour l'instant.
+- [[codex/sql/NULL et agrégation (AVG, COUNT)|NULL et agrégation (AVG, COUNT)]]
+- [[codex/sql/Nested Query vs CTE|Nested Query vs CTE]]
+- [[codex/sql/WHERE vs HAVING|WHERE vs HAVING]]
+- [[codex/sql/Window Function vs GROUP BY et JOIN|Window Function vs GROUP BY et JOIN]]
+
+- [[codex/sql/rfm-recency-query.sql|Requête RFM — récence]]

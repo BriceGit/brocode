@@ -1,42 +1,48 @@
 ---
-title: "KPI Basics — Méthodologie d'analyse & premiers KPI business"
+title: KPI Basics — Méthodologie d'analyse & premiers KPI business
 aliases:
-  - "KPI Basics"
-  - "KPI vs métrique"
-  - "Méthodologie d'analyse en 7 étapes"
-  - "5W + H"
-  - "Reporting vs analyse ad hoc"
-  - "Gross margin & operating margin"
-  - "Shortage rate"
-  - "% of initial turnover"
+- KPI Basics
+- Méthodologie d'analyse en 7 étapes
+- 5W + H
+- Gross margin & operating margin
+- Shortage rate
+- '% of initial turnover'
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 3
 date: 2026-07-08
-language: "Formules Google Sheets"
-database: "n/a — tableur (Google Sheets)"
+language: fr
+database: n/a — tableur (Google Sheets)
 topics:
-  - "KPI"
-  - "Metrics"
-  - "Data Analysis Workflow"
-  - "Scoping"
-  - "Reporting"
-  - "Ad hoc analysis"
-  - "Marges"
-  - "Stock & rupture"
-  - "Retours & qualité"
-  - "Greenweez"
+- KPI
+- Metrics
+- Data Analysis Workflow
+- Scoping
+- Reporting
+- Ad hoc analysis
+- Marges
+- Stock & rupture
+- Retours & qualité
+- Greenweez
 tags:
-  - brocode
-  - wagon2321/cours
-  - kpi
-  - business-analysis
-  - google-sheets
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: Formules Google Sheets
+course_id: KPI-Basics
+role_version: reference
 ---
 
 # KPI Basics
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 > Première journée où le bootcamp arrête de parler d'outils et commence à parler de **métier**. Deux cours enchaînés le matin : la **méthodologie en 7 étapes** d'une analyse de données, puis les **KPI business**. L'après-midi, les trois challenges Greenweez (Finance / Stock / Qualité) qui produisent les premiers dashboards. Techniquement c'est encore du Google Sheets, mais tout ce qui est vu ici se rejoue à l'identique en SQL, en dbt, en DAX et en Python. C'est le socle conceptuel, pas un cours de tableur.
 
@@ -79,7 +85,7 @@ tags:
 
 ## 🧭 1. La méthodologie en 7 étapes
 
-Le framework central de la journée, et probablement le plus réutilisable de tout le bootcamp. C'est la deuxième fois qu'il est présenté (déjà vu en session 2, cf. [[Google Sheets — Import, nettoyage, jointures & agrégation]]), cette fois par un praticien en poste et avec un cas concret.
+Le framework central de la journée, et probablement le plus réutilisable de tout le bootcamp. C'est la deuxième fois qu'il est présenté (déjà vu en session 2, cf. [[wagon2321/cours/02-google-sheets|Google Sheets — Import, nettoyage, jointures & agrégation]]), cette fois par un praticien en poste et avec un cas concret.
 
 ```
 1. Why?  →  2. Data  →  3. Types of analysis  →  4. Exploration  →  5. Cleaning  →  6. Summary  →  7. Visualization
@@ -439,7 +445,7 @@ Les slides donnent la marge en **valeur** (€). Dès que tu passes en **taux**,
 ✅  SUM(marge) / SUM(CA)                →  ratio d'agrégats, pondéré par le poids réel
 ```
 
-Une commande à 5 € et une commande à 5 000 € ne doivent évidemment pas peser le même poids dans le taux de marge global. Voir [[Aggregate before divide]].
+Une commande à 5 € et une commande à 5 000 € ne doivent évidemment pas peser le même poids dans le taux de marge global. Voir [[codex/sheet/Aggregate before divide|Aggregate before divide]].
 
 Corollaire direct : **un taux de marge ne s'additionne pas et ne se moyenne pas**. Il se recalcule à chaque niveau d'agrégation, à partir des numérateurs et dénominateurs sommés.
 
@@ -610,7 +616,7 @@ NPS = % promoteurs − % détracteurs
 
 ## 🛠️ 6. La couche Google Sheets
 
-Prolongement direct de [[Google Sheets — Import, nettoyage, jointures & agrégation]]. Les points nouveaux ou re-insistés cette session.
+Prolongement direct de [[wagon2321/cours/02-google-sheets|Google Sheets — Import, nettoyage, jointures & agrégation]]. Les points nouveaux ou re-insistés cette session.
 
 ### Raccourcis clavier
 
@@ -638,7 +644,7 @@ Quand tu crées un champ calculé, Sheets propose une option **« Summarize by �
 | **SUM** | La formule est évaluée **ligne par ligne**, puis les résultats sont sommés | Grandeurs **additives** (une marge en €) |
 | **Custom** | La formule est évaluée sur les **valeurs déjà agrégées** du groupe | **Ratios et taux** (taux de marge, taux de rupture) |
 
-> [!warning] C'est [[Aggregate before divide]] déguisé
+> [!warning] C'est [[codex/sheet/Aggregate before divide|Aggregate before divide]] déguisé
 > Sur un taux, `SUM` te donne « la somme des ratios ligne à ligne » — un nombre qui n'a **aucun sens** (il peut dépasser 100 %). `Custom` te donne `SUM(numérateur) / SUM(dénominateur)`, le seul calcul correct.
 >
 > **Test de vérification systématique** : compare la valeur de la ligne *Grand Total* du TCD avec un `SUM(num)/SUM(dén)` calculé à la main hors du tableau. Si les deux divergent, tu es sur la mauvaise option.
@@ -722,19 +728,19 @@ Questions probables et angles de réponse :
 → La marge produit existe, ce sont les coûts indirects qui la détruisent. Décomposer par nature de coût (logistique, expédition), puis segmenter par catégorie produit / zone géographique / mode de livraison. En e-commerce, les petits paniers avec livraison gratuite sont le suspect numéro un.
 
 **« Comment tu calcules un taux ? »**
-→ Le piège est là. `SUM(num) / SUM(dén)`, jamais `AVERAGE(num/dén)`. Et vérifier le dénominateur : total, pas catégorie complémentaire. Cf. [[Aggregate before divide]].
+→ Le piège est là. `SUM(num) / SUM(dén)`, jamais `AVERAGE(num/dén)`. Et vérifier le dénominateur : total, pas catégorie complémentaire. Cf. [[codex/sheet/Aggregate before divide|Aggregate before divide]].
 
 ---
 
 ## 🔗 Liens
 
-- Chapitre précédent : [[Google Sheets — Import, nettoyage, jointures & agrégation]] — le framework 7 étapes y apparaît une première fois, plus les fonctions reprises ici
-- [[Aggregate before divide]] — le principe transversal, ici dans sa version « champ calculé de TCD » et « taux de marge »
-- [[Granularité d'une table]] — pourquoi le shortage rate se calcule à la maille *référence produit* et pas *unité en stock*
+- Chapitre précédent : [[wagon2321/cours/02-google-sheets|Google Sheets — Import, nettoyage, jointures & agrégation]] — le framework 7 étapes y apparaît une première fois, plus les fonctions reprises ici
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — le principe transversal, ici dans sa version « champ calculé de TCD » et « taux de marge »
+- [[codex/sheet/Granularité d'une table|Granularité d'une table]] — pourquoi le shortage rate se calcule à la maille *référence produit* et pas *unité en stock*
 
 **Fiches-concept à créer** (wikilinks pas encore résolus) :
-- [[KPI vs métrique]]
-- [[Reporting vs analyse ad hoc]]
-- [[Marge brute, marge opérationnelle, marge nette]]
-- [[Taux sur variable binaire (AVERAGE sur 0/1)]]
-- [[NPS (Net Promoter Score)]]
+- [[codex/kpi/KPI vs métrique|KPI vs métrique]]
+- [[codex/kpi/Reporting vs analyse ad hoc|Reporting vs analyse ad hoc]]
+- [[codex/kpi/Marge brute, marge opérationnelle, marge nette|Marge brute, marge opérationnelle, marge nette]]
+- [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire (AVERAGE sur 0/1)]]
+- [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]]

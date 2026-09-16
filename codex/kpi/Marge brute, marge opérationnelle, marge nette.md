@@ -1,3 +1,15 @@
+---
+title: Marge brute, marge opérationnelle, marge nette
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Marge brute, marge opérationnelle, marge nette
 
 > Trois étages du même escalier. Chacun répond à une question différente, et l'écart entre deux étages est toujours plus informatif que les étages eux-mêmes.
@@ -101,7 +113,7 @@ Deux objets différents, deux usages différents :
 > ✅  SUM(marge) / SUM(CA)              →  pondéré par le poids réel
 > ```
 >
-> Voir [[Aggregate before divide]] — c'est le même piège, dans son incarnation la plus coûteuse.
+> Voir [[codex/sheet/Aggregate before divide|Aggregate before divide]] — c'est le même piège, dans son incarnation la plus coûteuse.
 
 > [!note] Tout se calcule hors taxe
 > La TVA transite par la trésorerie mais n'appartient jamais à l'entreprise. L'inclure gonfle artificiellement le CA et écrase tous les taux de marge.
@@ -200,7 +212,7 @@ Summarize by : Custom        ← évalue sur les agrégats du groupe ✅
 
 ## 🔗 Liens
 
-- Chapitre source : [[KPI Basics]]
-- [[Aggregate before divide]] — le piège du taux de marge, cas d'école du principe
-- [[KPI vs métrique]] — la marge en valeur est une métrique, le taux de marge vs budget est un KPI
-- [[Granularité d'une table]] — à quelle maille les coûts logistiques sont-ils disponibles ? (commande, ligne de commande, colis)
+- Chapitre source : [[wagon2321/cours/03_KPI_Basics|KPI Basics]]
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — le piège du taux de marge, cas d'école du principe
+- [[codex/kpi/KPI vs métrique|KPI vs métrique]] — la marge en valeur est une métrique, le taux de marge vs budget est un KPI
+- [[codex/sheet/Granularité d'une table|Granularité d'une table]] — à quelle maille les coûts logistiques sont-ils disponibles ? (commande, ligne de commande, colis)

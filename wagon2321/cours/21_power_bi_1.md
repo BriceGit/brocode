@@ -1,4 +1,35 @@
+---
+title: '📝 #22 — Power BI (1/3) : présentation, Power Query, Data Model & dashboard
+  design'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-08-04
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: power-bi-1
+role_version: reference
+session: 22
+numero_fichier_legacy: 21
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Power BI
+- DAX
+- Data Modeling
+---
+
 # 📝 #22 — Power BI (1/3) : présentation, Power Query, Data Model & dashboard design
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 04 août 2026
 **Thème** : Présentation Power BI (licences, pipeline, objets), Power Query (ETL, transformations, combinaison de données), Data Model / Star Schema, bonnes pratiques de dashboard design, panorama des graphiques, formatage, interactivité & navigation
@@ -11,7 +42,7 @@
 - Premier jour du module Power BI (module annoncé sur trois jours) — les trois cours précédents portaient sur Looker Studio ([#19](obsidian://open?vault=brocode&file=wagon2321%2Fcours%2F18_looker_studio_1), [#20](obsidian://open?vault=brocode&file=wagon2321%2Fcours%2F19_looker_studio_2), [#21](obsidian://open?vault=brocode&file=wagon2321%2Fcours%2F20_looker_studio_3_data_storytelling))
 - Session très dense, presque deux cours en un : théorie (positionnement, licences, pipeline, objets) **et** pratique complète (Power Query, Data Model, création de graphiques, formatage, interactivité, navigation) — la suite du module doit approfondir le DAX et le Star Schema
 - Power BI utilisé via Parallels sur Mac (pas de version native Mac)
-- Se termine par une session de critique de dashboards réels, sur le même format pédagogique que celle déjà vue en Looker Studio ([#21](21-looker-studio-3-data-storytelling.md)) — bon comparatif : les erreurs relevées sont indépendantes de l'outil
+- Se termine par une session de critique de dashboards réels, sur le même format pédagogique que celle déjà vue en Looker Studio ([[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]) — bon comparatif : les erreurs relevées sont indépendantes de l'outil
 
 ---
 
@@ -80,7 +111,7 @@ Interface séparée de Power BI Desktop (accessible via *Transformer les donnée
 
 ### Enrichissement
 - **Colonne personnalisée (Custom column)** : nouvelle colonne calculée à partir d'autres colonnes — ex. `TotalPrice = [Total products] * [Product Price]`
-- **Colonne conditionnelle** : équivalent du `CASE WHEN` SQL / du champ calculé conditionnel déjà vu en Looker ([#20](20-looker-studio-2.md)) — ex. segmentation Small/Medium/Big Meal selon la quantité
+- **Colonne conditionnelle** : équivalent du `CASE WHEN` SQL / du champ calculé conditionnel déjà vu en Looker ([[wagon2321/cours/19_looker_studio_2|#20]]) — ex. segmentation Small/Medium/Big Meal selon la quantité
   - ⚠️ Même piège que pour un `CASE WHEN` : si les conditions comparent des nombres, les trier de la plus haute à la plus basse pour éviter qu'une condition large n'écrase les suivantes
 - **Colonne indexée (Index)** : incrémentale (1, 2, 3...), utile pour générer une clé primaire
 - **Column from Examples** : déconseillée hors licence Premium — repose sur Copilot pour être vraiment fiable, sinon résultats peu robustes
@@ -100,7 +131,7 @@ Interface séparée de Power BI Desktop (accessible via *Transformer les donnée
 ### Limites de Power Query
 - **Trop de transformations dans Power Query ralentit le dashboard** — chaque étape appliquée rallonge le temps de chargement. Un dashboard lent est pire qu'un dashboard mal habillé
 - Les transformations restent **locales au fichier** : impossible de les renvoyer vers le Data Warehouse ou de les réutiliser telles quelles dans un autre dashboard (sauf à rapatrier le modèle sémantique complet depuis le Power BI Service, sans pouvoir le remodifier)
-- 📌 Principe transversal déjà noté sur les champs calculés Looker ([#20](20-looker-studio-2.md)) : **faire un maximum de transformations en amont dans le Data Warehouse**, réserver Power Query aux ajustements spécifiques et non réutilisables ailleurs
+- 📌 Principe transversal déjà noté sur les champs calculés Looker ([[wagon2321/cours/19_looker_studio_2|#20]]) : **faire un maximum de transformations en amont dans le Data Warehouse**, réserver Power Query aux ajustements spécifiques et non réutilisables ailleurs
 
 ---
 
@@ -115,7 +146,7 @@ Interface séparée de Power BI Desktop (accessible via *Transformer les donnée
 
 ## 🎨 Concevoir un dashboard — 6 bonnes pratiques (Designing Dashboards Best Practices)
 
-Reprend et complète les fondamentaux déjà vus en dataviz ([#21](21-looker-studio-3-data-storytelling.md)), organisés ici par le formateur en 6 blocs :
+Reprend et complète les fondamentaux déjà vus en dataviz ([[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]), organisés ici par le formateur en 6 blocs :
 
 1. **Dashboard Type & Audience** — Quel type de dashboard (C-level, Operational, Analytics) ? Qui est l'audience, quelles métriques l'aident à décider ?
 2. **One-Screen Storytelling** — Éviter le scroll, limiter le nombre de visuels à l'essentiel (**idéalement moins de 8**, slicers compris — un slicer reste un objet connecté à la donnée)
@@ -174,7 +205,7 @@ Reprend et complète les fondamentaux déjà vus en dataviz ([#21](21-looker-stu
 - **Grouping, similarité et proximité** des filtres et visuels comptent dans la lisibilité — penser le dashboard comme un site web navigué : masquer certaines pages, utiliser les bookmarks pour une navigation rapide
 - **Slicers** : équivalent visuel et manipulable par l'utilisateur des filtres — préférables aux filtres du panneau, paramétrés en amont par le développeur et pas nécessairement visibles pour l'utilisateur final. Plusieurs formats disponibles : liste à cocher, menu déroulant, vignettes, curseur de plage
 - **Synchronisation des slicers entre pages** (*Affichage > Synchroniser les segments*) : un slicer peut être visible sur certaines pages et actif (synchronisé) sur d'autres, ce qui évite de le dupliquer page par page
-- **Modifier les interactions** (*Format > Modifier les interactions*) : par défaut, tous les graphiques d'une même page sont liés — cette option permet de désactiver le cross-filtering entre un slicer/graphique précis et un autre, par exemple pour garder un KPI global fixe pendant qu'un tableau se filtre dynamiquement (même logique que le cross-filtering déjà vu en Looker, [#20](20-looker-studio-2.md))
+- **Modifier les interactions** (*Format > Modifier les interactions*) : par défaut, tous les graphiques d'une même page sont liés — cette option permet de désactiver le cross-filtering entre un slicer/graphique précis et un autre, par exemple pour garder un KPI global fixe pendant qu'un tableau se filtre dynamiquement (même logique que le cross-filtering déjà vu en Looker, [[wagon2321/cours/19_looker_studio_2|#20]])
 - **Tooltips** : disponibles sur presque tous les graphiques, affichent des valeurs secondaires au survol sans surcharger le visuel de base
 - **Drill-down** : automatique sur une hiérarchie de dates (Année/Trimestre/Mois/Jour) si la colonne est bien typée en date, ou sur une hiérarchie personnalisée créée à la demande (clic droit sur un champ dans le panneau Données → *Create hierarchy*, ex. Catégorie/Sous-catégorie, Région/Pays/Ville)
 - Veiller à ce que les **visuels restent performants** — trop de visuels lourds sur une page ralentit autant l'expérience qu'un excès de transformations Power Query
@@ -201,7 +232,7 @@ Reprend et complète les fondamentaux déjà vus en dataviz ([#21](21-looker-stu
 
 ## 🔍 Session de critique de dashboards (mauvaises pratiques observées)
 
-Même exercice pédagogique que celui déjà vu en Looker Studio ([#21](21-looker-studio-3-data-storytelling.md)) — analyse collective de dashboards réels pour repérer les erreurs.
+Même exercice pédagogique que celui déjà vu en Looker Studio ([[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]) — analyse collective de dashboards réels pour repérer les erreurs.
 
 ### Graphiques
 - **Donut avec trop de dimensions** : illisible, une valeur écrase toutes les autres — à réserver à un nombre de catégories réduit
@@ -222,7 +253,7 @@ Même exercice pédagogique que celui déjà vu en Looker Studio ([#21](21-looke
 ### KPIs
 - **Toujours en haut à gauche**, en bandeau horizontal — jamais au centre
 - **Devise systématique** pour tout ce qui touche aux ventes/profits
-- **Toujours une dimension de comparaison** (n-1, mois précédent...) : un chiffre seul ne dit pas s'il est bon ou mauvais — même principe que "un scorecard seul ne veut rien dire" déjà noté en [#21](21-looker-studio-3-data-storytelling.md)
+- **Toujours une dimension de comparaison** (n-1, mois précédent...) : un chiffre seul ne dit pas s'il est bon ou mauvais — même principe que "un scorecard seul ne veut rien dire" déjà noté en [[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]
 
 ### Slicers
 - Placement conventionnel : **à gauche ou en bandeau en haut**, jamais à droite ni en bas
@@ -239,18 +270,18 @@ Même exercice pédagogique que celui déjà vu en Looker Studio ([#21](21-looke
 - Savoir expliquer le pipeline Power BI (**Sources → Power Query → Star Schema → DAX → Visualisation**) et le rôle de chaque brique — bonne réponse structurée pour "comment fonctionne un outil de BI ?"
 - Argumenter la différence **Merge (JOIN) vs Append (UNION)** avec un exemple concret de piège (nommage de colonnes, ordre d'exécution des étapes) — montre une compréhension du *pourquoi*, pas seulement du *comment cliquer*
 - Justifier pourquoi les transformations lourdes doivent se faire **en amont dans le Data Warehouse plutôt que dans Power Query** — bon exemple de raisonnement architecture/performance
-- Savoir citer la règle des KPIs (haut à gauche, devise, comparaison temporelle) et la relier au Z-pattern — connecte directement dataviz ([#21](21-looker-studio-3-data-storytelling.md)) et outil (#22)
+- Savoir citer la règle des KPIs (haut à gauche, devise, comparaison temporelle) et la relier au Z-pattern — connecte directement dataviz ([[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]) et outil (#22)
 - Expliquer la nuance entre une relation dans le Data Model et une jointure classique (« une relation ne crée pas de nouvelle table, elle indique juste à l'outil comment les tables sont liées ») — distingue un candidat qui a juste cliqué d'un candidat qui comprend le moteur sous-jacent
 
 ---
 
 ## 🔗 Liens avec d'autres notions
 
-- Le triptyque **axe X / axe Y / légende** de Power BI recouvre le même concept que **Dimension / Metric** vu en Looker ([#19](19-looker-studio-1.md)) — vocabulaire différent, logique identique
+- Le triptyque **axe X / axe Y / légende** de Power BI recouvre le même concept que **Dimension / Metric** vu en Looker ([[wagon2321/cours/18_looker_studio_1|#19]]) — vocabulaire différent, logique identique
 - Le réflexe "vérifier la fonction d'agrégation à chaque métrique posée" est le pendant Power BI du principe **aggregate before divide** déjà noté en BigQuery/dbt/Looker — une somme par défaut mal vérifiée peut fausser un calcul
 - **Merge / Append** reprennent exactement `JOIN` / `UNION` vus en SQL — la logique de clé de jointure et le risque de duplication de lignes sont transférables tels quels
-- La **colonne conditionnelle** de Power Query est le même outil que le `CASE WHEN` SQL et le champ calculé conditionnel de Looker ([#20](20-looker-studio-2.md)) — troisième environnement différent, même raisonnement de conditions ordonnées
-- Les bonnes pratiques de dashboard design (Z-pattern, Data Ink Ratio, règle des 30 secondes, "un scorecard seul ne veut rien dire") sont une application directe du chapitre théorique Data Storytelling ([#21](21-looker-studio-3-data-storytelling.md)) — Power BI ne change pas les principes, seulement l'outil pour les appliquer
+- La **colonne conditionnelle** de Power Query est le même outil que le `CASE WHEN` SQL et le champ calculé conditionnel de Looker ([[wagon2321/cours/19_looker_studio_2|#20]]) — troisième environnement différent, même raisonnement de conditions ordonnées
+- Les bonnes pratiques de dashboard design (Z-pattern, Data Ink Ratio, règle des 30 secondes, "un scorecard seul ne veut rien dire") sont une application directe du chapitre théorique Data Storytelling ([[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]) — Power BI ne change pas les principes, seulement l'outil pour les appliquer
 - La session de critique de dashboards suit le même format pédagogique que celle déjà vue en Looker Studio (#21) : les erreurs relevées (couleurs dupliquées, absence de légende, KPI mal placé) sont **indépendantes de l'outil** — un bon réflexe dataviz transcende Looker et Power BI
 
 ---

@@ -1,3 +1,15 @@
+---
+title: KPI vs métrique
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # KPI vs métrique
 
 > Tout KPI est une métrique. L'inverse est faux. Ce qui les sépare n'est pas la nature du chiffre, c'est **ce qu'on y accroche**.
@@ -133,7 +145,7 @@ C'est le même principe que « nettoyer à la source plutôt que dans l'outil de
 → Le KPI est stratégique et adossé à un objectif, la métrique est opérationnelle et descriptive. Le KPI dit *si* on est sur la trajectoire, la métrique dit *pourquoi*. Ils sont complémentaires, pas concurrents.
 
 **« Donne un exemple concret. »**
-→ Le [[NPS (Net Promoter Score)]] est un KPI ; la distribution des notes de 0 à 10 est la métrique qui l'explique. Deux entreprises peuvent avoir le même NPS avec des distributions radicalement différentes — d'où la nécessité des deux.
+→ Le [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]] est un KPI ; la distribution des notes de 0 à 10 est la métrique qui l'explique. Deux entreprises peuvent avoir le même NPS avec des distributions radicalement différentes — d'où la nécessité des deux.
 
 **« Combien de KPI sur un dashboard ? »**
 → 3 à 5. Le critère de qualité d'un KPI n'est pas le nombre de questions auxquelles il répond, c'est le nombre de questions qu'il ouvre.
@@ -142,9 +154,9 @@ C'est le même principe que « nettoyer à la source plutôt que dans l'outil de
 
 ## 🔗 Liens
 
-- Chapitre source : [[KPI Basics]]
-- [[Reporting vs analyse ad hoc]] — le KPI vit dans le reporting, l'explication naît de l'ad hoc
-- [[Marge brute, marge opérationnelle, marge nette]] — un cas où le même chiffre change de nature selon le niveau
-- [[Taux sur variable binaire]] — la mécanique de calcul de la moitié des KPI de taux
-- [[NPS (Net Promoter Score)]] — l'exemple canonique du KPI qui exige ses métriques
-- [[Aggregate before divide]] — le piège de calcul le plus fréquent sur les KPI de type ratio
+- Chapitre source : [[wagon2321/cours/03_KPI_Basics|KPI Basics]]
+- [[codex/kpi/Reporting vs analyse ad hoc|Reporting vs analyse ad hoc]] — le KPI vit dans le reporting, l'explication naît de l'ad hoc
+- [[codex/kpi/Marge brute, marge opérationnelle, marge nette|Marge brute, marge opérationnelle, marge nette]] — un cas où le même chiffre change de nature selon le niveau
+- [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]] — la mécanique de calcul de la moitié des KPI de taux
+- [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]] — l'exemple canonique du KPI qui exige ses métriques
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — le piège de calcul le plus fréquent sur les KPI de type ratio

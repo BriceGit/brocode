@@ -1,4 +1,36 @@
+---
+title: '📝 Fiche de synthèse — #14 DBT Advanced'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-23
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: dbt-advanced
+role_version: variante
+session: 14
+numero_fichier_legacy: 13
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+reference: '[[wagon2321/cours_sol/14_dbt_advanced_sol]]'
+topics:
+- dbt
+- Data Modeling
+- Data Quality
+---
+
 # 📝 Fiche de synthèse — #14 DBT Advanced
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/14_dbt_advanced_sol|dbt — Tests, documentation, environnements, macros & packages]]
+
 
 **Date session :** 23 juillet 2026
 **Dataset démo :** Jaffle Shop

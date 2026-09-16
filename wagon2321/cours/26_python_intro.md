@@ -1,38 +1,47 @@
 ---
-title: "Python — Bases du langage : variables, structures de données & fonctions"
+title: 'Python — Bases du langage : variables, structures de données & fonctions'
 aliases:
-  - "Intro Python"
-  - "Python — Bases"
-  - "print vs return"
-  - "try / except Python"
-  - "Listes vs dictionnaires"
-  - "Boucle for Python"
+- Intro Python
+- Python — Bases
+- try / except Python
+- Listes vs dictionnaires
+- Boucle for Python
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 26
 date: 2026-08-10
-language: "Python"
-database: "n/a — pas de base de données dans cette session (premier cours 100% Python)"
+language: fr
+database: n/a — pas de base de données dans cette session (premier cours 100% Python)
 topics:
-  - "Python"
-  - "Jupyter Notebook"
-  - "Variables et types"
-  - "Strings"
-  - "Listes"
-  - "Dictionnaires"
-  - "Conditions"
-  - "Boucles"
-  - "Fonctions"
-  - "Gestion d'erreurs"
+- Python
+- Jupyter Notebook
+- Variables et types
+- Strings
+- Listes
+- Dictionnaires
+- Conditions
+- Boucles
+- Fonctions
+- Gestion d'erreurs
 tags:
-  - brocode
-  - wagon2321/cours
-  - python
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: Python
+course_id: python-intro
+role_version: reference
 ---
 
 # 26 - Intro Python
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 > Premier cours 100% Python du bootcamp — la brique sur laquelle tout le reste (pandas dès demain, puis sklearn) va se construire. Deux temps : le matin pose le langage (variables, types, listes, dictionnaires, conditions, boucles, fonctions) case par case dans un notebook ; l'après-midi enchaîne sur un exercice fil rouge (segmentation de clients) qui fait travailler toutes ces briques ensemble.
 
@@ -306,7 +315,7 @@ for client in panier_moyen:
 - On peut cibler une exception **précise** (`except ZeroDivisionError:`) plutôt qu'attraper toutes les erreurs sans distinction — plus sûr, ça évite de masquer un bug différent sous le même filet
 - Une fonction sans `return` explicite renvoie `None` par défaut (l'équivalent Python d'un NULL)
 
-> 🔗 **Connexion brocode** : `try / except ZeroDivisionError` en Python, c'est exactement le même problème que `SAFE_DIVIDE` en BigQuery — protéger une division contre un dénominateur potentiellement nul ou vide, dans un outil différent. Voir [[Aggregate before divide]] pour la version SQL/dbt/pandas de cette famille de principes. Ça mérite sa propre fiche dédiée (faite ci-dessous, voir [[Gérer une division par zéro (SAFE_DIVIDE vs try except)]]).
+> 🔗 **Connexion brocode** : `try / except ZeroDivisionError` en Python, c'est exactement le même problème que `SAFE_DIVIDE` en BigQuery — protéger une division contre un dénominateur potentiellement nul ou vide, dans un outil différent. Voir [[codex/sheet/Aggregate before divide|Aggregate before divide]] pour la version SQL/dbt/pandas de cette famille de principes. Ça mérite sa propre fiche dédiée (faite ci-dessous, voir [[codex/Gérer une division par zéro (SAFE_DIVIDE vs try except)|Gérer une division par zéro (SAFE_DIVIDE vs try except)]]).
 
 ## 13. Aperçu de demain : Pandas
 
@@ -326,7 +335,7 @@ for client in panier_moyen:
 
 ## 🔗 Liens brocode
 
-- [[Aggregate before divide]] — même famille de principe que le `try/except` sur division par zéro
-- [[Gérer une division par zéro (SAFE_DIVIDE vs try except)]] — fiche dédiée créée à partir de cette session
-- [[Print vs Return]] — fiche dédiée créée à partir de cette session
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — même famille de principe que le `try/except` sur division par zéro
+- [[codex/Gérer une division par zéro (SAFE_DIVIDE vs try except)|Gérer une division par zéro (SAFE_DIVIDE vs try except)]] — fiche dédiée créée à partir de cette session
+- [[codex/python/Print vs Return|Print vs Return]] — fiche dédiée créée à partir de cette session
 - Chapitre suivant : session Pandas (à lier manuellement, cf. section 13)

@@ -1,3 +1,15 @@
+---
+title: NPS (Net Promoter Score)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # NPS (Net Promoter Score)
 
 > L'indicateur de satisfaction le plus utilisé au monde, et l'un des plus mal calculés. Il tombe très souvent en entretien parce qu'il a deux pièges que presque personne ne connaît.
@@ -73,7 +85,7 @@ NPS = 25                        ← LE KPI     : « on est où par rapport à la
 
 **Le KPI seul est structurellement insuffisant** : sans la distribution, tu ne sais pas si tu dois convertir des passifs en promoteurs (base tiède) ou éteindre des détracteurs (base polarisée). Deux plans d'action opposés pour un score identique.
 
-C'est la meilleure démonstration de [[KPI vs métrique]] : le KPI est la porte d'entrée, la métrique explique.
+C'est la meilleure démonstration de [[codex/kpi/KPI vs métrique|KPI vs métrique]] : le KPI est la porte d'entrée, la métrique explique.
 
 ---
 
@@ -115,7 +127,7 @@ RETURN
     100 * ( DIVIDE(Promoters, Total) - DIVIDE(Detractors, Total) )
 ```
 
-> [!note] Ce n'est PAS un [[Taux sur variable binaire]]
+> [!note] Ce n'est PAS un [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]]
 > Le NPS a **trois** catégories, dont une exclue du numérateur mais présente au dénominateur. L'astuce `AVERAGE` sur 0/1 ne s'applique pas — il faut deux comptages distincts sur la même base. C'est le contre-exemple utile à garder en tête pour ne pas appliquer le pattern mécaniquement.
 
 ---
@@ -173,6 +185,6 @@ Le NPS est très utilisé en wealth management, où la relation client est le pr
 
 ## 🔗 Liens
 
-- Chapitre source : [[KPI Basics]]
-- [[KPI vs métrique]] — le NPS est l'exemple le plus net d'un KPI inutilisable sans ses métriques
-- [[Taux sur variable binaire]] — le contre-exemple : trois catégories, le pattern ne s'applique pas
+- Chapitre source : [[wagon2321/cours/03_KPI_Basics|KPI Basics]]
+- [[codex/kpi/KPI vs métrique|KPI vs métrique]] — le NPS est l'exemple le plus net d'un KPI inutilisable sans ses métriques
+- [[codex/kpi/Taux sur variable binaire|Taux sur variable binaire]] — le contre-exemple : trois catégories, le pattern ne s'applique pas

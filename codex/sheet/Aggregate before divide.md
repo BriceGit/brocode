@@ -1,3 +1,15 @@
+---
+title: Aggregate before divide
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Aggregate before divide
 
 > **La règle en une ligne :** un ratio agrégé se calcule `SUM(numérateur) / SUM(dénominateur)`, **jamais** `AVERAGE(numérateur / dénominateur)`.
@@ -39,7 +51,7 @@ Le champ calculé d'un tableau croisé dynamique applique la formule **ligne par
 ✅ Colonne à part, en dehors du pivot : = SUM(revenu) / SUM(commandes)
 ```
 
-Le conseil du formateur en [[02-google-sheets]] — *calculer le ratio en dehors du pivot* — n'est pas une préférence esthétique : c'est la parade à ce problème.
+Le conseil du formateur en [[wagon2321/cours/02-google-sheets|02-google-sheets]] — *calculer le ratio en dehors du pivot* — n'est pas une préférence esthétique : c'est la parade à ce problème.
 
 ### SQL / BigQuery
 
@@ -130,14 +142,19 @@ SELECT SAFE_DIVIDE(SUM(revenu), SUM(commandes)) FROM ventes;
 
 - **Ne jamais arrondir une colonne intermédiaire** utilisée comme multiplicateur ou comme dénominateur. `ROUND()` uniquement à la sortie finale. Même famille de problème : une erreur d'arrondi injectée en amont se propage et s'amplifie à l'agrégation.
 - **Test de conservation** : vérifier `SUM` avant / après toute distribution ou transformation.
-- Un ratio calculé sur la mauvaise **granularité** est faux même avec `SUM/SUM` → [[Granularité d'une table]]
-- Un ratio calculé après un join qui duplique des lignes est faux même avec la bonne granularité → [[Clé de jointure et cardinalité]]
+- Un ratio calculé sur la mauvaise **granularité** est faux même avec `SUM/SUM` → [[codex/sheet/Granularité d'une table|Granularité d'une table]]
+- Un ratio calculé après un join qui duplique des lignes est faux même avec la bonne granularité → [[codex/sheet/Clé de jointure et cardinalité|Clé de jointure et cardinalité]]
 
 ---
 
 ## 🔗 Liens
 
-- Première apparition dans le cursus : [[02-google-sheets]] — champs calculés du tableau croisé dynamique
-- [[Granularité d'une table]]
-- [[Clé de jointure et cardinalité]]
-- [[NULL et agrégation (AVG, COUNT)]] — l'autre piège des agrégats : `AVG` ignore les `NULL`, `SUM/COUNT(*)` non
+- Première apparition dans le cursus : [[wagon2321/cours/02-google-sheets|02-google-sheets]] — champs calculés du tableau croisé dynamique
+- [[codex/sheet/Granularité d'une table|Granularité d'une table]]
+- [[codex/sheet/Clé de jointure et cardinalité|Clé de jointure et cardinalité]]
+- [[codex/sql/NULL et agrégation (AVG, COUNT)|NULL et agrégation (AVG, COUNT)]] — l'autre piège des agrégats : `AVG` ignore les `NULL`, `SUM/COUNT(*)` non
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|SQL — Aggregations, String, Date & Time Functions]]
+- [[wagon2321/cours_sol/08_subqueries_ctes_union_sol|SQL — CTEs, Subqueries & UNION]]

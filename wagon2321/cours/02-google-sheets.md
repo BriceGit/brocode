@@ -1,39 +1,47 @@
 ---
-title: "Google Sheets — Import, nettoyage, jointures & agrégation"
+title: Google Sheets — Import, nettoyage, jointures & agrégation
 aliases:
-  - "Google Sheets"
-  - "VLOOKUP vs XLOOKUP"
-  - "IMPORTRANGE"
-  - "Tableau croisé dynamique"
-  - "FILTER et QUERY"
-  - "Les 7 étapes de l'analyse de données"
+- Google Sheets
+- VLOOKUP vs XLOOKUP
+- IMPORTRANGE
+- Tableau croisé dynamique
+- FILTER et QUERY
+- Les 7 étapes de l'analyse de données
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 2
 date: 2026-07-07
-language: "Formules Google Sheets"
-database: "n/a — tableur (Google Sheets / Excel)"
+language: fr
+database: n/a — tableur (Google Sheets / Excel)
 topics:
-  - "Google Sheets"
-  - "Excel"
-  - "Data Cleaning"
-  - "Lookup Functions"
-  - "Pivot Table"
-  - "QUERY"
-  - "Dates"
-  - "Regex"
-  - "Data Analysis Workflow"
+- Google Sheets
+- Excel
+- Data Cleaning
+- Lookup Functions
+- Pivot Table
+- QUERY
+- Dates
+- Regex
+- Data Analysis Workflow
 tags:
-  - brocode
-  - wagon2321/cours
-  - google-sheets
-  - tableur
-  - data-cleaning
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: Formules Google Sheets
+course_id: google-sheets
+role_version: reference
 ---
 
 # 02 - Google Sheets
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 > Première vraie journée technique du bootcamp. Deux couches : la **théorie du métier** (les 7 étapes d'une analyse de données, qui structureront tout le reste du cursus) puis la **boîte à outils tableur** (import, nettoyage, jointure, agrégation, filtrage). Presque toutes les formules vues ici ont un équivalent 1:1 en SQL, puis en pandas, puis en DAX — c'est le socle mental, pas juste du Google Sheets.
 
@@ -110,7 +118,7 @@ C'est la partie la plus durable de la session : ces 7 étapes sont le squelette 
 | **Google Sheets** | Startups, PME, équipes agiles | Suffit pour faire **les 7 étapes de bout en bout** sur des volumes raisonnables |
 | **Excel** | Grandes entreprises (banque, industrie, finance) | **~95% des fonctionnalités communes** avec Sheets |
 | **SQL** | Nettoyage et requêtage sérieux | Là où on détecte vraiment les valeurs aberrantes, les doublons, les incohérences |
-| **BigQuery** | Millions → milliards de lignes | Vu en fin de semaine / semaine suivante → [[Data Pipelines, Views & Tables]] |
+| **BigQuery** | Millions → milliards de lignes | Vu en fin de semaine / semaine suivante → [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol\|Data Pipelines, Views & Tables]] |
 
 > [!tip] Le conseil carrière du formateur
 > **Ne jamais se bloquer sur la stack.** Voir un outil inconnu dans une offre n'est pas un motif de ne pas postuler. La bonne formulation mentale (et en entretien) : *« je maîtrise un outil équivalent, je suis capable de prendre celui-ci en main. »*
@@ -730,13 +738,13 @@ C'est la vraie valeur de cette session : rien de ce qui est vu ici ne sera jeté
 ## 🔗 Liens
 
 **Chapitres liés**
-- [[10-data-pipelines-views-tables]] — volumétrie, quand quitter le tableur, architecture d'entrepôt
+- [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|10-data-pipelines-views-tables]] — volumétrie, quand quitter le tableur, architecture d'entrepôt
 - Chapitres SQL — `LEFT JOIN`, `GROUP BY`, `WHERE` : les équivalents directs de `VLOOKUP`, du TCD et de `FILTER`
 
 **Fiches-concept à créer / relier**
-- [[Aggregate before divide]] — première apparition ici, dans les champs calculés du TCD
-- [[Clé de jointure et cardinalité]] — le piège de la première occurrence
-- [[Granularité d'une table]] — ce que le TCD manipule sans le nommer
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — première apparition ici, dans les champs calculés du TCD
+- [[codex/sheet/Clé de jointure et cardinalité|Clé de jointure et cardinalité]] — le piège de la première occurrence
+- [[codex/sheet/Granularité d'une table|Granularité d'une table]] — ce que le TCD manipule sans le nommer
 
 **Ressources**
 - Cheat sheet Le Wagon (espace de cours)

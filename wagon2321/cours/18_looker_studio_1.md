@@ -1,4 +1,33 @@
+---
+title: '📝 #19 — Looker Studio (1/2) : fondamentaux de la dataviz'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-30
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: looker-studio-1
+role_version: reference
+session: 19
+numero_fichier_legacy: 18
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Looker Studio
+- Data Visualization
+---
+
 # 📝 #19 — Looker Studio (1/2) : fondamentaux de la dataviz
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 30 juillet 2026
 **Thème** : BI & data visualisation — concepts, prise en main de Looker Studio, choix de chart type, filtres, bonnes pratiques de design

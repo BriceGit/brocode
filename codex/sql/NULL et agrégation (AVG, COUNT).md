@@ -1,3 +1,15 @@
+---
+title: NULL et agrégation (AVG, COUNT)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # NULL et agrégation (AVG, COUNT)
 
 Les fonctions d'agrégation ne traitent pas toutes les `NULL` de la même façon selon qu'elles comptent des lignes ou calculent une moyenne — un piège récurrent.
@@ -31,5 +43,10 @@ Le résultat est **15**, pas 10 (`30 / 3`, si le `NULL` comptait comme une 3ème
 
 ## Voir aussi
 
-- [[Reboot SQL Fivetran Git dbt]] — chapitre source, section Fonctions d'agrégation
-- [[WHERE vs HAVING]]
+- [[wagon2321/cours/24_rebootsql_fivetran_git_dbt|Reboot SQL Fivetran Git dbt]] — chapitre source, section Fonctions d'agrégation
+- [[codex/sql/WHERE vs HAVING|WHERE vs HAVING]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|SQL — Aggregations, String, Date & Time Functions]]
+- [[wagon2321/cours_sol/14_dbt_advanced_sol|dbt — Tests, documentation, environnements, macros & packages]]

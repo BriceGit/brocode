@@ -1,4 +1,34 @@
+---
+title: '📝 #24 — Power BI (3/3) : gouvernance, sécurité, partage & Apps'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-08-06
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: power-bi-3
+role_version: reference
+session: 24
+numero_fichier_legacy: 23
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Power BI
+- DAX
+- Data Modeling
+---
+
 # 📝 #24 — Power BI (3/3) : gouvernance, sécurité, partage & Apps
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 06 août 2026
 **Thème** : Licences, distinction précise Report vs Dashboard, Workspaces & rôles, publication, sécurité (Dashboard-Level, Row-Level, Object-Level), partage, Apps, collaboration sans co-édition simultanée, brief du projet Deluxe E-Commerce
@@ -8,7 +38,7 @@
 
 ## 🎯 Contexte de la session
 
-- Troisième et dernier jour du module Power BI — clôture la trilogie [#22](22-power-bi-1.md) → [#23](23-power-bi-2.md) → #24
+- Troisième et dernier jour du module Power BI — clôture la trilogie [[wagon2321/cours/21_power_bi_1|#22]] → [[wagon2321/cours/22_power_bi_2|#23]] → #24
 - Journée projet : cours théorique court le matin (gouvernance, sécurité, partage, collaboration), après-midi consacré à un projet complet sur le dataset **Deluxe E-Commerce** (BigQuery, dataset connu disponible sur Kaggle)
 - Contenu plus léger sur le plan technique que #22/#23, mais couvre des sujets **absents des deux premiers cours** : sécurité de la donnée et gouvernance du partage
 
@@ -115,7 +145,7 @@ Partager un report/dashboard sans précaution supplémentaire, c'est partager **
 
 ## 📱 Apps
 
-- Façon "grand public" de partager du contenu, pensée comme un **site web** — organisation en Z-pattern (KPI en haut, informations secondaires lues en diagonale), même logique déjà vue en dataviz ([#21](21-looker-studio-3-data-storytelling.md)) et rappelée pour Power BI en [#22](22-power-bi-1.md)
+- Façon "grand public" de partager du contenu, pensée comme un **site web** — organisation en Z-pattern (KPI en haut, informations secondaires lues en diagonale), même logique déjà vue en dataviz ([[wagon2321/cours/20_looker_studio_3_data_storytelling|#21]]) et rappelée pour Power BI en [[wagon2321/cours/21_power_bi_1|#22]]
 - Une App peut regrouper **plusieurs dashboards et/ou reports**
 - Différence clé avec un partage classique : une App **ne partage jamais la couche sémantique** — contrairement au partage direct d'un report/dashboard vu plus haut
 
@@ -150,7 +180,7 @@ Power BI Desktop n'est **pas conçu pour la co-édition simultanée** d'un même
 - 🎯 Consigne principale, répétée plusieurs fois : choisir **1 à 2 périmètres maximum** et creuser en entonnoir (hypothèse générale → hypothèses spécifiques vérifiées), plutôt que de viser une overview qui finit par ne rien montrer faute de temps
   - Périmètres suggérés : sales + inventaire, customers + marketing, sales + customers
   - ⚠️ Le périmètre **marketing seul est limité** : impossible de calculer un ROI marketing faute de données de coût — le croiser avec website et comportement client est recommandé
-- DAX **non obligatoire**, mais nécessaire pour aller plus loin (Time Intelligence, ratios, marges, variations de ventes déjà vus en [#23](23-power-bi-2.md))
+- DAX **non obligatoire**, mais nécessaire pour aller plus loin (Time Intelligence, ratios, marges, variations de ventes déjà vus en [[wagon2321/cours/22_power_bi_2|#23]])
 - Méthode conseillée : définir la **user story** et l'audience cible **avant** d'ouvrir Power BI, identifier 5 hypothèses à vérifier plutôt que de multiplier les graphiques puis chercher une histoire après coup
 - 💡 Phrase retenue du formateur : *"Je préfère avoir une recommandation béton que 4 recommandations basiques."*
 
@@ -168,8 +198,8 @@ Power BI Desktop n'est **pas conçu pour la co-édition simultanée** d'un même
 
 ## 🔗 Liens avec d'autres notions
 
-- La distinction Report vs Dashboard précise et corrige la définition volontairement simplifiée donnée en [#22](22-power-bi-1.md) — une notion peut légitimement être réintroduite plus finement plusieurs sessions plus tard
-- Le Row-Level Security formalise, avec une vraie barrière côté données, ce qui n'était fait qu'avec des bookmarks/boutons verrouillés sur un slicer en [#22](22-power-bi-1.md) (vue pré-filtrée par commercial) — même intention, mais RLS est infranchissable pour un Viewer alors qu'un bookmark reste une simple facilité d'interface
+- La distinction Report vs Dashboard précise et corrige la définition volontairement simplifiée donnée en [[wagon2321/cours/21_power_bi_1|#22]] — une notion peut légitimement être réintroduite plus finement plusieurs sessions plus tard
+- Le Row-Level Security formalise, avec une vraie barrière côté données, ce qui n'était fait qu'avec des bookmarks/boutons verrouillés sur un slicer en [[wagon2321/cours/21_power_bi_1|#22]] (vue pré-filtrée par commercial) — même intention, mais RLS est infranchissable pour un Viewer alors qu'un bookmark reste une simple facilité d'interface
 - "Masquer visuellement ne sécurise pas" est le pendant gouvernance du principe déjà noté sur les KPIs et scorecards (#22) : une apparence propre en surface peut cacher un problème de fond — ici un problème de sécurité plutôt que de fiabilité de calcul
 - Le dataset Deluxe E-Commerce (Kaggle) suit la même logique que les datasets publics déjà identifiés pour le portfolio banking (Bank Customer Churn, Kaggle) — réflexe transférable : vérifier si un dataset Kaggle documente déjà son propre schéma avant de reconstruire l'ERD à l'aveugle
 - La consigne "1 à 2 périmètres max, creuser en entonnoir" rejoint directement la rétrospective personnelle déjà notée sur le projet RFM (aller trop vite sur la segmentation nuit à la clarté de la présentation) — ici le même conseil est donné en amont plutôt qu'en retour d'expérience
@@ -178,4 +208,4 @@ Power BI Desktop n'est **pas conçu pour la co-édition simultanée** d'un même
 
 ---
 
-*Chapitre 3/3 — clôture le module Power BI ([#22](22-power-bi-1.md) → [#23](23-power-bi-2.md) → #24). Le Drillthrough, évoqué mais jamais détaillé sur les trois cours, reste à creuser en autonomie si besoin.*
+*Chapitre 3/3 — clôture le module Power BI ([[wagon2321/cours/21_power_bi_1|#22]] → [[wagon2321/cours/22_power_bi_2|#23]] → #24). Le Drillthrough, évoqué mais jamais détaillé sur les trois cours, reste à creuser en autonomie si besoin.*

@@ -1,32 +1,41 @@
 ---
 title: SQL — Introduction, Relational Databases & BigQuery
 aliases:
-  - SQL Introduction
-  - Relational Databases & BigQuery
-  - BigQuery Fundamentals
+- SQL Introduction — Claude Sonnet
+- Relational Databases & BigQuery — Claude Sonnet
+- BigQuery Fundamentals — Claude Sonnet
 type: course
-status: reference
+status: active
 course: Le Wagon — Data Analytics
 batch: 2321
 session: 5
 date: 2026-07-10
-language: SQL
+language: fr
 database: BigQuery / GoogleSQL
 topics:
-  - SQL
-  - BigQuery
-  - Relational Databases
-  - ERD
+- SQL
+- BigQuery
+- Relational Databases
+- ERD
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - relational-databases
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+course_id: sql-introduction
+role_version: variante
+reference: '[[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol]]'
 ---
 
-
 # 📝 5 — Introduction à SQL & BigQuery : ERD, syntaxe de base et fonctions
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|SQL — Introduction, Relational Databases & BigQuery]]
+
 
 **Date** : 10 juillet 2026
 **Thème** : Bases de données relationnelles, ERD, prise en main de BigQuery, syntaxe SQL (SELECT/WHERE/ORDER BY/LIMIT), fonctions (IF, CASE WHEN, ROUND, CAST/SAFE_CAST), types de données
@@ -307,4 +316,3 @@ Deux concepts distincts évoqués en session, à ne pas confondre :
 ---
 
 *Premier chapitre du brocode — les sessions suivantes (jointures, GROUP BY/HAVING, dbt...) feront l'objet de chapitres dédiés.*
-

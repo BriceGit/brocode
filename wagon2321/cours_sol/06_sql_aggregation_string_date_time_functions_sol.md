@@ -1,36 +1,46 @@
 ---
-title: "SQL — Aggregations, String, Date & Time Functions"
+title: SQL — Aggregations, String, Date & Time Functions
 aliases:
-  - "SQL Aggregations"
-  - "SQL String Functions"
-  - "SQL Date & Time Functions"
+- SQL Aggregations
+- SQL String Functions
+- SQL Date & Time Functions
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 6
 date: 2026-07-13
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "Aggregations"
-  - "String"
-  - "Date & Time"
+- SQL
+- BigQuery
+- Aggregations
+- String
+- Date & Time
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - aggregations
-  - date-time
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/ChatGPT Sol]]'
+attribution: confirmee
+code_language: SQL
+course_id: sql-aggregations
+role_version: reference
+variantes:
+- '[[wagon2321/cours/06_sql_aggregation_date_string_functions]]'
 ---
 
 # 📝 06 — SQL · Aggregations, String, Date & Time Functions
 
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/ChatGPT Sol|ChatGPT Sol]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+> **Variante conservée :** [[wagon2321/cours/06_sql_aggregation_date_string_functions|Claude Sonnet]]
+
+
 > [!info] Navigation Brocode
-> **← Précédent :** [[05_intro_sql_relational_databases_bigquery_sol|05 — SQL · Introduction & BigQuery]] · **Suivant → :** [[07_joins_and_testing_sol|07 — SQL · JOINs & Testing]]
+> **← Précédent :** [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|05 — SQL · Introduction & BigQuery]] · **Suivant → :** [[wagon2321/cours_sol/07_joins_and_testing_sol|07 — SQL · JOINs & Testing]]
 >
 > [!tip] Navigation Obsidian
 > Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
@@ -58,7 +68,44 @@ tags:
 
 ---
 
-## 🧭 0. Vue d'ensemble du chapitre
+> [!abstract]- Plan de lecture
+> - [[#Repères de départ|Repères de départ]]
+> - [[#PARTIE I — AGRÉGATIONS|PARTIE I — AGRÉGATIONS]]
+> - [[#PARTIE II — WHERE, GROUP BY, HAVING|PARTIE II — WHERE, GROUP BY, HAVING]]
+> - [[#PARTIE III — FONCTIONS NUMÉRIQUES UTILES|PARTIE III — FONCTIONS NUMÉRIQUES UTILES]]
+> - [[#PARTIE IV — STRING FUNCTIONS|PARTIE IV — STRING FUNCTIONS]]
+> - [[#PARTIE V — REGULAR EXPRESSIONS|PARTIE V — REGULAR EXPRESSIONS]]
+> - [[#PARTIE VI — TEMPORAL DATA TYPES|PARTIE VI — TEMPORAL DATA TYPES]]
+> - [[#PARTIE VII — CONVERSION, CAST & PARSING|PARTIE VII — CONVERSION, CAST & PARSING]]
+> - [[#PARTIE VIII — EXTRACT|PARTIE VIII — EXTRACT]]
+> - [[#PARTIE IX — DATE_TRUNC|PARTIE IX — DATE_TRUNC]]
+> - [[#PARTIE X — DATE ARITHMETIC|PARTIE X — DATE ARITHMETIC]]
+> - [[#PARTIE XI — FORMAT_DATE & LAST_DAY|PARTIE XI — FORMAT_DATE & LAST_DAY]]
+> - [[#PARTIE XII — CURRENT DATE/TIME|PARTIE XII — CURRENT DATE/TIME]]
+> - [[#PARTIE XIII — TIMESTAMP & TIMEZONES|PARTIE XIII — TIMESTAMP & TIMEZONES]]
+> - [[#PARTIE XIV — PARSE_DATETIME / PARSE_TIMESTAMP / FORMAT|PARTIE XIV — PARSE_DATETIME / PARSE_TIMESTAMP / FORMAT]]
+> - [[#PARTIE XV — DATE_TRUNC vs EXTRACT : CHOIX ANALYTIQUE|PARTIE XV — DATE_TRUNC vs EXTRACT : CHOIX ANALYTIQUE]]
+> - [[#PARTIE XVI — DATE FILTERING & PERFORMANCE|PARTIE XVI — DATE FILTERING & PERFORMANCE]]
+> - [[#PARTIE XVII — GROUP BY SUR LES DATES|PARTIE XVII — GROUP BY SUR LES DATES]]
+> - [[#PARTIE XVIII — DATA QUALITY SUR LES DATES|PARTIE XVIII — DATA QUALITY SUR LES DATES]]
+> - [[#PARTIE XIX — STRING DATA QUALITY|PARTIE XIX — STRING DATA QUALITY]]
+> - [[#PARTIE XX — ANTI-PATTERNS|PARTIE XX — ANTI-PATTERNS]]
+> - [[#PARTIE XXI — PATTERNS MÉTIER|PARTIE XXI — PATTERNS MÉTIER]]
+> - [[#PARTIE XXII — REQUÊTES COMPLÈTES|PARTIE XXII — REQUÊTES COMPLÈTES]]
+> - [[#PARTIE XXIII — DEBUG SQL|PARTIE XXIII — DEBUG SQL]]
+> - [[#PARTIE XXIV — CHECKLIST|PARTIE XXIV — CHECKLIST]]
+> - [[#PARTIE XXV — QUESTIONS D'ENTRETIEN|PARTIE XXV — QUESTIONS D'ENTRETIEN]]
+> - [[#PARTIE XXVI — CHEAT SHEET|PARTIE XXVI — CHEAT SHEET]]
+> - [[#PARTIE XXVII — CARTE MENTALE|PARTIE XXVII — CARTE MENTALE]]
+
+
+> [!tip] Fiches pour approfondir
+> [[codex/sql/WHERE vs HAVING|WHERE vs HAVING]] · [[codex/sql/NULL et agrégation (AVG, COUNT)|NULL et agrégation (AVG, COUNT)]] · [[codex/sheet/Aggregate before divide|Aggregate before divide]]
+
+
+## Repères de départ
+
+### 🧭 0. Vue d'ensemble du chapitre
 
 Le cours mélange plusieurs notions qui sont en réalité très liées.
 
@@ -109,7 +156,7 @@ résultat analytique
 
 ---
 
-## 🧠 1. Le premier réflexe : connaître le type
+### 🧠 1. Le premier réflexe : connaître le type
 
 Une fonction SQL n'agit pas simplement sur « une colonne ».
 
@@ -143,9 +190,9 @@ travaille sur une chaîne de caractères.
 
 ---
 
-## 🧩 2. Les grands types BigQuery à connaître
+### 🧩 2. Les grands types BigQuery à connaître
 
-### Numériques
+#### Numériques
 
 ```text
 INT64
@@ -154,20 +201,20 @@ NUMERIC
 BIGNUMERIC
 ```
 
-### Booléen
+#### Booléen
 
 ```text
 BOOL
 ```
 
-### Texte / binaire
+#### Texte / binaire
 
 ```text
 STRING
 BYTES
 ```
 
-### Temps
+#### Temps
 
 ```text
 DATE
@@ -176,7 +223,7 @@ DATETIME
 TIMESTAMP
 ```
 
-### Types complexes
+#### Types complexes
 
 ```text
 ARRAY
@@ -189,7 +236,7 @@ RANGE
 
 ---
 
-## ⚠️ 3. Correction Brocode — `BOOL` n'est pas un type numérique
+### ⚠️ 3. Correction Brocode — `BOOL` n'est pas un type numérique
 
 Une slide classe :
 
@@ -225,7 +272,7 @@ même si certains systèmes ou langages représentent parfois les booléens num�
 
 ---
 
-## ⚠️ 4. Correction Brocode — `YEAR`, `MONTH`, `DAY` ne sont pas des data types
+### ⚠️ 4. Correction Brocode — `YEAR`, `MONTH`, `DAY` ne sont pas des data types
 
 La slide affiche notamment :
 
@@ -272,11 +319,11 @@ TIMESTAMP
 
 ---
 
-## ============================================================
-## PARTIE I — AGRÉGATIONS
-## ============================================================
 
-## 📊 5. Qu'est-ce qu'une agrégation ?
+## PARTIE I — AGRÉGATIONS
+
+
+### 📊 5. Qu'est-ce qu'une agrégation ?
 
 Une agrégation transforme :
 
@@ -326,7 +373,7 @@ Julien          17.5
 
 ---
 
-## 🧠 6. Une agrégation change la granularité
+### 🧠 6. Une agrégation change la granularité
 
 Avant :
 
@@ -350,7 +397,7 @@ C'est une notion centrale du SQL analytique.
 
 ---
 
-## 🔢 7. Les principales fonctions d'agrégation
+### 🔢 7. Les principales fonctions d'agrégation
 
 Fonctions fondamentales :
 
@@ -373,7 +420,7 @@ ARRAY_AGG()
 
 ---
 
-## 🔢 8. `COUNT(*)`
+### 🔢 8. `COUNT(*)`
 
 ```sql
 SELECT
@@ -387,7 +434,7 @@ FROM purchases;
 
 ---
 
-## ⚠️ 9. Correction importante — `COUNT(*)` compte même une ligne remplie de `NULL`
+### ⚠️ 9. Correction importante — `COUNT(*)` compte même une ligne remplie de `NULL`
 
 Le résumé du cours dit approximativement :
 
@@ -427,7 +474,7 @@ COUNT(expression)
 
 ---
 
-## 🔍 10. `COUNT(column)`
+### 🔍 10. `COUNT(column)`
 
 ```sql
 SELECT
@@ -462,7 +509,7 @@ COUNT(email)  = 2
 
 ---
 
-## 🧮 11. `COUNT(DISTINCT ...)`
+### 🧮 11. `COUNT(DISTINCT ...)`
 
 ```sql
 SELECT
@@ -487,7 +534,7 @@ contrôles de cardinalité
 
 ---
 
-## ✅ 12. `COUNTIF`
+### ✅ 12. `COUNTIF`
 
 BigQuery propose :
 
@@ -507,7 +554,7 @@ C'est particulièrement lisible pour compter une condition.
 
 ---
 
-## ➕ 13. `SUM`
+### ➕ 13. `SUM`
 
 ```sql
 SELECT
@@ -519,7 +566,7 @@ FROM sales;
 
 ---
 
-## 📐 14. `AVG`
+### 📐 14. `AVG`
 
 En BigQuery :
 
@@ -537,7 +584,7 @@ AVERAGE(price)
 
 ---
 
-## 📏 15. `MIN` et `MAX`
+### 📏 15. `MIN` et `MAX`
 
 ```sql
 SELECT
@@ -559,7 +606,7 @@ FROM orders;
 
 ---
 
-## 🕳 16. Les agrégations et `NULL`
+### 🕳 16. Les agrégations et `NULL`
 
 De manière générale :
 
@@ -605,7 +652,7 @@ et non :
 
 ---
 
-## ⚠️ 17. `NULL` ≠ zéro ≠ chaîne vide
+### ⚠️ 17. `NULL` ≠ zéro ≠ chaîne vide
 
 Ces trois valeurs sont différentes :
 
@@ -615,19 +662,19 @@ NULL
 ''
 ```
 
-#### `NULL`
+##### `NULL`
 
 ```text
 valeur absente / inconnue
 ```
 
-#### `0`
+##### `0`
 
 ```text
 valeur numérique connue
 ```
 
-#### `''`
+##### `''`
 
 ```text
 STRING connue mais vide
@@ -637,7 +684,7 @@ Cette distinction devient très importante lors des contrôles de qualité.
 
 ---
 
-## 🧱 18. `GROUP BY`
+### 🧱 18. `GROUP BY`
 
 Structure classique :
 
@@ -661,7 +708,7 @@ GROUP BY buyer;
 
 ---
 
-## 📦 19. Règle fondamentale du `SELECT` agrégé
+### 📦 19. Règle fondamentale du `SELECT` agrégé
 
 Dans une requête agrégée, une expression du `SELECT` doit généralement être :
 
@@ -700,7 +747,7 @@ BigQuery ne sait pas quel `product` retourner pour un buyer ayant plusieurs acha
 
 ---
 
-## 🧠 20. Le moteur pose implicitement la question
+### 🧠 20. Le moteur pose implicitement la question
 
 Avec :
 
@@ -738,7 +785,7 @@ D'où l'erreur.
 
 ---
 
-## 🧩 21. `GROUP BY` sur plusieurs colonnes
+### 🧩 21. `GROUP BY` sur plusieurs colonnes
 
 ```sql
 SELECT
@@ -761,7 +808,7 @@ La granularité devient :
 
 ---
 
-## 🧠 22. `GROUP BY` = définition de la nouvelle clé analytique
+### 🧠 22. `GROUP BY` = définition de la nouvelle clé analytique
 
 C'est une excellente manière de raisonner.
 
@@ -791,7 +838,7 @@ buyer + product
 
 ---
 
-## 🔢 23. Références ordinales
+### 🔢 23. Références ordinales
 
 BigQuery permet :
 
@@ -819,7 +866,7 @@ ORDER BY 2 DESC
 
 ---
 
-## ⚠️ 24. Faut-il utiliser les numéros de colonnes ?
+### ⚠️ 24. Faut-il utiliser les numéros de colonnes ?
 
 Pratique pour :
 
@@ -848,7 +895,7 @@ GROUP BY
 
 ---
 
-## 🧪 25. Contrôler une candidate Primary Key avec `GROUP BY`
+### 🧪 25. Contrôler une candidate Primary Key avec `GROUP BY`
 
 Supposons que :
 
@@ -882,7 +929,7 @@ product_id n'est pas unique
 
 ---
 
-## 🕳 26. Tester les `NULL`
+### 🕳 26. Tester les `NULL`
 
 ```sql
 SELECT
@@ -900,7 +947,7 @@ non NULL
 
 ---
 
-## 🧪 27. Pattern de contrôle de clé
+### 🧪 27. Pattern de contrôle de clé
 
 ```sql
 SELECT
@@ -924,11 +971,11 @@ alors la colonne est compatible avec une clé unique non nulle.
 
 ---
 
-## ============================================================
-## PARTIE II — WHERE, GROUP BY, HAVING
-## ============================================================
 
-## 🔎 28. `WHERE` = pré-filtrage
+## PARTIE II — WHERE, GROUP BY, HAVING
+
+
+### 🔎 28. `WHERE` = pré-filtrage
 
 ```sql
 WHERE
@@ -957,7 +1004,7 @@ Puis il agrège ces lignes restantes.
 
 ---
 
-## 📊 29. `HAVING` = filtre après agrégation
+### 📊 29. `HAVING` = filtre après agrégation
 
 ```sql
 SELECT
@@ -978,7 +1025,7 @@ Ici :
 
 ---
 
-## 🧠 30. `WHERE` vs `HAVING`
+### 🧠 30. `WHERE` vs `HAVING`
 
 ```text
 WHERE
@@ -996,7 +1043,7 @@ HAVING
 
 ---
 
-## 📐 31. Exemple visuel
+### 📐 31. Exemple visuel
 
 Source :
 
@@ -1011,7 +1058,7 @@ Julien    15.0
 Julien     2.5
 ```
 
-### `WHERE spend > 10`
+#### `WHERE spend > 10`
 
 Avant agrégation :
 
@@ -1027,7 +1074,7 @@ Julien   15.0
 
 ---
 
-### `HAVING SUM(spend) > 10`
+#### `HAVING SUM(spend) > 10`
 
 Agrégation d'abord :
 
@@ -1049,7 +1096,7 @@ Résultat métier complètement différent.
 
 ---
 
-## 🚫 32. Pourquoi pas `SUM()` dans `WHERE` ?
+### 🚫 32. Pourquoi pas `SUM()` dans `WHERE` ?
 
 Ceci est invalide :
 
@@ -1072,7 +1119,7 @@ n'a pas encore été calculé.
 
 ---
 
-## ⏱ 33. Ordre logique d'évaluation BigQuery
+### ⏱ 33. Ordre logique d'évaluation BigQuery
 
 Version simplifiée :
 
@@ -1100,7 +1147,7 @@ L'ordre écrit dans le SQL n'est pas nécessairement l'ordre conceptuel d'évalu
 
 ---
 
-## 🏷 34. Alias dans `HAVING`
+### 🏷 34. Alias dans `HAVING`
 
 BigQuery permet :
 
@@ -1117,7 +1164,7 @@ HAVING total_spend > 10;
 
 ---
 
-## 🏷 35. Alias et `WHERE`
+### 🏷 35. Alias et `WHERE`
 
 En revanche :
 
@@ -1134,7 +1181,7 @@ n'est pas valide.
 
 ---
 
-## 🧱 36. `ROLLUP` — aperçu
+### 🧱 36. `ROLLUP` — aperçu
 
 Le cours mentionne l'idée de produire des grands totaux.
 
@@ -1169,11 +1216,11 @@ Pour du code métier complexe, une agrégation explicite reste souvent plus simp
 
 ---
 
-## ============================================================
-## PARTIE III — FONCTIONS NUMÉRIQUES UTILES
-## ============================================================
 
-## ➗ 37. `SAFE_DIVIDE`
+## PARTIE III — FONCTIONS NUMÉRIQUES UTILES
+
+
+### ➗ 37. `SAFE_DIVIDE`
 
 ```sql
 SAFE_DIVIDE(numerator, denominator)
@@ -1189,7 +1236,7 @@ Au lieu de faire échouer la requête sur une division problématique telle qu'u
 
 ---
 
-## 🎯 38. `ROUND`
+### 🎯 38. `ROUND`
 
 ```sql
 ROUND(value, decimal_places)
@@ -1217,7 +1264,7 @@ arrondit à l'entier.
 
 ---
 
-## ⚠️ 39. Ne pas arrondir trop tôt
+### ⚠️ 39. Ne pas arrondir trop tôt
 
 Pour un calcul financier ou un ratio utilisé en aval :
 
@@ -1243,11 +1290,11 @@ L'arrondi précoce peut introduire un écart cumulé.
 
 ---
 
-## ============================================================
-## PARTIE IV — STRING FUNCTIONS
-## ============================================================
 
-## 🔤 40. Pourquoi les fonctions STRING sont importantes
+## PARTIE IV — STRING FUNCTIONS
+
+
+### 🔤 40. Pourquoi les fonctions STRING sont importantes
 
 La donnée textuelle brute contient souvent :
 
@@ -1281,7 +1328,7 @@ mais SQL les considère comme des chaînes différentes si on utilise une compar
 
 ---
 
-## 🔗 41. `CONCAT`
+### 🔗 41. `CONCAT`
 
 Syntaxe :
 
@@ -1305,7 +1352,7 @@ Résultat :
 
 ---
 
-## ⚠️ 42. `CONCAT` et `NULL`
+### ⚠️ 42. `CONCAT` et `NULL`
 
 Un piège important :
 
@@ -1339,7 +1386,7 @@ CONCAT(
 
 ---
 
-## 🔗 43. Alternative `||`
+### 🔗 43. Alternative `||`
 
 BigQuery permet également :
 
@@ -1355,7 +1402,7 @@ CONCAT(first_name, ' ', last_name)
 
 ---
 
-## 🔢 44. `CONCAT` avec d'autres types
+### 🔢 44. `CONCAT` avec d'autres types
 
 BigQuery peut accepter dans `CONCAT` des valeurs pouvant être converties en `STRING`.
 
@@ -1375,7 +1422,7 @@ rend le contrat plus lisible.
 
 ---
 
-## 🔄 45. `REPLACE`
+### 🔄 45. `REPLACE`
 
 Syntaxe :
 
@@ -1405,7 +1452,7 @@ banana
 
 ---
 
-## 🧠 46. `REPLACE` = remplacement littéral
+### 🧠 46. `REPLACE` = remplacement littéral
 
 `REPLACE` ne comprend pas une expression régulière.
 
@@ -1435,7 +1482,7 @@ est nécessaire.
 
 ---
 
-## 🔡 47. `LOWER`
+### 🔡 47. `LOWER`
 
 ```sql
 LOWER(value)
@@ -1465,7 +1512,7 @@ thomas
 
 ---
 
-## 🔠 48. `UPPER`
+### 🔠 48. `UPPER`
 
 ```sql
 UPPER(value)
@@ -1481,7 +1528,7 @@ PARIS
 
 ---
 
-## ✨ 49. `INITCAP`
+### ✨ 49. `INITCAP`
 
 BigQuery fournit :
 
@@ -1501,7 +1548,7 @@ C'est surtout une transformation de présentation.
 
 ---
 
-## ⚠️ 50. Normaliser pour comparer
+### ⚠️ 50. Normaliser pour comparer
 
 Un pattern courant :
 
@@ -1529,7 +1576,7 @@ améliore la lisibilité
 
 ---
 
-## 🧠 51. Complément BigQuery — `NORMALIZE_AND_CASEFOLD`
+### 🧠 51. Complément BigQuery — `NORMALIZE_AND_CASEFOLD`
 
 Pour des comparaisons Unicode insensibles à la casse, BigQuery propose :
 
@@ -1549,7 +1596,7 @@ C'est plus précis qu'un simple `LOWER()` lorsque l'on doit gérer des variation
 
 ---
 
-## ✂️ 52. `TRIM`
+### ✂️ 52. `TRIM`
 
 Très fréquent en data cleaning :
 
@@ -1578,7 +1625,7 @@ RTRIM()
 
 ---
 
-## 📏 53. `LENGTH`
+### 📏 53. `LENGTH`
 
 ```sql
 LENGTH(value)
@@ -1596,7 +1643,7 @@ Les deux nombres peuvent être différents avec certains caractères Unicode.
 
 ---
 
-## ✂️ 54. `SUBSTR` / `SUBSTRING`
+### ✂️ 54. `SUBSTR` / `SUBSTRING`
 
 Permet d'extraire une portion de chaîne.
 
@@ -1625,7 +1672,7 @@ mais si le format est complexe, la regex peut être plus appropriée.
 
 ---
 
-## 🔤 55. `TRANSLATE`
+### 🔤 55. `TRANSLATE`
 
 Syntaxe :
 
@@ -1663,7 +1710,7 @@ peut être utilisé comme stratégie simple de normalisation d'accents explicite
 
 ---
 
-## ⚠️ 56. `TRANSLATE` n'est pas un moteur de normalisation linguistique complet
+### ⚠️ 56. `TRANSLATE` n'est pas un moteur de normalisation linguistique complet
 
 Il s'agit d'un mapping caractère → caractère.
 
@@ -1686,11 +1733,11 @@ selon le besoin.
 
 ---
 
-## ============================================================
-## PARTIE V — REGULAR EXPRESSIONS
-## ============================================================
 
-## 🧩 57. Qu'est-ce qu'une regex ?
+## PARTIE V — REGULAR EXPRESSIONS
+
+
+### 🧩 57. Qu'est-ce qu'une regex ?
 
 Une expression régulière décrit :
 
@@ -1723,7 +1770,7 @@ du début à la fin
 
 ---
 
-## 🔎 58. `REGEXP_CONTAINS`
+### 🔎 58. `REGEXP_CONTAINS`
 
 Syntaxe :
 
@@ -1749,7 +1796,7 @@ FROM fruit;
 
 ---
 
-## 🧠 59. Matching partiel
+### 🧠 59. Matching partiel
 
 Par défaut :
 
@@ -1769,7 +1816,7 @@ corresponde au pattern.
 
 ---
 
-## 🎯 60. Matching complet
+### 🎯 60. Matching complet
 
 Pour exiger une correspondance sur toute la chaîne :
 
@@ -1796,7 +1843,7 @@ REGEXP_CONTAINS(
 
 ---
 
-## 📚 61. BigQuery utilise RE2
+### 📚 61. BigQuery utilise RE2
 
 Les expressions régulières de GoogleSQL / BigQuery utilisent la bibliothèque :
 
@@ -1808,7 +1855,7 @@ Cela signifie qu'il faut utiliser la syntaxe compatible RE2 plutôt que supposer
 
 ---
 
-## 🪄 62. Le préfixe `r`
+### 🪄 62. Le préfixe `r`
 
 On écrit souvent :
 
@@ -1828,7 +1875,7 @@ Cela rend beaucoup de regex plus lisibles car on échappe moins les backslashes.
 
 ---
 
-## 🧱 63. Quelques symboles regex essentiels
+### 🧱 63. Quelques symboles regex essentiels
 
 ```text
 .        n'importe quel caractère
@@ -1851,7 +1898,7 @@ $        fin
 
 ---
 
-## 🔀 64. `|` = OR
+### 🔀 64. `|` = OR
 
 ```text
 cat|dog
@@ -1876,7 +1923,7 @@ REGEXP_CONTAINS(
 
 ---
 
-## 🔎 65. `LIKE` vs Regex
+### 🔎 65. `LIKE` vs Regex
 
 `LIKE` est très utile pour des patterns simples :
 
@@ -1904,7 +1951,7 @@ formats structurés
 
 ---
 
-## ✅ 66. Choisir le bon outil
+### ✅ 66. Choisir le bon outil
 
 ```text
 égalité exacte
@@ -1928,7 +1975,7 @@ replacement pattern
 
 ---
 
-## 🔎 67. `CONTAINS_SUBSTR` — complément BigQuery
+### 🔎 67. `CONTAINS_SUBSTR` — complément BigQuery
 
 Pour une simple recherche de sous-chaîne, BigQuery fournit :
 
@@ -1957,7 +2004,7 @@ Pour un simple « contient », cela peut être plus lisible qu'une regex.
 
 ---
 
-## 🧲 68. `REGEXP_EXTRACT`
+### 🧲 68. `REGEXP_EXTRACT`
 
 ```sql
 REGEXP_EXTRACT(value, regexp)
@@ -1983,7 +2030,7 @@ foo
 
 ---
 
-## 🔁 69. `REGEXP_REPLACE`
+### 🔁 69. `REGEXP_REPLACE`
 
 ```sql
 REGEXP_REPLACE(
@@ -2013,7 +2060,7 @@ permet de supprimer les caractères non numériques.
 
 ---
 
-## 🧪 70. Regex et qualité de données
+### 🧪 70. Regex et qualité de données
 
 Exemples de contrôles :
 
@@ -2034,11 +2081,11 @@ Un email peut avoir un format plausible et ne pas exister.
 
 ---
 
-## ============================================================
-## PARTIE VI — TEMPORAL DATA TYPES
-## ============================================================
 
-## 🕐 71. Les quatre types temporels BigQuery
+## PARTIE VI — TEMPORAL DATA TYPES
+
+
+### 🕐 71. Les quatre types temporels BigQuery
 
 C'est le cœur du chapitre.
 
@@ -2053,7 +2100,7 @@ Ils ne sont pas interchangeables conceptuellement.
 
 ---
 
-## 📅 72. `DATE`
+### 📅 72. `DATE`
 
 Un `DATE` contient :
 
@@ -2088,7 +2135,7 @@ jour férié
 
 ---
 
-## 🕒 73. `TIME`
+### 🕒 73. `TIME`
 
 Un `TIME` contient uniquement :
 
@@ -2114,7 +2161,7 @@ timezone
 
 ---
 
-## 🗓 74. `DATETIME`
+### 🗓 74. `DATETIME`
 
 Un `DATETIME` contient :
 
@@ -2140,7 +2187,7 @@ C'est une **date et heure civile**.
 
 ---
 
-## 🌍 75. `TIMESTAMP`
+### 🌍 75. `TIMESTAMP`
 
 Un `TIMESTAMP` représente :
 
@@ -2164,7 +2211,7 @@ mais il s'agit du même événement temporel.
 
 ---
 
-## 🧠 76. Le tableau mental essentiel
+### 🧠 76. Le tableau mental essentiel
 
 | Type | Date | Heure | Timezone / instant absolu |
 |---|---:|---:|---:|
@@ -2175,7 +2222,7 @@ mais il s'agit du même événement temporel.
 
 ---
 
-## 🎯 77. Quel type choisir ?
+### 🎯 77. Quel type choisir ?
 
 Question :
 
@@ -2227,27 +2274,27 @@ TIMESTAMP
 
 ---
 
-## 🏦 78. Exemple banking
+### 🏦 78. Exemple banking
 
-#### Date de naissance
-
-```text
-DATE
-```
-
-#### Jour comptable
+##### Date de naissance
 
 ```text
 DATE
 ```
 
-#### Heure d'ouverture d'une agence
+##### Jour comptable
+
+```text
+DATE
+```
+
+##### Heure d'ouverture d'une agence
 
 ```text
 TIME
 ```
 
-#### Rendez-vous local « 10:30 »
+##### Rendez-vous local « 10:30 »
 
 Selon architecture :
 
@@ -2261,7 +2308,7 @@ ou conversion vers :
 TIMESTAMP
 ```
 
-#### Instant d'une transaction
+##### Instant d'une transaction
 
 ```text
 TIMESTAMP
@@ -2283,11 +2330,11 @@ peuvent représenter le même instant.
 
 ---
 
-## ============================================================
-## PARTIE VII — CONVERSION, CAST & PARSING
-## ============================================================
 
-## 🔄 79. Type correct vs apparence visuelle
+## PARTIE VII — CONVERSION, CAST & PARSING
+
+
+### 🔄 79. Type correct vs apparence visuelle
 
 Ceci :
 
@@ -2319,7 +2366,7 @@ Toujours vérifier le schéma.
 
 ---
 
-## 🧱 80. `CAST`
+### 🧱 80. `CAST`
 
 Si une chaîne est déjà dans un format directement convertible :
 
@@ -2329,7 +2376,7 @@ CAST('2026-08-08' AS DATE)
 
 ---
 
-## 🛡 81. `SAFE_CAST`
+### 🛡 81. `SAFE_CAST`
 
 ```sql
 SAFE_CAST(value AS DATE)
@@ -2351,7 +2398,7 @@ Mais il ne faut pas utiliser `SAFE_CAST` pour silencieusement masquer un problè
 
 ---
 
-## 🧪 82. Pattern de Data Quality avec `SAFE_CAST`
+### 🧪 82. Pattern de Data Quality avec `SAFE_CAST`
 
 ```sql
 SELECT
@@ -2371,7 +2418,7 @@ mais non convertibles
 
 ---
 
-## 📅 83. `PARSE_DATE`
+### 📅 83. `PARSE_DATE`
 
 Syntaxe :
 
@@ -2392,7 +2439,7 @@ Thursday, 3 June 2021
 
 ---
 
-## 🧩 84. Exemple `PARSE_DATE`
+### 🧩 84. Exemple `PARSE_DATE`
 
 ```sql
 SELECT
@@ -2411,7 +2458,7 @@ Résultat :
 
 ---
 
-## 🎼 85. Le format doit correspondre à la chaîne
+### 🎼 85. Le format doit correspondre à la chaîne
 
 Si la valeur est :
 
@@ -2442,7 +2489,7 @@ On décrit précisément la représentation textuelle.
 
 ---
 
-## 📚 86. Format elements essentiels
+### 📚 86. Format elements essentiels
 
 ```text
 %Y  année sur 4 chiffres    2026
@@ -2461,7 +2508,7 @@ On décrit précisément la représentation textuelle.
 
 ---
 
-## 🔄 87. `PARSE_*` vs `FORMAT_*`
+### 🔄 87. `PARSE_*` vs `FORMAT_*`
 
 Deux directions opposées :
 
@@ -2481,7 +2528,7 @@ STRING
 
 ---
 
-## 🎨 88. `FORMAT_DATE`
+### 🎨 88. `FORMAT_DATE`
 
 ```sql
 FORMAT_DATE(
@@ -2504,7 +2551,7 @@ par exemple :
 
 ---
 
-## ⚠️ 89. Ne pas confondre affichage et donnée temporelle
+### ⚠️ 89. Ne pas confondre affichage et donnée temporelle
 
 ```sql
 FORMAT_DATE('%Y-%m', order_date)
@@ -2522,11 +2569,11 @@ qui retourne encore un type temporel.
 
 ---
 
-## ============================================================
-## PARTIE VIII — EXTRACT
-## ============================================================
 
-## ⛏ 90. `EXTRACT`
+## PARTIE VIII — EXTRACT
+
+
+### ⛏ 90. `EXTRACT`
 
 Syntaxe :
 
@@ -2547,7 +2594,7 @@ FROM fruit;
 
 ---
 
-## 📆 91. Exemples de parties extractibles sur une date
+### 📆 91. Exemples de parties extractibles sur une date
 
 ```sql
 EXTRACT(YEAR FROM date_col)
@@ -2572,7 +2619,7 @@ sont également disponibles.
 
 ---
 
-## ⚠️ 92. Correction Brocode — `EXTRACT` n'exige pas un `DATETIME`
+### ⚠️ 92. Correction Brocode — `EXTRACT` n'exige pas un `DATETIME`
 
 Une slide indique approximativement :
 
@@ -2611,7 +2658,7 @@ la partie demandée
 
 ---
 
-## 🔢 93. `EXTRACT(MONTH)` retourne un nombre
+### 🔢 93. `EXTRACT(MONTH)` retourne un nombre
 
 ```sql
 EXTRACT(
@@ -2636,7 +2683,7 @@ Ce n'est plus une date.
 
 ---
 
-## 🎯 94. Quand `EXTRACT` est utile
+### 🎯 94. Quand `EXTRACT` est utile
 
 Très adapté à des questions comme :
 
@@ -2652,7 +2699,7 @@ Quel trimestre ?
 
 ---
 
-## ⚠️ 95. Perte d'information avec `EXTRACT`
+### ⚠️ 95. Perte d'information avec `EXTRACT`
 
 Si on écrit :
 
@@ -2686,19 +2733,19 @@ ou une énorme erreur analytique.
 
 ---
 
-## 🧠 96. Question réflexe avant `EXTRACT`
+### 🧠 96. Question réflexe avant `EXTRACT`
 
 Demander :
 
 > Est-ce que je veux analyser **juin en général**, ou **juin 2026** ?
 
-#### Juin toutes années confondues
+##### Juin toutes années confondues
 
 ```sql
 EXTRACT(MONTH FROM order_date)
 ```
 
-#### Mois chronologique distinct
+##### Mois chronologique distinct
 
 ```sql
 DATE_TRUNC(order_date, MONTH)
@@ -2706,11 +2753,11 @@ DATE_TRUNC(order_date, MONTH)
 
 ---
 
-## ============================================================
-## PARTIE IX — DATE_TRUNC
-## ============================================================
 
-## ✂️ 97. `DATE_TRUNC`
+## PARTIE IX — DATE_TRUNC
+
+
+### ✂️ 97. `DATE_TRUNC`
 
 Syntaxe :
 
@@ -2738,7 +2785,7 @@ DATE_TRUNC(
 
 ---
 
-## 🧠 98. `DATE_TRUNC` conserve un type temporel
+### 🧠 98. `DATE_TRUNC` conserve un type temporel
 
 Contrairement à :
 
@@ -2768,7 +2815,7 @@ restent représentés.
 
 ---
 
-## 📅 99. Exemples
+### 📅 99. Exemples
 
 ```sql
 DATE_TRUNC(date_col, YEAR)
@@ -2796,7 +2843,7 @@ DATE_TRUNC(date_col, WEEK)
 
 ---
 
-## 📊 100. `EXTRACT` vs `DATE_TRUNC`
+### 📊 100. `EXTRACT` vs `DATE_TRUNC`
 
 Supposons :
 
@@ -2805,7 +2852,7 @@ Supposons :
 2026-06-15
 ```
 
-### `EXTRACT(MONTH)`
+#### `EXTRACT(MONTH)`
 
 ```text
 6
@@ -2816,7 +2863,7 @@ Les deux années fusionnent naturellement dans un `GROUP BY`.
 
 ---
 
-### `DATE_TRUNC(..., MONTH)`
+#### `DATE_TRUNC(..., MONTH)`
 
 ```text
 2025-06-01
@@ -2827,9 +2874,9 @@ Les périodes restent distinctes.
 
 ---
 
-## 🧭 101. Cas d'usage
+### 🧭 101. Cas d'usage
 
-### Saisonnalité annuelle
+#### Saisonnalité annuelle
 
 > Comment les clients se comportent-ils en moyenne au mois de juin, quelle que soit l'année ?
 
@@ -2840,7 +2887,7 @@ GROUP BY
 
 ---
 
-### Série temporelle mensuelle
+#### Série temporelle mensuelle
 
 > Comment le CA évolue-t-il mois après mois depuis 2024 ?
 
@@ -2851,7 +2898,7 @@ GROUP BY
 
 ---
 
-## 📈 102. Pattern mensuel recommandé
+### 📈 102. Pattern mensuel recommandé
 
 ```sql
 SELECT
@@ -2866,7 +2913,7 @@ Le résultat conserve un axe chronologique exploitable par un outil BI.
 
 ---
 
-## 📅 103. Semaine : attention au début de semaine
+### 📅 103. Semaine : attention au début de semaine
 
 Les semaines sont un terrain classique d'erreur.
 
@@ -2893,11 +2940,11 @@ Toujours documenter la convention.
 
 ---
 
-## ============================================================
-## PARTIE X — DATE ARITHMETIC
-## ============================================================
 
-## ➕ 104. `DATE_ADD`
+## PARTIE X — DATE ARITHMETIC
+
+
+### ➕ 104. `DATE_ADD`
 
 ```sql
 DATE_ADD(
@@ -2917,7 +2964,7 @@ DATE_ADD(
 
 ---
 
-## ➖ 105. `DATE_SUB`
+### ➖ 105. `DATE_SUB`
 
 ```sql
 DATE_SUB(
@@ -2946,7 +2993,7 @@ fenêtres temporelles
 
 ---
 
-## 📅 106. Parties supportées
+### 📅 106. Parties supportées
 
 Pour `DATE_ADD` / `DATE_SUB` :
 
@@ -2960,7 +3007,7 @@ YEAR
 
 ---
 
-## ⚠️ 107. Fin de mois
+### ⚠️ 107. Fin de mois
 
 Ajouter ou soustraire des mois n'est pas équivalent à ajouter un nombre fixe de jours.
 
@@ -2995,7 +3042,7 @@ lorsqu'on pense en mois calendaires.
 
 ---
 
-## 📐 108. `DATE_DIFF`
+### 📐 108. `DATE_DIFF`
 
 Syntaxe :
 
@@ -3021,7 +3068,7 @@ FROM fruit;
 
 ---
 
-## 🧠 109. Ordre des arguments
+### 🧠 109. Ordre des arguments
 
 ```text
 end_date
@@ -3053,7 +3100,7 @@ Si on inverse :
 
 ---
 
-## ⚠️ 110. `DATE_DIFF` compte des frontières de périodes
+### ⚠️ 110. `DATE_DIFF` compte des frontières de périodes
 
 Point très important :
 
@@ -3083,7 +3130,7 @@ car une frontière de semaine est franchie.
 
 ---
 
-## 📅 111. `DATE_DIFF` et les semaines
+### 📅 111. `DATE_DIFF` et les semaines
 
 Comparer :
 
@@ -3101,7 +3148,7 @@ Le choix doit refléter la convention métier.
 
 ---
 
-## 🧮 112. Age — piège classique
+### 🧮 112. Age — piège classique
 
 On pourrait être tenté de calculer :
 
@@ -3127,11 +3174,11 @@ ne jamais utiliser une approximation sans validation
 
 ---
 
-## ============================================================
-## PARTIE XI — FORMAT_DATE & LAST_DAY
-## ============================================================
 
-## 🎨 113. `FORMAT_DATE`
+## PARTIE XI — FORMAT_DATE & LAST_DAY
+
+
+### 🎨 113. `FORMAT_DATE`
 
 ```sql
 FORMAT_DATE(
@@ -3163,7 +3210,7 @@ STRING
 
 ---
 
-## 🧠 114. `FORMAT_DATE` est une fonction d'affichage
+### 🧠 114. `FORMAT_DATE` est une fonction d'affichage
 
 À utiliser pour :
 
@@ -3187,7 +3234,7 @@ comparaisons temporelles
 
 ---
 
-## 📆 115. `LAST_DAY`
+### 📆 115. `LAST_DAY`
 
 BigQuery fournit :
 
@@ -3228,7 +3275,7 @@ selon la signature.
 
 ---
 
-## 💼 116. Usage de `LAST_DAY`
+### 💼 116. Usage de `LAST_DAY`
 
 Exemples :
 
@@ -3242,11 +3289,11 @@ snapshot
 
 ---
 
-## ============================================================
-## PARTIE XII — CURRENT DATE/TIME
-## ============================================================
 
-## 🕒 117. Date / heure actuelle
+## PARTIE XII — CURRENT DATE/TIME
+
+
+### 🕒 117. Date / heure actuelle
 
 BigQuery propose notamment :
 
@@ -3259,7 +3306,7 @@ CURRENT_TIMESTAMP()
 
 ---
 
-## 🌍 118. `CURRENT_DATE` et timezone
+### 🌍 118. `CURRENT_DATE` et timezone
 
 Sans timezone explicite :
 
@@ -3289,7 +3336,7 @@ peut être plus cohérent pour une logique de jour local.
 
 ---
 
-## 🧠 119. Pourquoi la timezone compte
+### 🧠 119. Pourquoi la timezone compte
 
 Imaginons :
 
@@ -3314,11 +3361,11 @@ Une règle métier basée sur la date locale doit choisir explicitement la timez
 
 ---
 
-## ============================================================
-## PARTIE XIII — TIMESTAMP & TIMEZONES
-## ============================================================
 
-## 🌍 120. `TIMESTAMP` et instant absolu
+## PARTIE XIII — TIMESTAMP & TIMEZONES
+
+
+### 🌍 120. `TIMESTAMP` et instant absolu
 
 Lorsqu'une donnée représente :
 
@@ -3338,7 +3385,7 @@ payment_received_at
 
 ---
 
-## 🔄 121. Convertir un `TIMESTAMP` en date locale
+### 🔄 121. Convertir un `TIMESTAMP` en date locale
 
 ```sql
 DATE(
@@ -3351,7 +3398,7 @@ permet d'obtenir le jour civil suisse correspondant à l'instant.
 
 ---
 
-## ⚠️ 122. Ne jamais supposer implicitement la timezone
+### ⚠️ 122. Ne jamais supposer implicitement la timezone
 
 Une colonne appelée :
 
@@ -3379,7 +3426,7 @@ plutôt que deviner.
 
 ---
 
-## 🕰 123. Heure d'été / DST
+### 🕰 123. Heure d'été / DST
 
 Les timezones régionales comme :
 
@@ -3408,11 +3455,11 @@ est souvent préférable.
 
 ---
 
-## ============================================================
-## PARTIE XIV — PARSE_DATETIME / PARSE_TIMESTAMP / FORMAT
-## ============================================================
 
-## 🧩 124. Famille cohérente de fonctions
+## PARTIE XIV — PARSE_DATETIME / PARSE_TIMESTAMP / FORMAT
+
+
+### 🧩 124. Famille cohérente de fonctions
 
 ```text
 PARSE_DATE
@@ -3434,7 +3481,7 @@ Le choix dépend du type cible.
 
 ---
 
-## 📥 125. Parsing
+### 📥 125. Parsing
 
 ```text
 STRING
@@ -3452,7 +3499,7 @@ PARSE_TIMESTAMP(
 
 ---
 
-## 📤 126. Formatting
+### 📤 126. Formatting
 
 ```text
 type temporel
@@ -3471,7 +3518,7 @@ FORMAT_TIMESTAMP(
 
 ---
 
-## ⚠️ 127. Parsing strict = Data Quality
+### ⚠️ 127. Parsing strict = Data Quality
 
 Si une source affirme :
 
@@ -3499,11 +3546,11 @@ nouvelle version ?
 
 ---
 
-## ============================================================
-## PARTIE XV — DATE_TRUNC vs EXTRACT : CHOIX ANALYTIQUE
-## ============================================================
 
-## 🧭 128. Question 1 — saisonnalité
+## PARTIE XV — DATE_TRUNC vs EXTRACT : CHOIX ANALYTIQUE
+
+
+### 🧭 128. Question 1 — saisonnalité
 
 > Quel mois de l'année génère le plus de commandes, en moyenne sur plusieurs années ?
 
@@ -3528,7 +3575,7 @@ C'est voulu.
 
 ---
 
-## 📈 129. Question 2 — série temporelle
+### 📈 129. Question 2 — série temporelle
 
 > Quel est le nombre de commandes mois par mois ?
 
@@ -3553,7 +3600,7 @@ C'est voulu.
 
 ---
 
-## 🧠 130. Raccourci mental
+### 🧠 130. Raccourci mental
 
 ```text
 EXTRACT
@@ -3565,7 +3612,7 @@ DATE_TRUNC
 
 ---
 
-## 📊 131. BI et `DATE_TRUNC`
+### 📊 131. BI et `DATE_TRUNC`
 
 Pour un graphique :
 
@@ -3594,11 +3641,11 @@ car le contexte annuel est conservé.
 
 ---
 
-## ============================================================
-## PARTIE XVI — DATE FILTERING & PERFORMANCE
-## ============================================================
 
-## 🎯 132. Filtrer des dates
+## PARTIE XVI — DATE FILTERING & PERFORMANCE
+
+
+### 🎯 132. Filtrer des dates
 
 Préférer :
 
@@ -3611,7 +3658,7 @@ WHERE order_date >= DATE '2026-01-01'
 
 ---
 
-## 🧠 133. Half-open intervals
+### 🧠 133. Half-open intervals
 
 Pour une période :
 
@@ -3647,7 +3694,7 @@ sur les timestamps.
 
 ---
 
-## 🕒 134. Exemple TIMESTAMP
+### 🕒 134. Exemple TIMESTAMP
 
 ```sql
 WHERE event_ts >= TIMESTAMP '2026-08-01 00:00:00+00'
@@ -3656,7 +3703,7 @@ WHERE event_ts >= TIMESTAMP '2026-08-01 00:00:00+00'
 
 ---
 
-## ⚠️ 135. Appliquer une fonction sur la colonne de filtre
+### ⚠️ 135. Appliquer une fonction sur la colonne de filtre
 
 Exemple :
 
@@ -3679,11 +3726,11 @@ Toujours vérifier le partitionnement réel de la table et le plan / bytes proce
 
 ---
 
-## ============================================================
-## PARTIE XVII — GROUP BY SUR LES DATES
-## ============================================================
 
-## 📅 136. CA par jour
+## PARTIE XVII — GROUP BY SUR LES DATES
+
+
+### 📅 136. CA par jour
 
 ```sql
 SELECT
@@ -3702,7 +3749,7 @@ Granularité :
 
 ---
 
-## 📅 137. CA par mois
+### 📅 137. CA par mois
 
 ```sql
 SELECT
@@ -3715,7 +3762,7 @@ ORDER BY month;
 
 ---
 
-## 📅 138. CA par trimestre
+### 📅 138. CA par trimestre
 
 ```sql
 SELECT
@@ -3728,7 +3775,7 @@ ORDER BY quarter;
 
 ---
 
-## 📅 139. CA par weekday
+### 📅 139. CA par weekday
 
 ```sql
 SELECT
@@ -3745,7 +3792,7 @@ Pour un dashboard, un label explicite peut être préférable.
 
 ---
 
-## 🧠 140. Grouper par plusieurs dimensions temporelles
+### 🧠 140. Grouper par plusieurs dimensions temporelles
 
 ```sql
 SELECT
@@ -3773,11 +3820,11 @@ est souvent plus compact et garde un vrai type `DATE`.
 
 ---
 
-## ============================================================
-## PARTIE XVIII — DATA QUALITY SUR LES DATES
-## ============================================================
 
-## 🧪 141. Dates impossibles
+## PARTIE XVIII — DATA QUALITY SUR LES DATES
+
+
+### 🧪 141. Dates impossibles
 
 Si une date est stockée en `DATE`, BigQuery empêche déjà de représenter :
 
@@ -3789,7 +3836,7 @@ Mais avec une source `STRING`, cette valeur peut exister.
 
 ---
 
-## 🧪 142. Mesurer les dates non parsables
+### 🧪 142. Mesurer les dates non parsables
 
 ```sql
 SELECT
@@ -3802,7 +3849,7 @@ FROM raw_orders;
 
 ---
 
-## 🧪 143. Dates dans le futur
+### 🧪 143. Dates dans le futur
 
 Pour un champ :
 
@@ -3818,7 +3865,7 @@ FROM customers;
 
 ---
 
-## 🧪 144. Date de livraison avant commande
+### 🧪 144. Date de livraison avant commande
 
 ```sql
 SELECT
@@ -3830,7 +3877,7 @@ FROM orders;
 
 ---
 
-## 🧪 145. Distribution des dates
+### 🧪 145. Distribution des dates
 
 ```sql
 SELECT
@@ -3851,11 +3898,11 @@ source interrompue
 
 ---
 
-## ============================================================
-## PARTIE XIX — STRING DATA QUALITY
-## ============================================================
 
-## 🧪 146. Chaînes vides
+## PARTIE XIX — STRING DATA QUALITY
+
+
+### 🧪 146. Chaînes vides
 
 ```sql
 SELECT
@@ -3865,7 +3912,7 @@ FROM customers;
 
 ---
 
-## 🧪 147. Valeurs distinctes après normalisation
+### 🧪 147. Valeurs distinctes après normalisation
 
 ```sql
 SELECT
@@ -3889,7 +3936,7 @@ comme variations d'un même concept.
 
 ---
 
-## 🧪 148. Email pattern
+### 🧪 148. Email pattern
 
 ```sql
 SELECT
@@ -3907,11 +3954,11 @@ Ce n'est qu'un contrôle de forme.
 
 ---
 
-## ============================================================
-## PARTIE XX — ANTI-PATTERNS
-## ============================================================
 
-## 🚨 149. Anti-pattern — comparer des dates comme du texte
+## PARTIE XX — ANTI-PATTERNS
+
+
+### 🚨 149. Anti-pattern — comparer des dates comme du texte
 
 Éviter :
 
@@ -3935,7 +3982,7 @@ avant l'analyse.
 
 ---
 
-## 🚨 150. Anti-pattern — stocker année/mois/jour séparés sans reconstruire une date
+### 🚨 150. Anti-pattern — stocker année/mois/jour séparés sans reconstruire une date
 
 Des colonnes :
 
@@ -3957,7 +4004,7 @@ permet d'obtenir un vrai type `DATE`.
 
 ---
 
-## 🚨 151. Anti-pattern — utiliser `FORMAT_DATE` trop tôt
+### 🚨 151. Anti-pattern — utiliser `FORMAT_DATE` trop tôt
 
 ```sql
 FORMAT_DATE('%d/%m/%Y', order_date)
@@ -3978,7 +4025,7 @@ garder le `DATE` natif jusqu'à la couche de présentation.
 
 ---
 
-## 🚨 152. Anti-pattern — `EXTRACT(MONTH)` sans penser à l'année
+### 🚨 152. Anti-pattern — `EXTRACT(MONTH)` sans penser à l'année
 
 Cette requête :
 
@@ -4002,7 +4049,7 @@ série temporelle mensuelle
 
 ---
 
-## 🚨 153. Anti-pattern — `WHERE` et agrégat
+### 🚨 153. Anti-pattern — `WHERE` et agrégat
 
 Invalide :
 
@@ -4020,7 +4067,7 @@ après l'agrégation.
 
 ---
 
-## 🚨 154. Anti-pattern — confondre `COUNT(*)` et `COUNT(column)`
+### 🚨 154. Anti-pattern — confondre `COUNT(*)` et `COUNT(column)`
 
 ```sql
 COUNT(*)
@@ -4038,7 +4085,7 @@ Cette différence peut complètement modifier un KPI.
 
 ---
 
-## 🚨 155. Anti-pattern — regex pour tout
+### 🚨 155. Anti-pattern — regex pour tout
 
 Ne pas utiliser :
 
@@ -4064,7 +4111,7 @@ Le code sera plus facile à lire.
 
 ---
 
-## 🚨 156. Anti-pattern — masquer les erreurs avec `SAFE_*`
+### 🚨 156. Anti-pattern — masquer les erreurs avec `SAFE_*`
 
 `SAFE_CAST` ou `SAFE_DIVIDE` évitent une erreur runtime.
 
@@ -4084,11 +4131,11 @@ Toujours monitorer si ces cas sont importants.
 
 ---
 
-## ============================================================
-## PARTIE XXI — PATTERNS MÉTIER
-## ============================================================
 
-## 💼 157. Délai moyen de livraison
+## PARTIE XXI — PATTERNS MÉTIER
+
+
+### 💼 157. Délai moyen de livraison
 
 ```sql
 SELECT
@@ -4105,7 +4152,7 @@ WHERE delivery_date IS NOT NULL;
 
 ---
 
-## 💼 158. Délai par mois de commande
+### 💼 158. Délai par mois de commande
 
 ```sql
 SELECT
@@ -4125,7 +4172,7 @@ ORDER BY month;
 
 ---
 
-## 💼 159. Clients actifs sur les 90 derniers jours
+### 💼 159. Clients actifs sur les 90 derniers jours
 
 ```sql
 SELECT
@@ -4141,7 +4188,7 @@ HAVING last_order_date >= DATE_SUB(
 
 ---
 
-## 💼 160. Cohorte d'acquisition
+### 💼 160. Cohorte d'acquisition
 
 ```sql
 WITH customers AS (
@@ -4160,7 +4207,7 @@ FROM customers;
 
 ---
 
-## 💼 161. Saisonnalité par weekday
+### 💼 161. Saisonnalité par weekday
 
 ```sql
 SELECT
@@ -4174,9 +4221,9 @@ ORDER BY weekday;
 
 ---
 
-## 🏦 162. Exemples banking
+### 🏦 162. Exemples banking
 
-### Ancienneté client
+#### Ancienneté client
 
 ```sql
 DATE_DIFF(
@@ -4186,19 +4233,19 @@ DATE_DIFF(
 )
 ```
 
-### Volume de transactions mensuel
+#### Volume de transactions mensuel
 
 ```sql
 DATE_TRUNC(transaction_date, MONTH)
 ```
 
-### Dernière activité
+#### Dernière activité
 
 ```sql
 MAX(transaction_date)
 ```
 
-### Durée entre deux étapes de dossier
+#### Durée entre deux étapes de dossier
 
 ```sql
 DATE_DIFF(
@@ -4208,7 +4255,7 @@ DATE_DIFF(
 )
 ```
 
-### Filtre d'année comptable
+#### Filtre d'année comptable
 
 ```sql
 WHERE accounting_date >= DATE '2026-01-01'
@@ -4217,11 +4264,11 @@ WHERE accounting_date >= DATE '2026-01-01'
 
 ---
 
-## ============================================================
-## PARTIE XXII — REQUÊTES COMPLÈTES
-## ============================================================
 
-## 🧱 163. Analyse mensuelle complète
+## PARTIE XXII — REQUÊTES COMPLÈTES
+
+
+### 🧱 163. Analyse mensuelle complète
 
 ```sql
 SELECT
@@ -4246,7 +4293,7 @@ ORDER BY month;
 
 ---
 
-## 🧠 164. Lecture de la requête
+### 🧠 164. Lecture de la requête
 
 ```text
 FROM sales
@@ -4276,7 +4323,7 @@ ordre chronologique
 
 ---
 
-## 🧱 165. Nettoyage de chaîne + date
+### 🧱 165. Nettoyage de chaîne + date
 
 ```sql
 WITH cleaned AS (
@@ -4299,7 +4346,7 @@ FROM cleaned;
 
 ---
 
-## 🧱 166. Parsing d'une date non standard
+### 🧱 166. Parsing d'une date non standard
 
 ```sql
 SELECT
@@ -4312,7 +4359,7 @@ FROM raw_fruit;
 
 ---
 
-## 🧱 167. Regex + normalisation
+### 🧱 167. Regex + normalisation
 
 ```sql
 SELECT
@@ -4328,11 +4375,11 @@ FROM customers;
 
 ---
 
-## ============================================================
-## PARTIE XXIII — DEBUG SQL
-## ============================================================
 
-## 🐛 168. Lire les messages d'erreur
+## PARTIE XXIII — DEBUG SQL
+
+
+### 🐛 168. Lire les messages d'erreur
 
 Le cours insiste à raison :
 
@@ -4358,7 +4405,7 @@ ni dans une fonction agrégée
 
 ---
 
-## 🧠 169. Méthode de debug
+### 🧠 169. Méthode de debug
 
 Face à une requête complexe :
 
@@ -4377,7 +4424,7 @@ Ne pas écrire 40 lignes avant le premier test.
 
 ---
 
-## 🔬 170. Vérifier les types avec le schéma
+### 🔬 170. Vérifier les types avec le schéma
 
 Si une fonction échoue :
 
@@ -4407,11 +4454,11 @@ DATE
 
 ---
 
-## ============================================================
-## PARTIE XXIV — CHECKLIST
-## ============================================================
 
-## ✅ 171. Checklist avant une agrégation
+## PARTIE XXIV — CHECKLIST
+
+
+### ✅ 171. Checklist avant une agrégation
 
 - [ ] Quelle est la granularité actuelle ?
 - [ ] Quelle granularité veux-je obtenir ?
@@ -4423,7 +4470,7 @@ DATE
 
 ---
 
-## ✅ 172. Checklist avant une transformation STRING
+### ✅ 172. Checklist avant une transformation STRING
 
 - [ ] Quelle est la valeur brute ?
 - [ ] Espaces parasites ?
@@ -4436,7 +4483,7 @@ DATE
 
 ---
 
-## ✅ 173. Checklist avant une transformation DATE/TIME
+### ✅ 173. Checklist avant une transformation DATE/TIME
 
 - [ ] Type réel : `STRING`, `DATE`, `DATETIME`, `TIMESTAMP` ?
 - [ ] Quelle timezone ?
@@ -4451,69 +4498,69 @@ DATE
 
 ---
 
-## ============================================================
-## PARTIE XXV — QUESTIONS D'ENTRETIEN
-## ============================================================
 
-## 🎤 174. `COUNT(*)` vs `COUNT(column)`
+## PARTIE XXV — QUESTIONS D'ENTRETIEN
+
+
+### 🎤 174. `COUNT(*)` vs `COUNT(column)`
 
 > `COUNT(*)` compte les lignes. `COUNT(column)` compte les lignes pour lesquelles l'expression n'est pas `NULL`.
 
 ---
 
-## 🎤 175. `WHERE` vs `HAVING`
+### 🎤 175. `WHERE` vs `HAVING`
 
 > `WHERE` filtre les lignes avant l'agrégation ; `HAVING` filtre les groupes après `GROUP BY` / agrégation.
 
 ---
 
-## 🎤 176. Pourquoi une colonne du `SELECT` doit-elle être dans le `GROUP BY` ?
+### 🎤 176. Pourquoi une colonne du `SELECT` doit-elle être dans le `GROUP BY` ?
 
 > Parce qu'une agrégation produit une ligne par groupe. Toute colonne non agrégée doit donc avoir une valeur déterminée pour ce groupe, ce qui est assuré en la mettant dans les clés de regroupement.
 
 ---
 
-## 🎤 177. `DATE` vs `DATETIME` vs `TIMESTAMP`
+### 🎤 177. `DATE` vs `DATETIME` vs `TIMESTAMP`
 
 > `DATE` représente un jour civil. `DATETIME` représente une date et une heure sans timezone intrinsèque. `TIMESTAMP` représente un instant absolu qui peut être affiché selon différents fuseaux horaires.
 
 ---
 
-## 🎤 178. `PARSE_DATE` vs `FORMAT_DATE`
+### 🎤 178. `PARSE_DATE` vs `FORMAT_DATE`
 
 > `PARSE_DATE` convertit une chaîne vers un `DATE`. `FORMAT_DATE` convertit un `DATE` vers une chaîne de présentation.
 
 ---
 
-## 🎤 179. `EXTRACT(MONTH)` vs `DATE_TRUNC(..., MONTH)`
+### 🎤 179. `EXTRACT(MONTH)` vs `DATE_TRUNC(..., MONTH)`
 
 > `EXTRACT(MONTH)` retourne le numéro du mois et supprime le contexte annuel. `DATE_TRUNC(date, MONTH)` retourne une date représentant le début du mois et conserve donc l'année.
 
 ---
 
-## 🎤 180. Pourquoi `DATE_DIFF` peut surprendre ?
+### 🎤 180. Pourquoi `DATE_DIFF` peut surprendre ?
 
 > Parce qu'il compte le nombre de frontières de la granularité demandée entre deux dates, ce qui peut différer d'une intuition basée sur une durée continue.
 
 ---
 
-## 🎤 181. `REPLACE` vs `REGEXP_REPLACE`
+### 🎤 181. `REPLACE` vs `REGEXP_REPLACE`
 
 > `REPLACE` recherche une sous-chaîne littérale. `REGEXP_REPLACE` recherche un pattern décrit par une expression régulière.
 
 ---
 
-## 🎤 182. `LIKE` vs regex
+### 🎤 182. `LIKE` vs regex
 
 > `LIKE` est adapté aux wildcards simples `%` et `_`. Les regex permettent des patterns plus expressifs : classes de caractères, alternatives, quantificateurs, ancres et groupes.
 
 ---
 
-## ============================================================
-## PARTIE XXVI — CHEAT SHEET
-## ============================================================
 
-## 🧾 183. Agrégations
+## PARTIE XXVI — CHEAT SHEET
+
+
+### 🧾 183. Agrégations
 
 ```sql
 COUNT(*)
@@ -4535,7 +4582,7 @@ MAX(metric)
 
 ---
 
-## 🧾 184. `GROUP BY`
+### 🧾 184. `GROUP BY`
 
 ```sql
 SELECT
@@ -4547,7 +4594,7 @@ GROUP BY category;
 
 ---
 
-## 🧾 185. `HAVING`
+### 🧾 185. `HAVING`
 
 ```sql
 SELECT
@@ -4560,7 +4607,7 @@ HAVING total > 100;
 
 ---
 
-## 🧾 186. String cleaning
+### 🧾 186. String cleaning
 
 ```sql
 TRIM(value)
@@ -4578,7 +4625,7 @@ TRANSLATE(value, 'éèà', 'eea')
 
 ---
 
-## 🧾 187. String composition
+### 🧾 187. String composition
 
 ```sql
 CONCAT(first_name, ' ', last_name)
@@ -4586,7 +4633,7 @@ CONCAT(first_name, ' ', last_name)
 
 ---
 
-## 🧾 188. Regex
+### 🧾 188. Regex
 
 ```sql
 REGEXP_CONTAINS(value, r'pattern')
@@ -4598,7 +4645,7 @@ REGEXP_REPLACE(value, r'pattern', 'replacement')
 
 ---
 
-## 🧾 189. Date parsing
+### 🧾 189. Date parsing
 
 ```sql
 PARSE_DATE(
@@ -4609,7 +4656,7 @@ PARSE_DATE(
 
 ---
 
-## 🧾 190. Date formatting
+### 🧾 190. Date formatting
 
 ```sql
 FORMAT_DATE(
@@ -4620,7 +4667,7 @@ FORMAT_DATE(
 
 ---
 
-## 🧾 191. Extract
+### 🧾 191. Extract
 
 ```sql
 EXTRACT(
@@ -4631,7 +4678,7 @@ EXTRACT(
 
 ---
 
-## 🧾 192. Truncate
+### 🧾 192. Truncate
 
 ```sql
 DATE_TRUNC(
@@ -4642,7 +4689,7 @@ DATE_TRUNC(
 
 ---
 
-## 🧾 193. Add / subtract
+### 🧾 193. Add / subtract
 
 ```sql
 DATE_ADD(
@@ -4658,7 +4705,7 @@ DATE_SUB(
 
 ---
 
-## 🧾 194. Difference
+### 🧾 194. Difference
 
 ```sql
 DATE_DIFF(
@@ -4670,7 +4717,7 @@ DATE_DIFF(
 
 ---
 
-## 🧾 195. Current
+### 🧾 195. Current
 
 ```sql
 CURRENT_DATE()
@@ -4684,7 +4731,7 @@ CURRENT_TIMESTAMP()
 
 ---
 
-## 🧾 196. Conversion
+### 🧾 196. Conversion
 
 ```sql
 CAST(value AS DATE)
@@ -4696,11 +4743,11 @@ DATE(timestamp_col, 'Europe/Zurich')
 
 ---
 
-## ============================================================
-## PARTIE XXVII — CARTE MENTALE
-## ============================================================
 
-## 🗺 197. Carte mentale finale
+## PARTIE XXVII — CARTE MENTALE
+
+
+### 🗺 197. Carte mentale finale
 
 ```text
 SQL FUNCTIONS
@@ -4750,7 +4797,7 @@ SQL FUNCTIONS
 
 ---
 
-## 💡 198. Ce que j'ai retenu
+### 💡 198. Ce que j'ai retenu
 
 - Une fonction SQL doit être choisie en fonction du **type réel** de la donnée.
 - `COUNT(*)` compte les lignes ; `COUNT(column)` ignore les `NULL`.
@@ -4775,7 +4822,7 @@ SQL FUNCTIONS
 
 ---
 
-## ❓ 199. Questions / points à garder en tête
+### ❓ 199. Questions / points à garder en tête
 
 - [ ] Quelle convention de semaine utilise l'entreprise : dimanche, lundi, ISO ?
 - [ ] Quelle timezone métier est utilisée dans les différents systèmes ?
@@ -4788,7 +4835,7 @@ SQL FUNCTIONS
 
 ---
 
-## ✅ 200. Actions post-session
+### ✅ 200. Actions post-session
 
 - [ ] Refaire un exemple `COUNT(*)` vs `COUNT(column)` avec `NULL`.
 - [ ] Refaire `WHERE` vs `HAVING` sur le même dataset.
@@ -4802,7 +4849,7 @@ SQL FUNCTIONS
 
 ---
 
-## 🔗 201. Liens avec les autres notions du Brocode
+### 🔗 201. Liens avec les autres notions du Brocode
 
 ```text
 01–02 — SQL basics
@@ -4837,7 +4884,7 @@ dbt / Warehousing / BI
 
 ---
 
-## 🔬 202. Précisions techniques ajoutées au Brocode
+### 🔬 202. Précisions techniques ajoutées au Brocode
 
 Par rapport aux slides et à la transcription, les points suivants ont été clarifiés pour correspondre au comportement GoogleSQL / BigQuery :
 
@@ -4885,6 +4932,6 @@ Par rapport aux slides et à la transcription, les points suivants ont été cla
 
 ---
 
-## 🏁 203. Résumé en une phrase
+### 🏁 203. Résumé en une phrase
 
 > **Bien manipuler les dates et les fonctions SQL revient d'abord à maîtriser les types et la granularité : on filtre les lignes avec `WHERE`, on agrège avec `GROUP BY`, on filtre les agrégats avec `HAVING`, on normalise le texte avec les fonctions `STRING`, et on choisit entre `EXTRACT`, `DATE_TRUNC`, parsing, formatting et arithmétique temporelle selon la question métier exacte.**

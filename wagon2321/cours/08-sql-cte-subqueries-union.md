@@ -1,33 +1,42 @@
 ---
-title: "SQL — CTEs, Subqueries & UNION"
+title: SQL — CTEs, Subqueries & UNION
 aliases:
-  - "SQL CTEs"
-  - "SQL Subqueries"
-  - "CTEs Subqueries UNION"
+- SQL CTEs — Claude Sonnet
+- SQL Subqueries — Claude Sonnet
+- CTEs Subqueries UNION — Claude Sonnet
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 8
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "CTEs"
-  - "Subqueries"
-  - "UNION"
+- SQL
+- BigQuery
+- CTEs
+- Subqueries
+- UNION
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - ctes
-  - subqueries
-  - union
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+date: 2026-07-15
+course_id: sql-ctes-subqueries
+role_version: variante
+reference: '[[wagon2321/cours_sol/08_subqueries_ctes_union_sol]]'
 ---
 
 # 📝 8 — CTE (WITH...AS), sous-requêtes imbriquées & UNION
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/08_subqueries_ctes_union_sol|SQL — CTEs, Subqueries & UNION]]
+
 
 **Date** : 15 juillet 2026
 **Thème** : Rappel jointures/granularité, GROUP BY et agrégation, Common Table Expressions (CTE), sous-requêtes imbriquées (subqueries), `UNION`/`UNION ALL`/`UNION DISTINCT`
@@ -37,7 +46,7 @@ tags:
 
 ## 🎯 Contexte de la session
 
-- Suite directe du [#7 — Jointures SQL](07-sql-joins-testing.md), qui renvoyait explicitement le dédoublonnage/partitionnement et `UNION` à cette session.
+- Suite directe du [[wagon2321/cours_sol/07_joins_and_testing_sol|#7 — Jointures SQL]], qui renvoyait explicitement le dédoublonnage/partitionnement et `UNION` à cette session.
 - Le fil rouge de la journée est **exactement le problème de duplication par jointure** identifié au #7 (commande `451`, coût logistique compté en double) — cette fois avec la solution : la CTE.
 - Structure : rappel jointures/SELECT * → granularité et GROUP BY → CTE (syntaxe + 2 cas d'usage) → sous-requêtes imbriquées → `UNION`/`UNION DISTINCT` → exemple filé complet de bout en bout.
 
@@ -48,7 +57,7 @@ tags:
 - **Le problème du `SELECT *`** : après une jointure, il ramène toutes les colonnes des deux tables selon le type de jointure choisi — au-delà de quelques colonnes, on ne sait plus ce qu'on récupère réellement.
 - **Bonne pratique** : toujours lister explicitement les colonnes voulues dans le `SELECT`.
 - **Astuce d'écriture** : commencer par écrire le `FROM` (et les `JOIN`) avant le `SELECT` — l'autocomplétion de l'éditeur propose alors les bonnes colonnes au moment de rédiger le `SELECT`, plutôt que de deviner les noms à l'avance.
-- Rappel express des types de jointures (détaillés au [#7](07-sql-joins-testing.md)) : `INNER JOIN` (valeurs communes uniquement), `LEFT JOIN` (tout à gauche + correspondances à droite, `NULL` sinon), `FULL OUTER JOIN` (tout des deux côtés).
+- Rappel express des types de jointures (détaillés au [[wagon2321/cours_sol/07_joins_and_testing_sol|#7]]) : `INNER JOIN` (valeurs communes uniquement), `LEFT JOIN` (tout à gauche + correspondances à droite, `NULL` sinon), `FULL OUTER JOIN` (tout des deux côtés).
 
 ---
 
@@ -270,7 +279,7 @@ SELECT date_purchase, orders_id, turnover FROM orders_2
 
 ## 🧪 Exemple filé complet : du problème de duplication à sa correction
 
-C'est la reprise directe de l'exemple du [#7](07-sql-joins-testing.md) (commande `451`, coût logistique dupliqué par la jointure) — cette fois avec la solution.
+C'est la reprise directe de l'exemple du [[wagon2321/cours_sol/07_joins_and_testing_sol|#7]] (commande `451`, coût logistique dupliqué par la jointure) — cette fois avec la solution.
 
 **Le problème (rappel du #7)** : `sales` a une ligne par produit acheté (granularité fine), `operational` a une ligne par commande (granularité grossière, avec `log_cost` et `shipping_cost`). La commande `451` contient 2 produits (pommes et bananes) ; la commande `623` en contient 3 (pommes, bananes, pois).
 
@@ -334,10 +343,10 @@ Résultat correct sur cet exemple : commande `451` → marge d'environ `70%` ; c
 
 ## 🔗 Liens avec d'autres notions
 
-- Le problème de duplication corrigé ici est **exactement** celui identifié au [#7 — Jointures SQL](07-sql-joins-testing.md) (commande `451`, coût logistique compté en double) — ce chapitre en est la suite directe et la résolution.
+- Le problème de duplication corrigé ici est **exactement** celui identifié au [[wagon2321/cours_sol/07_joins_and_testing_sol|#7 — Jointures SQL]] (commande `451`, coût logistique compté en double) — ce chapitre en est la suite directe et la résolution.
 - Le principe **agréger avant d'arrondir/diviser**, déjà noté côté dbt, Looker Studio et Power BI dans le brocode, est repris ici avec `ROUND` appliqué sur le résultat final plutôt que sur une valeur intermédiaire.
 - `SAFE_DIVIDE`, déjà standard pour toute division avec dénominateur potentiellement nul, réapparaît ici pour le calcul de `margin_percent`.
-- Une CTE de dédoublonnage/agrégation avant jointure est l'équivalent SQL manuel de ce qu'une couche **staging/intermediate** fait systématiquement dans un projet dbt ([#9](09-dbt-intro.md)) — la logique de réduction de granularité avant modélisation finale est la même.
+- Une CTE de dédoublonnage/agrégation avant jointure est l'équivalent SQL manuel de ce qu'une couche **staging/intermediate** fait systématiquement dans un projet dbt ([[wagon2321/cours_sol/13_intro_dbt_sol|#13]]) — la logique de réduction de granularité avant modélisation finale est la même.
 
 ---
 
@@ -356,4 +365,4 @@ Résultat correct sur cet exemple : commande `451` → marge d'environ `70%` ; c
 
 ---
 
-*Suite directe du [#7 — Jointures SQL](07-sql-joins-testing.md), qui annonçait ce chapitre pour la correction des duplicatas de jointure et `UNION`.*
+*Suite directe du [[wagon2321/cours_sol/07_joins_and_testing_sol|#7 — Jointures SQL]], qui annonçait ce chapitre pour la correction des duplicatas de jointure et `UNION`.*

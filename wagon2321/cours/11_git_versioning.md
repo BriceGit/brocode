@@ -1,4 +1,36 @@
-# 08 - Git & Versioning
+---
+title: 12 — Git & Versioning
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-21
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: git-versioning
+role_version: variante
+reference: '[[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol]]'
+session: 12
+numero_fichier_legacy: 11
+aliases: []
+tags:
+- brocode
+- wagon2321/cours
+topics:
+- Git
+- GitHub
+- Versioning
+---
+
+# 12 — Git & Versioning
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol|Git — Versioning, GitHub & Collaboration]]
+
 
 Jour Git/GitHub du Wagon. Session confortable, tous les challenges bouclés avant le live code — clairement portée par les réflexes déjà pris sur ce cookbook.
 

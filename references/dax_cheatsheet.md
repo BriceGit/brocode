@@ -1,4 +1,25 @@
+---
+title: DAX — Cheat Sheet
+type: reference
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+tags:
+  - brocode
+  - references
+aliases: []
+role_version: reference
+date: 2026-07-31
+---
+
 # DAX — Cheat Sheet
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Collection :** [[references/README|Références]]
+
 
 Antisèche DAX pour Power BI — fonctions courantes et syntaxes réelles, à consulter pendant l'écriture de mesures/colonnes calculées. Complète les chapitres `22-power-bi-1.md` et `23-power-bi-2.md` du wagon2321/ pour le contexte et les explications pédagogiques ; ce fichier est le lexique brut, sans narration.
 

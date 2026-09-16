@@ -128,3 +128,9 @@ Le squelette R/F/M ne change pas d'un secteur à l'autre — seule la donnée so
 | SaaS | Dernière connexion | Fréquence d'usage | MRR / valeur du contrat |
 
 C'est cette transférabilité qui rend RFM particulièrement utile comme pièce de portfolio : la même mécanique de requête démontre une compétence directement applicable au banking.
+
+## Ressources du vault
+
+- [[wagon2321/cours/09a_ntile_quartiles_tertiles|NTILE et quartiles]]
+- [[codex/sql/rfm-recency-query.sql|Requête de récence]]
+- [[wagon2321/cours/04_KPI_Advanced|KPI Advanced]]

@@ -1,3 +1,15 @@
+---
+title: 🐛 Régression linéaire — erreurs vécues & solutions
+type: guide
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # 🐛 Régression linéaire — erreurs vécues & solutions
 
 > Fiche de debugging issue de la session **Python For AI — Regression** (18/08/2026).
@@ -6,7 +18,7 @@
 
 ---
 
-## 🗺️ Index des erreurs
+### 🗺️ Index des erreurs
 
 | # | Symptôme | Cause racine | Section |
 |---|---|---|---|
@@ -29,9 +41,9 @@
 
 ---
 
-# 🐼 PARTIE A — Pandas
+## 🐼 PARTIE A — Pandas
 
-## 1️⃣ sort_values ne modifie rien
+### 1️⃣ sort_values ne modifie rien
 
 **Symptôme** — pytest rouge sur le seul test sensible à l'ordre, les deux autres verts.
 
@@ -56,7 +68,7 @@ df_posts = df_posts.sort_values(by="ts").reset_index(drop=True)   # ✅
 
 ---
 
-## 3️⃣ df.columns indexé par des noms
+### 3️⃣ df.columns indexé par des noms
 
 ```python
 cols_to_drop = df.columns['PoolQC', 'MiscFeature', 'Alley']   # ❌ IndexError
@@ -81,7 +93,7 @@ cols_to_drop = df.columns[df.isna().mean() > 0.3]      # ✅ masque booléen
 
 ---
 
-## 4️⃣ Séparer X et y
+### 4️⃣ Séparer X et y
 
 ```python
 X = df.drop(columns="SalePrice")   # copie sans la colonne, df intact
@@ -101,7 +113,7 @@ Confusion fréquente avec `select_dtypes(exclude=...)` qui filtre par **type**, 
 
 ---
 
-## 🔟 Complément d'un sous-ensemble
+### 🔟 Complément d'un sous-ensemble
 
 **Besoin** — retirer les posts les plus récents de l'archive pour calculer un historique.
 
@@ -125,7 +137,7 @@ previous = archive[~archive.index.isin(most_recent.index)]
 
 ---
 
-## 1️⃣1️⃣ Filtrer les colonnes par taux de NaN
+### 1️⃣1️⃣ Filtrer les colonnes par taux de NaN
 
 ```python
 df.isna().mean()                    # taux de NaN par colonne
@@ -157,7 +169,7 @@ df["revenu_missing"] = df["revenu"].isna().astype(int)   # garder la trace avant
 
 ---
 
-## 1️⃣4️⃣ reset_index après le split
+### 1️⃣4️⃣ reset_index après le split
 
 ```python
 y_train = y_train.reset_index(drop=True)
@@ -178,9 +190,9 @@ residus = y_test - pd.Series(y_pred)   # 🔴 NaN partout, aucune erreur levée
 
 ---
 
-# ⚙️ PARTIE B — Preprocessing
+## ⚙️ PARTIE B — Preprocessing
 
-## 1️⃣2️⃣ Protocole fit / transform
+### 1️⃣2️⃣ Protocole fit / transform
 
 ```python
 X_train_num_imputed = num_imputer.fit_transform(X_train_num)   # apprend + applique
@@ -209,7 +221,7 @@ Un `AttributeError` sur un attribut en `_` = fit oublié.
 
 ---
 
-## 1️⃣3️⃣ OneHotEncoder et catégories inconnues
+### 1️⃣3️⃣ OneHotEncoder et catégories inconnues
 
 ```
 UserWarning: Found unknown categories in columns [13, 14, 15, 17, 27] during transform.
@@ -242,9 +254,9 @@ Garantie par le `fit` unique sur le train. Avec `fit_transform` des deux côtés
 
 ---
 
-# 🤖 PARTIE C — Modélisation
+## 🤖 PARTIE C — Modélisation
 
-## 2️⃣ n_samples=1 sur train_test_split
+### 2️⃣ n_samples=1 sur train_test_split
 
 ```
 ValueError: With n_samples=1, test_size=0.2 and train_size=None,
@@ -277,7 +289,7 @@ assert X.shape[0] == y.shape[0], f"{X.shape} vs {y.shape}"
 
 ---
 
-## 5️⃣ predict sur des données non transformées
+### 5️⃣ predict sur des données non transformées
 
 ```python
 model.fit(X_train_scaled, y_train)
@@ -311,7 +323,7 @@ Le Pipeline **encapsule le scaler** → impossible d'oublier la transformation, 
 
 ---
 
-## 8️⃣ Évaluer le mauvais modèle
+### 8️⃣ Évaluer le mauvais modèle
 
 Question q) demande "this **new** model", le code appelle `model_1`.
 
@@ -326,7 +338,7 @@ r2_test_2  = r2_score(y_test_2, y_pred_test_2)
 
 ---
 
-## 9️⃣ Écrasement et perte de comparaison
+### 9️⃣ Écrasement et perte de comparaison
 
 Écraser `X_test_scaled` pour le modèle 2 est **valide**. Écraser `r2_test` et `mse` ne l'est pas : les métriques du modèle 1 sont perdues, et la question demande de comparer.
 
@@ -343,7 +355,7 @@ Récupération possible : les sorties des cellules précédentes restent affich�
 
 ---
 
-## 7️⃣ Variables fantômes dans Jupyter
+### 7️⃣ Variables fantômes dans Jupyter
 
 ```python
 r2_test = model_1.score(X_test_scaled, y_test)
@@ -359,9 +371,9 @@ Deux issues possibles, la seconde bien pire :
 
 ---
 
-# 📊 PARTIE D — Métriques
+## 📊 PARTIE D — Métriques
 
-## 6️⃣ y_true et y_pred dépariés
+### 6️⃣ y_true et y_pred dépariés
 
 ```python
 y_pred = model.predict(X_test_scaled)
@@ -397,7 +409,7 @@ mse_test    = mean_squared_error(y_test, y_pred_test)   # même suffixe des deux
 
 ---
 
-## 📐 Les trois métriques
+### 📐 Les trois métriques
 
 ```python
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
@@ -424,7 +436,7 @@ rmse = np.sqrt(mse)
 
 ---
 
-## 1️⃣5️⃣ Interpréter une métrique
+### 1️⃣5️⃣ Interpréter une métrique
 
 **Aucune métrique d'erreur ne s'interprète sans baseline.**
 
@@ -440,13 +452,13 @@ print(f"% du prix moyen : {mae_lin / y_test.mean() * 100:.1f} %")
 
 ⚠️ La baseline se calcule sur **`y_train.mean()`** — même règle que tout élément appris.
 
-### 🔗 Le R² *est* cette comparaison, formalisée
+#### 🔗 Le R² *est* cette comparaison, formalisée
 
 $$R^2 = 1 - \frac{\text{erreur du modèle}}{\text{erreur de la baseline moyenne}}$$
 
 D'où : **R² = 0 → équivalent à prédire la moyenne. R² < 0 → pire que la moyenne.**
 
-### Grille de lecture
+#### Grille de lecture
 
 | R² test | Verdict (comportement social / immobilier) |
 |---|---|
@@ -458,7 +470,7 @@ D'où : **R² = 0 → équivalent à prédire la moyenne. R² < 0 → pire que l
 
 > Le seuil est **relatif au domaine**. En physique R² = 0.7 est mauvais ; sur des likes Instagram, 0.4 est honorable. Jamais de jugement dans l'absolu.
 
-### Lecture train vs test
+#### Lecture train vs test
 
 | Situation | Diagnostic |
 |---|---|
@@ -468,7 +480,7 @@ D'où : **R² = 0 → équivalent à prédire la moyenne. R² < 0 → pire que l
 
 ⚠️ *Train ≈ Test ne veut pas dire "bon modèle"* — seulement "pas d'overfitting".
 
-### Comparateur alternatif : RMSE vs σ(y)
+#### Comparateur alternatif : RMSE vs σ(y)
 
 $$R^2 \approx 1 - \frac{\text{RMSE}^2}{\sigma_y^2}$$
 
@@ -477,7 +489,7 @@ $$R^2 \approx 1 - \frac{\text{RMSE}^2}{\sigma_y^2}$$
 
 Même information que le R², **en unités lisibles**. Un décideur comprend *"on se trompe de 24 000 $ sur un prix moyen de 180 000 $"*, pas *"MSE = 1.2e9"*.
 
-### 🎯 Sur "Do you think our model is a good one?"
+#### 🎯 Sur "Do you think our model is a good one?"
 
 La réponse attendue est **non, et voici pourquoi**. Le challenge est construit pour produire un modèle faible.
 
@@ -493,13 +505,13 @@ Structure de réponse :
 
 ---
 
-# 🚨 PARTIE E — Data leakage
+## 🚨 PARTIE E — Data leakage
 
-## 1️⃣6️⃣ Data leakage
+### 1️⃣6️⃣ Data leakage
 
 **Le bug le plus dangereux : rien ne casse, le score devient juste trop beau.**
 
-### Cas rencontré — feature `median_likes`
+#### Cas rencontré — feature `median_likes`
 
 L'énoncé insiste : *"calculate the median likes per author from **all previous posts**"*.
 
@@ -523,7 +535,7 @@ most_recent  = most_recent.merge(median_likes, on="id", how="left")
 | `fillna(median_globale)` | fallback neutre |
 | garder NaN + colonne `has_history` | le modèle apprend la différence |
 
-### Les 3 formes de leakage vues aujourd'hui
+#### Les 3 formes de leakage vues aujourd'hui
 
 | Forme | Mécanisme | Prévention |
 |---|---|---|
@@ -535,30 +547,30 @@ most_recent  = most_recent.merge(median_likes, on="id", how="left")
 
 ---
 
-# ✅ Checklist anti-bug
+## ✅ Checklist anti-bug
 
-### Avant le split
+#### Avant le split
 - [ ] `df.isna().mean()` inspecté, décision sur les colonnes >30%
 - [ ] Flag `is_missing` créé si l'absence porte du sens
 - [ ] Identifiants (`Id`) retirés de X
 - [ ] `X.shape` en `(n_samples, n_features)` — pas `(1, n)`
 - [ ] `assert X.shape[0] == y.shape[0]`
 
-### Après le split
+#### Après le split
 - [ ] `reset_index(drop=True)` sur y (et sur X si recombinaison prévue)
 - [ ] `type(y_train)` toujours une Series
 
-### Preprocessing
+#### Preprocessing
 - [ ] `fit_transform` train / `transform` test — sur **chaque** transformer
 - [ ] `.set_output(transform='pandas')` pour garder les noms de colonnes
 - [ ] NaN comptés **avant** l'encodage, pas après
 - [ ] Schémas de colonnes identiques train/test après OHE
 
-### Entraînement & prédiction
+#### Entraînement & prédiction
 - [ ] `predict()` reçoit la **même représentation** que `fit()` (scaled si scaled)
 - [ ] Numéro de modèle cohérent partout dans la cellule (`model_2`, `X_test_2`…)
 
-### Évaluation
+#### Évaluation
 - [ ] `(y_true, y_pred)` dans cet ordre
 - [ ] Même suffixe `_test` des deux côtés de la métrique
 - [ ] Les noms imprimés sont ceux qui viennent d'être calculés
@@ -568,7 +580,7 @@ most_recent  = most_recent.merge(median_likes, on="id", how="left")
 
 ---
 
-# 💼 Angles entretien
+## 💼 Angles entretien
 
 | Question probable | Réponse ancrée sur du vécu |
 |---|---|
@@ -582,11 +594,11 @@ most_recent  = most_recent.merge(median_likes, on="id", how="left")
 
 ---
 
-# 🔗 Notes liées
+## 🔗 Notes liées
 
-- [[pandas - Series vs DataFrame]]
-- [[pandas - copie vs vue et SettingWithCopyWarning]]
-- [[Data leakage - typologie et détection]]
-- [[Métriques de régression - R2 MSE MAE RMSE]]
-- [[sklearn - protocole fit transform predict]]
-- [[Baseline - pourquoi aucune métrique ne s'interprète seule]]
+- [[codex/a-creer/pandas - Series vs DataFrame|pandas - Series vs DataFrame]]
+- [[codex/a-creer/pandas - copie vs vue et SettingWithCopyWarning|pandas - copie vs vue et SettingWithCopyWarning]]
+- [[codex/a-creer/Data leakage - typologie et détection|Data leakage - typologie et détection]]
+- [[codex/a-creer/Métriques de régression - R2 MSE MAE RMSE|Métriques de régression - R2 MSE MAE RMSE]]
+- [[codex/a-creer/sklearn - protocole fit transform predict|sklearn - protocole fit transform predict]]
+- [[codex/a-creer/Baseline - pourquoi aucune métrique ne s'interprète seule|Baseline - pourquoi aucune métrique ne s'interprète seule]]

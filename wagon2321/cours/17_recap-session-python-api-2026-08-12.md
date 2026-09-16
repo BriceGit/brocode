@@ -1,4 +1,28 @@
+---
+title: 📌 Récap session — Python / Pandas / APIs (12/08/2026)
+type: recap
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: recap-session-python-api-2026-08-12
+role_version: reference
+tags:
+  - brocode
+  - wagon2321/complements
+aliases: []
+date: 2026-08-24
+---
+
 # 📌 Récap session — Python / Pandas / APIs (12/08/2026)
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Contexte** : debugging de notebooks Jupyter (module Python pandas + module API météo Le Wagon)
 **Fil rouge de la journée** : la majorité des bugs viennent de confusions entre **types de données** (string vs autre, tuple vs liste, dict vs liste) plutôt que d'erreurs de logique.

@@ -1,36 +1,46 @@
 ---
-title: "Data Pipelines, Views, Tables & BigQuery Performance"
+title: Data Pipelines, Views, Tables & BigQuery Performance
 aliases:
-  - "Data Pipelines"
-  - "BigQuery Performance"
-  - "Tables Views Materialized Views"
+- Data Pipelines
+- BigQuery Performance
+- Tables Views Materialized Views
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 10
 date: 2026-07-17
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "Data Pipelines"
-  - "BigQuery"
-  - "Data Architecture"
-  - "Performance"
-  - "Data Modeling"
+- Data Pipelines
+- BigQuery
+- Data Architecture
+- Performance
+- Data Modeling
 tags:
-  - brocode
-  - wagon2321/cours
-  - data-pipelines
-  - bigquery
-  - data-architecture
-  - performance
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/ChatGPT Sol]]'
+attribution: confirmee
+code_language: SQL
+course_id: sql-data-pipelines
+role_version: reference
+variantes:
+- '[[wagon2321/cours/10-data-pipelines-views-tables]]'
 ---
 
 # 📝 10 — Data Pipelines, Views, Tables & BigQuery Performance
 
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/ChatGPT Sol|ChatGPT Sol]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+> **Variante conservée :** [[wagon2321/cours/10-data-pipelines-views-tables|Claude Sonnet]]
+
+
 > [!info] Navigation Brocode
-> **← Précédent :** [[09_udf_window_functions_sol|09 — SQL · UDFs & Window Functions]] · **Suivant → :** [[12_git_versioning_github_collaboration_sol|12 — Git · Versioning, GitHub & Collaboration]]
+> **← Précédent :** [[wagon2321/cours_sol/09_udf_window_functions_sol|09 — SQL · UDFs & Window Functions]] · **Suivant → :** [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol|12 — Git · Versioning, GitHub & Collaboration]]
 >
 > [!tip] Navigation Obsidian
 > Utilise l’**Outline** pour parcourir les sections, `Cmd/Ctrl + O` pour le Quick Switcher et les **backlinks** pour retrouver les connexions entre notes.
@@ -108,7 +118,27 @@ tags:
 
 ---
 
-## 🧭 0. Vue d'ensemble du chapitre
+> [!abstract]- Plan de lecture
+> - [[#Architecture des pipelines|Architecture des pipelines]]
+> - [[#Modélisation et stockage|Modélisation et stockage]]
+> - [[#Tables, vues et matérialisation|Tables, vues et matérialisation]]
+> - [[#Coût et performances BigQuery|Coût et performances BigQuery]]
+> - [[#Partitionnement et clustering|Partitionnement et clustering]]
+> - [[#Lineage et orchestration|Lineage et orchestration]]
+> - [[#Qualité et chargements|Qualité et chargements]]
+> - [[#Conception et validation|Conception et validation]]
+> - [[#Gouvernance et mesure|Gouvernance et mesure]]
+> - [[#Exploitation et documentation|Exploitation et documentation]]
+> - [[#Mise en pratique et révision|Mise en pratique et révision]]
+
+
+> [!tip] Fiches pour approfondir
+> [[codex/sheet/Granularité d'une table|Granularité d'une table]] · [[codex/sql/Nested Query vs CTE|Nested Query vs CTE]]
+
+
+## Architecture des pipelines
+
+### 🧭 0. Vue d'ensemble du chapitre
 
 Les grandes notions sont liées :
 
@@ -161,7 +191,7 @@ cost control
 
 ---
 
-## 🏭 1. Qu'est-ce qu'un data pipeline ?
+### 🏭 1. Qu'est-ce qu'un data pipeline ?
 
 Un **data pipeline** est une succession coordonnée d'étapes qui permettent de faire circuler et transformer les données entre une source et une destination.
 
@@ -210,7 +240,7 @@ Monitoring
 
 ---
 
-## 🎯 2. Pourquoi construire un pipeline ?
+### 🎯 2. Pourquoi construire un pipeline ?
 
 Parce que la donnée source est rarement directement adaptée aux usages analytiques.
 
@@ -242,7 +272,7 @@ Le pipeline fait le lien.
 
 ---
 
-## 🏎 3. La métaphore de la Ferrari
+### 🏎 3. La métaphore de la Ferrari
 
 Le cours utilise une bonne métaphore :
 
@@ -270,7 +300,7 @@ La qualité du reporting est limitée par la qualité du pipeline en amont.
 
 ---
 
-## 🔁 4. Pipeline ≠ requête SQL unique
+### 🔁 4. Pipeline ≠ requête SQL unique
 
 Un débutant peut être tenté de faire :
 
@@ -320,7 +350,7 @@ performance
 
 ---
 
-## 🧩 5. Penser en étapes
+### 🧩 5. Penser en étapes
 
 Un pipeline est beaucoup plus simple à raisonner lorsque chaque étape répond à une question précise.
 
@@ -355,11 +385,11 @@ sortie garantie
 
 ---
 
-## 🧪 6. Les transformations classiques
+### 🧪 6. Les transformations classiques
 
 Le cours identifie quatre grandes familles.
 
-### Nettoyage
+#### Nettoyage
 
 ```text
 doublons
@@ -380,7 +410,7 @@ FROM raw_orders;
 
 ---
 
-### Enrichissement
+#### Enrichissement
 
 Ajouter ou restructurer de l'information.
 
@@ -397,7 +427,7 @@ nouveaux indicateurs
 
 ---
 
-### Agrégation
+#### Agrégation
 
 Changer de granularité.
 
@@ -411,7 +441,7 @@ GROUP BY order_id;
 
 ---
 
-### Jointure
+#### Jointure
 
 Rassembler plusieurs entités.
 
@@ -427,7 +457,7 @@ LEFT JOIN customers AS c
 
 ---
 
-## ⚠️ 7. Ne pas être dogmatique sur l'ordre
+### ⚠️ 7. Ne pas être dogmatique sur l'ordre
 
 Le formateur insiste sur un point très important :
 
@@ -482,7 +512,7 @@ des contraintes techniques
 
 ---
 
-## 🏅 8. Medallion Architecture
+### 🏅 8. Medallion Architecture
 
 Le cours évoque explicitement un modèle très répandu :
 
@@ -504,7 +534,7 @@ C'est un **modèle conceptuel** permettant de séparer les niveaux de transforma
 
 ---
 
-## 🥉 9. Bronze — la donnée brute maîtrisée
+### 🥉 9. Bronze — la donnée brute maîtrisée
 
 La couche Bronze contient généralement une copie proche de la source.
 
@@ -537,7 +567,7 @@ reproductibilité
 
 ---
 
-## 🥈 10. Silver — la donnée propre et exploitable
+### 🥈 10. Silver — la donnée propre et exploitable
 
 Silver contient des données :
 
@@ -574,7 +604,7 @@ Elle est surtout **fiable et structurée**.
 
 ---
 
-## 🥇 11. Gold — la donnée métier
+### 🥇 11. Gold — la donnée métier
 
 Gold contient des objets directement conçus pour la consommation.
 
@@ -608,7 +638,7 @@ répondre efficacement aux besoins métier
 
 ---
 
-## 🔄 12. Bronze / Silver / Gold n'est pas forcément trois bases
+### 🔄 12. Bronze / Silver / Gold n'est pas forcément trois bases
 
 Il faut éviter une lecture trop littérale.
 
@@ -635,7 +665,7 @@ Le principe important est la **séparation logique des responsabilités**.
 
 ---
 
-## 🧠 13. L'idée centrale du Medallion
+### 🧠 13. L'idée centrale du Medallion
 
 ```text
 Bronze
@@ -650,11 +680,11 @@ Gold
 
 ---
 
-## 🧬 14. ETL vs ELT
+### 🧬 14. ETL vs ELT
 
 Deux architectures doivent être distinguées.
 
-### ETL
+#### ETL
 
 ```text
 Extract
@@ -668,7 +698,7 @@ La donnée est transformée avant d'être chargée dans la plateforme analytique
 
 ---
 
-### ELT
+#### ELT
 
 ```text
 Extract
@@ -698,7 +728,7 @@ marts
 
 ---
 
-## 💡 15. Pourquoi ELT est devenu si fréquent
+### 💡 15. Pourquoi ELT est devenu si fréquent
 
 Les data warehouses modernes disposent de beaucoup de puissance de calcul.
 
@@ -729,11 +759,11 @@ centraliser le SQL
 
 ---
 
-## ⏱ 16. Batch vs streaming
+### ⏱ 16. Batch vs streaming
 
 Autre dimension d'un pipeline :
 
-### Batch
+#### Batch
 
 ```text
 toutes les nuits
@@ -757,7 +787,7 @@ refresh dashboard
 
 ---
 
-### Streaming / near real-time
+#### Streaming / near real-time
 
 La donnée arrive continuellement.
 
@@ -779,7 +809,7 @@ Le besoin métier détermine le niveau de fraîcheur nécessaire.
 
 ---
 
-## 🧠 17. « Temps réel » coûte cher
+### 🧠 17. « Temps réel » coûte cher
 
 Une erreur classique consiste à demander :
 
@@ -815,11 +845,13 @@ reporting mensuel
 
 ---
 
-## 🏗 18. OLTP vs OLAP
+## Modélisation et stockage
+
+### 🏗 18. OLTP vs OLAP
 
 Cette distinction est centrale dans le cours.
 
-### OLTP
+#### OLTP
 
 ```text
 Online Transaction Processing
@@ -840,7 +872,7 @@ ERP
 
 ---
 
-### OLAP
+#### OLAP
 
 ```text
 Online Analytical Processing
@@ -861,7 +893,7 @@ modèles métier
 
 ---
 
-## ⚠️ 19. OLTP / OLAP : ne pas réduire la définition à « lignes vs colonnes »
+### ⚠️ 19. OLTP / OLAP : ne pas réduire la définition à « lignes vs colonnes »
 
 Le cours utilise l'opposition :
 
@@ -890,7 +922,7 @@ Mais ce lien n'est pas une règle absolue.
 
 ---
 
-## 🏦 20. Exemple OLTP : système bancaire
+### 🏦 20. Exemple OLTP : système bancaire
 
 Une transaction :
 
@@ -927,7 +959,7 @@ sur 10 ans
 
 ---
 
-## 📊 21. Exemple OLAP
+### 📊 21. Exemple OLAP
 
 Le warehouse peut stocker une table :
 
@@ -961,11 +993,11 @@ C'est un workload analytique.
 
 ---
 
-## 🚨 22. Pourquoi ne pas faire le dashboard directement sur l'OLTP ?
+### 🚨 22. Pourquoi ne pas faire le dashboard directement sur l'OLTP ?
 
 Deux problèmes.
 
-## 1. Performance
+#### 1. Performance
 
 Le système source est optimisé pour servir les opérations métier.
 
@@ -973,7 +1005,7 @@ Une requête analytique lourde peut être inefficace.
 
 ---
 
-## 2. Concurrence
+#### 2. Concurrence
 
 Même si la requête fonctionne, elle peut consommer des ressources utiles aux transactions.
 
@@ -989,7 +1021,7 @@ Ce n'est pas la priorité du système opérationnel.
 
 ---
 
-## 🎯 23. Première question lorsqu'un dashboard est extrêmement lent
+### 🎯 23. Première question lorsqu'un dashboard est extrêmement lent
 
 Le formateur propose un excellent réflexe :
 
@@ -1001,7 +1033,7 @@ Mais c'est une très bonne hypothèse à vérifier.
 
 ---
 
-## 📚 24. Normalisation — côté transactionnel
+### 📚 24. Normalisation — côté transactionnel
 
 La normalisation vise notamment à éviter la répétition inutile.
 
@@ -1035,7 +1067,7 @@ mises à jour facilitées
 
 ---
 
-## 🧱 25. Dénormalisation — côté analytique
+### 🧱 25. Dénormalisation — côté analytique
 
 Dans un warehouse analytique, on peut accepter de répéter certaines informations.
 
@@ -1068,7 +1100,7 @@ Parce que cela peut simplifier et accélérer les requêtes.
 
 ---
 
-## ⚠️ 26. Dénormalisé ne veut pas dire « tout dupliquer au hasard »
+### ⚠️ 26. Dénormalisé ne veut pas dire « tout dupliquer au hasard »
 
 Une table analytique doit rester :
 
@@ -1089,7 +1121,7 @@ une énorme table incontrôlable
 
 ---
 
-## 💼 27. Data Modeling = orienter la donnée vers le métier
+### 💼 27. Data Modeling = orienter la donnée vers le métier
 
 Les systèmes sources sont structurés pour faire fonctionner l'entreprise.
 
@@ -1116,7 +1148,7 @@ finance_kpis
 
 ---
 
-## 🧠 28. Le changement de perspective
+### 🧠 28. Le changement de perspective
 
 Système opérationnel :
 
@@ -1134,7 +1166,7 @@ Ce sont deux objectifs différents.
 
 ---
 
-## 🧮 29. Pré-calculer certaines métriques
+### 🧮 29. Pré-calculer certaines métriques
 
 Supposons que chaque dashboard calcule :
 
@@ -1167,7 +1199,7 @@ Mais on économise potentiellement beaucoup de compute.
 
 ---
 
-## ⚖️ 30. Le triangle Performance — Freshness — Cost
+### ⚖️ 30. Le triangle Performance — Freshness — Cost
 
 Une grande partie du chapitre peut se résumer à un arbitrage :
 
@@ -1201,7 +1233,7 @@ Il n'existe pas un choix universellement meilleur.
 
 ---
 
-## 🗄 31. Data Warehouse
+### 🗄 31. Data Warehouse
 
 Un **Data Warehouse** est une plateforme destinée principalement à stocker et analyser des données structurées pour les besoins décisionnels.
 
@@ -1218,7 +1250,7 @@ Dans ce chapitre, BigQuery est l'environnement principal.
 
 ---
 
-## 🌊 32. Data Lake — aperçu
+### 🌊 32. Data Lake — aperçu
 
 Un **Data Lake** stocke souvent des données plus brutes et plus hétérogènes.
 
@@ -1249,7 +1281,7 @@ Azure Data Lake Storage
 
 ---
 
-## 🧊 33. Lakehouse — aperçu
+### 🧊 33. Lakehouse — aperçu
 
 Le terme **Lakehouse** décrit des architectures cherchant à combiner :
 
@@ -1265,7 +1297,7 @@ Mais il est utile de reconnaître le terme.
 
 ---
 
-## ☁️ 34. Une data platform = stockage + compute
+### ☁️ 34. Une data platform = stockage + compute
 
 Le cours insiste sur deux composants.
 
@@ -1283,7 +1315,7 @@ Dans le cloud, ces deux dimensions peuvent être facturées et dimensionnées s�
 
 ---
 
-## 🧠 35. Pourquoi cette séparation est importante
+### 🧠 35. Pourquoi cette séparation est importante
 
 Une table peut rester stockée :
 
@@ -1309,7 +1341,7 @@ workloads indépendants
 
 ---
 
-## 💰 36. Le stockage est-il toujours « moins cher » que le compute ?
+### 💰 36. Le stockage est-il toujours « moins cher » que le compute ?
 
 Le cours donne ce principe :
 
@@ -1341,7 +1373,9 @@ modèle de pricing
 
 ---
 
-## 🧱 37. Les objets BigQuery à connaître
+## Tables, vues et matérialisation
+
+### 🧱 37. Les objets BigQuery à connaître
 
 Pour ce chapitre :
 
@@ -1359,7 +1393,7 @@ Ils ne représentent pas la même chose.
 
 ---
 
-## 📦 38. Table
+### 📦 38. Table
 
 Une table contient des données matérialisées.
 
@@ -1388,7 +1422,7 @@ lit des valeurs déjà enregistrées.
 
 ---
 
-## ⚡ 39. Pourquoi une table peut être rapide
+### ⚡ 39. Pourquoi une table peut être rapide
 
 Supposons que la construction ait demandé :
 
@@ -1413,7 +1447,7 @@ On ne rejoue pas nécessairement toute la chaîne source à chaque lecture.
 
 ---
 
-## 🧊 40. Inconvénient d'une table : la fraîcheur
+### 🧊 40. Inconvénient d'une table : la fraîcheur
 
 La table contient le résultat :
 
@@ -1434,7 +1468,7 @@ Il faut une stratégie de refresh.
 
 ---
 
-## 👁 41. Logical View — définition
+### 👁 41. Logical View — définition
 
 Dans BigQuery, une **logical view** est une table virtuelle définie par SQL.
 
@@ -1468,7 +1502,7 @@ FROM analytics.fr_orders;
 
 ---
 
-## 🔁 42. Ce qui se passe lorsqu'on interroge une view
+### 🔁 42. Ce qui se passe lorsqu'on interroge une view
 
 La vue ressemble à une table pour l'utilisateur.
 
@@ -1492,15 +1526,15 @@ La requête définissant la logical view est réévaluée lors de son interrogat
 
 ---
 
-## ✅ 43. Avantages d'une view
+### ✅ 43. Avantages d'une view
 
-### Réutilisation
+#### Réutilisation
 
 Une logique complexe peut être écrite une seule fois.
 
 ---
 
-### Abstraction
+#### Abstraction
 
 L'utilisateur voit :
 
@@ -1512,19 +1546,19 @@ sans connaître tous les joins internes.
 
 ---
 
-### Fraîcheur
+#### Fraîcheur
 
 La vue lit ses sources au moment où elle est interrogée.
 
 ---
 
-### Sécurité
+#### Sécurité
 
 On peut exposer un sous-ensemble de données sans donner nécessairement un accès direct à toutes les tables sources.
 
 ---
 
-## ⚠️ 44. Inconvénients d'une view
+### ⚠️ 44. Inconvénients d'une view
 
 Si la vue contient :
 
@@ -1550,7 +1584,7 @@ coût
 
 ---
 
-## 🔐 45. Authorized Views — le terme BigQuery
+### 🔐 45. Authorized Views — le terme BigQuery
 
 Le cours parle de « Secure Views » dans un exemple SaaS.
 
@@ -1588,7 +1622,7 @@ Le client A reçoit l'accès à la vue autorisée, pas à toute la table source.
 
 ---
 
-## 🏢 46. Cas SaaS multi-tenant
+### 🏢 46. Cas SaaS multi-tenant
 
 Le cours mentionne un cas avec des milliers de vues.
 
@@ -1618,7 +1652,7 @@ transformer
 
 ---
 
-## 🧱 47. Materialized View
+### 🧱 47. Materialized View
 
 Une **materialized view** est différente d'une logical view.
 
@@ -1638,7 +1672,7 @@ materialized view
 
 ---
 
-## ⚠️ 48. Une Materialized View n'est pas simplement « une table stable »
+### ⚠️ 48. Une Materialized View n'est pas simplement « une table stable »
 
 C'est une simplification entendue dans le cours.
 
@@ -1668,7 +1702,7 @@ une table créée manuellement
 
 ---
 
-## 🚀 49. Cas d'usage Materialized View
+### 🚀 49. Cas d'usage Materialized View
 
 Très utile lorsque :
 
@@ -1690,7 +1724,7 @@ transactions_by_country
 
 ---
 
-## 🧠 50. Table vs View vs Materialized View
+### 🧠 50. Table vs View vs Materialized View
 
 | Objet | Données matérialisées ? | Fraîcheur | Compute à la lecture | Usage typique |
 |---|---:|---|---|---|
@@ -1700,7 +1734,7 @@ transactions_by_country
 
 ---
 
-## 🧩 51. CTE — Common Table Expression
+### 🧩 51. CTE — Common Table Expression
 
 Une CTE existe dans une requête.
 
@@ -1727,7 +1761,7 @@ rendre le SQL lisible
 
 ---
 
-## ⚠️ 52. CTE ≠ objet persistant
+### ⚠️ 52. CTE ≠ objet persistant
 
 Une CTE :
 
@@ -1748,7 +1782,7 @@ si `clean_orders` était uniquement une CTE d'une ancienne requête.
 
 ---
 
-## ⚠️ 53. CTE ≠ « forcément stockée en mémoire »
+### ⚠️ 53. CTE ≠ « forcément stockée en mémoire »
 
 Le cours décrit la CTE comme quelque chose d'actif « en mémoire ».
 
@@ -1776,7 +1810,7 @@ Une CTE n'est pas automatiquement matérialisée comme une table intermédiaire 
 
 ---
 
-## 💾 54. Saved Query
+### 💾 54. Saved Query
 
 Une Saved Query est essentiellement :
 
@@ -1806,7 +1840,7 @@ comme on le ferait sur une view.
 
 ---
 
-## 🧪 55. Temporary Table
+### 🧪 55. Temporary Table
 
 Une temporary table matérialise temporairement un résultat dans le contexte d'une session ou d'un script.
 
@@ -1832,7 +1866,7 @@ Elle n'est pas destinée à devenir un objet analytique permanent.
 
 ---
 
-## 🧰 56. Routine — Function / Stored Procedure
+### 🧰 56. Routine — Function / Stored Procedure
 
 BigQuery peut également contenir des routines.
 
@@ -1860,7 +1894,7 @@ Mais BigQuery contient encore d'autres types d'objets.
 
 ---
 
-## 🧠 57. Comparaison complète
+### 🧠 57. Comparaison complète
 
 | Concept | Persistant ? | Contient les données ? | Interrogeable comme table ? | But |
 |---|---:|---:|---:|---|
@@ -1875,7 +1909,7 @@ Mais BigQuery contient encore d'autres types d'objets.
 
 ---
 
-## 🧭 58. Arbre de décision : Table ou View ?
+### 🧭 58. Arbre de décision : Table ou View ?
 
 ```text
 Ai-je besoin du résultat toujours très frais ?
@@ -1904,7 +1938,7 @@ maintenance
 
 ---
 
-## 🔀 59. Mixer Views et Tables
+### 🔀 59. Mixer Views et Tables
 
 Le cours insiste sur un bon point :
 
@@ -1928,7 +1962,7 @@ Chaque objet répond à une contrainte différente.
 
 ---
 
-## 🔁 60. Exemple de pipeline mixte
+### 🔁 60. Exemple de pipeline mixte
 
 ```text
 raw.events
@@ -1950,7 +1984,7 @@ Looker / Power BI
 
 ---
 
-## ⚡ 61. Pourquoi matérialiser une étape intermédiaire ?
+### ⚡ 61. Pourquoi matérialiser une étape intermédiaire ?
 
 Supposons une logique qui prend :
 
@@ -1984,7 +2018,7 @@ C'est un pattern classique.
 
 ---
 
-## 🧠 62. Quand NE PAS matérialiser
+### 🧠 62. Quand NE PAS matérialiser
 
 Matérialiser chaque micro-étape crée :
 
@@ -2011,7 +2045,9 @@ sécurité
 
 ---
 
-## 💰 63. BigQuery — modèles de pricing compute
+## Coût et performances BigQuery
+
+### 💰 63. BigQuery — modèles de pricing compute
 
 Le cours parle de :
 
@@ -2044,7 +2080,7 @@ Il ne faut donc plus résumer BigQuery à un seul modèle de facturation.
 
 ---
 
-## 🧠 64. À retenir sur le pricing
+### 🧠 64. À retenir sur le pricing
 
 Ne mémoriser ni un prix fixe ni un chiffre de cours.
 
@@ -2064,7 +2100,7 @@ et savoir consulter les informations du job.
 
 ---
 
-## 📏 65. On-demand BigQuery : logique des bytes processed
+### 📏 65. On-demand BigQuery : logique des bytes processed
 
 En mode on-demand :
 
@@ -2078,7 +2114,7 @@ BigQuery étant columnar, les colonnes sélectionnées comptent.
 
 ---
 
-## ⭐ 66. Pourquoi éviter `SELECT *`
+### ⭐ 66. Pourquoi éviter `SELECT *`
 
 ```sql
 SELECT *
@@ -2106,7 +2142,7 @@ FROM huge_table;
 
 ---
 
-## ✂️ 67. `SELECT * EXCEPT`
+### ✂️ 67. `SELECT * EXCEPT`
 
 BigQuery permet :
 
@@ -2126,7 +2162,7 @@ mais exclure quelques colonnes très lourdes.
 
 ---
 
-## 🚫 68. `LIMIT` ne protège pas automatiquement le coût
+### 🚫 68. `LIMIT` ne protège pas automatiquement le coût
 
 Cette requête :
 
@@ -2150,7 +2186,7 @@ C'est un piège très important.
 
 ---
 
-## 🧠 69. Rows returned ≠ bytes processed
+### 🧠 69. Rows returned ≠ bytes processed
 
 Il faut séparer :
 
@@ -2175,7 +2211,7 @@ est parfaitement possible.
 
 ---
 
-## 👀 70. Pour explorer une table : utiliser Preview
+### 👀 70. Pour explorer une table : utiliser Preview
 
 Si l'objectif est simplement :
 
@@ -2195,7 +2231,7 @@ BigQuery documente explicitement cette bonne pratique.
 
 ---
 
-## 🧮 71. Le type des colonnes influence leur taille
+### 🧮 71. Le type des colonnes influence leur taille
 
 Les colonnes ne consomment pas toutes le même nombre de bytes logiques.
 
@@ -2224,7 +2260,7 @@ influencent la quantité lue.
 
 ---
 
-## 🗃 72. Query Cache
+### 🗃 72. Query Cache
 
 BigQuery peut réutiliser le résultat de certaines requêtes.
 
@@ -2252,7 +2288,7 @@ Les requêtes servies depuis le cache ne sont pas facturées comme une nouvelle 
 
 ---
 
-## ⚠️ 73. Le cache n'est pas une stratégie de pipeline
+### ⚠️ 73. Le cache n'est pas une stratégie de pipeline
 
 Le cache est une optimisation.
 
@@ -2273,7 +2309,7 @@ Ne jamais concevoir un pipeline en supposant :
 
 ---
 
-## 🧪 74. Dry Run / estimation
+### 🧪 74. Dry Run / estimation
 
 Avant d'exécuter une requête importante, BigQuery peut estimer le volume traité.
 
@@ -2292,7 +2328,7 @@ volume raisonnable ?
 
 ---
 
-## 🛑 75. Maximum bytes billed
+### 🛑 75. Maximum bytes billed
 
 BigQuery permet également de définir une limite maximale de bytes facturables pour une requête.
 
@@ -2308,7 +2344,9 @@ C'est un garde-fou utile.
 
 ---
 
-## 🧱 76. Partitioning — idée générale
+## Partitionnement et clustering
+
+### 🧱 76. Partitioning — idée générale
 
 Une table partitionnée est divisée en segments logiques / physiques appelés :
 
@@ -2328,7 +2366,7 @@ orders
 
 ---
 
-## 🔍 77. Pourquoi partitionner ?
+### 🔍 77. Pourquoi partitionner ?
 
 Supposons :
 
@@ -2356,7 +2394,7 @@ BigQuery peut ignorer les partitions non pertinentes
 
 ---
 
-## ✂️ 78. Partition pruning
+### ✂️ 78. Partition pruning
 
 Exemple :
 
@@ -2383,7 +2421,7 @@ BigQuery scanne uniquement les partitions nécessaires
 
 ---
 
-## 🧠 79. Pourquoi le filtre de partition est si important
+### 🧠 79. Pourquoi le filtre de partition est si important
 
 Partitionner une table n'apporte pas automatiquement un bénéfice à toutes les requêtes.
 
@@ -2401,7 +2439,7 @@ toutes les partitions peuvent être lues
 
 ---
 
-## 📅 80. Les principaux types de partitioning BigQuery
+### 📅 80. Les principaux types de partitioning BigQuery
 
 BigQuery permet notamment :
 
@@ -2413,7 +2451,7 @@ integer-range partitioning
 
 ---
 
-## 📆 81. Partitionnement sur une colonne DATE / TIMESTAMP / DATETIME
+### 📆 81. Partitionnement sur une colonne DATE / TIMESTAMP / DATETIME
 
 Exemple :
 
@@ -2431,7 +2469,7 @@ et la place dans la partition correspondante.
 
 ---
 
-## ⏱ 82. Ingestion-time partitioning
+### ⏱ 82. Ingestion-time partitioning
 
 Ici, le partitionnement dépend de :
 
@@ -2450,7 +2488,7 @@ _PARTITIONDATE
 
 ---
 
-## 🔢 83. Integer-range partitioning
+### 🔢 83. Integer-range partitioning
 
 On peut également partitionner une table selon des plages d'entiers.
 
@@ -2467,7 +2505,7 @@ Ce type est moins central dans les usages bootcamp.
 
 ---
 
-## 🚨 84. Correction importante : late-arriving data
+### 🚨 84. Correction importante : late-arriving data
 
 Le cours donne l'exemple :
 
@@ -2481,7 +2519,7 @@ elle ne serait pas dans la bonne partition
 
 Cette affirmation dépend du type de partitionnement.
 
-### Si la table est partitionnée sur `order_date`
+#### Si la table est partitionnée sur `order_date`
 
 BigQuery place automatiquement la ligne dans la partition correspondant à :
 
@@ -2493,7 +2531,7 @@ même si la ligne est chargée le 5 septembre.
 
 ---
 
-### Si la table est partitionnée par ingestion time
+#### Si la table est partitionnée par ingestion time
 
 Alors :
 
@@ -2514,7 +2552,7 @@ même si l'événement métier date du 1er.
 
 ---
 
-## ⚠️ 85. Partitioning ≠ classement manuel fragile
+### ⚠️ 85. Partitioning ≠ classement manuel fragile
 
 Le cours compare les partitions à une chambre d'enfant qui se désorganise.
 
@@ -2536,7 +2574,7 @@ workflow de mises à jour inefficace
 
 ---
 
-## 📏 86. Le seuil « 2 GB » n'est pas une règle BigQuery universelle
+### 📏 86. Le seuil « 2 GB » n'est pas une règle BigQuery universelle
 
 Le cours mentionne :
 
@@ -2559,7 +2597,7 @@ Google indique notamment qu'un partitionnement produisant en moyenne des partiti
 
 ---
 
-## 🧠 87. Comment choisir une colonne de partition
+### 🧠 87. Comment choisir une colonne de partition
 
 Bonne candidate :
 
@@ -2588,7 +2626,7 @@ business_date
 
 ---
 
-## ❓ 88. La question à poser avant de partitionner
+### ❓ 88. La question à poser avant de partitionner
 
 > **Quels filtres les utilisateurs feront-ils le plus souvent ?**
 
@@ -2608,7 +2646,7 @@ est une candidate naturelle.
 
 ---
 
-## 🧱 89. Require partition filter
+### 🧱 89. Require partition filter
 
 BigQuery peut imposer qu'une requête utilise un filtre de partition.
 
@@ -2625,7 +2663,7 @@ C'est un excellent garde-fou sur certaines tables.
 
 ---
 
-## 🧩 90. Clustering — idée générale
+### 🧩 90. Clustering — idée générale
 
 Le clustering organise les blocs de stockage selon les valeurs de certaines colonnes.
 
@@ -2640,7 +2678,7 @@ customer_id organisé en blocs
 
 ---
 
-## ⚠️ 91. Clustering ≠ « partitioning sur plusieurs colonnes »
+### ⚠️ 91. Clustering ≠ « partitioning sur plusieurs colonnes »
 
 Le cours résume le clustering comme l'équivalent du partitionnement avec plusieurs colonnes.
 
@@ -2662,7 +2700,7 @@ BigQuery supporte jusqu'à plusieurs colonnes de clustering, avec un ordre impor
 
 ---
 
-## 🧠 92. Exemple de clustering
+### 🧠 92. Exemple de clustering
 
 Table :
 
@@ -2690,7 +2728,7 @@ BigQuery peut éviter des blocs qui ne contiennent pas cette plage de valeurs.
 
 ---
 
-## 📚 93. Plusieurs colonnes de clustering
+### 📚 93. Plusieurs colonnes de clustering
 
 Exemple :
 
@@ -2716,7 +2754,7 @@ peuvent bénéficier davantage du tri des blocs.
 
 ---
 
-## 🔀 94. Partitioning + Clustering
+### 🔀 94. Partitioning + Clustering
 
 Les deux peuvent être combinés.
 
@@ -2741,7 +2779,7 @@ Architecture :
 
 ---
 
-## 🧭 95. Partitioning vs Clustering
+### 🧭 95. Partitioning vs Clustering
 
 | Question | Partitioning | Clustering |
 |---|---|---|
@@ -2754,7 +2792,7 @@ Architecture :
 
 ---
 
-## 📏 96. Quand clustering devient intéressant
+### 📏 96. Quand clustering devient intéressant
 
 BigQuery indique que les tables / partitions supérieures à environ :
 
@@ -2774,7 +2812,7 @@ Le pattern de requête compte énormément.
 
 ---
 
-## 🔁 97. Automatic Reclustering
+### 🔁 97. Automatic Reclustering
 
 BigQuery maintient automatiquement le clustering en arrière-plan.
 
@@ -2794,7 +2832,7 @@ on ne reclusterise pas manuellement après chaque insert
 
 ---
 
-## 🛠 98. Exemple CREATE TABLE partitionnée + clusterisée
+### 🛠 98. Exemple CREATE TABLE partitionnée + clusterisée
 
 ```sql
 CREATE OR REPLACE TABLE analytics.sales_model
@@ -2813,7 +2851,7 @@ FROM silver.sales;
 
 ---
 
-## 💡 99. Le SQL peut donc définir l'architecture physique
+### 💡 99. Le SQL peut donc définir l'architecture physique
 
 Une requête n'est pas seulement :
 
@@ -2845,7 +2883,9 @@ qui commence à apparaître.
 
 ---
 
-## 🧬 100. Data Lineage
+## Lineage et orchestration
+
+### 🧬 100. Data Lineage
 
 Le **data lineage** décrit :
 
@@ -2878,7 +2918,7 @@ Power BI
 
 ---
 
-## 🔎 101. Pourquoi le lineage est essentiel
+### 🔎 101. Pourquoi le lineage est essentiel
 
 Imagine qu'un CFO demande :
 
@@ -2908,7 +2948,7 @@ On peut auditer le chiffre.
 
 ---
 
-## 🐛 102. Data lineage et debugging
+### 🐛 102. Data lineage et debugging
 
 Si un KPI est faux :
 
@@ -2940,7 +2980,7 @@ en :
 
 ---
 
-## 🕸 103. Lineage = dependency graph
+### 🕸 103. Lineage = dependency graph
 
 On peut représenter le pipeline comme un graphe.
 
@@ -2964,11 +3004,11 @@ C'est un **graphe de dépendances**.
 
 ---
 
-## ⚠️ 104. ERD ≠ Data Lineage
+### ⚠️ 104. ERD ≠ Data Lineage
 
 Ces deux diagrammes répondent à des questions différentes.
 
-### ERD
+#### ERD
 
 ```text
 Quelles entités sont liées ?
@@ -2984,7 +3024,7 @@ orders
 
 ---
 
-### Lineage
+#### Lineage
 
 ```text
 Comment cette donnée a-t-elle été produite ?
@@ -3002,7 +3042,7 @@ orders_model
 
 ---
 
-## 📚 105. ERD vs Lineage
+### 📚 105. ERD vs Lineage
 
 | | ERD | Data Lineage |
 |---|---|---|
@@ -3013,7 +3053,7 @@ orders_model
 
 ---
 
-## 🗂 106. Catalog / Governance
+### 🗂 106. Catalog / Governance
 
 Le cours mentionne les **Data Catalogs**.
 
@@ -3034,7 +3074,7 @@ C'est un exemple de notion qui évolue plus vite que SQL lui-même.
 
 ---
 
-## 🧠 107. Metadata
+### 🧠 107. Metadata
 
 La donnée :
 
@@ -3059,7 +3099,7 @@ Un catalog gère ce type d'information.
 
 ---
 
-## 🎼 108. Orchestration
+### 🎼 108. Orchestration
 
 L'orchestration coordonne l'exécution des étapes.
 
@@ -3087,9 +3127,9 @@ les erreurs
 
 ---
 
-## ⏰ 109. Scheduling ≠ Orchestration
+### ⏰ 109. Scheduling ≠ Orchestration
 
-### Scheduling
+#### Scheduling
 
 ```text
 exécuter cette tâche à 06:00
@@ -3097,7 +3137,7 @@ exécuter cette tâche à 06:00
 
 ---
 
-### Orchestration
+#### Orchestration
 
 ```text
 exécuter A
@@ -3115,7 +3155,7 @@ L'orchestration est beaucoup plus riche.
 
 ---
 
-## 🗓 110. BigQuery Scheduled Queries
+### 🗓 110. BigQuery Scheduled Queries
 
 BigQuery permet de planifier des requêtes récurrentes.
 
@@ -3131,7 +3171,7 @@ Les scheduled queries BigQuery utilisent les mécanismes du BigQuery Data Transf
 
 ---
 
-## 🧪 111. Exemple de Scheduled Query
+### 🧪 111. Exemple de Scheduled Query
 
 SQL :
 
@@ -3157,7 +3197,7 @@ C'est le système externe au SQL qui décide **quand** l'exécuter.
 
 ---
 
-## 🔗 112. Dépendances
+### 🔗 112. Dépendances
 
 Supposons :
 
@@ -3181,7 +3221,7 @@ Un orchestrateur doit comprendre les dépendances.
 
 ---
 
-## 🛠 113. Outils d'orchestration mentionnés
+### 🛠 113. Outils d'orchestration mentionnés
 
 Le cours cite notamment :
 
@@ -3199,7 +3239,7 @@ ces outils n'ont pas tous exactement le même rôle.
 
 ---
 
-## 🧩 114. dbt
+### 🧩 114. dbt
 
 dbt est principalement centré sur :
 
@@ -3215,7 +3255,7 @@ Il forme lui-même un graphe de modèles.
 
 ---
 
-## 🌬 115. Airflow
+### 🌬 115. Airflow
 
 Airflow est un orchestrateur généraliste.
 
@@ -3231,7 +3271,7 @@ task B
 
 ---
 
-## 🚚 116. Fivetran
+### 🚚 116. Fivetran
 
 Fivetran est principalement un outil d'ingestion / EL.
 
@@ -3249,7 +3289,7 @@ Il peut participer au pipeline mais ne remplace pas nécessairement toute l'orch
 
 ---
 
-## 🧠 117. Choisir les outils selon les responsabilités
+### 🧠 117. Choisir les outils selon les responsabilités
 
 ```text
 Fivetran
@@ -3275,7 +3315,9 @@ Les frontières peuvent se chevaucher.
 
 ---
 
-## 👀 118. Observability
+## Qualité et chargements
+
+### 👀 118. Observability
 
 L'**observability** consiste à savoir si le pipeline fonctionne réellement.
 
@@ -3296,7 +3338,7 @@ les métriques sont-elles plausibles ?
 
 ---
 
-## 📡 119. Les dimensions de l'observability
+### 📡 119. Les dimensions de l'observability
 
 On peut surveiller :
 
@@ -3314,7 +3356,7 @@ cost
 
 ---
 
-## 🐛 120. Pipeline « techniquement réussi » mais métier cassé
+### 🐛 120. Pipeline « techniquement réussi » mais métier cassé
 
 Exemple :
 
@@ -3340,7 +3382,7 @@ expected row count
 
 ---
 
-## 🔢 121. Test de volume
+### 🔢 121. Test de volume
 
 ```sql
 SELECT
@@ -3360,7 +3402,7 @@ Une chute de 90 % peut déclencher une alerte.
 
 ---
 
-## 🕳 122. Test de NULL
+### 🕳 122. Test de NULL
 
 ```sql
 SELECT
@@ -3376,7 +3418,7 @@ Si `customer_id` devrait être obligatoire :
 
 ---
 
-## 🔑 123. Test d'unicité
+### 🔑 123. Test d'unicité
 
 ```sql
 SELECT
@@ -3397,7 +3439,7 @@ le résultat devrait être vide.
 
 ---
 
-## 🧪 124. Test de conservation
+### 🧪 124. Test de conservation
 
 Si un pipeline distribue ou agrège des montants :
 
@@ -3427,7 +3469,7 @@ FROM final_sales;
 
 ---
 
-## 🔁 125. Idempotency
+### 🔁 125. Idempotency
 
 Un pipeline **idempotent** peut être réexécuté sans créer d'effets indésirables.
 
@@ -3449,7 +3491,7 @@ doublons
 
 ---
 
-## ✅ 126. Exemple idempotent
+### ✅ 126. Exemple idempotent
 
 ```sql
 CREATE OR REPLACE TABLE gold.daily_sales AS
@@ -3475,7 +3517,7 @@ X + X
 
 ---
 
-## 🧠 127. Pourquoi l'idempotency est essentielle
+### 🧠 127. Pourquoi l'idempotency est essentielle
 
 En production :
 
@@ -3494,7 +3536,7 @@ le pipeline est fragile
 
 ---
 
-## 🔄 128. Full Refresh
+### 🔄 128. Full Refresh
 
 Un full refresh reconstruit tout.
 
@@ -3522,7 +3564,7 @@ coûteux sur gros volumes
 
 ---
 
-## ➕ 129. Incremental Load
+### ➕ 129. Incremental Load
 
 Un incremental load ne traite que :
 
@@ -3551,7 +3593,7 @@ Mais plus complexe.
 
 ---
 
-## ⚠️ 130. Le piège des données modifiées tardivement
+### ⚠️ 130. Le piège des données modifiées tardivement
 
 Si on charge uniquement :
 
@@ -3576,7 +3618,7 @@ ingestion_time
 
 ---
 
-## 🔁 131. MERGE — aperçu
+### 🔁 131. MERGE — aperçu
 
 Pour un modèle incremental, on peut utiliser :
 
@@ -3596,7 +3638,7 @@ Mais il complète très bien le concept de pipeline.
 
 ---
 
-## ⏪ 132. Backfill
+### ⏪ 132. Backfill
 
 Un **backfill** consiste à recalculer des périodes historiques.
 
@@ -3614,7 +3656,7 @@ Un pipeline bien conçu doit pouvoir supporter ce type d'opération.
 
 ---
 
-## 🧬 133. Schema evolution
+### 🧬 133. Schema evolution
 
 Les sources changent.
 
@@ -3639,9 +3681,9 @@ plutôt que produire silencieusement un mauvais résultat.
 
 ---
 
-## 🔍 134. Data Quality vs Observability
+### 🔍 134. Data Quality vs Observability
 
-### Data Quality
+#### Data Quality
 
 ```text
 les données respectent-elles les règles ?
@@ -3657,7 +3699,7 @@ country non NULL
 
 ---
 
-### Observability
+#### Observability
 
 ```text
 le système se comporte-t-il normalement dans le temps ?
@@ -3674,7 +3716,7 @@ pas de schema drift
 
 ---
 
-## 🧭 135. Data Lineage + Observability
+### 🧭 135. Data Lineage + Observability
 
 Ensemble :
 
@@ -3692,7 +3734,9 @@ C'est le cycle de debugging moderne.
 
 ---
 
-## 🧑‍💻 136. Rôle du Data Analyst
+## Conception et validation
+
+### 🧑‍💻 136. Rôle du Data Analyst
 
 Le cours fait une distinction intéressante.
 
@@ -3710,7 +3754,7 @@ Il n'est pas nécessairement responsable de toute l'industrialisation.
 
 ---
 
-## 🏗 137. Rôle du Data Engineer
+### 🏗 137. Rôle du Data Engineer
 
 Le Data Engineer s'occupe souvent davantage de :
 
@@ -3728,7 +3772,7 @@ Mais les frontières varient selon les entreprises.
 
 ---
 
-## 🧱 138. Analytics Engineer — rôle intermédiaire
+### 🧱 138. Analytics Engineer — rôle intermédiaire
 
 Une catégorie utile à connaître :
 
@@ -3757,7 +3801,7 @@ marts
 
 ---
 
-## 🧠 139. Pourquoi un Data Analyst doit connaître les pipelines
+### 🧠 139. Pourquoi un Data Analyst doit connaître les pipelines
 
 Même sans gérer Airflow :
 
@@ -3777,7 +3821,7 @@ Puis-je faire confiance à ce KPI ?
 
 ---
 
-## 🧭 140. Exemple end-to-end — e-commerce
+### 🧭 140. Exemple end-to-end — e-commerce
 
 Sources :
 
@@ -3811,7 +3855,7 @@ Google Ads ┘                    ▼
 
 ---
 
-## 🧮 141. Exemple Silver
+### 🧮 141. Exemple Silver
 
 ```sql
 CREATE OR REPLACE TABLE silver.orders AS
@@ -3826,7 +3870,7 @@ WHERE order_id IS NOT NULL;
 
 ---
 
-## 🥇 142. Exemple Gold
+### 🥇 142. Exemple Gold
 
 ```sql
 CREATE OR REPLACE TABLE gold.daily_sales
@@ -3842,7 +3886,7 @@ GROUP BY order_date;
 
 ---
 
-## 👁 143. Exemple View métier
+### 👁 143. Exemple View métier
 
 ```sql
 CREATE VIEW reporting.sales_last_90_days AS
@@ -3862,7 +3906,7 @@ reporting.sales_last_90_days
 
 ---
 
-## 🔒 144. Exemple View de sécurité
+### 🔒 144. Exemple View de sécurité
 
 ```sql
 CREATE VIEW client_views.company_42_sales AS
@@ -3877,7 +3921,7 @@ Puis accès contrôlé sur cette vue.
 
 ---
 
-## ⚙️ 145. Exemple de refresh quotidien
+### ⚙️ 145. Exemple de refresh quotidien
 
 ```text
 02:00 ingestion sources
@@ -3895,7 +3939,7 @@ Le dashboard à 08:00 consomme donc les données de la nuit.
 
 ---
 
-## 🧠 146. SLA / SLO de fraîcheur — aperçu
+### 🧠 146. SLA / SLO de fraîcheur — aperçu
 
 Un pipeline professionnel peut définir :
 
@@ -3917,7 +3961,7 @@ reliability
 
 ---
 
-## 🛑 147. Anti-pattern : dashboard directement sur 20 tables Raw
+### 🛑 147. Anti-pattern : dashboard directement sur 20 tables Raw
 
 ```text
 Power BI
@@ -3947,7 +3991,7 @@ BI
 
 ---
 
-## 🛑 148. Anti-pattern : chaîne de views très profonde
+### 🛑 148. Anti-pattern : chaîne de views très profonde
 
 Exemple :
 
@@ -3976,7 +4020,7 @@ Une matérialisation intermédiaire peut devenir utile.
 
 ---
 
-## 🛑 149. Anti-pattern : matérialiser chaque ligne de SQL
+### 🛑 149. Anti-pattern : matérialiser chaque ligne de SQL
 
 Inversement :
 
@@ -3994,7 +4038,7 @@ La bonne architecture est un compromis.
 
 ---
 
-## 🛑 150. Anti-pattern : `SELECT *` dans les modèles finaux
+### 🛑 150. Anti-pattern : `SELECT *` dans les modèles finaux
 
 Dans un pipeline durable :
 
@@ -4020,7 +4064,7 @@ Préférer les colonnes explicites dans les modèles critiques.
 
 ---
 
-## 🛑 151. Anti-pattern : choisir la partition sans connaître les requêtes
+### 🛑 151. Anti-pattern : choisir la partition sans connaître les requêtes
 
 Partitionner par :
 
@@ -4040,7 +4084,7 @@ Architecture physique et usage doivent être alignés.
 
 ---
 
-## 🧪 152. Pattern de debugging d'un pipeline
+### 🧪 152. Pattern de debugging d'un pipeline
 
 Lorsqu'un résultat est faux :
 
@@ -4063,7 +4107,7 @@ dates
 
 ---
 
-## 🧪 153. Comparaison étape par étape
+### 🧪 153. Comparaison étape par étape
 
 Exemple :
 
@@ -4090,7 +4134,7 @@ où une métrique diverge
 
 ---
 
-## 🎯 154. Pattern de validation de pipeline
+### 🎯 154. Pattern de validation de pipeline
 
 Avant production :
 
@@ -4123,7 +4167,7 @@ La différence devient explicable.
 
 ---
 
-## 🧠 155. Question fondamentale : matérialiser ou calculer à la volée ?
+### 🧠 155. Question fondamentale : matérialiser ou calculer à la volée ?
 
 ```text
 calcul fréquent ?
@@ -4143,7 +4187,7 @@ materialized view
 
 ---
 
-## 📊 156. Matrice décisionnelle
+### 📊 156. Matrice décisionnelle
 
 | Situation | Option probable |
 |---|---|
@@ -4156,7 +4200,7 @@ materialized view
 
 ---
 
-## 🧠 157. Question fondamentale : full refresh ou incremental ?
+### 🧠 157. Question fondamentale : full refresh ou incremental ?
 
 ```text
 petite table ?
@@ -4180,7 +4224,7 @@ Un incremental mal construit peut produire des erreurs plus graves que le coût 
 
 ---
 
-## 🧠 158. Question fondamentale : fréquence de refresh
+### 🧠 158. Question fondamentale : fréquence de refresh
 
 ```text
 Le business a-t-il besoin :
@@ -4197,7 +4241,7 @@ Pas de la possibilité technique.
 
 ---
 
-## 🧠 159. Question fondamentale : qui consomme la table ?
+### 🧠 159. Question fondamentale : qui consomme la table ?
 
 ```text
 Data Analyst
@@ -4213,7 +4257,9 @@ La structure Gold peut être différente selon le consommateur.
 
 ---
 
-## 🔐 160. Pipeline et permissions
+## Gouvernance et mesure
+
+### 🔐 160. Pipeline et permissions
 
 Une bonne architecture permet aussi de séparer :
 
@@ -4235,7 +4281,7 @@ Le pipeline devient une frontière de sécurité.
 
 ---
 
-## 🧠 161. Freshness vs correctness
+### 🧠 161. Freshness vs correctness
 
 Une donnée :
 
@@ -4264,7 +4310,7 @@ quality
 
 ---
 
-## 🧮 162. Freshness test
+### 🧮 162. Freshness test
 
 Exemple :
 
@@ -4282,7 +4328,7 @@ heure actuelle
 
 ---
 
-## ⏳ 163. Latency de pipeline
+### ⏳ 163. Latency de pipeline
 
 On peut mesurer :
 
@@ -4308,7 +4354,7 @@ latency = 17 min
 
 ---
 
-## 💰 164. Coût total d'une architecture
+### 💰 164. Coût total d'une architecture
 
 Ne regarder que :
 
@@ -4342,7 +4388,7 @@ maintenance humaine
 
 ---
 
-## 🧠 165. Performance ≠ seulement durée de requête
+### 🧠 165. Performance ≠ seulement durée de requête
 
 Une architecture performante est aussi :
 
@@ -4357,7 +4403,7 @@ Une query de 2 secondes mais impossible à comprendre peut être pire qu'une que
 
 ---
 
-## 🏛 166. Data Governance — aperçu
+### 🏛 166. Data Governance — aperçu
 
 Une plateforme mature doit également répondre à :
 
@@ -4373,7 +4419,7 @@ Le pipeline n'est qu'une partie de cette gouvernance.
 
 ---
 
-## 🧠 167. Data Contract — aperçu
+### 🧠 167. Data Contract — aperçu
 
 Un **data contract** formalise ce qu'une source promet.
 
@@ -4400,7 +4446,7 @@ C'est une manière moderne de sécuriser les pipelines.
 
 ---
 
-## 🔄 168. Data lineage manuel vs automatique
+### 🔄 168. Data lineage manuel vs automatique
 
 Petit pipeline :
 
@@ -4426,7 +4472,7 @@ BigQuery / Dataplex peuvent enregistrer du lineage pour différents jobs.
 
 ---
 
-## 🧠 169. Query lineage
+### 🧠 169. Query lineage
 
 Exemple :
 
@@ -4447,7 +4493,7 @@ Cette relation est exactement ce qui alimente un graphe de lineage.
 
 ---
 
-## 📉 170. Partition pruning et coût
+### 📉 170. Partition pruning et coût
 
 Exemple :
 
@@ -4483,7 +4529,7 @@ latence + coût
 
 ---
 
-## ⚠️ 171. Écrire un filtre compatible avec le pruning
+### ⚠️ 171. Écrire un filtre compatible avec le pruning
 
 Le moteur doit pouvoir identifier les partitions utiles.
 
@@ -4498,7 +4544,7 @@ plutôt que des transformations inutilement complexes sur la colonne de partitio
 
 ---
 
-## 🧪 172. Vérifier le pruning
+### 🧪 172. Vérifier le pruning
 
 Ne pas supposer.
 
@@ -4514,9 +4560,9 @@ C'est une excellente expérience à faire dans BigQuery.
 
 ---
 
-## 🔬 173. Expérience BigQuery recommandée
+### 🔬 173. Expérience BigQuery recommandée
 
-### Query A
+#### Query A
 
 ```sql
 SELECT
@@ -4533,7 +4579,7 @@ bytes processed
 
 ---
 
-### Query B
+#### Query B
 
 ```sql
 SELECT
@@ -4545,7 +4591,7 @@ Comparer.
 
 ---
 
-### Query C
+#### Query C
 
 ```sql
 SELECT
@@ -4560,7 +4606,7 @@ Cette expérience rend concrète la logique de stockage colonnaire + partition p
 
 ---
 
-## 🧪 174. Expérience View vs Table
+### 🧪 174. Expérience View vs Table
 
 Créer une logique lourde :
 
@@ -4596,7 +4642,7 @@ C'est exactement le type de challenge pédagogique décrit dans le cours.
 
 ---
 
-## 🧠 175. Attention au cache pendant les comparaisons
+### 🧠 175. Attention au cache pendant les comparaisons
 
 Si on exécute deux fois la même requête :
 
@@ -4616,7 +4662,7 @@ est indispensable.
 
 ---
 
-## 🧠 176. Performance : toujours mesurer
+### 🧠 176. Performance : toujours mesurer
 
 Éviter :
 
@@ -4642,7 +4688,7 @@ freshness
 
 ---
 
-## 🧠 177. L'optimiseur BigQuery existe
+### 🧠 177. L'optimiseur BigQuery existe
 
 SQL est déclaratif.
 
@@ -4662,7 +4708,9 @@ Donc une représentation pédagogique du pipeline physique reste une approximati
 
 ---
 
-## 🚦 178. Pipeline states
+## Exploitation et documentation
+
+### 🚦 178. Pipeline states
 
 On peut donner à chaque étape un état :
 
@@ -4683,7 +4731,7 @@ si parent failed
 
 ---
 
-## 🔁 179. Retry
+### 🔁 179. Retry
 
 Une API peut échouer temporairement.
 
@@ -4704,7 +4752,7 @@ Un orchestrateur doit savoir gérer les deux.
 
 ---
 
-## 🚨 180. Alerting
+### 🚨 180. Alerting
 
 Si une étape critique échoue :
 
@@ -4721,7 +4769,7 @@ L'observability n'a de valeur que si quelqu'un peut agir.
 
 ---
 
-## 🧠 181. Dependency freshness
+### 🧠 181. Dependency freshness
 
 Même si :
 
@@ -4740,7 +4788,7 @@ Il faut surveiller les dépendances.
 
 ---
 
-## 🕒 182. Scheduling en UTC
+### 🕒 182. Scheduling en UTC
 
 Les plateformes cloud planifient souvent en UTC ou convertissent les horaires.
 
@@ -4756,7 +4804,7 @@ Pour les Scheduled Queries BigQuery, la configuration est convertie en UTC.
 
 ---
 
-## 🧠 183. Timezone et pipelines
+### 🧠 183. Timezone et pipelines
 
 Exemple :
 
@@ -4778,7 +4826,7 @@ Les partitions et KPI doivent partager la même définition temporelle.
 
 ---
 
-## 📚 184. Naming convention
+### 📚 184. Naming convention
 
 Une architecture claire peut utiliser :
 
@@ -4813,7 +4861,7 @@ cohérence + documentation
 
 ---
 
-## 🧠 185. Bronze/Silver/Gold vs staging/marts
+### 🧠 185. Bronze/Silver/Gold vs staging/marts
 
 Correspondance approximative :
 
@@ -4832,7 +4880,7 @@ Mais ce n'est pas une équivalence universelle.
 
 ---
 
-## 🧩 186. Un pipeline peut contenir des branches
+### 🧩 186. Un pipeline peut contenir des branches
 
 Ce n'est pas forcément :
 
@@ -4853,7 +4901,7 @@ Le graphe devient central.
 
 ---
 
-## 🔁 187. Réutiliser une même étape
+### 🔁 187. Réutiliser une même étape
 
 Une bonne table Silver :
 
@@ -4874,7 +4922,7 @@ Cela évite de réimplémenter le nettoyage plusieurs fois.
 
 ---
 
-## 🛑 188. Metric duplication
+### 🛑 188. Metric duplication
 
 Si plusieurs dashboards recalculent chacun :
 
@@ -4896,7 +4944,7 @@ single source of truth
 
 ---
 
-## 🏆 189. Gold comme couche sémantique simplifiée
+### 🏆 189. Gold comme couche sémantique simplifiée
 
 Un bon Gold doit permettre à un analyste de poser :
 
@@ -4920,7 +4968,7 @@ plutôt que refaire :
 
 ---
 
-## 🧠 190. Mais attention à la « single source of truth »
+### 🧠 190. Mais attention à la « single source of truth »
 
 Le même concept peut avoir plusieurs définitions légitimes.
 
@@ -4944,7 +4992,7 @@ et supposer que tout le monde est d'accord.
 
 ---
 
-## 📝 191. Documentation minimale d'un modèle Gold
+### 📝 191. Documentation minimale d'un modèle Gold
 
 Pour chaque table :
 
@@ -4972,7 +5020,7 @@ Source: silver.orders + silver.customers
 
 ---
 
-## 🧠 192. La granularité reste centrale
+### 🧠 192. La granularité reste centrale
 
 Pipeline ou pas, toujours demander :
 
@@ -5002,7 +5050,7 @@ Changer de grain est une transformation majeure.
 
 ---
 
-## ⚠️ 193. Pipeline et JOINs
+### ⚠️ 193. Pipeline et JOINs
 
 Le chapitre Joins reste directement lié.
 
@@ -5034,7 +5082,7 @@ ou redistribuer correctement la métrique.
 
 ---
 
-## 🧠 194. Pipeline et Window Functions
+### 🧠 194. Pipeline et Window Functions
 
 Une Window Function peut être utilisée dans Silver/Gold pour :
 
@@ -5058,7 +5106,7 @@ permet d'identifier la dernière version d'un client.
 
 ---
 
-## 🧠 195. Pipeline et Date Functions
+### 🧠 195. Pipeline et Date Functions
 
 Dates essentielles pour :
 
@@ -5076,7 +5124,7 @@ Elles participent directement à l'architecture.
 
 ---
 
-## 🧠 196. Pipeline et dbt
+### 🧠 196. Pipeline et dbt
 
 Les notions de ce chapitre seront réutilisées directement dans dbt :
 
@@ -5095,7 +5143,7 @@ dbt formalise beaucoup des idées vues ici.
 
 ---
 
-## 🧭 197. Table vs View dans dbt — passerelle
+### 🧭 197. Table vs View dans dbt — passerelle
 
 Conceptuellement :
 
@@ -5120,7 +5168,7 @@ compute
 
 ---
 
-## 🧠 198. Le rôle de `ref()` — passerelle
+### 🧠 198. Le rôle de `ref()` — passerelle
 
 Dans dbt :
 
@@ -5144,7 +5192,7 @@ Ce chapitre prépare donc directement à comprendre dbt.
 
 ---
 
-## 🧠 199. Le mot « pipeline » peut désigner plusieurs niveaux
+### 🧠 199. Le mot « pipeline » peut désigner plusieurs niveaux
 
 Selon le contexte :
 
@@ -5165,7 +5213,9 @@ où finit-il ?
 
 ---
 
-## 🧪 200. Exemple de design complet
+## Mise en pratique et révision
+
+### 🧪 200. Exemple de design complet
 
 ```text
 SOURCE
@@ -5205,7 +5255,7 @@ Power BI
 
 ---
 
-## 🧠 201. Où placer les tests ?
+### 🧠 201. Où placer les tests ?
 
 Partout où un contrat important existe.
 
@@ -5246,7 +5296,7 @@ KPI plausibility
 
 ---
 
-## 🔎 202. Où placer le lineage ?
+### 🔎 202. Où placer le lineage ?
 
 Le lineage n'est pas une étape.
 
@@ -5261,7 +5311,7 @@ source → bronze → silver → gold → BI
 
 ---
 
-## 👀 203. Où placer l'observability ?
+### 👀 203. Où placer l'observability ?
 
 Même logique.
 
@@ -5279,7 +5329,7 @@ BI
 
 ---
 
-## 🎼 204. Où placer l'orchestration ?
+### 🎼 204. Où placer l'orchestration ?
 
 L'orchestration pilote le graphe.
 
@@ -5298,7 +5348,7 @@ L'orchestration pilote le graphe.
 
 ---
 
-## 📊 205. Où placer Power BI / Looker ?
+### 📊 205. Où placer Power BI / Looker ?
 
 Ils sont généralement :
 
@@ -5318,7 +5368,7 @@ Même si les BI tools peuvent eux-mêmes faire de la modélisation et des transf
 
 ---
 
-## ⚖️ 206. Transformation dans BI ou dans Warehouse ?
+### ⚖️ 206. Transformation dans BI ou dans Warehouse ?
 
 Possible :
 
@@ -5341,7 +5391,7 @@ Question :
 
 ---
 
-## 🧠 207. Push-down de logique
+### 🧠 207. Push-down de logique
 
 Lorsque possible, exécuter certaines transformations dans le warehouse peut permettre :
 
@@ -5364,7 +5414,7 @@ Encore une fois : pas de dogme.
 
 ---
 
-## 🧰 208. Cheat sheet — concepts
+### 🧰 208. Cheat sheet — concepts
 
 ```text
 Data Pipeline
@@ -5406,7 +5456,7 @@ Observability
 
 ---
 
-## 🧰 209. Cheat sheet — objets
+### 🧰 209. Cheat sheet — objets
 
 ```text
 Table
@@ -5430,7 +5480,7 @@ Temporary Table
 
 ---
 
-## 🧰 210. Cheat sheet — performance BigQuery
+### 🧰 210. Cheat sheet — performance BigQuery
 
 ```text
 éviter SELECT *
@@ -5448,7 +5498,7 @@ matérialiser les calculs lourds réutilisés
 
 ---
 
-## 🧰 211. Cheat sheet — partitioning
+### 🧰 211. Cheat sheet — partitioning
 
 ```text
 PARTITION BY
@@ -5469,7 +5519,7 @@ integer-range
 
 ---
 
-## 🧰 212. Cheat sheet — clustering
+### 🧰 212. Cheat sheet — clustering
 
 ```text
 CLUSTER BY
@@ -5483,7 +5533,7 @@ automatic reclustering BigQuery
 
 ---
 
-## 🧠 213. Questions à se poser avant de créer une table
+### 🧠 213. Questions à se poser avant de créer une table
 
 ```text
 Quel est le grain ?
@@ -5501,7 +5551,7 @@ Qui en est owner ?
 
 ---
 
-## 🧠 214. Questions à se poser avant de créer une view
+### 🧠 214. Questions à se poser avant de créer une view
 
 ```text
 La logique est-elle réutilisée ?
@@ -5514,7 +5564,7 @@ La logique doit-elle être cachée aux consommateurs ?
 
 ---
 
-## 🧠 215. Questions à se poser avant de matérialiser
+### 🧠 215. Questions à se poser avant de matérialiser
 
 ```text
 Combien de fois ce calcul est-il exécuté ?
@@ -5526,7 +5576,7 @@ Puis-je orchestrer son refresh ?
 
 ---
 
-## 🧠 216. Questions à se poser avant de partitionner
+### 🧠 216. Questions à se poser avant de partitionner
 
 ```text
 La table est-elle suffisamment volumineuse ?
@@ -5538,7 +5588,7 @@ Ai-je besoin d'estimer les coûts avant run ?
 
 ---
 
-## 🧠 217. Questions à se poser avant de clusteriser
+### 🧠 217. Questions à se poser avant de clusteriser
 
 ```text
 Quelles colonnes sont souvent filtrées ?
@@ -5549,7 +5599,7 @@ Puis-je combiner avec une partition ?
 
 ---
 
-## ✅ 218. Checklist Pipeline — conception
+### ✅ 218. Checklist Pipeline — conception
 
 - [ ] Je connais les systèmes sources.
 - [ ] Je sais ce qu'une ligne représente dans chaque source.
@@ -5567,7 +5617,7 @@ Puis-je combiner avec une partition ?
 
 ---
 
-## ✅ 219. Checklist BigQuery — coût & performance
+### ✅ 219. Checklist BigQuery — coût & performance
 
 - [ ] Je n'utilise pas `SELECT *` inutilement.
 - [ ] Je regarde les bytes estimés.
@@ -5582,9 +5632,9 @@ Puis-je combiner avec une partition ?
 
 ---
 
-## 🎤 220. Questions d'entretien — niveau Junior Data Analyst
+### 🎤 220. Questions d'entretien — niveau Junior Data Analyst
 
-### Qu'est-ce qu'un data pipeline ?
+#### Qu'est-ce qu'un data pipeline ?
 
 Réponse :
 
@@ -5592,7 +5642,7 @@ Réponse :
 
 ---
 
-### Différence entre ETL et ELT ?
+#### Différence entre ETL et ELT ?
 
 ```text
 ETL
@@ -5604,19 +5654,19 @@ ELT
 
 ---
 
-### Différence entre Table et View ?
+#### Différence entre Table et View ?
 
 > Une table matérialise les données, alors qu'une logical view stocke une requête et réévalue sa logique lorsqu'on l'interroge.
 
 ---
 
-### Pourquoi une table peut-elle être plus rapide qu'une view ?
+#### Pourquoi une table peut-elle être plus rapide qu'une view ?
 
 > Parce que les transformations ont déjà été calculées et matérialisées, alors qu'une view peut devoir relire ses sources et réexécuter sa logique.
 
 ---
 
-### Pourquoi utiliser une view ?
+#### Pourquoi utiliser une view ?
 
 ```text
 réutilisation
@@ -5627,9 +5677,9 @@ sécurité
 
 ---
 
-## 🎤 221. Questions d'entretien — OLTP / OLAP
+### 🎤 221. Questions d'entretien — OLTP / OLAP
 
-### OLTP ?
+#### OLTP ?
 
 ```text
 transactionnel
@@ -5638,7 +5688,7 @@ writes rapides
 applications métier
 ```
 
-### OLAP ?
+#### OLAP ?
 
 ```text
 analytique
@@ -5650,15 +5700,15 @@ BI
 
 ---
 
-## 🎤 222. Questions d'entretien — Partitioning
+### 🎤 222. Questions d'entretien — Partitioning
 
-### Qu'est-ce que le partitioning ?
+#### Qu'est-ce que le partitioning ?
 
 > Une manière de segmenter une table en partitions selon une clé comme une date afin que BigQuery puisse ignorer les partitions inutiles lors de requêtes compatibles.
 
 ---
 
-### Pourquoi cela réduit-il les coûts ?
+#### Pourquoi cela réduit-il les coûts ?
 
 Parce que :
 
@@ -5676,37 +5726,37 @@ en on-demand.
 
 ---
 
-## 🎤 223. Questions d'entretien — Clustering
+### 🎤 223. Questions d'entretien — Clustering
 
-### Différence avec partitioning ?
+#### Différence avec partitioning ?
 
 > Le partitioning crée des partitions explicites selon une seule clé de partitionnement, tandis que le clustering organise les blocs de stockage selon plusieurs colonnes possibles afin de faciliter le block pruning.
 
 ---
 
-## 🎤 224. Questions d'entretien — Lineage
+### 🎤 224. Questions d'entretien — Lineage
 
-### Qu'est-ce que le data lineage ?
+#### Qu'est-ce que le data lineage ?
 
 > La capacité à retracer l'origine d'une donnée, les transformations qu'elle a subies et les objets qui en dépendent.
 
 ---
 
-## 🎤 225. Questions d'entretien — Orchestration
+### 🎤 225. Questions d'entretien — Orchestration
 
-### Scheduling vs orchestration ?
+#### Scheduling vs orchestration ?
 
 > Scheduling signifie principalement « quand lancer une tâche ». L'orchestration gère également l'ordre, les dépendances, les conditions, les retries et les erreurs entre plusieurs tâches.
 
 ---
 
-## 🎤 226. Questions d'entretien — Observability
+### 🎤 226. Questions d'entretien — Observability
 
 > L'observability consiste à surveiller non seulement si les jobs s'exécutent, mais aussi la fraîcheur, les volumes, les schémas, les anomalies et la qualité globale du pipeline.
 
 ---
 
-## 🎤 227. Question piège : `LIMIT 10` réduit-il le coût BigQuery ?
+### 🎤 227. Question piège : `LIMIT 10` réduit-il le coût BigQuery ?
 
 Réponse :
 
@@ -5714,7 +5764,7 @@ Réponse :
 
 ---
 
-## 🎤 228. Question piège : une CTE est-elle matérialisée en mémoire ?
+### 🎤 228. Question piège : une CTE est-elle matérialisée en mémoire ?
 
 Réponse :
 
@@ -5722,7 +5772,7 @@ Réponse :
 
 ---
 
-## 🎤 229. Question piège : une ligne ancienne chargée aujourd'hui va-t-elle dans la mauvaise partition ?
+### 🎤 229. Question piège : une ligne ancienne chargée aujourd'hui va-t-elle dans la mauvaise partition ?
 
 Réponse :
 
@@ -5730,7 +5780,7 @@ Réponse :
 
 ---
 
-## 🧠 230. Les dix idées à retenir absolument
+### 🧠 230. Les dix idées à retenir absolument
 
 1. **Un pipeline est plus qu'une transformation SQL.**
 2. **Bronze / Silver / Gold séparent les niveaux de maturité de la donnée.**
@@ -5745,11 +5795,11 @@ Réponse :
 
 ---
 
-## 🔎 231. Corrections / précisions Brocode par rapport au cours
+### 🔎 231. Corrections / précisions Brocode par rapport au cours
 
 Cette section est volontairement explicite afin de ne pas mémoriser des simplifications pédagogiques comme des vérités techniques.
 
-### Pipeline
+#### Pipeline
 
 Le pipeline ne correspond pas uniquement à :
 
@@ -5761,7 +5811,7 @@ Il peut englober extraction, chargement, transformation, tests, publication et o
 
 ---
 
-### OLTP / OLAP
+#### OLTP / OLAP
 
 ```text
 OLTP = row-oriented
@@ -5774,7 +5824,7 @@ Les termes décrivent d'abord des workloads.
 
 ---
 
-### Views
+#### Views
 
 Une logical view BigQuery :
 
@@ -5786,7 +5836,7 @@ et sa requête est exécutée lorsque la view est interrogée.
 
 ---
 
-### Authorized Views
+#### Authorized Views
 
 Le terme BigQuery à retenir pour partager un sous-ensemble de données avec accès indirect aux sources est :
 
@@ -5796,7 +5846,7 @@ Authorized View
 
 ---
 
-### CTE
+#### CTE
 
 Une CTE n'est pas garantie :
 
@@ -5814,7 +5864,7 @@ BigQuery peut la réévaluer.
 
 ---
 
-### Materialized View
+#### Materialized View
 
 Ce n'est pas simplement une « table stable ».
 
@@ -5822,7 +5872,7 @@ C'est une vue précalculée et maintenue selon des mécanismes BigQuery.
 
 ---
 
-### Pricing BigQuery
+#### Pricing BigQuery
 
 BigQuery dispose aujourd'hui de modèles :
 
@@ -5835,7 +5885,7 @@ La vieille opposition « pay-as-you-go vs flat pricing » ne décrit plus suffis
 
 ---
 
-### `LIMIT`
+#### `LIMIT`
 
 `LIMIT` :
 
@@ -5847,7 +5897,7 @@ mais ne réduit pas automatiquement les bytes lus.
 
 ---
 
-### Partitioning
+#### Partitioning
 
 Le seuil :
 
@@ -5861,7 +5911,7 @@ La documentation recommande de raisonner selon la taille moyenne des partitions,
 
 ---
 
-### Late-arriving rows
+#### Late-arriving rows
 
 Une ligne datée du 1er mais chargée le 5 va bien dans la partition du 1er lorsque la table est partitionnée sur cette colonne de date métier.
 
@@ -5869,7 +5919,7 @@ La logique diffère avec ingestion-time partitioning.
 
 ---
 
-### Clustering
+#### Clustering
 
 Clustering n'est pas simplement :
 
@@ -5881,7 +5931,7 @@ Il organise les blocs de stockage selon plusieurs colonnes possibles.
 
 ---
 
-### « partitions qui se désorganisent »
+#### « partitions qui se désorganisent »
 
 BigQuery gère les partitions et effectue notamment un reclustering automatique pour les tables clusterisées.
 
@@ -5896,7 +5946,7 @@ skew
 
 ---
 
-### Data Catalog
+#### Data Catalog
 
 Google Cloud a remplacé l'ancien Data Catalog par :
 
@@ -5908,7 +5958,7 @@ Les concepts de catalog, metadata et lineage restent les mêmes.
 
 ---
 
-## 🔗 232. Liens avec les autres chapitres Brocode
+### 🔗 232. Liens avec les autres chapitres Brocode
 
 ```text
 Intro SQL
@@ -5954,7 +6004,7 @@ savoir comprendre une plateforme data
 
 ---
 
-## 📚 233. Sources officielles de vérification technique
+### 📚 233. Sources officielles de vérification technique
 
 Le contenu principal vient du cours Le Wagon et de sa transcription.
 
@@ -5995,7 +6045,7 @@ Les précisions techniques ont été vérifiées dans la documentation officiell
 
 ---
 
-## 🏁 234. Résumé final
+### 🏁 234. Résumé final
 
 Le SQL vu précédemment apprend à faire :
 

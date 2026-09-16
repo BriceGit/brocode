@@ -1,3 +1,15 @@
+---
+title: Taux sur variable binaire
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Taux sur variable binaire
 
 > **Toute question « quel pourcentage de X vérifie la condition C ? » se résout par une moyenne sur un indicateur 0/1.** Un pattern, une ligne de code, et il couvre la moitié des KPI de taux qu'on te demandera.
@@ -158,7 +170,7 @@ Sur le shortage rate : on compte des **références produits**, pas des unités 
 | Unités manquantes / unités théoriques | *Quel est mon taux de service en volume ?* |
 | Valeur des ruptures / valeur du catalogue | *Quel CA je ne peux pas réaliser ?* |
 
-Trois questions différentes, trois chiffres différents, et une seule est demandée. Voir [[Granularité d'une table]] : **avant de calculer un taux, savoir ce qu'une ligne représente**.
+Trois questions différentes, trois chiffres différents, et une seule est demandée. Voir [[codex/sheet/Granularité d'une table|Granularité d'une table]] : **avant de calculer un taux, savoir ce qu'une ligne représente**.
 
 ---
 
@@ -177,7 +189,7 @@ SAFE_DIVIDE(
 )
 ```
 
-Un taux de retour de 6 % **en volume** et de 6 % **en valeur** ne racontent pas la même histoire : 6 % portés par un seul produit cher ≠ 6 % portés par des centaines de petites commandes. C'est [[Aggregate before divide]] sous un autre angle — la moyenne des indicatrices est un cas particulier où numérateur et dénominateur ont le même poids par ligne.
+Un taux de retour de 6 % **en volume** et de 6 % **en valeur** ne racontent pas la même histoire : 6 % portés par un seul produit cher ≠ 6 % portés par des centaines de petites commandes. C'est [[codex/sheet/Aggregate before divide|Aggregate before divide]] sous un autre angle — la moyenne des indicatrices est un cas particulier où numérateur et dénominateur ont le même poids par ligne.
 
 ---
 
@@ -216,8 +228,8 @@ Sur un petit dénominateur, un taux est instable et trompeur. `1 rupture sur 4 r
 
 ## 🔗 Liens
 
-- Chapitre source : [[KPI Basics]]
-- [[Aggregate before divide]] — le cas général dont ce pattern est un cas particulier
-- [[Granularité d'une table]] — savoir ce qu'une ligne représente avant de la compter
-- [[KPI vs métrique]] — un taux devient un KPI quand on lui accroche une cible
-- [[NPS (Net Promoter Score)]] — un taux composite qui, lui, ne se calcule PAS avec ce pattern
+- Chapitre source : [[wagon2321/cours/03_KPI_Basics|KPI Basics]]
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — le cas général dont ce pattern est un cas particulier
+- [[codex/sheet/Granularité d'une table|Granularité d'une table]] — savoir ce qu'une ligne représente avant de la compter
+- [[codex/kpi/KPI vs métrique|KPI vs métrique]] — un taux devient un KPI quand on lui accroche une cible
+- [[codex/kpi/NPS (Net Promoter Score)|NPS (Net Promoter Score)]] — un taux composite qui, lui, ne se calcule PAS avec ce pattern

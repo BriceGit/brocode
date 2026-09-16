@@ -1,4 +1,25 @@
+---
+title: Lexique Git
+type: reference
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+tags:
+  - brocode
+  - references
+aliases: []
+role_version: reference
+date: 2026-07-20
+---
+
 # Lexique Git
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Collection :** [[references/README|Références]]
+
 
 ## 🔀 Git — Gestion de versions
 

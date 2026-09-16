@@ -1,46 +1,56 @@
 ---
-title: "Pandas — Manipulation de données : Series, DataFrame, agrégations & jointures"
+title: 'Pandas — Manipulation de données : Series, DataFrame, agrégations & jointures'
 aliases:
-  - "Python 2"
-  - "Pandas — Manipulation de données"
-  - "Masque booléen Pandas"
-  - "loc vs iloc"
-  - "GroupBy Pandas"
-  - "Merge Pandas (Join)"
-  - "Pivot table Pandas"
+- Python 2
+- Pandas — Manipulation de données
+- Masque booléen Pandas
+- loc vs iloc
+- GroupBy Pandas
+- Merge Pandas (Join)
+- Pivot table Pandas
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 27
 date: 2026-08-11
-language: "Python"
-database: "n/a — pas de connexion SQL native dans cette session ; DataFrames construits en local (CSV / dictionnaire / liste) + un CSV chargé directement depuis une URL (dataset *tips*, cas d'étude « Le Wagon Rouge »)"
+language: fr
+database: n/a — pas de connexion SQL native dans cette session ; DataFrames construits en local (CSV / dictionnaire
+  / liste) + un CSV chargé directement depuis une URL (dataset *tips*, cas d'étude « Le Wagon Rouge »)
 topics:
-  - "Python"
-  - "NumPy"
-  - "Pandas"
-  - "DataFrame"
-  - "Series"
-  - "Masques booléens"
-  - "GroupBy"
-  - "Merge / Jointures"
-  - "Pivot tables"
-  - "Dates (datetime64)"
-  - "Agrégations"
+- Python
+- NumPy
+- Pandas
+- DataFrame
+- Series
+- Masques booléens
+- GroupBy
+- Merge / Jointures
+- Pivot tables
+- Dates (datetime64)
+- Agrégations
 tags:
-  - brocode
-  - wagon2321/cours
-  - python
-  - pandas
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: Python
+course_id: pandas-manipulation-donnees
+role_version: reference
 ---
 
 # 27 - Pandas : manipulation de données
 
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
+
 > [!info] TL;DR
 > Deuxième jour de Python — cette fois on retrouve un terrain connu. NumPy pose le socle du calcul vectoriel, Pandas construit par-dessus pour donner des **DataFrames**, l'équivalent Python des tables SQL / Google Sheets. Au programme : création, exploration, sélection (`loc`/`iloc`), filtrage par masque booléen, colonnes calculées, agrégations, `groupby`, `pivot_table`, assemblage (`concat`/`merge`) et gestion des dates — puis un cas d'étude filé sur un restaurant fictif, **Le Wagon Rouge**.
 
-🔗 Fait suite à [[26_python_intro|Intro Python]] (bases du langage — variables, boucles, fonctions, jour 1)
+🔗 Fait suite à [[wagon2321/cours/26_python_intro|Intro Python]] (bases du langage — variables, boucles, fonctions, jour 1)
 📅 Suite du programme : Excel/JSON/SQLAlchemy le lendemain, Machine Learning avec Scikit-Learn la semaine suivante, cours dédié aux stats le vendredi
 
 ---
@@ -58,7 +68,7 @@ tags:
 - [[#9. Agrégations]]
 - [[#10. GroupBy]]
 - [[#11. Pivot tables]]
-- [[#12. Assembler des DataFrames concat & merge]]
+- [[#12. Assembler des DataFrames : concat & merge]]
 - [[#13. Gérer les dates]]
 - [[#14. Étude de cas — Le Wagon Rouge (dataset tips)]]
 - [[#15. Bonnes pratiques retenues]]
@@ -265,7 +275,7 @@ df.loc[:, ["store_id", "item_id"]]     # toutes les lignes, colonnes nommées
 df.iloc[1:4, 1:3]                      # lignes en position 1 à 4 EXCLU, colonnes en position 1 à 3 EXCLU
 ```
 
-> [!question] Détail transversal — voir la fiche dédiée [[loc vs iloc (Pandas)]] pour la confusion classique entre labels et positions quand l'index par défaut est numérique.
+> [!question] Détail transversal — voir la fiche dédiée [[codex/python/loc vs iloc (Pandas)|loc vs iloc (Pandas)]] pour la confusion classique entre labels et positions quand l'index par défaut est numérique.
 
 ---
 
@@ -302,7 +312,7 @@ df[df["store_id"] == 23]
 df[(df["store_id"] == 23) & (df["quantity"] > 2)]
 ```
 
-> [!tip] Détail transversal — voir la fiche dédiée [[Masque booléen (Pandas & NumPy)]] pour le lien entre masque booléen et le `WHERE` SQL, et l'astuce `.sum()` sur une Series booléenne pour compter des occurrences.
+> [!tip] Détail transversal — voir la fiche dédiée [[codex/python/Masque booléen (Pandas & NumPy)|Masque booléen (Pandas & NumPy)]] pour le lien entre masque booléen et le `WHERE` SQL, et l'astuce `.sum()` sur une Series booléenne pour compter des occurrences.
 
 ---
 
@@ -557,7 +567,7 @@ df["time"].value_counts()["Lunch"]
 ```
 
 > [!tip] "Il n'y a pas de one-liner absolu"
-> Le formateur insiste : peu importe si vous ne connaissez pas les trois méthodes, l'essentiel est d'en maîtriser une. Mieux vaut du code lisible en plusieurs lignes qu'une syntaxe condensée mal comprise. Voir la fiche [[Masque booléen (Pandas & NumPy)]] pour le détail du principe `True=1 / False=0`.
+> Le formateur insiste : peu importe si vous ne connaissez pas les trois méthodes, l'essentiel est d'en maîtriser une. Mieux vaut du code lisible en plusieurs lignes qu'une syntaxe condensée mal comprise. Voir la fiche [[codex/python/Masque booléen (Pandas & NumPy)|Masque booléen (Pandas & NumPy)]] pour le détail du principe `True=1 / False=0`.
 
 > [!warning] Piège rencontré en live : `df["Dinner"]` → `KeyError`
 > Une tentative de filtrage directe avec `df["Dinner"]` échoue : entre crochets simples, Pandas attend un **nom de colonne**, pas une valeur d'une colonne. `Dinner` est une valeur de la colonne `time`, pas un intitulé de colonne existant — d'où l'erreur. Décomposer en pseudo-code *avant* de coder (ici : "compter" + "filtrer sur Lunch") aide à éviter ce genre de confusion.
@@ -604,4 +614,4 @@ df["total_bill"].max()
 
 ---
 
-🔗 Voir aussi : [[26_python_intro|Intro Python]] · [[Masque booléen (Pandas & NumPy)]] · [[loc vs iloc (Pandas)]]
+🔗 Voir aussi : [[wagon2321/cours/26_python_intro|Intro Python]] · [[codex/python/Masque booléen (Pandas & NumPy)|Masque booléen (Pandas & NumPy)]] · [[codex/python/loc vs iloc (Pandas)|loc vs iloc (Pandas)]]

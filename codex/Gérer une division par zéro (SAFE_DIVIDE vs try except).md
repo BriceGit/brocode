@@ -1,3 +1,15 @@
+---
+title: Gérer une division par zéro (SAFE_DIVIDE vs try/except)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Gérer une division par zéro (SAFE_DIVIDE vs try/except)
 
 Le même problème — un dénominateur qui peut valoir zéro (ou être vide) — revient dans tous les outils manipulant des données. Chacun a son mécanisme dédié, mais la logique de fond est identique : **anticiper le cas limite plutôt que laisser le calcul planter en silence ou en erreur**.
@@ -38,5 +50,9 @@ Que ce soit `NULL` (SQL) ou `0` (Python), la valeur choisie pour le cas d'erreur
 **Réflexe** : ne jamais choisir la valeur de repli par automatisme. Se demander explicitement ce que cette valeur va devenir dans les calculs qui suivent — et si `None` (l'équivalent Python d'un NULL, souvent plus sûr qu'un `0` silencieux) ne serait pas le choix le plus honnête.
 
 ---
-🔗 Fait partie de la famille [[Aggregate before divide]]
-🔗 Vu dans [[26_python_intro|Intro Python]]
+🔗 Fait partie de la famille [[codex/sheet/Aggregate before divide|Aggregate before divide]]
+🔗 Vu dans [[wagon2321/cours/26_python_intro|Intro Python]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/09_udf_window_functions_sol|SQL — User-Defined Functions & Window Functions]]

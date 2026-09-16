@@ -1,4 +1,25 @@
+---
+title: Terminal — Navigation et fichiers
+type: reference
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+tags:
+  - brocode
+  - references
+aliases: []
+role_version: reference
+date: 2026-07-20
+---
+
 # Terminal — Navigation et fichiers
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Collection :** [[references/README|Références]]
+
 
 Référence transversale, indépendante de la progression Wagon (utile dès le jour 1, quel que soit le module en cours).
 

@@ -1,4 +1,34 @@
+---
+title: '📝 #20 — Looker Studio (2/2) : mise en forme, fonctionnalités avancées & bonnes
+  pratiques'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-31
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: looker-studio-2
+role_version: reference
+session: 20
+numero_fichier_legacy: 19
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Looker Studio
+- Data Visualization
+---
+
 # 📝 #20 — Looker Studio (2/2) : mise en forme, fonctionnalités avancées & bonnes pratiques
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 31 juillet 2026
 **Thème** : Habillage de dashboard, style des graphiques, breakdown, drill-down, métriques optionnelles, cross-filtering, champs calculés, gestion des sources, partage & gouvernance
@@ -8,7 +38,7 @@
 
 ## 🎯 Contexte de la session
 
-- Suite directe du [chapitre #19](19-looker-studio-1.md) — session plus longue, beaucoup plus orientée **pratique et interface**
+- Suite directe du [[wagon2321/cours/18_looker_studio_1|chapitre #19]] — session plus longue, beaucoup plus orientée **pratique et interface**
 - La démo est regroupée en fin de session (plutôt que dispersée) pour gagner du temps
 - Objectif de la journée : enchaîner sur un challenge pratique de 7 exercices (formatage de graphiques, breakdown, drill-down, métriques optionnelles, export de données)
 
@@ -275,4 +305,4 @@ Au-delà des types de graphiques disponibles par défaut, Looker Studio propose 
 
 ---
 
-*Chapitre 2/2 sur Looker Studio — suite directe du [#19 — fondamentaux de la dataviz](19-looker-studio-1.md).*
+*Chapitre 2/2 sur Looker Studio — suite directe du [[wagon2321/cours/18_looker_studio_1|#19 — fondamentaux de la dataviz]].*

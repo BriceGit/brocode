@@ -1,33 +1,42 @@
 ---
-title: "SQL — User-Defined Functions & Window Functions"
+title: SQL — User-Defined Functions & Window Functions
 aliases:
-  - "SQL Window Functions"
-  - "Window Functions"
-  - "SQL UDFs"
+- SQL Window Functions — Claude Sonnet
+- Window Functions — Claude Sonnet
+- SQL UDFs — Claude Sonnet
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 9
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "UDFs"
-  - "Window Functions"
-  - "Ranking"
+- SQL
+- BigQuery
+- UDFs
+- Window Functions
+- Ranking
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - window-functions
-  - udf
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+date: 2026-07-16
+course_id: sql-window-functions
+role_version: variante
+reference: '[[wagon2321/cours_sol/09_udf_window_functions_sol]]'
 ---
 
-
 # 09 - Window Functions (BigQuery)
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/09_udf_window_functions_sol|SQL — User-Defined Functions & Window Functions]]
+
 
 **Date :** 16 juillet 2026
 **Thème :** Fonctions SQL personnalisées (UDF) & Window Functions — module Data Transformation
@@ -335,7 +344,7 @@ INNER JOIN orders_operationnal op USING (orders_id)
 | Aggregate & Join | ❌ perdue | ✅ | ❌ |
 | Window Function distribution | ✅ conservée | ✅ | ✅ |
 
-🔗 À relier à [`07-sql-joins-testing.md`](./07-sql-joins-testing.md) pour la mécanique des jointures de base.
+🔗 À relier à [[wagon2321/cours_sol/07_joins_and_testing_sol|`07-sql-joins-testing.md`]] pour la mécanique des jointures de base.
 
 ---
 
@@ -365,6 +374,6 @@ INNER JOIN orders_operationnal op USING (orders_id)
 
 ## 🔗 Liens avec d'autres chapitres
 
-- [`07-sql-joins-testing.md`](./07-sql-joins-testing.md) — jointures de base
+- [[wagon2321/cours_sol/07_joins_and_testing_sol|`07-sql-joins-testing.md`]] — jointures de base
 - [ ] Lien vers un chapitre fonctions d'agrégation SQL natives (`SUM`, `AVG`, `ROUND`...) si tu en as un séparé
 - [ ] Lien vers le chapitre dbt si tu réutilises ces UDF / window functions dans un modèle dbt

@@ -1,6 +1,30 @@
+---
+title: 📊 Power BI — Carnet de révision PL-300
+type: guide
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: powerbi-pl300-carnet-revision
+role_version: reference
+tags:
+  - brocode
+  - wagon2321/complements
+aliases: []
+date: 2026-08-31
+---
+
 # 📊 Power BI — Carnet de révision PL-300
 
-**Objectif** : socle théorique structuré comme l'examen officiel, confronté aux 3 jours Wagon réellement suivis ([#22](22-power-bi-1.md), [#23](23-power-bi-2.md), [#24](24-power-bi-3.md)).
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
+
+**Objectif** : socle théorique structuré comme l'examen officiel, confronté aux 3 jours Wagon réellement suivis ([[wagon2321/cours/21_power_bi_1|#22]], [[wagon2321/cours/22_power_bi_2|#23]], [[wagon2321/cours/23_power_bi_3|#24]]).
 **Source** : Skills Measured officiel Microsoft, version en vigueur depuis le 20/04/2026.
 **Statut examen** : score de passage 700/1000 · validité 1 an · renouvelable gratuitement en ligne.
 
@@ -151,8 +175,8 @@
 
 | Date | Session | Notes / blocages |
 |---|---|---|
-| 04/08/2026 | Jour 1 Wagon — [#22](22-power-bi-1.md) : présentation, Power Query, Data Model, dashboard design | Session dense, bon socle Power Query + Star Schema. Aucun Drillthrough abordé. |
-| 05/08/2026 | Jour 2 Wagon — [#23](23-power-bi-2.md) : DAX, Star Schema, Filter Context/CALCULATE, Time Intelligence | Cœur du DAX bien posé (CALCULATE, itérateurs, Time Intelligence). Pas de table de calendrier dédiée construite — les mesures s'appuient directement sur la colonne date de la table de faits. |
-| 06/08/2026 | Jour 3 Wagon — [#24](24-power-bi-3.md) : gouvernance, sécurité, partage, Apps (journée projet) | Bonne couverture RLS/OLS/Workspaces. Rien sur les gateways, l'actualisation planifiée ni les sensitivity labels. |
+| 04/08/2026 | Jour 1 Wagon — [[wagon2321/cours/21_power_bi_1\|#22]] : présentation, Power Query, Data Model, dashboard design | Session dense, bon socle Power Query + Star Schema. Aucun Drillthrough abordé. |
+| 05/08/2026 | Jour 2 Wagon — [[wagon2321/cours/22_power_bi_2\|#23]] : DAX, Star Schema, Filter Context/CALCULATE, Time Intelligence | Cœur du DAX bien posé (CALCULATE, itérateurs, Time Intelligence). Pas de table de calendrier dédiée construite — les mesures s'appuient directement sur la colonne date de la table de faits. |
+| 06/08/2026 | Jour 3 Wagon — [[wagon2321/cours/23_power_bi_3\|#24]] : gouvernance, sécurité, partage, Apps (journée projet) | Bonne couverture RLS/OLS/Workspaces. Rien sur les gateways, l'actualisation planifiée ni les sensitivity labels. |
 
 *(à densifier au fil de la révision autonome — noter les blocages DAX/config rencontrés en pratiquant les points 🔴 ci-dessus)*

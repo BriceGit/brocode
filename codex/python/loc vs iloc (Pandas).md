@@ -1,3 +1,15 @@
+---
+title: loc vs iloc (Pandas)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # loc vs iloc (Pandas)
 
 Deux méthodes de sélection de lignes/colonnes sur un DataFrame, souvent confondues parce qu'un index par défaut est numérique — ce qui les fait sembler interchangeables alors qu'elles suivent des conventions différentes.
@@ -31,4 +43,4 @@ df.iloc[1:4, 1:3]
 - Besoin de cibler par **position pure** (ex. "les 3 premières lignes, peu importe leur label") → `.iloc`
 
 ---
-🔗 Vu dans [[27-pandas-manipulation-donnees|Pandas — Manipulation de données]]
+🔗 Vu dans [[wagon2321/cours/27-pandas-manipulation-donnees|Pandas — Manipulation de données]]

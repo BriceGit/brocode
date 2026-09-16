@@ -1,33 +1,42 @@
 ---
-title: "SQL — Aggregations, String, Date & Time Functions"
+title: SQL — Aggregations, String, Date & Time Functions
 aliases:
-  - "SQL Aggregations"
-  - "SQL String Functions"
-  - "SQL Date & Time Functions"
+- SQL Aggregations — Claude Sonnet
+- SQL String Functions — Claude Sonnet
+- SQL Date & Time Functions — Claude Sonnet
 type: course
-status: reference
-course: "Le Wagon — Data Analytics"
+status: active
+course: Le Wagon — Data Analytics
 batch: 2321
 session: 6
 date: 2026-07-13
-language: "SQL"
-database: "BigQuery / GoogleSQL"
+language: fr
+database: BigQuery / GoogleSQL
 topics:
-  - "SQL"
-  - "BigQuery"
-  - "Aggregations"
-  - "String"
-  - "Date & Time"
+- SQL
+- BigQuery
+- Aggregations
+- String
+- Date & Time
 tags:
-  - brocode
-  - wagon2321/cours
-  - sql
-  - bigquery
-  - aggregations
-  - date-time
+- brocode
+- wagon2321/cours
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+code_language: SQL
+course_id: sql-aggregations
+role_version: variante
+reference: '[[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol]]'
 ---
 
 # 📝 6 — SQL : agrégations (GROUP BY/HAVING) et fonctions de dates & chaînes de caractères
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|SQL — Aggregations, String, Date & Time Functions]]
+
 
 **Date** : 13 juillet 2026
 **Thème** : Fonctions d'agrégation (COUNT/SUM/MIN/MAX/AVG), GROUP BY, HAVING vs. WHERE, fonctions STRING (CONCAT/REPLACE/LOWER/REGEXP), fonctions DATE (EXTRACT/DATE_TRUNC/DATE_DIFF/PARSE_DATE), contrôle qualité de la donnée
@@ -36,7 +45,7 @@ tags:
 
 ## 🎯 Contexte de la session
 
-- Suite directe du [chapitre #5](05-intro-sql-bigquery.md), centrée sur les **fonctions d'agrégation**
+- Suite directe du [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|chapitre #5]], centrée sur les **fonctions d'agrégation**
 - Objectif affiché : arriver, avec des formules SQL, au même résultat qu'un tableau croisé dynamique sur un tableur (Excel/Sheets)
 - Journée en deux temps : théorie le matin (agrégation, GROUP BY, HAVING, fonctions string/date), puis session de révision collective en fin de journée sur les exercices
 
@@ -99,7 +108,7 @@ GROUP BY buyer
 
 👉 `WHERE spend > 10` élimine les lignes d'achat individuelles ≤ 10 **avant** de sommer — Julien perd donc une partie de ses petits achats dans le total, qui tombe à 15 au lieu de 17.5. `HAVING total_spend > 10` filtre le total déjà calculé — Julie (12.5) et Julien (17.5) passent le seuil, Paul (10, pas strictement supérieur) et Thomas (5) sont exclus. Ce n'est pas juste une question de syntaxe : les deux requêtes répondent à des questions différentes.
 
-- ⚠️ **Les fonctions d'agrégation sont interdites dans `WHERE`** : à ce stade de l'exécution, l'agrégation n'a pas encore eu lieu (cf. ordre d'exécution vu au [#5](05-intro-sql-bigquery.md) : `WHERE` s'exécute avant `GROUP BY`, `HAVING` après)
+- ⚠️ **Les fonctions d'agrégation sont interdites dans `WHERE`** : à ce stade de l'exécution, l'agrégation n'a pas encore eu lieu (cf. ordre d'exécution vu au [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|#5]] : `WHERE` s'exécute avant `GROUP BY`, `HAVING` après)
 - Un alias créé dans le `SELECT`/`GROUP BY` (ex. `total_spend`) peut être réutilisé directement dans le `HAVING`
 
 ---
@@ -233,9 +242,9 @@ ORDER BY nb DESC
 
 ## 🔗 Liens avec d'autres notions
 
-- Le couple WHERE/HAVING est une application directe de l'**ordre d'exécution des clauses** vu au [#5](05-intro-sql-bigquery.md) (`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT`) : comprendre cet ordre rend la règle "pas d'agrégation dans WHERE" évidente plutôt qu'arbitraire
-- `SAFE_DIVIDE()`, vu ici dans le tableau des fonctions numériques, est la même prudence déjà notée côté dbt/BigQuery et côté Looker Studio (agréger avant de diviser, [#20](20-looker-studio-2.md)) — trois contextes différents, un seul réflexe : ne jamais diviser avant d'avoir agrégé
-- `TRANSLATE()` pour nettoyer les accents complète `CAST`/`SAFE_CAST` vu au [#5](05-intro-sql-bigquery.md) : dans les deux cas, l'idée est de normaliser une colonne texte *avant* de l'utiliser dans une comparaison ou une agrégation, plutôt que de découvrir le problème après coup
+- Le couple WHERE/HAVING est une application directe de l'**ordre d'exécution des clauses** vu au [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|#5]] (`FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT`) : comprendre cet ordre rend la règle "pas d'agrégation dans WHERE" évidente plutôt qu'arbitraire
+- `SAFE_DIVIDE()`, vu ici dans le tableau des fonctions numériques, est la même prudence déjà notée côté dbt/BigQuery et côté Looker Studio (agréger avant de diviser, [[wagon2321/cours/19_looker_studio_2|#20]]) — trois contextes différents, un seul réflexe : ne jamais diviser avant d'avoir agrégé
+- `TRANSLATE()` pour nettoyer les accents complète `CAST`/`SAFE_CAST` vu au [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|#5]] : dans les deux cas, l'idée est de normaliser une colonne texte *avant* de l'utiliser dans une comparaison ou une agrégation, plutôt que de découvrir le problème après coup
 
 ---
 
@@ -253,4 +262,4 @@ ORDER BY nb DESC
 
 ---
 
-*Suite directe du [#5 — Introduction à SQL & BigQuery](05-intro-sql-bigquery.md). Les jointures, peu abordées cette session, feront l'objet d'un chapitre dédié.*
+*Suite directe du [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|#5 — Introduction à SQL & BigQuery]]. Les jointures, peu abordées cette session, feront l'objet d'un chapitre dédié.*

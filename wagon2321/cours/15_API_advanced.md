@@ -1,4 +1,34 @@
+---
+title: 📝 16 - API advanced
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-27
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: API-advanced
+role_version: reference
+session: 16
+numero_fichier_legacy: 15
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- API
+- HTTP
+- JSON
+---
+
 # 📝 16 - API advanced
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date : 27 juillet 2026**
 

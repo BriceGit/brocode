@@ -1,5 +1,5 @@
 ---
-title: Cheat Sheet — Python · NumPy · pandas
+title: Cheat Sheet — Tracking Web & GTM
 aliases:
   - Cheat Sheet gtm
 type: reference
@@ -11,14 +11,21 @@ topics:
   - tracker
 tags:
   - brocode
-  - wagon2321/cours
-  - gtm
-  - google
-  - tracker
-  - cheatsheet
+  - references
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+role_version: reference
+date: 2026-07-31
 ---
 
 # ⚡ Cheat-sheet interview — Tracking Web & GTM
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Collection :** [[references/README|Références]]
+
 
 *Révision rapide avant entretien. Version condensée du chapitre #17.*
 

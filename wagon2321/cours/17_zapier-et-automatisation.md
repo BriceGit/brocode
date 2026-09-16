@@ -1,4 +1,33 @@
+---
+title: '📝 #18 — Zapier & Automatisation no-code'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-29
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: zapier-et-automatisation
+role_version: reference
+session: 18
+numero_fichier_legacy: 17
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Zapier
+- Automatisation
+---
+
 # 📝 #18 — Zapier & Automatisation no-code
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 29 juillet 2026
 **Thème** : Automatisation de workflows (Zapier en pratique, panorama Make/n8n)

@@ -1,3 +1,15 @@
+---
+title: Reporting vs analyse ad hoc
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Reporting vs analyse ad hoc
 
 > Deux demandes qui se ressemblent à l'oral et qui ne produisent pas du tout le même livrable. Se tromper là-dessus, c'est refaire le travail.
@@ -77,7 +89,7 @@ Et les questions de suivi qui tuent l'ambiguïté :
 
 ## 🎯 Impact sur la méthodologie
 
-Dans le [[KPI Basics|framework en 7 étapes]], le choix du type d'analyse est **l'étape 3**, juste après le sourcing de la donnée. Il conditionne tout l'aval :
+Dans le [[wagon2321/cours/03_KPI_Basics|framework en 7 étapes]], le choix du type d'analyse est **l'étape 3**, juste après le sourcing de la donnée. Il conditionne tout l'aval :
 
 | Étape | En reporting | En ad hoc |
 |---|---|---|
@@ -115,6 +127,6 @@ C'est exactement la progression `descriptif → diagnostic → prédictif → pr
 
 ## 🔗 Liens
 
-- Chapitre source : [[KPI Basics]]
-- [[KPI vs métrique]] — le reporting expose des KPI, l'ad hoc mobilise des métriques
-- [[Aggregate before divide]] — le piège de calcul qui survit à l'ad hoc et contamine le reporting
+- Chapitre source : [[wagon2321/cours/03_KPI_Basics|KPI Basics]]
+- [[codex/kpi/KPI vs métrique|KPI vs métrique]] — le reporting expose des KPI, l'ad hoc mobilise des métriques
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — le piège de calcul qui survit à l'ad hoc et contamine le reporting

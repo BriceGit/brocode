@@ -1,4 +1,28 @@
+---
+title: 🧠 Fiche de synthèse — Config initiale dbt & gestion des sources
+type: guide
+status: active
+modeles_ia:
+  - "[[modeles-ia/Claude Sonnet]]"
+attribution: confirmee
+language: fr
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: dbt-config-sources-fiche
+role_version: reference
+tags:
+  - brocode
+  - wagon2321/complements
+aliases: []
+date: 2026-07-27
+---
+
 # 🧠 Fiche de synthèse — Config initiale dbt & gestion des sources
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Contexte** : basée sur la session de debug réelle du projet `greenweez_dbt` (23/07/2026)
 

@@ -1,4 +1,36 @@
-# 09 · Introduction à DBT (Data Build Tool)
+---
+title: 13 — Introduction à DBT (Data Build Tool)
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-07-22
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: dbt-introduction
+role_version: variante
+reference: '[[wagon2321/cours_sol/13_intro_dbt_sol]]'
+session: 13
+numero_fichier_legacy: 12
+aliases: []
+tags:
+- brocode
+- wagon2321/cours
+topics:
+- dbt
+- Data Modeling
+- Data Quality
+---
+
+# 13 · Introduction à DBT (Data Build Tool)
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** variante · [[navigation/Cours|Index des cours]]
+> **Version de référence :** [[wagon2321/cours_sol/13_intro_dbt_sol|dbt — Introduction, modèles & pipeline Jaffle Shop]]
+
 
 > Le **T** du pipeline ELT. DBT ne stocke, n'extrait et ne charge aucune donnée — il se connecte à une base déjà existante (BigQuery, DuckDB, Snowflake, Redshift, Databricks...) et **transforme** cette donnée avec du SQL versionné, testé et documenté.
 

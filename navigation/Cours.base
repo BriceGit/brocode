@@ -1,0 +1,39 @@
+filters:
+  and:
+  - file.ext == "md"
+  - note.type == "course"
+properties:
+  note.modeles_ia:
+    displayName: Modèle IA
+  note.role_version:
+    displayName: Version
+  formula.titre:
+    displayName: Titre
+views:
+- type: table
+  name: Références
+  filters: note.role_version == "reference"
+  order:
+  - formula.titre
+  - note.session
+  - note.date
+  - note.modeles_ia
+  - note.variantes
+  sort:
+  - property: note.date
+    direction: ASC
+- type: table
+  name: Toutes les versions
+  groupBy:
+    property: note.course_id
+    direction: ASC
+  order:
+  - formula.titre
+  - note.modeles_ia
+  - note.role_version
+  - note.reference
+  sort:
+  - property: note.date
+    direction: ASC
+formulas:
+  titre: if(note.title, file.asLink(note.title), file.asLink())

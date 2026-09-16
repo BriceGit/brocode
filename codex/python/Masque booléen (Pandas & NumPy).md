@@ -1,3 +1,15 @@
+---
+title: Masque booléen (boolean masking)
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Masque booléen (boolean masking)
 
 Le **masquage booléen** est le mécanisme de filtrage central en Pandas (et en NumPy). Le principe : appliquer une condition logique sur une Series produit une nouvelle Series de `True`/`False`, alignée sur l'index d'origine — ce masque peut ensuite être passé entre crochets à un DataFrame pour n'en garder que les lignes où il vaut `True`.
@@ -57,5 +69,5 @@ df["Lunch"]   # ❌ KeyError
 Entre crochets simples, Pandas attend un **nom de colonne** — pas une valeur contenue dans une colonne. `"Lunch"` est une valeur de la colonne `time`, pas un intitulé de colonne. Réflexe utile avant de coder : formuler la demande en pseudo-code ("je veux compter" + "je veux filtrer sur Lunch") pour ne pas confondre les deux niveaux.
 
 ---
-🔗 Vu dans [[27-pandas-manipulation-donnees|Pandas — Manipulation de données]]
-🔗 Fait partie de la famille [[Aggregate before divide]]
+🔗 Vu dans [[wagon2321/cours/27-pandas-manipulation-donnees|Pandas — Manipulation de données]]
+🔗 Fait partie de la famille [[codex/sheet/Aggregate before divide|Aggregate before divide]]

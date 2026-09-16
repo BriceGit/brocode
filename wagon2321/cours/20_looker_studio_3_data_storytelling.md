@@ -1,4 +1,33 @@
+---
+title: '📝 #21 — Data Storytelling & bonnes pratiques dataviz (journée projet)'
+type: course
+status: active
+modeles_ia:
+- '[[modeles-ia/Claude Sonnet]]'
+attribution: confirmee
+language: fr
+date: 2026-08-03
+course: Le Wagon — Data Analytics
+batch: 2321
+course_id: looker-studio-3-data-storytelling
+role_version: reference
+session: 21
+numero_fichier_legacy: 20
+tags:
+- brocode
+- wagon2321/cours
+aliases: []
+topics:
+- Looker Studio
+- Data Visualization
+---
+
 # 📝 #21 — Data Storytelling & bonnes pratiques dataviz (journée projet)
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/Claude Sonnet|Claude Sonnet]]
+> **Version :** référence · [[navigation/Cours|Index des cours]]
+
 
 **Date** : 03 août 2026
 **Thème** : Rôle du data storytelling, choix des graphiques, psychologie UX/UI, EDA, construction de KPIs avec le métier, orchestration de pages Looker
@@ -9,7 +38,7 @@
 ## 🎯 Contexte de la session
 
 - Journée projet, pas un cours classique — un mini-cours théorique le matin, puis après-midi/soir consacrés à un dashboard sur des données Airbnb
-- Pas de captures d'écran cette fois : contenu volontairement léger, mais **complémentaire** des chapitres [#19](19-looker-studio-1.md) (fondamentaux Looker Studio) et [#20](20-looker-studio-2.md) (fonctionnalités avancées)
+- Pas de captures d'écran cette fois : contenu volontairement léger, mais **complémentaire** des chapitres [[wagon2321/cours/18_looker_studio_1|#19]] (fondamentaux Looker Studio) et [[wagon2321/cours/19_looker_studio_2|#20]] (fonctionnalités avancées)
 - Différence de focus : #19/#20 couvraient le *comment* (l'outil), cette session couvre le *pourquoi* — la psychologie derrière un bon dashboard et la méthode pour construire des KPIs fiables avec le métier
 
 ---
@@ -27,7 +56,7 @@
 
 ## 📊 Choisir le bon graphique — déclinaison concrète
 
-Le framework **distribution / composition / relation / comparaison** vu au [#19](19-looker-studio-1.md) se traduit ici en choix pratiques :
+Le framework **distribution / composition / relation / comparaison** vu au [[wagon2321/cours/18_looker_studio_1|#19]] se traduit ici en choix pratiques :
 
 | Type de graphique | Cas d'usage |
 |---|---|
@@ -132,8 +161,8 @@ Règle transversale : **un graphique = un message**. Un graphique qui veut tout 
 
 ## 🔗 Liens avec d'autres notions
 
-- Le framework de choix de graphique (distribution/composition/relation/comparaison) vu au [#19](19-looker-studio-1.md) trouve ici son application concrète, type de graphique par type de graphique
-- L'importance du storytelling avait déjà été flaggée en clôture du [#20](20-looker-studio-2.md) ("aussi déterminant que la qualité de la donnée et le soin visuel") — cette session en donne le cadre théorique complet
+- Le framework de choix de graphique (distribution/composition/relation/comparaison) vu au [[wagon2321/cours/18_looker_studio_1|#19]] trouve ici son application concrète, type de graphique par type de graphique
+- L'importance du storytelling avait déjà été flaggée en clôture du [[wagon2321/cours/19_looker_studio_2|#20]] ("aussi déterminant que la qualité de la donnée et le soin visuel") — cette session en donne le cadre théorique complet
 - La méthode de validation des KPIs avec le métier (définition, source, période) rejoint directement la logique déjà vue en SQL sur les `CASE WHEN` de segmentation métier — même exigence de clarifier la règle de gestion avant de coder quoi que ce soit
 - Le réflexe "un scorecard seul ne veut rien dire sans comparaison" est le pendant dataviz du principe **aggregate before divide / conservation tests** déjà noté en BigQuery/dbt/DAX : dans les deux cas, un chiffre isolé ou mal contextualisé peut raconter une histoire fausse
 - Fait écho à la rétrospective personnelle notée sur le projet RFM : la méthodologie et sa présentation comptent autant que le résultat lui-même
@@ -141,4 +170,4 @@ Règle transversale : **un graphique = un message**. Un graphique qui veut tout 
 
 ---
 
-*Chapitre complémentaire aux [#19](19-looker-studio-1.md) et [#20](20-looker-studio-2.md) — journée projet, contenu théorique volontairement condensé, à enrichir si des points reviennent en session ultérieure.*
+*Chapitre complémentaire aux [[wagon2321/cours/18_looker_studio_1|#19]] et [[wagon2321/cours/19_looker_studio_2|#20]] — journée projet, contenu théorique volontairement condensé, à enrichir si des points reviennent en session ultérieure.*

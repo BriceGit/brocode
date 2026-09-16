@@ -1,3 +1,15 @@
+---
+title: Clé de jointure et cardinalité
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Clé de jointure et cardinalité
 
 > **La clé de jointure** est la colonne commune qui permet de relier deux tables. **La cardinalité** décrit combien de lignes de chaque côté correspondent à une même valeur de clé. C'est la cardinalité — pas la clé — qui détermine si le résultat sera juste ou faux.
@@ -55,7 +67,7 @@ SELECT SUM(DISTINCT ...)   -- fragile, à éviter : casse si deux commandes ont 
 ```
 
 > [!danger] `SUM(DISTINCT)` n'est pas une solution
-> Deux commandes légitimes à 100 € seront comptées une seule fois. La bonne réponse est presque toujours d'agréger d'abord, ou de ne pas faire le join à cette granularité du tout → [[Granularité d'une table]]
+> Deux commandes légitimes à 100 € seront comptées une seule fois. La bonne réponse est presque toujours d'agréger d'abord, ou de ne pas faire le join à cette granularité du tout → [[codex/sheet/Granularité d'une table|Granularité d'une table]]
 
 ---
 
@@ -170,8 +182,15 @@ Corollaire : dans un star schema, une table `dim_` a par construction une clé u
 
 ## 🔗 Liens
 
-- Première apparition dans le cursus : [[02-google-sheets]] — `VLOOKUP` et la première occurrence
-- [[Granularité d'une table]] — le fan-out est d'abord un problème de granularité mal identifiée
-- [[Aggregate before divide]] — un ratio calculé après un fan-out est faux même avec `SUM/SUM`
-- [[Window Function vs GROUP BY et JOIN]] — les window functions préservent la granularité, contrairement au join
-- [[Data Pipelines, Views & Tables]]
+- Première apparition dans le cursus : [[wagon2321/cours/02-google-sheets|02-google-sheets]] — `VLOOKUP` et la première occurrence
+- [[codex/sheet/Granularité d'une table|Granularité d'une table]] — le fan-out est d'abord un problème de granularité mal identifiée
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — un ratio calculé après un fan-out est faux même avec `SUM/SUM`
+- [[codex/sql/Window Function vs GROUP BY et JOIN|Window Function vs GROUP BY et JOIN]] — les window functions préservent la granularité, contrairement au join
+- [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|Data Pipelines, Views & Tables]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|SQL — Introduction, Relational Databases & BigQuery]]
+- [[wagon2321/cours_sol/07_joins_and_testing_sol|SQL — JOINs & Testing]]
+- [[wagon2321/cours_sol/13_intro_dbt_sol|dbt — Introduction, modèles & pipeline Jaffle Shop]]
+- [[wagon2321/cours_sol/14_dbt_advanced_sol|dbt — Tests, documentation, environnements, macros & packages]]

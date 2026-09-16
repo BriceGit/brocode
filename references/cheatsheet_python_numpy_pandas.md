@@ -13,14 +13,21 @@ topics:
   - pandas
 tags:
   - brocode
-  - wagon2321/cours
-  - python
-  - numpy
-  - pandas
-  - cheatsheet
+  - references
+modeles_ia:
+  - "[[modeles-ia/ChatGPT Sol]]"
+attribution: confirmee
+language: fr
+role_version: reference
+date: 2026-08-03
 ---
 
 # 🐍 Cheat Sheet — Python · NumPy · pandas
+
+> [!info] Repères Brocode
+> **Modèle IA — rédaction :** [[modeles-ia/ChatGPT Sol|ChatGPT Sol]]
+> **Collection :** [[references/README|Références]]
+
 
 
 > [!abstract] Objectif

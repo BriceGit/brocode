@@ -1,3 +1,15 @@
+---
+title: WHERE vs HAVING
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # WHERE vs HAVING
 
 Deux clauses qui filtrent toutes les deux, mais pas au même moment de l'exécution.
@@ -47,6 +59,10 @@ Julie disparaît complètement de la première requête : ses achats (3, 3, 4.5,
 
 ## Voir aussi
 
-- [[Reboot SQL Fivetran Git dbt]] — chapitre source, section Fonctions d'agrégation
-- [[Window Function vs GROUP BY et JOIN]] — même logique sous-jacente : l'ordre d'exécution des clauses
-- [[NULL et agrégation (AVG, COUNT)]]
+- [[wagon2321/cours/24_rebootsql_fivetran_git_dbt|Reboot SQL Fivetran Git dbt]] — chapitre source, section Fonctions d'agrégation
+- [[codex/sql/Window Function vs GROUP BY et JOIN|Window Function vs GROUP BY et JOIN]] — même logique sous-jacente : l'ordre d'exécution des clauses
+- [[codex/sql/NULL et agrégation (AVG, COUNT)|NULL et agrégation (AVG, COUNT)]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/06_sql_aggregation_string_date_time_functions_sol|SQL — Aggregations, String, Date & Time Functions]]

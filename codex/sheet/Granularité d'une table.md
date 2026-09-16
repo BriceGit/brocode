@@ -1,3 +1,15 @@
+---
+title: Granularité d'une table
+type: concept
+status: active
+modeles_ia: []
+attribution: a_confirmer
+language: fr
+tags:
+- brocode
+- codex
+---
+
 # Granularité d'une table
 
 > **La granularité (ou *grain*) d'une table, c'est ce que représente exactement une ligne.** C'est la première question à se poser devant un dataset, avant toute jointure, toute agrégation et tout calcul de KPI.
@@ -39,7 +51,7 @@ Si la réponse contient un « ou » (*« une commande, ou parfois un rembourseme
 | `UNION` | Préservé **si** les deux tables ont le même grain. Sinon, catastrophe silencieuse |
 
 > [!tip] La distinction `GROUP BY` vs `OVER()`
-> `GROUP BY` réduit le nombre de lignes pour produire un agrégat. `OVER()` calcule le même agrégat **en gardant chaque ligne**. Choisir entre les deux, c'est décider du grain de sortie. → [[Window Function vs GROUP BY et JOIN]]
+> `GROUP BY` réduit le nombre de lignes pour produire un agrégat. `OVER()` calcule le même agrégat **en gardant chaque ligne**. Choisir entre les deux, c'est décider du grain de sortie. → [[codex/sql/Window Function vs GROUP BY et JOIN|Window Function vs GROUP BY et JOIN]]
 
 ---
 
@@ -129,7 +141,7 @@ Deux faits à des grains différents (commandes et lignes de commande) → **deu
 
 Toujours modéliser au **grain le plus fin** dont on aura besoin. On peut toujours agréger vers le haut ; on ne peut jamais redescendre. Une table agrégée trop tôt est une information définitivement perdue.
 
-Le contre-argument (volumétrie, coût de scan en BigQuery) se traite par le partitionnement et le clustering, pas par une perte de grain. → [[Data Pipelines, Views & Tables]]
+Le contre-argument (volumétrie, coût de scan en BigQuery) se traite par le partitionnement et le clustering, pas par une perte de grain. → [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|Data Pipelines, Views & Tables]]
 
 ---
 
@@ -148,8 +160,16 @@ Le grain temporel est celui qu'on oublie le plus souvent de nommer.
 
 ## 🔗 Liens
 
-- Première apparition implicite dans le cursus : [[02-google-sheets]] — le tableau croisé dynamique manipule la granularité sans jamais la nommer
-- [[Clé de jointure et cardinalité]] — le fan-out, principale cause de changement de grain non voulu
-- [[Aggregate before divide]] — un ratio calculé au mauvais grain est faux même avec `SUM/SUM`
-- [[Window Function vs GROUP BY et JOIN]]
-- [[Data Pipelines, Views & Tables]]
+- Première apparition implicite dans le cursus : [[wagon2321/cours/02-google-sheets|02-google-sheets]] — le tableau croisé dynamique manipule la granularité sans jamais la nommer
+- [[codex/sheet/Clé de jointure et cardinalité|Clé de jointure et cardinalité]] — le fan-out, principale cause de changement de grain non voulu
+- [[codex/sheet/Aggregate before divide|Aggregate before divide]] — un ratio calculé au mauvais grain est faux même avec `SUM/SUM`
+- [[codex/sql/Window Function vs GROUP BY et JOIN|Window Function vs GROUP BY et JOIN]]
+- [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|Data Pipelines, Views & Tables]]
+
+## Cours de référence
+
+- [[wagon2321/cours_sol/05_intro_sql_relational_databases_bigquery_sol|SQL — Introduction, Relational Databases & BigQuery]]
+- [[wagon2321/cours_sol/07_joins_and_testing_sol|SQL — JOINs & Testing]]
+- [[wagon2321/cours_sol/10_data_pipelines_views_tables_sol|Data Pipelines, Views, Tables & BigQuery Performance]]
+- [[wagon2321/cours_sol/12_git_versioning_github_collaboration_sol|Git — Versioning, GitHub & Collaboration]]
+- [[wagon2321/cours_sol/13_intro_dbt_sol|dbt — Introduction, modèles & pipeline Jaffle Shop]]
